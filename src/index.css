@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@600&family=Inter:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Custom Properties for Theme Management */
+:root {
+  /* Light Theme Colors */
+  --color-primary: #2563eb;
+  --color-secondary: #9333ea;
+  --color-accent: #f43f5e;
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #6b7280;
+  --color-border: #e5e7eb;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  
+  /* Transition Properties */
+  --transition-theme: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  /* Dark Theme Colors */
+  --color-primary: #3b82f6;
+  --color-secondary: #a855f7;
+  --color-accent: #f472b6;
+  --color-background: #111827;
+  --color-surface: #1f2937;
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #d1d5db;
+  --color-border: #374151;
+  --color-shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Global Theme Transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Smooth theme transitions for common elements */
+body,
+html {
+  transition: var(--transition-theme);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Typing Animation Styles */
+.typing-container {
+  min-height: 120px; /* Prevents layout shift during animation */
+}
+
+.typing-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: #003c3e;
+  font-weight: normal;
+  animation: cursor-glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes cursor-glow {
+  0% {
+    opacity: 1;
+    text-shadow: 0 0 5px #4F46E5;
+  }
+  100% {
+    opacity: 0.3;
+    text-shadow: 0 0 10px #4F46E5, 0 0 15px #4F46E5;
+  }
+}
+
+/* Dark mode cursor */
+.dark .typing-cursor {
+  color: #818CF8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-cursor {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Custom shadow for avatar hover effect */
+.hover\:shadow-3xl:hover {
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Smooth text highlight animation */
+.text-highlight {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.text-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #2563EB, #9333EA, #F43F5E);
+  transition: width 0.3s ease;
+}
+
+.text-highlight:hover::after {
+  width: 100%;
+}
+
+/* Parallax tilt effect */
+.parallax-tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.parallax-tilt:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Skill Card Magnetic Hover Effect */
+.skill-card {
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Enhanced Focus Styles for Accessibility */
+.focus\:ring-2:focus {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+
+/* Custom scrollbar for better dark mode experience */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) var(--color-surface);
+}
