@@ -4,6 +4,9 @@
 
 A stunning, responsive portfolio website showcasing my skills as a Frontend Web Developer. Built with modern technologies to deliver a seamless user experience with smooth animations, dark/light theme toggle, and interactive elements.
 
+![Uploading image.png…]()
+
+
 ## ✨ Features
 
 - 🌟 **Hero Section**: Typing animation, floating gradient shapes, particle background, and developer illustration with tech logos
