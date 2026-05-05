@@ -54,14 +54,14 @@ const projects = [
     githubUrl: "https://github.com/razazaheer12/MyPDF_converter", 
   },
     {
-    title: "🎓 Student Grade Calculator",
+    title: "🍽️ Recipe Finder",
     description:
-      "Student Grade Calculator (SCG) is a sleek, responsive web application designed to help students easily calculate their academic performance by entering their subjects and marks. The app provides a clear summary of total subjects, total marks, percentage, grade, and pass/fail status with an engaging UI and smooth animations.",
+      "A beautiful, feature-rich web application to discover delicious recipes from around the world. Search for your favorite meals, view detailed instructions, check ingredients, and watch cooking videos on YouTube.",
     image:
-      "https://i.ibb.co/pjSkmKgt/Screenshot-2025-10-06-205520.png",
-    tech: ["HTML 5", "CSS 3", "JavaScript (ES6)"],
-    liveUrl: "https://student-grade-calculator-scg.vercel.app/",
-    githubUrl: "https://github.com/razazaheer12/Student-Grade-Calculator-SCG-",
+      "https://i.ibb.co/W4JDQ78s/Screenshot-2026-05-06-030926.png",
+    tech: ["HTML 5", "CSS 3", "JavaScript (ES6)", "Fetch API", "TheMealDB API"],
+    liveUrl: "https://recipe-finder-12.netlify.app/",
+    githubUrl: "https://github.com/razazaheer12/Recipe-Finder",
   },
 
 ];
