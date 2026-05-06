@@ -34,14 +34,14 @@ const projects = [
     githubUrl: "https://github.com/razazaheer12/Advance_Weather_App-Next_Gen",
   },
     {
-    title: "🐍 Modern Snake Game",
+    title: "🌙☀️ Sun & Moon Tracker",
     description:
-      "A modern Snake Game built with HTML, CSS, and JavaScript. Control the snake with arrow keys, eat grains to grow, and score points. Now with Pause/Resume buttons, speed boosts every 5th food, and sound effects for a fun retro experience! 🎮",
-    image:
-      "https://i.ibb.co/PZ4hSbHB/Screenshot-2025-09-19-012154.png",
-    tech: ["HTML 5", "CSS 3", "JavaScript (ES6)"],
-    liveUrl: "https://snake-game0999.netlify.app/",
-    githubUrl: "https://github.com/razazaheer12/Snake-game",
+      "SunMoon Tracker is a high-precision, interactive web application designed to visualize the real-time positions of the sun and the moon. A beautiful React + Vite + TypeScript app that lets you explore the world through time-zone aware “world time windows”. Add your favorite cities and instantly see ",
+    image: 
+      "https://i.ibb.co/ym34jL7c/Screenshot-2026-05-06-234111.png",
+   tech: ["React.js","TypeScript","Tailwind CSS","Vite","Shadcn/UI","Date-fns (Timezone Logic)"],
+    liveUrl: "https://sun-moon-tracker-a27p.vercel.app/",
+    githubUrl: "https://github.com/razazaheer12/Sun_Moon-Tracker",
   },
   {
     title: "MyPDF - Free Online PDF Toolkit",
@@ -62,6 +62,16 @@ const projects = [
     tech: ["HTML 5", "CSS 3", "JavaScript (ES6)", "Fetch API", "TheMealDB API"],
     liveUrl: "https://recipe-finder-12.netlify.app/",
     githubUrl: "https://github.com/razazaheer12/Recipe-Finder",
+  },
+   {
+    title: "🐍 Modern Snake Game",
+    description:
+      "A modern Snake Game built with HTML, CSS, and JavaScript. Control the snake with arrow keys, eat grains to grow, and score points. Now with Pause/Resume buttons, speed boosts every 5th food, and sound effects for a fun retro experience! 🎮",
+    image:
+      "https://i.ibb.co/PZ4hSbHB/Screenshot-2025-09-19-012154.png",
+    tech: ["HTML 5", "CSS 3", "JavaScript (ES6)"],
+    liveUrl: "https://snake-game0999.netlify.app/",
+    githubUrl: "https://github.com/razazaheer12/Snake-game",
   },
 
 ];
