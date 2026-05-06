@@ -18,7 +18,7 @@ const projects = [
     description:
       "Neural Canvas, your ultimate AI-powered art style studio. This innovative web application transforms your ordinary photos into stunning masterpieces by applying sophisticated AI-inspired filters and real-time adjustments. Whether you're an artist, hobbyist, or just love experimenting with visual creativity, Neural Canvas empowers you to unleash your inner artist with just a few clicks.",
     image:
-      "https://i.ibb.co/2xG8s7C/Gemini-Generated-Image-7eb9ml7eb9ml7eb9.png",
+      "https://i.ibb.co/QhzDFNC/Screenshot-2026-05-07-000415.png",
     tech: ["JavaScript", "CSS", "HTML"],
     liveUrl: "https://canvas-photoeditor-ai.netlify.app/",
     githubUrl: "https://github.com/razazaheer12/Neural-Canvas--AI-Art-Style-Transfer-Studio",
