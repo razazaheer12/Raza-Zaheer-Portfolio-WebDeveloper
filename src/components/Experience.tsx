@@ -201,12 +201,13 @@ const Experience = () => {
                     </div>
 
                     {/* Title */}
-                    <h3
-                      className="mt-1.5 text-[11.5px] font-semibold leading-snug text-white"
-                      style={{ fontFamily: 'Poppins, sans-serif' }}
-                    >
-                      {item.title}
-                    </h3>
+                    {/* Title */}
+    <h3
+      className="mt-2 text-[13px] font-medium leading-snug text-white"
+      style={{ fontFamily: 'Poppins, sans-serif' }}
+    >
+      {item.title}
+    </h3>
 
                     {/* Company */}
                     <p
