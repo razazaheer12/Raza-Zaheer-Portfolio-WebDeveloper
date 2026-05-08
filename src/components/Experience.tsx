@@ -18,7 +18,7 @@ const timelineData = [
       'Built responsive websites with HTML, CSS, JS, React.js. Focused on UI/UX, accessibility, and performance. Delivered multiple freelance projects.',
     tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
     side: 'left',
-    icon: <BriefcaseBusiness size={18} />,
+    icon: <BriefcaseBusiness size={16} />,
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const timelineData = [
     description:
       'Studied core subjects including Mathematics, Physics, and Chemistry. Built strong analytical and problem-solving skills.',
     side: 'right',
-    icon: <Building2 size={18} />,
+    icon: <Building2 size={16} />,
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const timelineData = [
       'Leading the frontend team to build scalable modern web applications using the MERN Stack.',
     tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
     side: 'left',
-    icon: <Code2 size={18} />,
+    icon: <Code2 size={16} />,
   },
   {
     id: 4,
@@ -52,16 +52,16 @@ const timelineData = [
     description:
       'Focused on Data Structures, Algorithms, Web Development, Database Systems, and Information Security.',
     side: 'right',
-    icon: <GraduationCap size={18} />,
+    icon: <GraduationCap size={16} />,
   },
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 35 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' },
+    transition: { duration: 0.5, ease: 'easeOut' },
   },
 };
 
@@ -69,26 +69,26 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="relative overflow-hidden bg-[#050816] py-20"
+      className="relative overflow-hidden bg-[#050816] py-16"
     >
       {/* Background Glow */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -left-40 top-0 h-[400px] w-[400px] rounded-full bg-blue-600/10 blur-[140px]" />
-        <div className="absolute right-[-120px] top-0 h-[450px] w-[450px] rounded-full bg-purple-600/10 blur-[150px]" />
-        <div className="absolute bottom-[-200px] left-1/2 h-[380px] w-[380px] -translate-x-1/2 rounded-full bg-fuchsia-500/10 blur-[140px]" />
+        <div className="absolute -left-40 top-0 h-[350px] w-[350px] rounded-full bg-blue-600/10 blur-[140px]" />
+        <div className="absolute right-[-120px] top-0 h-[400px] w-[400px] rounded-full bg-purple-600/10 blur-[150px]" />
+        <div className="absolute bottom-[-200px] left-1/2 h-[340px] w-[340px] -translate-x-1/2 rounded-full bg-fuchsia-500/10 blur-[140px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6">
+      <div className="relative z-10 mx-auto max-w-5xl px-6">
         {/* Top Label */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-5 flex justify-center"
+          className="mb-4 flex justify-center"
         >
           <div
-            className="rounded-lg border border-[#6B4EFF]/40 bg-[#131C39] px-5 py-2 text-[11px] font-semibold uppercase tracking-[3px] text-[#8FA8FF] shadow-[0_0_25px_rgba(104,87,255,0.25)]"
+            className="rounded-md border border-[#6B4EFF]/40 bg-[#131C39] px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[2.5px] text-[#8FA8FF] shadow-[0_0_20px_rgba(104,87,255,0.2)]"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
             MY JOURNEY
@@ -101,7 +101,7 @@ const Experience = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mx-auto mb-10 max-w-xl text-center text-[14px] leading-6 text-[#A0A7C0]"
+          className="mx-auto mb-7 max-w-md text-center text-[12.5px] leading-5 text-[#A0A7C0]"
           style={{ fontFamily: 'Inter, sans-serif' }}
         >
           A timeline of my professional experience and academic background.
@@ -109,14 +109,14 @@ const Experience = () => {
 
         {/* Combined Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-12 text-center"
+          className="mb-10 text-center"
         >
           <h2
-            className="text-[24px] font-bold tracking-tight text-white md:text-[28px]"
+            className="text-[18px] font-semibold tracking-tight text-white md:text-[20px]"
             style={{ fontFamily: 'Montserrat, sans-serif' }}
           >
             Experience{' '}
@@ -125,15 +125,15 @@ const Experience = () => {
             </span>
           </h2>
 
-          <div className="mx-auto mt-3 h-[3px] w-[90px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF]" />
+          <div className="mx-auto mt-2.5 h-[2px] w-[60px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF]" />
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative mx-auto max-w-5xl">
+        <div className="relative mx-auto max-w-4xl">
           {/* Center Line */}
           <div className="absolute left-1/2 top-0 hidden h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#5EA8FF] via-[#8B5CFF] to-[#D946EF] lg:block" />
 
-          <div className="space-y-12">
+          <div className="space-y-10">
             {timelineData.map((item) => (
               <motion.div
                 key={item.id}
@@ -149,17 +149,17 @@ const Experience = () => {
               >
                 {/* Connector */}
                 <div
-                  className={`absolute top-1/2 hidden h-[2px] w-[60px] -translate-y-1/2 bg-gradient-to-r from-[#5EA8FF] to-[#B06CFF] lg:block ${
+                  className={`absolute top-1/2 hidden h-[2px] w-[50px] -translate-y-1/2 bg-gradient-to-r from-[#5EA8FF] to-[#B06CFF] lg:block ${
                     item.side === 'left'
-                      ? 'left-[calc(50%-60px)]'
-                      : 'right-[calc(50%-60px)]'
+                      ? 'left-[calc(50%-50px)]'
+                      : 'right-[calc(50%-50px)]'
                   }`}
                 />
 
                 {/* Center Icon */}
-                <div className="absolute left-1/2 top-1/2 z-30 hidden h-[54px] w-[54px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-[#0B1126] lg:flex">
+                <div className="absolute left-1/2 top-1/2 z-30 hidden h-[44px] w-[44px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-[#0B1126] lg:flex">
                   <div
-                    className={`flex h-[40px] w-[40px] items-center justify-center rounded-full text-white ${
+                    className={`flex h-[32px] w-[32px] items-center justify-center rounded-full text-white ${
                       item.type === 'experience'
                         ? 'bg-gradient-to-br from-[#3B82F6] to-[#2563EB]'
                         : 'bg-gradient-to-br from-[#A855F7] to-[#7E22CE]'
@@ -171,16 +171,16 @@ const Experience = () => {
 
                 {/* Card */}
                 <motion.div
-                  whileHover={{ y: -5, scale: 1.01 }}
+                  whileHover={{ y: -4, scale: 1.01 }}
                   transition={{ duration: 0.3 }}
-                  className="group relative w-full overflow-hidden rounded-2xl border border-white/10 bg-[#0B1126]/95 p-4 shadow-[0_10px_35px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-500 hover:border-[#8B5CFF]/40 lg:w-[40%] lg:p-5"
+                  className="group relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#0B1126]/95 p-3.5 shadow-[0_8px_25px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-500 hover:border-[#8B5CFF]/40 lg:w-[38%] lg:p-4"
                 >
                   {/* Hover Glow */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6]/5 via-[#8B5CFF]/5 to-[#EC4899]/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                   {/* Side Glow */}
                   <div
-                    className={`absolute left-0 top-5 h-16 w-[3px] rounded-full ${
+                    className={`absolute left-0 top-4 h-12 w-[2px] rounded-full ${
                       item.type === 'experience'
                         ? 'bg-[#3B82F6]'
                         : 'bg-[#A855F7]'
@@ -190,7 +190,7 @@ const Experience = () => {
                   <div className="relative z-10">
                     {/* Duration */}
                     <div
-                      className={`inline-flex rounded-md px-2.5 py-[5px] text-[10px] font-semibold tracking-wide ${
+                      className={`inline-flex rounded px-2 py-[3px] text-[9px] font-semibold tracking-wide ${
                         item.type === 'experience'
                           ? 'bg-[#3B82F6]/15 text-[#8DB7FF]'
                           : 'bg-[#A855F7]/15 text-[#D8B4FE]'
@@ -202,7 +202,7 @@ const Experience = () => {
 
                     {/* Title */}
                     <h3
-                      className="mt-2 text-[16px] font-semibold leading-snug text-white"
+                      className="mt-1.5 text-[13.5px] font-semibold leading-snug text-white"
                       style={{ fontFamily: 'Poppins, sans-serif' }}
                     >
                       {item.title}
@@ -210,7 +210,7 @@ const Experience = () => {
 
                     {/* Company */}
                     <p
-                      className={`mt-1 text-[13px] font-medium ${
+                      className={`mt-0.5 text-[11.5px] font-medium ${
                         item.type === 'experience'
                           ? 'text-[#60A5FA]'
                           : 'text-[#C084FC]'
@@ -222,7 +222,7 @@ const Experience = () => {
 
                     {/* Description */}
                     <p
-                      className="mt-2 text-[12.5px] leading-5 text-[#A3AEC2]"
+                      className="mt-2 text-[11px] leading-[18px] text-[#A3AEC2]"
                       style={{ fontFamily: 'Inter, sans-serif' }}
                     >
                       {item.description}
@@ -230,11 +230,11 @@ const Experience = () => {
 
                     {/* Tech */}
                     {item.tech && (
-                      <div className="mt-3 flex flex-wrap gap-2">
+                      <div className="mt-2.5 flex flex-wrap gap-1.5">
                         {item.tech.map((tech) => (
                           <span
                             key={tech}
-                            className="rounded-md border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-2 py-[5px] text-[10px] font-medium text-[#93C5FD]"
+                            className="rounded border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-1.5 py-[3px] text-[9px] font-medium text-[#93C5FD]"
                             style={{ fontFamily: 'Inter, sans-serif' }}
                           >
                             {tech}
