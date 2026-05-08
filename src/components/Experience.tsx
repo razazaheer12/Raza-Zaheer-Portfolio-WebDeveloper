@@ -18,7 +18,7 @@ const timelineData = [
       'Built responsive websites with HTML, CSS, JS, React.js. Focused on UI/UX, accessibility, and performance. Delivered multiple freelance projects.',
     tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
     side: 'left',
-    icon: <BriefcaseBusiness size={16} />,
+    icon: <BriefcaseBusiness size={6} />,
   },
   {
     id: 2,
