@@ -18,7 +18,7 @@ const timelineData = [
       'Built responsive websites with HTML, CSS, JS, React.js. Focused on UI/UX, accessibility, and performance. Delivered multiple freelance projects.',
     tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
     side: 'left',
-    icon: <BriefcaseBusiness size={6} />,
+    icon: <BriefcaseBusiness size={14} />,
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const timelineData = [
     description:
       'Studied core subjects including Mathematics, Physics, and Chemistry. Built strong analytical and problem-solving skills.',
     side: 'right',
-    icon: <Building2 size={16} />,
+    icon: <Building2 size={14} />,
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const timelineData = [
       'Leading the frontend team to build scalable modern web applications using the MERN Stack.',
     tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
     side: 'left',
-    icon: <Code2 size={16} />,
+    icon: <Code2 size={14} />,
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ const timelineData = [
     description:
       'Focused on Data Structures, Algorithms, Web Development, Database Systems, and Information Security.',
     side: 'right',
-    icon: <GraduationCap size={16} />,
+    icon: <GraduationCap size={14} />,
   },
 ];
 
@@ -157,9 +157,9 @@ const Experience = () => {
                 />
 
                 {/* Center Icon */}
-                <div className="absolute left-1/2 top-1/2 z-30 hidden h-[44px] w-[44px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-[#0B1126] lg:flex">
+                <div className="absolute left-1/2 top-1/2 z-30 hidden h-[38px] w-[38px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-[#0B1126] lg:flex">
                   <div
-                    className={`flex h-[32px] w-[32px] items-center justify-center rounded-full text-white ${
+                    className={`flex h-[28px] w-[28px] items-center justify-center rounded-full text-white ${
                       item.type === 'experience'
                         ? 'bg-gradient-to-br from-[#3B82F6] to-[#2563EB]'
                         : 'bg-gradient-to-br from-[#A855F7] to-[#7E22CE]'
@@ -173,14 +173,14 @@ const Experience = () => {
                 <motion.div
                   whileHover={{ y: -4, scale: 1.01 }}
                   transition={{ duration: 0.3 }}
-                  className="group relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#0B1126]/95 p-3.5 shadow-[0_8px_25px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-500 hover:border-[#8B5CFF]/40 lg:w-[38%] lg:p-4"
+                  className="group relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#0B1126]/95 p-3 shadow-[0_8px_25px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-500 hover:border-[#8B5CFF]/40 lg:w-[38%] lg:p-3.5"
                 >
                   {/* Hover Glow */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6]/5 via-[#8B5CFF]/5 to-[#EC4899]/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                   {/* Side Glow */}
                   <div
-                    className={`absolute left-0 top-4 h-12 w-[2px] rounded-full ${
+                    className={`absolute left-0 top-3 h-10 w-[2px] rounded-full ${
                       item.type === 'experience'
                         ? 'bg-[#3B82F6]'
                         : 'bg-[#A855F7]'
@@ -190,7 +190,7 @@ const Experience = () => {
                   <div className="relative z-10">
                     {/* Duration */}
                     <div
-                      className={`inline-flex rounded px-2 py-[3px] text-[9px] font-semibold tracking-wide ${
+                      className={`inline-flex rounded px-1.5 py-[2px] text-[8px] font-semibold tracking-wide ${
                         item.type === 'experience'
                           ? 'bg-[#3B82F6]/15 text-[#8DB7FF]'
                           : 'bg-[#A855F7]/15 text-[#D8B4FE]'
@@ -202,7 +202,7 @@ const Experience = () => {
 
                     {/* Title */}
                     <h3
-                      className="mt-1.5 text-[13.5px] font-semibold leading-snug text-white"
+                      className="mt-1.5 text-[11.5px] font-semibold leading-snug text-white"
                       style={{ fontFamily: 'Poppins, sans-serif' }}
                     >
                       {item.title}
@@ -210,7 +210,7 @@ const Experience = () => {
 
                     {/* Company */}
                     <p
-                      className={`mt-0.5 text-[11.5px] font-medium ${
+                      className={`mt-0.5 text-[10px] font-medium ${
                         item.type === 'experience'
                           ? 'text-[#60A5FA]'
                           : 'text-[#C084FC]'
@@ -222,7 +222,7 @@ const Experience = () => {
 
                     {/* Description */}
                     <p
-                      className="mt-2 text-[11px] leading-[18px] text-[#A3AEC2]"
+                      className="mt-1.5 text-[9.5px] leading-[15px] text-[#A3AEC2]"
                       style={{ fontFamily: 'Inter, sans-serif' }}
                     >
                       {item.description}
@@ -230,11 +230,11 @@ const Experience = () => {
 
                     {/* Tech */}
                     {item.tech && (
-                      <div className="mt-2.5 flex flex-wrap gap-1.5">
+                      <div className="mt-2 flex flex-wrap gap-1">
                         {item.tech.map((tech) => (
                           <span
                             key={tech}
-                            className="rounded border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-1.5 py-[3px] text-[9px] font-medium text-[#93C5FD]"
+                            className="rounded border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-1.5 py-[2px] text-[8px] font-medium text-[#93C5FD]"
                             style={{ fontFamily: 'Inter, sans-serif' }}
                           >
                             {tech}
