@@ -119,9 +119,7 @@ const Experience = () => {
     className="flex items-center justify-center gap-1 whitespace-nowrap text-[18px] font-semibold tracking-tight text-white md:text-[20px]"
     style={{ fontFamily: 'Montserrat, sans-serif' }}
   >
-    <span>Experience</span>
-
-    <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
+    <span>Experience
       & Education
     </span>
   </h2>
