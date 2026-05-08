@@ -117,13 +117,13 @@ const About = () => {
 
             {/* Resume Button */}
             <a
-              href="/RazaZaheer_Resume.pdf"
-              download="RazaZaheer_Resume.pdf"
+              href="/RAZA ZAHEER CV.pdf"
+              download="RAZA ZAHEER CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
             >
-              <Download className="w-5 h-5" />  CV
+              <Download className="w-5 h-5" /> Download Resume
             </a>
           </motion.div>
         </div>
