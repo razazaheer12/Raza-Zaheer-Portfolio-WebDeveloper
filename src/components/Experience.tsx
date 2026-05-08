@@ -11,7 +11,7 @@ const timelineData = [
   {
     id: 1,
     type: 'experience',
-    title: 'Front-End Web Developer (Freelance)',
+    title: 'Front-End Web Developer ',
     company: 'Self Employed',
     duration: '2023 – Present',
     description:
