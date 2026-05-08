@@ -107,26 +107,27 @@ const Experience = () => {
           A timeline of my professional experience and academic background.
         </motion.p>
 
-        {/* Combined Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-10 text-center"
-        >
-          <h2
-            className="text-[18px] font-semibold tracking-tight text-white md:text-[20px]"
-            style={{ fontFamily: 'Montserrat, sans-serif' }}
-          >
-            Experience{' '}
-            <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
-              & Education
-            </span>
-          </h2>
+     {/* Combined Heading */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+  className="mb-10 text-center"
+>
+  <h2
+    className="flex items-center justify-center gap-1 whitespace-nowrap text-[18px] font-semibold tracking-tight text-white md:text-[20px]"
+    style={{ fontFamily: 'Montserrat, sans-serif' }}
+  >
+    <span>Experience</span>
 
-          <div className="mx-auto mt-2.5 h-[2px] w-[60px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF]" />
-        </motion.div>
+    <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
+      & Education
+    </span>
+  </h2>
+
+  <div className="mx-auto mt-2.5 h-[2px] w-[60px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF]" />
+</motion.div>
 
         {/* Timeline */}
         <div className="relative mx-auto max-w-4xl">
