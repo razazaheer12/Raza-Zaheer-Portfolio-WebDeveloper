@@ -202,12 +202,12 @@ const Experience = () => {
 
                     {/* Title */}
                     {/* Title */}
-    <h3
+    <h5
       className="mt-2 text-[13px] font-medium leading-snug text-white"
       style={{ fontFamily: 'Poppins, sans-serif' }}
     >
       {item.title}
-    </h3>
+    </h5>
 
                     {/* Company */}
                     <p
