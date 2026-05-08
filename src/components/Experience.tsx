@@ -18,7 +18,7 @@ const timelineData = [
       'Built responsive websites with HTML, CSS, JS, React.js. Focused on UI/UX, accessibility, and performance. Delivered multiple freelance projects.',
     tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
     side: 'left',
-    icon: <BriefcaseBusiness size={16} />,
+    icon: <BriefcaseBusiness size={12} />,
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const timelineData = [
     description:
       'Studied core subjects including Mathematics, Physics, and Chemistry. Built strong analytical and problem-solving skills.',
     side: 'right',
-    icon: <Building2 size={16} />,
+    icon: <Building2 size={12} />,
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const timelineData = [
       'Leading the frontend team to build scalable modern web applications using the MERN Stack.',
     tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
     side: 'left',
-    icon: <Code2 size={16} />,
+    icon: <Code2 size={12} />,
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ const timelineData = [
     description:
       'Focused on Data Structures, Algorithms, Web Development, Database Systems, and Information Security.',
     side: 'right',
-    icon: <GraduationCap size={16} />,
+    icon: <GraduationCap size={12} />,
   },
 ];
 
