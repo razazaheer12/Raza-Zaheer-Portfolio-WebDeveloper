@@ -18,7 +18,7 @@ const timelineData = [
       'Built responsive websites with HTML, CSS, JS, React.js. Focused on UI/UX, accessibility, and performance. Delivered multiple freelance projects.',
     tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
     side: 'left',
-    icon: <BriefcaseBusiness size={12} />,
+    icon: <BriefcaseBusiness size={16} />,
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const timelineData = [
     description:
       'Studied core subjects including Mathematics, Physics, and Chemistry. Built strong analytical and problem-solving skills.',
     side: 'right',
-    icon: <Building2 size={12} />,
+    icon: <Building2 size={16} />,
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const timelineData = [
       'Leading the frontend team to build scalable modern web applications using the MERN Stack.',
     tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
     side: 'left',
-    icon: <Code2 size={12} />,
+    icon: <Code2 size={16} />,
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ const timelineData = [
     description:
       'Focused on Data Structures, Algorithms, Web Development, Database Systems, and Information Security.',
     side: 'right',
-    icon: <GraduationCap size={12} />,
+    icon: <GraduationCap size={16} />,
   },
 ];
 
@@ -107,25 +107,26 @@ const Experience = () => {
           A timeline of my professional experience and academic background.
         </motion.p>
 
-     {/* Combined Heading */}
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
-  viewport={{ once: true }}
-  className="mb-10 text-center"
->
-  <h2
-    className="flex items-center justify-center gap-1 whitespace-nowrap text-[18px] font-semibold tracking-tight text-white md:text-[20px]"
-    style={{ fontFamily: 'Montserrat, sans-serif' }}
-  >
-    <span>Experience
-      & Education
-    </span>
-  </h2>
+        {/* Combined Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-10 text-center"
+        >
+          <h2
+            className="text-[18px] font-semibold tracking-tight text-white md:text-[20px]"
+            style={{ fontFamily: 'Montserrat, sans-serif' }}
+          >
+            Experience{' '}
+            <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
+              & Education
+            </span>
+          </h2>
 
-  <div className="mx-auto mt-2.5 h-[2px] w-[60px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF]" />
-</motion.div>
+          <div className="mx-auto mt-2.5 h-[2px] w-[60px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF]" />
+        </motion.div>
 
         {/* Timeline */}
         <div className="relative mx-auto max-w-4xl">
