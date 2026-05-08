@@ -117,7 +117,7 @@ const About = () => {
 
             {/* Resume Button */}
             <a
-              href="/RazaZaheer_Resume.pdf"
+              href="public/RazaZaheer_Resume.pdf"
               download="RazaZaheer_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
