@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap } from 'lucide-react';
+import { Briefcase, GraduationCap, Calendar } from 'lucide-react';
 
 const experienceData = [
   {
@@ -8,7 +8,7 @@ const experienceData = [
     company: 'Self Employed',
     duration: '2023 – Present',
     description:
-      'Built responsive websites with HTML, CSS, JS, React.js. Focused on UI/UX, accessibility, and performance. Delivered multiple freelance projects.',
+      'Built responsive websites with HTML, CSS, JavaScript, and React.js. Focused on performance optimization, accessibility, reusable UI components, and modern responsive layouts for multiple freelance clients.',
     tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
   },
   {
@@ -16,7 +16,7 @@ const experienceData = [
     company: 'RZ Web Studio',
     duration: '2024 – Present',
     description:
-      'Leading the frontend development team to build scalable, modern web applications. Implemented solutions using the MERN Stack with state management through Redux. Collaborated with designers using Figma to translate wireframes into fully functional applications. Ensured code quality, reusability, and performance optimization in all projects.',
+      'Leading frontend development for scalable MERN stack applications. Collaborating with UI/UX designers to convert Figma designs into highly interactive and optimized production-ready interfaces.',
     tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
   },
 ];
@@ -27,261 +27,495 @@ const educationData = [
     institution: 'PECHS Science College',
     years: '2019 – 2021',
     description:
-      'Studied core subjects including Mathematics, Physics, and Chemistry. Built strong analytical and problem-solving skills, preparing for higher education in Computer Science.',
-    type: 'education',
+      'Built a strong foundation in Mathematics, Physics, and analytical problem solving while preparing for advanced studies in Computer Science.',
   },
   {
     degree: 'Bachelor of Science – BS, Computer Science',
     institution: 'IQRA University',
     years: '2021 – 2025',
     description:
-      'Focused on computer science fundamentals including Data Structures, Algorithms, Operating Systems, Web & Mobile Development, Database Systems, and Information Security. Gained practical experience through projects, assignments, and final year project (VRET – Virtual Reality Exposure Therapy).',
-    type: 'education',
+      'Focused on Data Structures, Algorithms, Web Development, Databases, Operating Systems, and Software Engineering while completing multiple academic and real-world projects.',
   },
 ];
 
-// Typing animation variants
-const typingContainer = {
-  hidden: { opacity: 0 },
+// Animation Variants
+const container = {
+  hidden: {},
   visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.05 },
+    transition: {
+      staggerChildren: 0.2,
+    },
   },
 };
 
-const typingText = {
-  hidden: { opacity: 0, y: `0.25em` },
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 60,
+  },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: 'easeOut' },
+    transition: {
+      duration: 0.7,
+      ease: 'easeOut',
+    },
   },
 };
 
-// Timeline Dot
-const TimelineDot = ({ index }: { index: number }) => (
-  <motion.div
-    initial={{ scale: 0 }}
-    whileInView={{ scale: 1 }}
-    transition={{ duration: 0.4, delay: index * 0.3 }}
-    viewport={{ once: true }}
-    className="relative flex items-center justify-center w-6 h-6"
-  >
-    <motion.div
-      layout
-      transition={{ duration: 0.6 }}
-      className="absolute w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-30 blur-lg animate-pulse"
-    />
-    <motion.div
-      layout
-      transition={{ duration: 0.6 }}
-      className="w-5 h-5 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg z-10"
-    />
-  </motion.div>
-);
+type TimelineItemProps = {
+  item: any;
+  index: number;
+  isEducation?: boolean;
+  isLast: boolean;
+};
 
 const TimelineItem = ({
   item,
   index,
   isEducation = false,
-}: {
-  item: any;
-  index: number;
-  isEducation?: boolean;
-}) => {
+  isLast,
+}: TimelineItemProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.3 }}
-      viewport={{ once: true }}
-      className="relative flex items-start group"
+      variants={fadeUp}
+      className="relative pl-16"
     >
-      <div className="flex flex-col items-center mr-8">
-        <TimelineDot index={index} />
-        {index <
-          (isEducation ? educationData.length - 1 : experienceData.length - 1) && (
-          <motion.div
-            initial={{ height: 0 }}
-            whileInView={{ height: '100%' }}
-            transition={{ duration: 0.8, delay: index * 0.3 + 0.3 }}
-            viewport={{ once: true }}
-            layout
-            className="w-0.5 mt-2 flex-1 min-h-[80px] sm:min-h-[120px] 
-                       bg-gradient-to-b from-blue-600 to-purple-600
-                       dark:from-purple-400 dark:to-blue-400
-                       transition-all duration-700 ease-in-out"
-          />
-        )}
+      {/* Timeline Vertical Line */}
+      {!isLast && (
+        <div
+          className="
+            absolute 
+            left-[23px] 
+            top-14 
+            h-[calc(100%+3rem)] 
+            w-[2px]
+            bg-gradient-to-b 
+            from-blue-500 
+            via-purple-500 
+            to-pink-500
+            opacity-70
+          "
+        />
+      )}
+
+      {/* Glow */}
+      <div
+        className="
+          absolute 
+          left-[7px] 
+          top-2
+          h-8 
+          w-8 
+          rounded-full
+          bg-gradient-to-r
+          from-blue-500
+          to-purple-500
+          blur-xl
+          opacity-50
+        "
+      />
+
+      {/* Dot */}
+      <div
+        className="
+          absolute
+          left-0
+          top-2
+          flex
+          items-center
+          justify-center
+          w-12
+          h-12
+          rounded-full
+          border
+          border-white/10
+          bg-[#111827]
+          shadow-[0_0_30px_rgba(99,102,241,0.45)]
+          z-10
+        "
+      >
+        <div
+          className="
+            w-4
+            h-4
+            rounded-full
+            bg-gradient-to-r
+            from-blue-500
+            to-purple-500
+          "
+        />
       </div>
 
+      {/* Card */}
       <motion.div
         whileHover={{
-          scale: 1.05,
-          boxShadow: '0 25px 50px rgba(0,0,0,0.15)',
+          y: -8,
+          scale: 1.015,
         }}
-        layout
-        transition={{ duration: 0.6 }}
-        className="flex-1 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl 
-                   rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-2xl 
-                   transition-all duration-700 border 
-                   border-gray-200/50 dark:border-gray-700/50"
+        transition={{
+          duration: 0.3,
+        }}
+        className="
+          relative
+          overflow-hidden
+          rounded-3xl
+          border
+          border-white/10
+          bg-white/[0.04]
+          backdrop-blur-xl
+          p-6
+          shadow-[0_10px_50px_rgba(0,0,0,0.25)]
+          transition-all
+          duration-500
+          hover:border-purple-500/30
+          hover:shadow-[0_15px_60px_rgba(124,58,237,0.25)]
+        "
       >
-        <h3
-          className="text-lg font-semibold text-gray-800 dark:text-white mb-2"
-          style={{ fontFamily: 'Poppins, sans-serif' }}
-        >
-          {isEducation ? item.degree : item.position}
-        </h3>
+        {/* Card Gradient */}
+        <div
+          className="
+            absolute
+            inset-0
+            opacity-0
+            hover:opacity-100
+            transition-opacity
+            duration-500
+            bg-gradient-to-br
+            from-blue-500/5
+            via-purple-500/5
+            to-pink-500/5
+          "
+        />
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
-          <p
-            className={`font-medium ${
-              isEducation
-                ? 'text-purple-600 dark:text-purple-400'
-                : 'text-blue-600 dark:text-blue-400'
-            }`}
-            style={{ fontFamily: 'Inter, sans-serif' }}
-          >
-            {isEducation ? item.institution : item.company}
-          </p>
-          <p
-            className="text-sm text-gray-500 dark:text-gray-400 font-medium"
-            style={{ fontFamily: 'Inter, sans-serif' }}
-          >
-            {isEducation ? item.years : item.duration}
-          </p>
-        </div>
+        <div className="relative z-10">
+          {/* Title */}
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between mb-4">
+            <div>
+              <h3
+                className="
+                  text-xl
+                  font-bold
+                  text-white
+                  leading-snug
+                "
+                style={{
+                  fontFamily: 'Poppins, sans-serif',
+                }}
+              >
+                {isEducation ? item.degree : item.position}
+              </h3>
 
-        {item.description && (
+              <p
+                className={`
+                  mt-2
+                  text-sm
+                  font-semibold
+                  ${
+                    isEducation
+                      ? 'text-purple-400'
+                      : 'text-blue-400'
+                  }
+                `}
+              >
+                {isEducation
+                  ? item.institution
+                  : item.company}
+              </p>
+            </div>
+
+            <div
+              className="
+                inline-flex
+                items-center
+                gap-2
+                rounded-full
+                border
+                border-white/10
+                bg-white/5
+                px-4
+                py-2
+                text-sm
+                text-gray-300
+                backdrop-blur-md
+              "
+            >
+              <Calendar size={14} />
+              {isEducation
+                ? item.years
+                : item.duration}
+            </div>
+          </div>
+
+          {/* Description */}
           <p
-            className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 mb-3"
-            style={{ fontFamily: 'Inter, sans-serif' }}
+            className="
+              text-sm
+              leading-7
+              text-gray-300
+            "
+            style={{
+              fontFamily: 'Inter, sans-serif',
+            }}
           >
             {item.description}
           </p>
-        )}
 
-        {!isEducation && item.tech && (
-          <div className="flex flex-wrap gap-2 mt-2">
-            {item.tech.map((t: string) => (
-              <span
-                key={t}
-                className="px-3 py-1 text-xs font-medium rounded-full 
-                           bg-gradient-to-r from-blue-500/10 to-purple-500/10 
-                           text-blue-600 dark:text-purple-400 
-                           border border-blue-200/40 dark:border-purple-400/40
-                           transition-all duration-500"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        )}
+          {/* Tech Stack */}
+          {!isEducation && (
+            <div className="flex flex-wrap gap-3 mt-6">
+              {item.tech.map((tech: string) => (
+                <span
+                  key={tech}
+                  className="
+                    rounded-full
+                    border
+                    border-purple-500/20
+                    bg-purple-500/10
+                    px-4
+                    py-1.5
+                    text-xs
+                    font-medium
+                    text-purple-300
+                    transition-all
+                    duration-300
+                    hover:scale-105
+                    hover:border-purple-400/40
+                    hover:bg-purple-500/20
+                  "
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
       </motion.div>
     </motion.div>
   );
 };
 
-const Experience = () => {
-  const heading = 'Experience & Education';
+const SectionHeader = ({
+  icon,
+  title,
+}: {
+  icon: React.ReactNode;
+  title: string;
+}) => {
+  return (
+    <div className="flex items-center gap-4 mb-14">
+      <div
+        className="
+          flex
+          items-center
+          justify-center
+          w-14
+          h-14
+          rounded-2xl
+          bg-gradient-to-br
+          from-blue-500/20
+          to-purple-500/20
+          border
+          border-white/10
+          backdrop-blur-xl
+          shadow-[0_0_25px_rgba(99,102,241,0.25)]
+        "
+      >
+        {icon}
+      </div>
 
+      <div>
+        <h3
+          className="
+            text-3xl
+            font-bold
+            text-white
+          "
+          style={{
+            fontFamily: 'Montserrat, sans-serif',
+          }}
+        >
+          {title}
+        </h3>
+
+        <div
+          className="
+            mt-2
+            h-1
+            w-24
+            rounded-full
+            bg-gradient-to-r
+            from-blue-500
+            via-purple-500
+            to-pink-500
+          "
+        />
+      </div>
+    </div>
+  );
+};
+
+const Experience = () => {
   return (
     <section
       id="experience"
-      className="py-20 bg-gray-50 dark:bg-gray-900 relative overflow-hidden 
-                 transition-colors duration-700 ease-in-out"
+      className="
+        relative
+        overflow-hidden
+        py-24
+        bg-[#070B1A]
+      "
     >
-      <motion.div
-        layout
-        transition={{ duration: 0.8 }}
-        className="absolute inset-0 bg-gradient-to-br 
-                   from-blue-50/50 via-purple-50/30 to-pink-50/50
-                   dark:from-gray-900 dark:via-purple-900/20 dark:to-blue-900/20
-                   transition-all duration-1000 ease-in-out"
+      {/* Background Effects */}
+      <div
+        className="
+          absolute
+          inset-0
+          bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),transparent_30%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.15),transparent_30%),radial-gradient(circle_at_bottom,_rgba(236,72,153,0.08),transparent_40%)]
+        "
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-        {/* Typing Animation Heading */}
+      <div
+        className="
+          relative
+          z-10
+          max-w-7xl
+          mx-auto
+          px-6
+          lg:px-8
+        "
+      >
+        {/* Heading */}
         <motion.div
-          variants={typingContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="text-center mb-16"
+          initial={{
+            opacity: 0,
+            y: 30,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.7,
+          }}
+          viewport={{
+            once: true,
+          }}
+          className="text-center mb-24"
         >
-          <h2
-            className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 dark:text-white mb-4"
-            style={{ fontFamily: 'Montserrat, sans-serif' }}
+          <span
+            className="
+              inline-block
+              mb-5
+              rounded-full
+              border
+              border-purple-500/20
+              bg-purple-500/10
+              px-5
+              py-2
+              text-sm
+              font-medium
+              text-purple-300
+            "
           >
-            {heading.split('').map((char, index) => (
-              <motion.span key={index} variants={typingText}>
-                {char === ' ' ? '\u00A0' : char}
-              </motion.span>
-            ))}
+            Professional Journey
+          </span>
+
+          <h2
+            className="
+              text-4xl
+              sm:text-5xl
+              md:text-6xl
+              font-black
+              text-white
+              leading-tight
+            "
+            style={{
+              fontFamily: 'Montserrat, sans-serif',
+            }}
+          >
+            Experience & Education
           </h2>
 
-          {/* Neon Gradient Underline */}
-          <div className="mx-auto w-32 h-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 shadow-[0_0_10px_rgba(139,92,246,0.7)]"></div>
-
           <p
-            className="text-sm text-gray-500 dark:text-gray-400 max-w-3xl mx-auto mt-6"
-            style={{ fontFamily: 'Inter, sans-serif' }}
+            className="
+              max-w-3xl
+              mx-auto
+              mt-6
+              text-gray-400
+              leading-8
+            "
           >
-            A journey shaped by academic foundations and professional milestones,
-            blending knowledge with real-world impact.
+            A timeline of professional growth, technical expertise,
+            academic achievements, and real-world development
+            experience.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-20">
           {/* Experience */}
-          <div>
-            <motion.h3
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-2xl font-bold mb-8 text-gray-800 dark:text-white flex items-center"
-              style={{ fontFamily: 'Montserrat, sans-serif' }}
-            >
-              <Briefcase className="w-6 h-6 mr-3 text-blue-600 dark:text-blue-400 transition-colors duration-700" />
-              Experience
-            </motion.h3>
-            <div className="space-y-12">
-              {experienceData.map((experience, index) => (
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <SectionHeader
+              title="Experience"
+              icon={
+                <Briefcase
+                  className="text-blue-400"
+                  size={28}
+                />
+              }
+            />
+
+            <div className="space-y-16">
+              {experienceData.map((item, index) => (
                 <TimelineItem
-                  key={experience.position}
-                  item={experience}
+                  key={index}
+                  item={item}
                   index={index}
+                  isLast={
+                    index === experienceData.length - 1
+                  }
                 />
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Education */}
-          <div>
-            <motion.h3
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-2xl font-bold mb-8 text-gray-800 dark:text-white flex items-center"
-              style={{ fontFamily: 'Montserrat, sans-serif' }}
-            >
-              <GraduationCap className="w-6 h-6 mr-3 text-purple-600 dark:text-purple-400 transition-colors duration-700" />
-              Education
-            </motion.h3>
-            <div className="space-y-12">
-              {educationData.map((education, index) => (
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <SectionHeader
+              title="Education"
+              icon={
+                <GraduationCap
+                  className="text-purple-400"
+                  size={28}
+                />
+              }
+            />
+
+            <div className="space-y-16">
+              {educationData.map((item, index) => (
                 <TimelineItem
-                  key={education.degree}
-                  item={education}
+                  key={index}
+                  item={item}
                   index={index}
                   isEducation
+                  isLast={
+                    index === educationData.length - 1
+                  }
                 />
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
