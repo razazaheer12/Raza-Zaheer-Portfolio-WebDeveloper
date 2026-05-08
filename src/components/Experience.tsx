@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-  Briefcase,
+  BriefcaseBusiness,
   GraduationCap,
-  Code2,
   Building2,
+  Code2,
 } from 'lucide-react';
 
 const timelineData = [
@@ -18,7 +18,7 @@ const timelineData = [
       'Built responsive websites with HTML, CSS, JS, React.js. Focused on UI/UX, accessibility, and performance. Delivered multiple freelance projects.',
     tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
     side: 'left',
-    icon: <Briefcase size={22} />,
+    icon: <BriefcaseBusiness size={24} />,
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const timelineData = [
     description:
       'Studied core subjects including Mathematics, Physics, and Chemistry. Built strong analytical and problem-solving skills, preparing for higher education in Computer Science.',
     side: 'right',
-    icon: <GraduationCap size={22} />,
+    icon: <Building2 size={24} />,
   },
   {
     id: 3,
@@ -38,10 +38,10 @@ const timelineData = [
     company: 'RZ Web Studio',
     duration: '2024 – Present',
     description:
-      'Leading the frontend development team to build scalable, modern web applications. Implemented solutions using the MERN Stack with Redux. Collaborated with designers using Figma to translate wireframes into fully functional applications.',
+      'Leading the frontend development team to build scalable, modern web applications. Implemented solutions using the MERN Stack with state management through Redux. Collaborated with designers using Figma to translate wireframes into fully functional applications.',
     tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
     side: 'left',
-    icon: <Code2 size={22} />,
+    icon: <Code2 size={24} />,
   },
   {
     id: 4,
@@ -52,49 +52,102 @@ const timelineData = [
     description:
       'Focused on computer science fundamentals including Data Structures, Algorithms, Operating Systems, Web & Mobile Development, Database Systems, and Information Security.',
     side: 'right',
-    icon: <Building2 size={22} />,
+    icon: <GraduationCap size={24} />,
   },
 ];
+
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 60,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: 'easeOut',
+    },
+  },
+};
 
 const Experience = () => {
   return (
     <section
       id="experience"
-      className="relative overflow-hidden bg-[#050816] py-28"
+      className="
+        relative overflow-hidden
+        bg-[#050816]
+        py-28
+      "
     >
-      {/* Background Glow */}
+      {/* Background Glow Effects */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute left-[-10%] top-0 h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[140px]" />
-        <div className="absolute right-[-10%] top-0 h-[500px] w-[500px] rounded-full bg-purple-600/10 blur-[140px]" />
-        <div className="absolute bottom-0 left-1/2 h-[350px] w-[350px] -translate-x-1/2 rounded-full bg-pink-500/10 blur-[120px]" />
+        <div
+          className="
+            absolute -left-40 top-0
+            h-[450px] w-[450px]
+            rounded-full
+            bg-blue-600/10
+            blur-[140px]
+          "
+        />
+
+        <div
+          className="
+            absolute right-[-120px] top-0
+            h-[500px] w-[500px]
+            rounded-full
+            bg-purple-600/10
+            blur-[150px]
+          "
+        />
+
+        <div
+          className="
+            absolute bottom-[-200px] left-1/2
+            h-[400px] w-[400px]
+            -translate-x-1/2
+            rounded-full
+            bg-fuchsia-500/10
+            blur-[140px]
+          "
+        />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        {/* Top Badge */}
+        {/* Top Label */}
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-6 flex justify-center"
+          className="mb-7 flex justify-center"
         >
           <div
             className="
-              rounded-xl border border-purple-500/30
-              bg-gradient-to-r from-[#18203f] to-[#21153f]
-              px-6 py-2
-              text-sm font-semibold uppercase tracking-[3px]
-              text-blue-300
-              shadow-[0_0_30px_rgba(139,92,246,0.25)]
+              rounded-xl
+              border border-[#6B4EFF]/40
+              bg-[#131C39]
+              px-7 py-2.5
+              text-[14px]
+              font-semibold
+              uppercase
+              tracking-[3px]
+              text-[#8FA8FF]
+              shadow-[0_0_35px_rgba(104,87,255,0.25)]
             "
+            style={{
+              fontFamily: 'Inter, sans-serif',
+            }}
           >
-            My Journey
+            MY JOURNEY
           </div>
         </motion.div>
 
         {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
@@ -102,8 +155,12 @@ const Experience = () => {
         >
           <h2
             className="
-              text-5xl font-black leading-tight
-              text-white md:text-7xl
+              text-[56px]
+              font-black
+              leading-[1.1]
+              tracking-[-2px]
+              text-white
+              md:text-[82px]
             "
             style={{
               fontFamily: 'Montserrat, sans-serif',
@@ -113,9 +170,9 @@ const Experience = () => {
             <span
               className="
                 bg-gradient-to-r
-                from-blue-400
-                via-purple-400
-                to-pink-400
+                from-[#8EA8FF]
+                via-[#B06CFF]
+                to-[#F472FF]
                 bg-clip-text
                 text-transparent
               "
@@ -124,41 +181,50 @@ const Experience = () => {
             </span>
           </h2>
 
-          {/* Underline */}
+          {/* Gradient Underline */}
           <div
             className="
-              mx-auto mt-5 h-[5px] w-40 rounded-full
+              mx-auto mt-5
+              h-[5px] w-[170px]
+              rounded-full
               bg-gradient-to-r
-              from-blue-500
-              via-purple-500
-              to-pink-500
-              shadow-[0_0_25px_rgba(168,85,247,0.8)]
+              from-[#5EA8FF]
+              via-[#8B5CFF]
+              to-[#D946EF]
+              shadow-[0_0_25px_rgba(168,85,247,0.85)]
             "
           />
 
           <p
             className="
-              mx-auto mt-8 max-w-2xl
-              text-lg leading-8 text-gray-400
+              mx-auto mt-8
+              max-w-2xl
+              text-[18px]
+              leading-8
+              text-[#A0A7C0]
             "
+            style={{
+              fontFamily: 'Inter, sans-serif',
+            }}
           >
             A timeline of my professional experience and academic
             background that shaped my skills and knowledge.
           </p>
         </motion.div>
 
-        {/* Timeline */}
+        {/* Timeline Container */}
         <div className="relative mx-auto max-w-6xl">
-          {/* Center Vertical Line */}
+          {/* Center Timeline */}
           <div
             className="
-              absolute left-1/2 top-0 hidden h-full
-              w-[3px] -translate-x-1/2
+              absolute left-1/2 top-0
+              hidden h-full w-[3px]
+              -translate-x-1/2
               bg-gradient-to-b
-              from-blue-500
-              via-purple-500
-              to-pink-500
-              shadow-[0_0_20px_rgba(139,92,246,0.7)]
+              from-[#5EA8FF]
+              via-[#8B5CFF]
+              to-[#D946EF]
+              shadow-[0_0_30px_rgba(139,92,246,0.8)]
               lg:block
             "
           />
@@ -167,18 +233,9 @@ const Experience = () => {
             {timelineData.map((item, index) => (
               <motion.div
                 key={item.id}
-                initial={{
-                  opacity: 0,
-                  y: 80,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.7,
-                  delay: index * 0.1,
-                }}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
                 viewport={{ once: true }}
                 className={`
                   relative flex items-center
@@ -189,29 +246,49 @@ const Experience = () => {
                   }
                 `}
               >
-                {/* Timeline Node */}
+                {/* Connector Line */}
+                <div
+                  className={`
+                    absolute top-1/2 hidden
+                    h-[2px] w-[100px]
+                    -translate-y-1/2
+                    bg-gradient-to-r
+                    from-[#5EA8FF]
+                    to-[#B06CFF]
+                    lg:block
+                    ${
+                      item.side === 'left'
+                        ? 'left-[calc(50%-100px)]'
+                        : 'right-[calc(50%-100px)]'
+                    }
+                  `}
+                />
+
+                {/* Center Icon Circle */}
                 <div
                   className="
-                    absolute left-1/2 top-1/2 hidden
-                    h-20 w-20 -translate-x-1/2
-                    -translate-y-1/2
+                    absolute left-1/2 top-1/2
+                    hidden h-[88px] w-[88px]
+                    -translate-x-1/2 -translate-y-1/2
                     items-center justify-center
-                    rounded-full border
-                    border-blue-400/40
-                    bg-[#0B1023]
-                    shadow-[0_0_40px_rgba(59,130,246,0.45)]
+                    rounded-full
+                    border border-white/10
+                    bg-[#0B1126]
+                    shadow-[0_0_45px_rgba(94,168,255,0.25)]
                     lg:flex
-                    z-20
+                    z-30
                   "
                 >
                   <div
                     className={`
-                      flex h-14 w-14 items-center justify-center
-                      rounded-full text-white
+                      flex h-[62px] w-[62px]
+                      items-center justify-center
+                      rounded-full
+                      text-white
                       ${
                         item.type === 'experience'
-                          ? 'bg-gradient-to-br from-blue-500 to-blue-700 shadow-[0_0_30px_rgba(59,130,246,0.8)]'
-                          : 'bg-gradient-to-br from-purple-500 to-fuchsia-700 shadow-[0_0_30px_rgba(168,85,247,0.8)]'
+                          ? 'bg-gradient-to-br from-[#3B82F6] to-[#2563EB] shadow-[0_0_35px_rgba(59,130,246,0.8)]'
+                          : 'bg-gradient-to-br from-[#A855F7] to-[#7E22CE] shadow-[0_0_35px_rgba(168,85,247,0.8)]'
                       }
                     `}
                   >
@@ -219,57 +296,72 @@ const Experience = () => {
                   </div>
                 </div>
 
-                {/* Horizontal Connector */}
+                {/* Side Floating Hexagon */}
                 <div
                   className={`
-                    absolute top-1/2 hidden h-[3px]
-                    w-[90px] -translate-y-1/2
-                    bg-gradient-to-r
-                    from-blue-500 to-purple-500
-                    lg:block
+                    absolute top-1/2 hidden
+                    -translate-y-1/2
+                    lg:flex
                     ${
                       item.side === 'left'
-                        ? 'left-[calc(50%-90px)]'
-                        : 'right-[calc(50%-90px)]'
+                        ? '-left-8'
+                        : '-right-8'
                     }
                   `}
-                />
+                >
+                  <div
+                    className={`
+                      flex h-[82px] w-[82px]
+                      items-center justify-center
+                      clip-hexagon
+                      text-white
+                      ${
+                        item.type === 'experience'
+                          ? 'bg-gradient-to-br from-[#3B82F6] to-[#1D4ED8] shadow-[0_0_35px_rgba(59,130,246,0.7)]'
+                          : 'bg-gradient-to-br from-[#A855F7] to-[#7E22CE] shadow-[0_0_35px_rgba(168,85,247,0.7)]'
+                      }
+                    `}
+                  >
+                    {item.icon}
+                  </div>
+                </div>
 
                 {/* Card */}
                 <motion.div
                   whileHover={{
                     y: -10,
-                    scale: 1.02,
+                    scale: 1.015,
                   }}
                   transition={{ duration: 0.3 }}
-                  className={`
+                  className="
                     group relative overflow-hidden
-                    rounded-[32px]
+                    rounded-[30px]
                     border border-white/10
-                    bg-[#0B1023]/90
-                    p-8 backdrop-blur-xl
-                    shadow-[0_15px_60px_rgba(0,0,0,0.35)]
+                    bg-[#0B1126]/95
+                    p-8
+                    shadow-[0_15px_60px_rgba(0,0,0,0.45)]
+                    backdrop-blur-xl
                     transition-all duration-500
-                    hover:border-purple-500/40
+                    hover:border-[#8B5CFF]/40
                     hover:shadow-[0_15px_70px_rgba(139,92,246,0.25)]
-
                     w-full lg:w-[42%]
-                  `}
+                  "
                 >
-                  {/* Hover Glow */}
+                  {/* Card Hover Glow */}
                   <div
                     className="
-                      absolute inset-0 opacity-0
+                      absolute inset-0
+                      opacity-0
                       transition-opacity duration-500
                       group-hover:opacity-100
                       bg-gradient-to-br
-                      from-blue-500/5
-                      via-purple-500/5
-                      to-pink-500/5
+                      from-[#3B82F6]/5
+                      via-[#8B5CFF]/5
+                      to-[#EC4899]/5
                     "
                   />
 
-                  {/* Side Glow Line */}
+                  {/* Side Vertical Glow */}
                   <div
                     className={`
                       absolute left-0 top-10
@@ -277,24 +369,29 @@ const Experience = () => {
                       rounded-full
                       ${
                         item.type === 'experience'
-                          ? 'bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,1)]'
-                          : 'bg-purple-500 shadow-[0_0_20px_rgba(168,85,247,1)]'
+                          ? 'bg-[#3B82F6] shadow-[0_0_20px_rgba(59,130,246,1)]'
+                          : 'bg-[#A855F7] shadow-[0_0_20px_rgba(168,85,247,1)]'
                       }
                     `}
                   />
 
                   <div className="relative z-10">
-                    {/* Duration */}
+                    {/* Duration Badge */}
                     <div
                       className={`
-                        mb-6 inline-flex rounded-xl
-                        px-5 py-2 text-sm font-bold
+                        inline-flex rounded-xl
+                        px-5 py-2
+                        text-[14px]
+                        font-bold
                         ${
                           item.type === 'experience'
-                            ? 'bg-blue-500/15 text-blue-300'
-                            : 'bg-purple-500/15 text-purple-300'
+                            ? 'bg-[#3B82F6]/15 text-[#8DB7FF]'
+                            : 'bg-[#A855F7]/15 text-[#D8B4FE]'
                         }
                       `}
+                      style={{
+                        fontFamily: 'Inter, sans-serif',
+                      }}
                     >
                       {item.duration}
                     </div>
@@ -302,7 +399,10 @@ const Experience = () => {
                     {/* Title */}
                     <h3
                       className="
-                        text-3xl font-bold leading-snug
+                        mt-6
+                        text-[34px]
+                        font-bold
+                        leading-[1.2]
                         text-white
                       "
                       style={{
@@ -315,13 +415,17 @@ const Experience = () => {
                     {/* Company */}
                     <p
                       className={`
-                        mt-3 text-xl font-semibold
+                        mt-3 text-[22px]
+                        font-semibold
                         ${
                           item.type === 'experience'
-                            ? 'text-blue-400'
-                            : 'text-purple-400'
+                            ? 'text-[#60A5FA]'
+                            : 'text-[#C084FC]'
                         }
                       `}
+                      style={{
+                        fontFamily: 'Inter, sans-serif',
+                      }}
                     >
                       {item.company}
                     </p>
@@ -329,9 +433,14 @@ const Experience = () => {
                     {/* Description */}
                     <p
                       className="
-                        mt-6 text-base leading-8
-                        text-gray-400
+                        mt-6
+                        text-[16px]
+                        leading-8
+                        text-[#A3AEC2]
                       "
+                      style={{
+                        fontFamily: 'Inter, sans-serif',
+                      }}
                     >
                       {item.description}
                     </p>
@@ -343,15 +452,20 @@ const Experience = () => {
                           <span
                             key={tech}
                             className="
-                              rounded-xl border
-                              border-blue-500/20
-                              bg-blue-500/10
-                              px-4 py-2 text-sm
-                              font-medium text-blue-300
+                              rounded-xl
+                              border border-[#3B82F6]/20
+                              bg-[#3B82F6]/10
+                              px-4 py-2
+                              text-[14px]
+                              font-medium
+                              text-[#93C5FD]
                               transition-all duration-300
                               hover:scale-105
-                              hover:bg-blue-500/20
+                              hover:bg-[#3B82F6]/20
                             "
+                            style={{
+                              fontFamily: 'Inter, sans-serif',
+                            }}
                           >
                             {tech}
                           </span>
@@ -365,6 +479,20 @@ const Experience = () => {
           </div>
         </div>
       </div>
+
+      {/* Hexagon Shape CSS */}
+      <style jsx>{`
+        .clip-hexagon {
+          clip-path: polygon(
+            25% 6.7%,
+            75% 6.7%,
+            100% 50%,
+            75% 93.3%,
+            25% 93.3%,
+            0% 50%
+          );
+        }
+      `}</style>
     </section>
   );
 };
