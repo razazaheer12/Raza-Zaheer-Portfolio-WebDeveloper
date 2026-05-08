@@ -1,135 +1,254 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { Download } from "lucide-react";
+import { motion } from 'framer-motion';
+import {
+  Briefcase,
+  GraduationCap,
+  Building2,
+  Code2,
+} from 'lucide-react';
 
-const About = () => {
-  const heading = "About Me";
+const timelineData = [
+  {
+    id: 1,
+    type: 'experience',
+    title: 'Front-End Web Developer (Freelance)',
+    company: 'Self Employed',
+    duration: '2023 – Present',
+    description:
+      'Built responsive websites with HTML, CSS, JS, React.js. Focused on UI/UX, accessibility, and performance. Delivered multiple freelance projects.',
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
+    side: 'left',
+    icon: <Briefcase size={12} />,
+  },
+  {
+    id: 2,
+    type: 'education',
+    title: 'Intermediate (Pre-Engineering)',
+    company: 'PECHS Science College',
+    duration: '2019 – 2021',
+    description:
+      'Studied core subjects including Mathematics, Physics, and Chemistry. Built strong analytical and problem-solving skills.',
+    side: 'right',
+    icon: <Building2 size={12} />,
+  },
+  {
+    id: 3,
+    type: 'experience',
+    title: 'Web Developer',
+    company: 'RZ Web Studio',
+    duration: '2024 – Present',
+    description:
+      'Leading the frontend team to build scalable modern web applications using the MERN Stack.',
+    tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
+    side: 'left',
+    icon: <Code2 size={12} />,
+  },
+  {
+    id: 4,
+    type: 'education',
+    title: 'Bachelor of Science – BS, Computer Science',
+    company: 'IQRA University',
+    duration: '2021 – 2025',
+    description:
+      'Focused on Data Structures, Algorithms, Web Development, Database Systems, and Information Security.',
+    side: 'right',
+    icon: <GraduationCap size={12} />,
+  },
+];
 
-  // Animation variants for typing effect
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08, // controls typing speed
-      },
-    },
-  };
+const fadeUp = {
+  hidden: { opacity: 0, y: 35 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' },
+  },
+};
 
-  const letterVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 },
-  };
-
+const Experience = () => {
   return (
     <section
-      id="about"
-      className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
+      id="experience"
+      className="relative overflow-hidden bg-[#050816] py-16"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-        {/* Section Heading */}
+      {/* Background Glow */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -left-40 top-0 h-[350px] w-[350px] rounded-full bg-blue-600/10 blur-[140px]" />
+        <div className="absolute right-[-120px] top-0 h-[400px] w-[400px] rounded-full bg-purple-600/10 blur-[150px]" />
+        <div className="absolute bottom-[-200px] left-1/2 h-[340px] w-[340px] -translate-x-1/2 rounded-full bg-fuchsia-500/10 blur-[140px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-5xl px-6">
+        {/* Top Label */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          variants={containerVariants}
-          className="text-center mb-16"
+          className="mb-4 flex justify-center"
         >
-          <h2
-            className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white flex justify-center"
-            style={{ fontFamily: "Montserrat, sans-serif" }}
+          <div
+            className="rounded-md border border-[#6B4EFF]/40 bg-[#131C39] px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[2.5px] text-[#8FA8FF] shadow-[0_0_20px_rgba(104,87,255,0.2)]"
+            style={{ fontFamily: 'Inter, sans-serif' }}
           >
-            {heading.split("").map((char, index) => (
-              <motion.span
-                key={index}
-                variants={letterVariants}
-                className="inline-block"
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-3 rounded-full"></div>
+            MY JOURNEY
+          </div>
         </motion.div>
 
-        {/* About Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* Left: Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="flex justify-center"
+        {/* Intro */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mx-auto mb-7 max-w-md text-center text-[12.5px] leading-5 text-[#A0A7C0]"
+          style={{ fontFamily: 'Inter, sans-serif' }}
+        >
+          A timeline of my professional experience and academic background.
+        </motion.p>
+
+        {/* Combined Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-10 text-center"
+        >
+          <h2
+            className="text-[18px] font-semibold tracking-tight text-white md:text-[20px]"
+            style={{ fontFamily: 'Montserrat, sans-serif' }}
           >
-              <img
-                src="/raza.png"
-                alt="Raza Zaheer"
-                className="max-w-full max-h-[20rem] sm:max-h-[25rem] lg:max-h-[30rem] object-cover rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700"
-              />
-          </motion.div>
+            Experience{' '}
+            <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
+              & Education
+            </span>
+          </h2>
+          <div className="mx-auto mt-2.5 h-[2px] w-[60px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF]" />
+        </motion.div>
 
-          {/* Right: Text */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h3
-              className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-6"
-              style={{ fontFamily: "Poppins, sans-serif" }}
-            >
-              Who I Am
-            </h3>
+        {/* Timeline */}
+        <div className="relative mx-auto max-w-4xl">
+          {/* Center Line */}
+          <div className="absolute left-1/2 top-0 hidden h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#5EA8FF] via-[#8B5CFF] to-[#D946EF] lg:block" />
 
-            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-              I’m a Frontend Developer passionate about creating modern, responsive,
-              and user-friendly web experiences. I specialize in blending clean code
-              with intuitive design to build fast, accessible, and visually engaging
-              applications.
-            </p>
-            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-              I love solving complex problems with clean, intuitive solutions while
-              staying ahead with new tools, frameworks, and design trends in the
-              fast-evolving web world.
-            </p>
+          <div className="space-y-8">
+            {timelineData.map((item) => (
+              <motion.div
+                key={item.id}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className={`relative flex items-center ${
+                  item.side === 'left'
+                    ? 'lg:justify-start'
+                    : 'lg:justify-end'
+                }`}
+              >
+                {/* Connector */}
+                <div
+                  className={`absolute top-1/2 hidden h-[2px] w-[50px] -translate-y-1/2 bg-gradient-to-r from-[#5EA8FF] to-[#B06CFF] lg:block ${
+                    item.side === 'left'
+                      ? 'left-[calc(50%-50px)]'
+                      : 'right-[calc(50%-50px)]'
+                  }`}
+                />
 
-            {/* Info Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 mb-8">
-              <div>
-                <p className="font-semibold text-gray-800 dark:text-white">Name:</p>
-                <p className="text-gray-600 dark:text-gray-300">Raza Zaheer</p>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-800 dark:text-white">Email:</p>
-                <p className="text-gray-600 dark:text-gray-300">razazaheer2002@gmail.com</p>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-800 dark:text-white">Location:</p>
-                <p className="text-gray-600 dark:text-gray-300">Karachi, Pakistan</p>
-              </div>
-              <div>
-                <p className="font-semibold text-gray-800 dark:text-white">Availability:</p>
-                <p className="text-gray-600 dark:text-gray-300">Full-time</p>
-              </div>
-            </div>
+                {/* Center Icon - Compact Circle (36px) */}
+                <div className="absolute left-1/2 top-1/2 z-30 hidden h-[36px] w-[36px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-[#0B1126] lg:flex">
+                  <div
+                    className={`flex h-[26px] w-[26px] items-center justify-center rounded-full text-white ${
+                      item.type === 'experience'
+                        ? 'bg-gradient-to-br from-[#3B82F6] to-[#2563EB]'
+                        : 'bg-gradient-to-br from-[#A855F7] to-[#7E22CE]'
+                    }`}
+                  >
+                    {item.icon}
+                  </div>
+                </div>
 
-            {/* Resume Button */}
-            <a
-              href="/RAZA ZAHEER CV.pdf"
-              download="RAZA ZAHEER CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
-            >
-              <Download className="w-5 h-5" /> Download Resume
-            </a>
-          </motion.div>
+                {/* Card - More Compact Padding (p-3.5) */}
+                <motion.div
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  transition={{ duration: 0.3 }}
+                  className="group relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#0B1126]/95 p-3.5 shadow-[0_8px_25px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-500 hover:border-[#8B5CFF]/40 lg:w-[38%]"
+                >
+                  {/* Hover Glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6]/5 via-[#8B5CFF]/5 to-[#EC4899]/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                  {/* Side Glow */}
+                  <div
+                    className={`absolute left-0 top-3.5 h-8 w-[2px] rounded-full ${
+                      item.type === 'experience'
+                        ? 'bg-[#3B82F6]'
+                        : 'bg-[#A855F7]'
+                    }`}
+                  />
+
+                  <div className="relative z-10">
+                    {/* Duration - 7.5px */}
+                    <div
+                      className={`inline-flex rounded px-1.5 py-[1.5px] text-[7.5px] font-semibold tracking-wide ${
+                        item.type === 'experience'
+                          ? 'bg-[#3B82F6]/15 text-[#8DB7FF]'
+                          : 'bg-[#A855F7]/15 text-[#D8B4FE]'
+                      }`}
+                      style={{ fontFamily: 'Inter, sans-serif' }}
+                    >
+                      {item.duration}
+                    </div>
+
+                    {/* Title - 10px */}
+                    <h3
+                      className="mt-1 text-[10px] font-semibold leading-tight text-white"
+                      style={{ fontFamily: 'Poppins, sans-serif' }}
+                    >
+                      {item.title}
+                    </h3>
+
+                    {/* Company - 8.5px */}
+                    <p
+                      className={`mt-0.5 text-[8.5px] font-medium ${
+                        item.type === 'experience'
+                          ? 'text-[#60A5FA]'
+                          : 'text-[#C084FC]'
+                      }`}
+                      style={{ fontFamily: 'Inter, sans-serif' }}
+                    >
+                      {item.company}
+                    </p>
+
+                    {/* Description - 8px with Tight line-height */}
+                    <p
+                      className="mt-1 text-[8px] leading-[12px] text-[#A3AEC2]"
+                      style={{ fontFamily: 'Inter, sans-serif' }}
+                    >
+                      {item.description}
+                    </p>
+
+                    {/* Tech Tags - 7.5px */}
+                    {item.tech && (
+                      <div className="mt-2 flex flex-wrap gap-1">
+                        {item.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="rounded border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-1 py-[1.5px] text-[7.5px] font-medium text-[#93C5FD]"
+                            style={{ fontFamily: 'Inter, sans-serif' }}
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default About;
+export default Experience;
