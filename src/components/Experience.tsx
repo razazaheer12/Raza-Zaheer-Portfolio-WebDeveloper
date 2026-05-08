@@ -1,521 +1,368 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap, Calendar } from 'lucide-react';
+import {
+  Briefcase,
+  GraduationCap,
+  Code2,
+  Building2,
+} from 'lucide-react';
 
-const experienceData = [
+const timelineData = [
   {
-    position: 'Front-End Web Developer (Freelance)',
+    id: 1,
+    type: 'experience',
+    title: 'Front-End Web Developer (Freelance)',
     company: 'Self Employed',
     duration: '2023 – Present',
     description:
-      'Built responsive websites with HTML, CSS, JavaScript, and React.js. Focused on performance optimization, accessibility, reusable UI components, and modern responsive layouts for multiple freelance clients.',
+      'Built responsive websites with HTML, CSS, JS, React.js. Focused on UI/UX, accessibility, and performance. Delivered multiple freelance projects.',
     tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
+    side: 'left',
+    icon: <Briefcase size={22} />,
   },
   {
-    position: 'Web Developer',
+    id: 2,
+    type: 'education',
+    title: 'Intermediate (Pre-Engineering)',
+    company: 'PECHS Science College',
+    duration: '2019 – 2021',
+    description:
+      'Studied core subjects including Mathematics, Physics, and Chemistry. Built strong analytical and problem-solving skills, preparing for higher education in Computer Science.',
+    side: 'right',
+    icon: <GraduationCap size={22} />,
+  },
+  {
+    id: 3,
+    type: 'experience',
+    title: 'Web Developer',
     company: 'RZ Web Studio',
     duration: '2024 – Present',
     description:
-      'Leading frontend development for scalable MERN stack applications. Collaborating with UI/UX designers to convert Figma designs into highly interactive and optimized production-ready interfaces.',
+      'Leading the frontend development team to build scalable, modern web applications. Implemented solutions using the MERN Stack with Redux. Collaborated with designers using Figma to translate wireframes into fully functional applications.',
     tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
-  },
-];
-
-const educationData = [
-  {
-    degree: 'Intermediate (Pre-Engineering)',
-    institution: 'PECHS Science College',
-    years: '2019 – 2021',
-    description:
-      'Built a strong foundation in Mathematics, Physics, and analytical problem solving while preparing for advanced studies in Computer Science.',
+    side: 'left',
+    icon: <Code2 size={22} />,
   },
   {
-    degree: 'Bachelor of Science – BS, Computer Science',
-    institution: 'IQRA University',
-    years: '2021 – 2025',
+    id: 4,
+    type: 'education',
+    title: 'Bachelor of Science – BS, Computer Science',
+    company: 'IQRA University',
+    duration: '2021 – 2025',
     description:
-      'Focused on Data Structures, Algorithms, Web Development, Databases, Operating Systems, and Software Engineering while completing multiple academic and real-world projects.',
+      'Focused on computer science fundamentals including Data Structures, Algorithms, Operating Systems, Web & Mobile Development, Database Systems, and Information Security.',
+    side: 'right',
+    icon: <Building2 size={22} />,
   },
 ];
-
-// Animation Variants
-const container = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const fadeUp = {
-  hidden: {
-    opacity: 0,
-    y: 60,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: 'easeOut',
-    },
-  },
-};
-
-type TimelineItemProps = {
-  item: any;
-  index: number;
-  isEducation?: boolean;
-  isLast: boolean;
-};
-
-const TimelineItem = ({
-  item,
-  index,
-  isEducation = false,
-  isLast,
-}: TimelineItemProps) => {
-  return (
-    <motion.div
-      variants={fadeUp}
-      className="relative pl-16"
-    >
-      {/* Timeline Vertical Line */}
-      {!isLast && (
-        <div
-          className="
-            absolute 
-            left-[23px] 
-            top-14 
-            h-[calc(100%+3rem)] 
-            w-[2px]
-            bg-gradient-to-b 
-            from-blue-500 
-            via-purple-500 
-            to-pink-500
-            opacity-70
-          "
-        />
-      )}
-
-      {/* Glow */}
-      <div
-        className="
-          absolute 
-          left-[7px] 
-          top-2
-          h-8 
-          w-8 
-          rounded-full
-          bg-gradient-to-r
-          from-blue-500
-          to-purple-500
-          blur-xl
-          opacity-50
-        "
-      />
-
-      {/* Dot */}
-      <div
-        className="
-          absolute
-          left-0
-          top-2
-          flex
-          items-center
-          justify-center
-          w-12
-          h-12
-          rounded-full
-          border
-          border-white/10
-          bg-[#111827]
-          shadow-[0_0_30px_rgba(99,102,241,0.45)]
-          z-10
-        "
-      >
-        <div
-          className="
-            w-4
-            h-4
-            rounded-full
-            bg-gradient-to-r
-            from-blue-500
-            to-purple-500
-          "
-        />
-      </div>
-
-      {/* Card */}
-      <motion.div
-        whileHover={{
-          y: -8,
-          scale: 1.015,
-        }}
-        transition={{
-          duration: 0.3,
-        }}
-        className="
-          relative
-          overflow-hidden
-          rounded-3xl
-          border
-          border-white/10
-          bg-white/[0.04]
-          backdrop-blur-xl
-          p-6
-          shadow-[0_10px_50px_rgba(0,0,0,0.25)]
-          transition-all
-          duration-500
-          hover:border-purple-500/30
-          hover:shadow-[0_15px_60px_rgba(124,58,237,0.25)]
-        "
-      >
-        {/* Card Gradient */}
-        <div
-          className="
-            absolute
-            inset-0
-            opacity-0
-            hover:opacity-100
-            transition-opacity
-            duration-500
-            bg-gradient-to-br
-            from-blue-500/5
-            via-purple-500/5
-            to-pink-500/5
-          "
-        />
-
-        <div className="relative z-10">
-          {/* Title */}
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between mb-4">
-            <div>
-              <h3
-                className="
-                  text-xl
-                  font-bold
-                  text-white
-                  leading-snug
-                "
-                style={{
-                  fontFamily: 'Poppins, sans-serif',
-                }}
-              >
-                {isEducation ? item.degree : item.position}
-              </h3>
-
-              <p
-                className={`
-                  mt-2
-                  text-sm
-                  font-semibold
-                  ${
-                    isEducation
-                      ? 'text-purple-400'
-                      : 'text-blue-400'
-                  }
-                `}
-              >
-                {isEducation
-                  ? item.institution
-                  : item.company}
-              </p>
-            </div>
-
-            <div
-              className="
-                inline-flex
-                items-center
-                gap-2
-                rounded-full
-                border
-                border-white/10
-                bg-white/5
-                px-4
-                py-2
-                text-sm
-                text-gray-300
-                backdrop-blur-md
-              "
-            >
-              <Calendar size={14} />
-              {isEducation
-                ? item.years
-                : item.duration}
-            </div>
-          </div>
-
-          {/* Description */}
-          <p
-            className="
-              text-sm
-              leading-7
-              text-gray-300
-            "
-            style={{
-              fontFamily: 'Inter, sans-serif',
-            }}
-          >
-            {item.description}
-          </p>
-
-          {/* Tech Stack */}
-          {!isEducation && (
-            <div className="flex flex-wrap gap-3 mt-6">
-              {item.tech.map((tech: string) => (
-                <span
-                  key={tech}
-                  className="
-                    rounded-full
-                    border
-                    border-purple-500/20
-                    bg-purple-500/10
-                    px-4
-                    py-1.5
-                    text-xs
-                    font-medium
-                    text-purple-300
-                    transition-all
-                    duration-300
-                    hover:scale-105
-                    hover:border-purple-400/40
-                    hover:bg-purple-500/20
-                  "
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-};
-
-const SectionHeader = ({
-  icon,
-  title,
-}: {
-  icon: React.ReactNode;
-  title: string;
-}) => {
-  return (
-    <div className="flex items-center gap-4 mb-14">
-      <div
-        className="
-          flex
-          items-center
-          justify-center
-          w-14
-          h-14
-          rounded-2xl
-          bg-gradient-to-br
-          from-blue-500/20
-          to-purple-500/20
-          border
-          border-white/10
-          backdrop-blur-xl
-          shadow-[0_0_25px_rgba(99,102,241,0.25)]
-        "
-      >
-        {icon}
-      </div>
-
-      <div>
-        <h3
-          className="
-            text-3xl
-            font-bold
-            text-white
-          "
-          style={{
-            fontFamily: 'Montserrat, sans-serif',
-          }}
-        >
-          {title}
-        </h3>
-
-        <div
-          className="
-            mt-2
-            h-1
-            w-24
-            rounded-full
-            bg-gradient-to-r
-            from-blue-500
-            via-purple-500
-            to-pink-500
-          "
-        />
-      </div>
-    </div>
-  );
-};
 
 const Experience = () => {
   return (
     <section
       id="experience"
-      className="
-        relative
-        overflow-hidden
-        py-24
-        bg-[#070B1A]
-      "
+      className="relative overflow-hidden bg-[#050816] py-28"
     >
-      {/* Background Effects */}
-      <div
-        className="
-          absolute
-          inset-0
-          bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),transparent_30%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.15),transparent_30%),radial-gradient(circle_at_bottom,_rgba(236,72,153,0.08),transparent_40%)]
-        "
-      />
+      {/* Background Glow */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute left-[-10%] top-0 h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[140px]" />
+        <div className="absolute right-[-10%] top-0 h-[500px] w-[500px] rounded-full bg-purple-600/10 blur-[140px]" />
+        <div className="absolute bottom-0 left-1/2 h-[350px] w-[350px] -translate-x-1/2 rounded-full bg-pink-500/10 blur-[120px]" />
+      </div>
 
-      <div
-        className="
-          relative
-          z-10
-          max-w-7xl
-          mx-auto
-          px-6
-          lg:px-8
-        "
-      >
-        {/* Heading */}
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        {/* Top Badge */}
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.7,
-          }}
-          viewport={{
-            once: true,
-          }}
-          className="text-center mb-24"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-6 flex justify-center"
         >
-          <span
+          <div
             className="
-              inline-block
-              mb-5
-              rounded-full
-              border
-              border-purple-500/20
-              bg-purple-500/10
-              px-5
-              py-2
-              text-sm
-              font-medium
-              text-purple-300
+              rounded-xl border border-purple-500/30
+              bg-gradient-to-r from-[#18203f] to-[#21153f]
+              px-6 py-2
+              text-sm font-semibold uppercase tracking-[3px]
+              text-blue-300
+              shadow-[0_0_30px_rgba(139,92,246,0.25)]
             "
           >
-            Professional Journey
-          </span>
+            My Journey
+          </div>
+        </motion.div>
 
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+          className="mx-auto mb-24 max-w-4xl text-center"
+        >
           <h2
             className="
-              text-4xl
-              sm:text-5xl
-              md:text-6xl
-              font-black
-              text-white
-              leading-tight
+              text-5xl font-black leading-tight
+              text-white md:text-7xl
             "
             style={{
               fontFamily: 'Montserrat, sans-serif',
             }}
           >
-            Experience & Education
+            Experience{' '}
+            <span
+              className="
+                bg-gradient-to-r
+                from-blue-400
+                via-purple-400
+                to-pink-400
+                bg-clip-text
+                text-transparent
+              "
+            >
+              & Education
+            </span>
           </h2>
+
+          {/* Underline */}
+          <div
+            className="
+              mx-auto mt-5 h-[5px] w-40 rounded-full
+              bg-gradient-to-r
+              from-blue-500
+              via-purple-500
+              to-pink-500
+              shadow-[0_0_25px_rgba(168,85,247,0.8)]
+            "
+          />
 
           <p
             className="
-              max-w-3xl
-              mx-auto
-              mt-6
-              text-gray-400
-              leading-8
+              mx-auto mt-8 max-w-2xl
+              text-lg leading-8 text-gray-400
             "
           >
-            A timeline of professional growth, technical expertise,
-            academic achievements, and real-world development
-            experience.
+            A timeline of my professional experience and academic
+            background that shaped my skills and knowledge.
           </p>
         </motion.div>
 
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-20">
-          {/* Experience */}
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <SectionHeader
-              title="Experience"
-              icon={
-                <Briefcase
-                  className="text-blue-400"
-                  size={28}
-                />
-              }
-            />
+        {/* Timeline */}
+        <div className="relative mx-auto max-w-6xl">
+          {/* Center Vertical Line */}
+          <div
+            className="
+              absolute left-1/2 top-0 hidden h-full
+              w-[3px] -translate-x-1/2
+              bg-gradient-to-b
+              from-blue-500
+              via-purple-500
+              to-pink-500
+              shadow-[0_0_20px_rgba(139,92,246,0.7)]
+              lg:block
+            "
+          />
 
-            <div className="space-y-16">
-              {experienceData.map((item, index) => (
-                <TimelineItem
-                  key={index}
-                  item={item}
-                  index={index}
-                  isLast={
-                    index === experienceData.length - 1
+          <div className="space-y-28">
+            {timelineData.map((item, index) => (
+              <motion.div
+                key={item.id}
+                initial={{
+                  opacity: 0,
+                  y: 80,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 0.7,
+                  delay: index * 0.1,
+                }}
+                viewport={{ once: true }}
+                className={`
+                  relative flex items-center
+                  ${
+                    item.side === 'left'
+                      ? 'lg:justify-start'
+                      : 'lg:justify-end'
                   }
-                />
-              ))}
-            </div>
-          </motion.div>
+                `}
+              >
+                {/* Timeline Node */}
+                <div
+                  className="
+                    absolute left-1/2 top-1/2 hidden
+                    h-20 w-20 -translate-x-1/2
+                    -translate-y-1/2
+                    items-center justify-center
+                    rounded-full border
+                    border-blue-400/40
+                    bg-[#0B1023]
+                    shadow-[0_0_40px_rgba(59,130,246,0.45)]
+                    lg:flex
+                    z-20
+                  "
+                >
+                  <div
+                    className={`
+                      flex h-14 w-14 items-center justify-center
+                      rounded-full text-white
+                      ${
+                        item.type === 'experience'
+                          ? 'bg-gradient-to-br from-blue-500 to-blue-700 shadow-[0_0_30px_rgba(59,130,246,0.8)]'
+                          : 'bg-gradient-to-br from-purple-500 to-fuchsia-700 shadow-[0_0_30px_rgba(168,85,247,0.8)]'
+                      }
+                    `}
+                  >
+                    {item.icon}
+                  </div>
+                </div>
 
-          {/* Education */}
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <SectionHeader
-              title="Education"
-              icon={
-                <GraduationCap
-                  className="text-purple-400"
-                  size={28}
+                {/* Horizontal Connector */}
+                <div
+                  className={`
+                    absolute top-1/2 hidden h-[3px]
+                    w-[90px] -translate-y-1/2
+                    bg-gradient-to-r
+                    from-blue-500 to-purple-500
+                    lg:block
+                    ${
+                      item.side === 'left'
+                        ? 'left-[calc(50%-90px)]'
+                        : 'right-[calc(50%-90px)]'
+                    }
+                  `}
                 />
-              }
-            />
 
-            <div className="space-y-16">
-              {educationData.map((item, index) => (
-                <TimelineItem
-                  key={index}
-                  item={item}
-                  index={index}
-                  isEducation
-                  isLast={
-                    index === educationData.length - 1
-                  }
-                />
-              ))}
-            </div>
-          </motion.div>
+                {/* Card */}
+                <motion.div
+                  whileHover={{
+                    y: -10,
+                    scale: 1.02,
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className={`
+                    group relative overflow-hidden
+                    rounded-[32px]
+                    border border-white/10
+                    bg-[#0B1023]/90
+                    p-8 backdrop-blur-xl
+                    shadow-[0_15px_60px_rgba(0,0,0,0.35)]
+                    transition-all duration-500
+                    hover:border-purple-500/40
+                    hover:shadow-[0_15px_70px_rgba(139,92,246,0.25)]
+
+                    w-full lg:w-[42%]
+                  `}
+                >
+                  {/* Hover Glow */}
+                  <div
+                    className="
+                      absolute inset-0 opacity-0
+                      transition-opacity duration-500
+                      group-hover:opacity-100
+                      bg-gradient-to-br
+                      from-blue-500/5
+                      via-purple-500/5
+                      to-pink-500/5
+                    "
+                  />
+
+                  {/* Side Glow Line */}
+                  <div
+                    className={`
+                      absolute left-0 top-10
+                      h-32 w-[4px]
+                      rounded-full
+                      ${
+                        item.type === 'experience'
+                          ? 'bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,1)]'
+                          : 'bg-purple-500 shadow-[0_0_20px_rgba(168,85,247,1)]'
+                      }
+                    `}
+                  />
+
+                  <div className="relative z-10">
+                    {/* Duration */}
+                    <div
+                      className={`
+                        mb-6 inline-flex rounded-xl
+                        px-5 py-2 text-sm font-bold
+                        ${
+                          item.type === 'experience'
+                            ? 'bg-blue-500/15 text-blue-300'
+                            : 'bg-purple-500/15 text-purple-300'
+                        }
+                      `}
+                    >
+                      {item.duration}
+                    </div>
+
+                    {/* Title */}
+                    <h3
+                      className="
+                        text-3xl font-bold leading-snug
+                        text-white
+                      "
+                      style={{
+                        fontFamily: 'Poppins, sans-serif',
+                      }}
+                    >
+                      {item.title}
+                    </h3>
+
+                    {/* Company */}
+                    <p
+                      className={`
+                        mt-3 text-xl font-semibold
+                        ${
+                          item.type === 'experience'
+                            ? 'text-blue-400'
+                            : 'text-purple-400'
+                        }
+                      `}
+                    >
+                      {item.company}
+                    </p>
+
+                    {/* Description */}
+                    <p
+                      className="
+                        mt-6 text-base leading-8
+                        text-gray-400
+                      "
+                    >
+                      {item.description}
+                    </p>
+
+                    {/* Tech Stack */}
+                    {item.tech && (
+                      <div className="mt-8 flex flex-wrap gap-3">
+                        {item.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="
+                              rounded-xl border
+                              border-blue-500/20
+                              bg-blue-500/10
+                              px-4 py-2 text-sm
+                              font-medium text-blue-300
+                              transition-all duration-300
+                              hover:scale-105
+                              hover:bg-blue-500/20
+                            "
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
