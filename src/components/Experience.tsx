@@ -104,7 +104,7 @@ const Experience = () => {
           className="mx-auto mb-7 max-w-md text-center text-[12.5px] leading-5 text-[#A0A7C0]"
           style={{ fontFamily: 'Inter, sans-serif' }}
         >
-          A timeline of my professional experience & academic background.
+         A timeline of my professional experience and academic background that shaped my skills and knowledge.
         </motion.p>
 
         {/* Combined Heading */}
