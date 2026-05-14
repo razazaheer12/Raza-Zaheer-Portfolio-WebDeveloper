@@ -53,7 +53,7 @@ const About = () => {
         </motion.div>
 
         {/* About Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left: Image */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -62,11 +62,11 @@ const About = () => {
             viewport={{ once: true }}
             className="flex justify-center"
           >
-              <img
-                src="/raza.png"
-                alt="Raza Zaheer"
-                className="max-w-full max-h-[20rem] sm:max-h-[25rem] lg:max-h-[30rem] object-cover rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700"
-              />
+            <img
+              src="/raza.png"
+              alt="Raza Zaheer"
+              className="max-w-full max-h-[20rem] sm:max-h-[25rem] lg:max-h-[30rem] object-cover rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700"
+            />
           </motion.div>
 
           {/* Right: Text */}
@@ -115,10 +115,10 @@ const About = () => {
               </div>
             </div>
 
-            {/* Resume Button */}
+            {/* Resume Button Updated */}
             <a
-              href="/RAZA ZAHEER CV.pdf"
-              download="RAZA ZAHEER CV.pdf"
+              href="/RazaZaheer_Resume.pdf"
+              download="RazaZaheer_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
