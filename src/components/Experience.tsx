@@ -71,7 +71,6 @@ const Experience = () => {
       id="experience"
       className="relative overflow-hidden bg-[#050816] py-16"
     >
-      {/* Background Glow */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -left-40 top-0 h-[350px] w-[350px] rounded-full bg-blue-600/10 blur-[140px]" />
         <div className="absolute right-[-120px] top-0 h-[400px] w-[400px] rounded-full bg-purple-600/10 blur-[150px]" />
@@ -79,7 +78,6 @@ const Experience = () => {
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-6">
-        {/* Top Label */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,7 +93,6 @@ const Experience = () => {
           </div>
         </motion.div>
 
-        {/* Intro */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -107,7 +104,6 @@ const Experience = () => {
          A timeline of my professional experience and academic background that shaped my skills and knowledge.
         </motion.p>
 
-        {/* Combined Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -127,9 +123,7 @@ const Experience = () => {
           <div className="mx-auto mt-2.5 h-[2px] w-[60px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF]" />
         </motion.div>
 
-        {/* Timeline */}
         <div className="relative mx-auto max-w-4xl">
-          {/* Center Line */}
           <div className="absolute left-1/2 top-0 hidden h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#5EA8FF] via-[#8B5CFF] to-[#D946EF] lg:block" />
 
           <div className="space-y-8">
@@ -141,21 +135,15 @@ const Experience = () => {
                 whileInView="visible"
                 viewport={{ once: true }}
                 className={`relative flex items-center ${
-                  item.side === 'left'
-                    ? 'lg:justify-start'
-                    : 'lg:justify-end'
+                  item.side === 'left' ? 'lg:justify-start' : 'lg:justify-end'
                 }`}
               >
-                {/* Connector */}
                 <div
                   className={`absolute top-1/2 hidden h-[2px] w-[50px] -translate-y-1/2 bg-gradient-to-r from-[#5EA8FF] to-[#B06CFF] lg:block ${
-                    item.side === 'left'
-                      ? 'left-[calc(50%-50px)]'
-                      : 'right-[calc(50%-50px)]'
+                    item.side === 'left' ? 'left-[calc(50%-50px)]' : 'right-[calc(50%-50px)]'
                   }`}
                 />
 
-                {/* Center Icon - Compact Circle (36px) */}
                 <div className="absolute left-1/2 top-1/2 z-30 hidden h-[36px] w-[36px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-[#0B1126] lg:flex">
                   <div
                     className={`flex h-[26px] w-[26px] items-center justify-center rounded-full text-white ${
@@ -168,26 +156,20 @@ const Experience = () => {
                   </div>
                 </div>
 
-                {/* Card - More Compact Padding (p-3.5) */}
                 <motion.div
                   whileHover={{ y: -4, scale: 1.01 }}
                   transition={{ duration: 0.3 }}
                   className="group relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#0B1126]/95 p-3.5 shadow-[0_8px_25px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-500 hover:border-[#8B5CFF]/40 lg:w-[38%]"
                 >
-                  {/* Hover Glow */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6]/5 via-[#8B5CFF]/5 to-[#EC4899]/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                  {/* Side Glow */}
                   <div
                     className={`absolute left-0 top-3.5 h-8 w-[2px] rounded-full ${
-                      item.type === 'experience'
-                        ? 'bg-[#3B82F6]'
-                        : 'bg-[#A855F7]'
+                      item.type === 'experience' ? 'bg-[#3B82F6]' : 'bg-[#A855F7]'
                     }`}
                   />
 
                   <div className="relative z-10">
-                    {/* Duration - 7.5px */}
                     <div
                       className={`inline-flex rounded px-1.5 py-[1.5px] text-[7.5px] font-semibold tracking-wide ${
                         item.type === 'experience'
@@ -199,7 +181,6 @@ const Experience = () => {
                       {item.duration}
                     </div>
 
-                    {/* Title - 10px */}
                     <h3
                       className="mt-1 text-[10px] font-semibold leading-tight text-white"
                       style={{ fontFamily: 'Poppins, sans-serif' }}
@@ -207,19 +188,15 @@ const Experience = () => {
                       {item.title}
                     </h3>
 
-                    {/* Company - 8.5px */}
                     <p
                       className={`mt-0.5 text-[8.5px] font-medium ${
-                        item.type === 'experience'
-                          ? 'text-[#60A5FA]'
-                          : 'text-[#C084FC]'
+                        item.type === 'experience' ? 'text-[#60A5FA]' : 'text-[#C084FC]'
                       }`}
                       style={{ fontFamily: 'Inter, sans-serif' }}
                     >
                       {item.company}
                     </p>
 
-                    {/* Description - 8px with Tight line-height */}
                     <p
                       className="mt-1 text-[8px] leading-[12px] text-[#A3AEC2]"
                       style={{ fontFamily: 'Inter, sans-serif' }}
@@ -227,7 +204,6 @@ const Experience = () => {
                       {item.description}
                     </p>
 
-                    {/* Tech Tags - 7.5px */}
                     {item.tech && (
                       <div className="mt-2 flex flex-wrap gap-1">
                         {item.tech.map((tech) => (
