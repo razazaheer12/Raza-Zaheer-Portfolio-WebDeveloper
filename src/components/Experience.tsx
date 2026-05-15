@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-  BriefcaseBusiness,
+  Briefcase,
   GraduationCap,
   Building2,
   Code2,
@@ -18,7 +18,7 @@ const timelineData = [
       'Built responsive websites with HTML, CSS, JS, React.js. Focused on UI/UX, accessibility, and performance. Delivered multiple freelance projects.',
     tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
     side: 'left',
-    icon: <BriefcaseBusiness size={12} />,
+    icon: <Briefcase size={12} />,
   },
   {
     id: 2,
