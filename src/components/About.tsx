@@ -64,10 +64,10 @@ const About: React.FC = () => {
             className="flex justify-center"
           >
             <img
-              src="/public/raza.png"
-              alt="Raza Zaheer"
-              className="w-full max-w-sm lg:max-w-md object-cover rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700"
-            />
+  src="/raza.png"
+  alt="Raza Zaheer"
+  className="w-full max-w-sm lg:max-w-md object-cover rounded-3xl shadow-2xl border border-gray-200 dark:border-gray-700"
+/>
           </motion.div>
 
           {/* Text */}
@@ -138,13 +138,13 @@ const About: React.FC = () => {
             </div>
 
             {/* Resume Button */}
-            <a
-              href="public/razazaheer_resume.pdf"
-              download
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"
-            >
+<a
+  href="/razazaheer_resume.pdf"
+  download="razazaheer_resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"
+>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
