@@ -63,6 +63,16 @@ const projects = [
     liveUrl: "https://recipe-finder-12.netlify.app/",
     githubUrl: "https://github.com/razazaheer12/Recipe-Finder",
   },
+  {  
+  title: "Cocktail Explorer 🍸",
+  description: 
+    "A Premium Express + Axios + EJS modern web application, that using the free TheCocktailDB API to search and display cocktail recipes. Users can view detailed drink information including images, ingredients, and instructions.",
+  image:
+    "https://i.ibb.co/YBKRpzCY/Screenshot-2026-05-19-041257.png",
+  tech: ["Node.js", "Express.js", "EJS", "AXIOS", "TheCocktailDB API"],
+  LiveUrl: "https://cocktail-explorer-psi.vercel.app/",
+  githubUrl: "https://github.com/razazaheer12/Cocktail-Explorer",  
+  },
    {
     title: "🐍 Modern Snake Game",
     description:
