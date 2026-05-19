@@ -18,7 +18,7 @@ const timelineData = [
       'Built responsive websites with HTML, CSS, JS, React.js. Focused on UI/UX, accessibility, and performance. Delivered multiple freelance projects.',
     tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
     side: 'left',
-    icon: <Briefcase size={12} />,
+    icon: <Briefcase size={20} />,
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const timelineData = [
     description:
       'Studied core subjects including Mathematics, Physics, and Chemistry. Built strong analytical and problem-solving skills.',
     side: 'right',
-    icon: <Building2 size={12} />,
+    icon: <Building2 size={20} />,
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const timelineData = [
       'Leading the frontend team to build scalable modern web applications using the MERN Stack.',
     tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
     side: 'left',
-    icon: <Code2 size={12} />,
+    icon: <Code2 size={20} />,
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ const timelineData = [
     description:
       'Focused on Data Structures, Algorithms, Web Development, Database Systems, and Information Security.',
     side: 'right',
-    icon: <GraduationCap size={12} />,
+    icon: <GraduationCap size={20} />,
   },
 ];
 
@@ -69,16 +69,16 @@ const Experience: React.FC = () => {
   return (
     <section
       id="experience"
-      className="relative overflow-hidden py-16 bg-white text-black dark:bg-[#050816] dark:text-white transition-colors duration-500"
+      className="relative overflow-hidden py-24 bg-white text-black dark:bg-[#050816] dark:text-white transition-colors duration-500"
     >
       {/* Background Blur Effects */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -left-40 top-0 h-[350px] w-[350px] rounded-full bg-blue-600/10 blur-[140px]" />
-        <div className="absolute right-[-120px] top-0 h-[400px] w-[400px] rounded-full bg-purple-600/10 blur-[150px]" />
-        <div className="absolute bottom-[-200px] left-1/2 h-[340px] w-[340px] -translate-x-1/2 rounded-full bg-fuchsia-500/10 blur-[140px]" />
+        <div className="absolute -left-40 top-0 h-[400px] w-[400px] rounded-full bg-blue-600/10 blur-[160px]" />
+        <div className="absolute right-[-120px] top-0 h-[450px] w-[450px] rounded-full bg-purple-600/10 blur-[170px]" />
+        <div className="absolute bottom-[-200px] left-1/2 h-[380px] w-[380px] -translate-x-1/2 rounded-full bg-fuchsia-500/10 blur-[150px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
         
         {/* Badge */}
         <motion.div
@@ -86,10 +86,10 @@ const Experience: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-4 flex justify-center"
+          className="mb-5 flex justify-center"
         >
           <div
-            className="rounded-md border border-[#6B4EFF]/40 bg-gray-100 dark:bg-[#131C39] px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[2.5px] text-[#6B4EFF] dark:text-[#8FA8FF] shadow-[0_0_20px_rgba(104,87,255,0.15)]"
+            className="rounded-md border border-[#6B4EFF]/40 bg-gray-100 dark:bg-[#131C39] px-5 py-2 text-xs font-semibold uppercase tracking-[3px] text-[#6B4EFF] dark:text-[#8FA8FF] shadow-[0_0_20px_rgba(104,87,255,0.15)]"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
             MY JOURNEY
@@ -102,7 +102,7 @@ const Experience: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mx-auto mb-7 max-w-md text-center text-[12.5px] leading-5 text-gray-600 dark:text-[#A0A7C0]"
+          className="mx-auto mb-10 max-w-2xl text-center text-base leading-7 text-gray-600 dark:text-[#A0A7C0]"
           style={{ fontFamily: 'Inter, sans-serif' }}
         >
           A timeline of my professional experience and academic background
@@ -115,10 +115,10 @@ const Experience: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-10 text-center"
+          className="mb-16 text-center"
         >
           <h2
-            className="text-[18px] font-semibold tracking-tight text-gray-900 dark:text-white md:text-[20px]"
+            className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white md:text-5xl"
             style={{ fontFamily: 'Montserrat, sans-serif' }}
           >
             Experience{' '}
@@ -127,16 +127,16 @@ const Experience: React.FC = () => {
             </span>
           </h2>
 
-          <div className="mx-auto mt-2.5 h-[2px] w-[60px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF]" />
+          <div className="mx-auto mt-4 h-[4px] w-[90px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF]" />
         </motion.div>
 
         {/* Timeline */}
-        <div className="relative mx-auto max-w-4xl">
+        <div className="relative mx-auto max-w-5xl">
           
           {/* Center Line */}
-          <div className="absolute left-1/2 top-0 hidden h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#5EA8FF] via-[#8B5CFF] to-[#D946EF] lg:block" />
+          <div className="absolute left-1/2 top-0 hidden h-full w-[3px] -translate-x-1/2 bg-gradient-to-b from-[#5EA8FF] via-[#8B5CFF] to-[#D946EF] lg:block" />
 
-          <div className="space-y-8">
+          <div className="space-y-10">
             {timelineData.map((item) => (
               <motion.div
                 key={item.id}
@@ -152,17 +152,17 @@ const Experience: React.FC = () => {
               >
                 {/* Connector Line */}
                 <div
-                  className={`absolute top-1/2 hidden h-[2px] w-[50px] -translate-y-1/2 bg-gradient-to-r from-[#5EA8FF] to-[#B06CFF] lg:block ${
+                  className={`absolute top-1/2 hidden h-[3px] w-[60px] -translate-y-1/2 bg-gradient-to-r from-[#5EA8FF] to-[#B06CFF] lg:block ${
                     item.side === 'left'
-                      ? 'left-[calc(50%-50px)]'
-                      : 'right-[calc(50%-50px)]'
+                      ? 'left-[calc(50%-60px)]'
+                      : 'right-[calc(50%-60px)]'
                   }`}
                 />
 
                 {/* Timeline Icon */}
-                <div className="absolute left-1/2 top-1/2 z-30 hidden h-[36px] w-[36px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-[#0B1126] lg:flex">
+                <div className="absolute left-1/2 top-1/2 z-30 hidden h-[54px] w-[54px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-[#0B1126] shadow-lg lg:flex">
                   <div
-                    className={`flex h-[26px] w-[26px] items-center justify-center rounded-full text-white ${
+                    className={`flex h-[40px] w-[40px] items-center justify-center rounded-full text-white ${
                       item.type === 'experience'
                         ? 'bg-gradient-to-br from-[#3B82F6] to-[#2563EB]'
                         : 'bg-gradient-to-br from-[#A855F7] to-[#7E22CE]'
@@ -174,16 +174,16 @@ const Experience: React.FC = () => {
 
                 {/* Card */}
                 <motion.div
-                  whileHover={{ y: -4, scale: 1.01 }}
+                  whileHover={{ y: -6, scale: 1.02 }}
                   transition={{ duration: 0.3 }}
-                  className="group relative w-full overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 bg-white/90 dark:bg-[#0B1126]/95 p-3.5 shadow-[0_8px_25px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-500 hover:border-[#8B5CFF]/40 lg:w-[38%]"
+                  className="group relative w-full overflow-hidden rounded-2xl border border-gray-200 dark:border-white/10 bg-white/90 dark:bg-[#0B1126]/95 p-7 shadow-[0_8px_25px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_25px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-500 hover:border-[#8B5CFF]/40 lg:w-[42%]"
                 >
                   {/* Hover Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6]/5 via-[#8B5CFF]/5 to-[#EC4899]/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                   {/* Side Border */}
                   <div
-                    className={`absolute left-0 top-3.5 h-8 w-[2px] rounded-full ${
+                    className={`absolute left-0 top-7 h-12 w-[4px] rounded-full ${
                       item.type === 'experience'
                         ? 'bg-[#3B82F6]'
                         : 'bg-[#A855F7]'
@@ -194,7 +194,7 @@ const Experience: React.FC = () => {
                     
                     {/* Duration */}
                     <div
-                      className={`inline-flex rounded px-1.5 py-[1.5px] text-[7.5px] font-semibold tracking-wide ${
+                      className={`inline-flex rounded-md px-3 py-1 text-sm font-semibold tracking-wide ${
                         item.type === 'experience'
                           ? 'bg-[#3B82F6]/15 text-blue-600 dark:text-[#8DB7FF]'
                           : 'bg-[#A855F7]/15 text-purple-600 dark:text-[#D8B4FE]'
@@ -206,7 +206,7 @@ const Experience: React.FC = () => {
 
                     {/* Title */}
                     <h3
-                      className="mt-1 text-[10px] font-semibold leading-tight text-gray-900 dark:text-white"
+                      className="mt-3 text-xl font-semibold leading-tight text-gray-900 dark:text-white"
                       style={{ fontFamily: 'Poppins, sans-serif' }}
                     >
                       {item.title}
@@ -214,7 +214,7 @@ const Experience: React.FC = () => {
 
                     {/* Company */}
                     <p
-                      className={`mt-0.5 text-[8.5px] font-medium ${
+                      className={`mt-2 text-base font-medium ${
                         item.type === 'experience'
                           ? 'text-blue-600 dark:text-[#60A5FA]'
                           : 'text-purple-600 dark:text-[#C084FC]'
@@ -226,7 +226,7 @@ const Experience: React.FC = () => {
 
                     {/* Description */}
                     <p
-                      className="mt-1 text-[8px] leading-[12px] text-gray-600 dark:text-[#A3AEC2]"
+                      className="mt-3 text-base leading-7 text-gray-600 dark:text-[#A3AEC2]"
                       style={{ fontFamily: 'Inter, sans-serif' }}
                     >
                       {item.description}
@@ -234,11 +234,11 @@ const Experience: React.FC = () => {
 
                     {/* Tech Stack */}
                     {item.tech && (
-                      <div className="mt-2 flex flex-wrap gap-1">
+                      <div className="mt-5 flex flex-wrap gap-2">
                         {item.tech.map((tech) => (
                           <span
                             key={tech}
-                            className="rounded border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-1 py-[1.5px] text-[7.5px] font-medium text-blue-700 dark:text-[#93C5FD]"
+                            className="rounded-md border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-3 py-1 text-sm font-medium text-blue-700 dark:text-[#93C5FD]"
                             style={{ fontFamily: 'Inter, sans-serif' }}
                           >
                             {tech}
