@@ -70,7 +70,7 @@ const projects = [
   image:
     "https://i.ibb.co/YBKRpzCY/Screenshot-2026-05-19-041257.png",
   tech: ["Node.js", "Express.js", "EJS", "AXIOS", "TheCocktailDB API"],
-  LiveUrl: "https://cocktail-explorer-psi.vercel.app/",
+  liveUrl: "https://cocktail-explorer-psi.vercel.app/",
   githubUrl: "https://github.com/razazaheer12/Cocktail-Explorer",  
   },
    {
