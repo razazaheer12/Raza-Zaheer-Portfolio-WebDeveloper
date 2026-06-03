@@ -48,7 +48,13 @@ const About: React.FC = () => {
           variants={containerVariants}
           className="text-center mb-16"
         >
-          
+          {/* Badge */}
+          <div className="inline-flex items-center rounded-full border border-blue-200 dark:border-white/10 bg-white/80 dark:bg-white/5 px-5 py-2 backdrop-blur-xl shadow-lg mb-5">
+            <span className="text-xs tracking-[3px] uppercase font-semibold text-blue-600 dark:text-blue-300">
+              ABOUT ME ✨
+            </span>
+          </div>
+
           {/* Animated Heading */}
           <h2
             className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white flex justify-center flex-wrap"
