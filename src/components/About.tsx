@@ -399,28 +399,26 @@ const About: React.FC = () => {
     </p>
   </div>
 </div>
-
+            
 {/* Resume Button */}
- <a
+<a
   href="/razazaheer_resume.pdf"
   download="razazaheer_resume.pdf"
   target="_blank"
   rel="noopener noreferrer"
-  className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 px-7 py-4 text-white font-medium shadow-[0_10px_40px_rgba(79,70,229,0.35)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_50px_rgba(168,85,247,0.45)]"
-  >
-  <Download className="w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" />
-   <span className="tracking-wide">
-                Download Resume
-              </span>
-            </a>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
+  className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-blue-500 via-violet-500 to-fuchsia-500 px-5 py-2.5 text-sm font-medium text-white shadow-[0_8px_25px_rgba(99,102,241,0.25)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_35px_rgba(168,85,247,0.35)]"
+>
+  {/* Glow Effect */}
+  <span className="absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
 
-export default About;
+  {/* Icon */}
+  <Download className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-y-[2px]" />
+
+  {/* Text */}
+  <span className="relative z-10 tracking-wide">
+    Download Resume
+  </span>
+</a>
 
           </motion.div>
         </div>
@@ -428,5 +426,4 @@ export default About;
     </section>
   );
 };
-
 export default About;
