@@ -119,12 +119,16 @@ const About: React.FC = () => {
             transition={{ duration: 0.9 }}
             viewport={{ once: true }}
           >
+              <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 dark:bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-700 dark:text-blue-300 mb-6">
+              <Briefcase size={16} />
+              Frontend Web Developer
+            </div>
             {/* Main Title */}
             <h3
               className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-5 leading-snug"
               style={{ fontFamily: "Poppins, sans-serif" }}
             >
-              Creating Modern Web Experiences That Feel Fast, Clean & Premium.
+              Who I Am 
             </h3>
 
             {/* Paragraph */}
