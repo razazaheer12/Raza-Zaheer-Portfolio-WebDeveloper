@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
-import { Mail, MessageSquare, Send, User, Github, Linkedin } from 'lucide-react';
+import { Mail, MessageSquare, Send, User, Github, Linkedin, MapPin } from 'lucide-react';
 import { useThemeStore } from '../store/themeStore';
 
 interface FormData {
@@ -12,7 +12,7 @@ interface FormData {
   message: string;
 }
 
-// ================= Typing Animation =================
+// ── Typing Animation ──────────────────────────────────────────
 const TypingAnimation = ({
   text,
   className,
@@ -39,9 +39,7 @@ const TypingAnimation = ({
   }, [text, delay]);
 
   useEffect(() => {
-    const cursorBlink = setInterval(() => {
-      setShowCursor((prev) => !prev);
-    }, 500);
+    const cursorBlink = setInterval(() => setShowCursor((p) => !p), 500);
     return () => clearInterval(cursorBlink);
   }, []);
 
@@ -52,7 +50,7 @@ const TypingAnimation = ({
         <motion.span
           animate={{ opacity: [1, 0] }}
           transition={{ repeat: Infinity, duration: 0.5 }}
-          className="text-blue-600 dark:text-blue-400"
+          className="text-blue-500 dark:text-blue-400"
         >
           |
         </motion.span>
@@ -61,7 +59,7 @@ const TypingAnimation = ({
   );
 };
 
-// ================= Contact Section =================
+// ── Contact Section ───────────────────────────────────────────
 const Contact = () => {
   const isDarkMode = useThemeStore((state) => state.isDarkMode);
   const {
@@ -77,11 +75,7 @@ const Contact = () => {
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: data.name,
-          from_email: data.email,
-          message: data.message,
-        },
+        { from_name: data.name, from_email: data.email, message: data.message },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
       setIsSubmitted(true);
@@ -93,208 +87,198 @@ const Contact = () => {
     }
   };
 
+  const inputBase =
+    'w-full rounded-xl border border-gray-200 dark:border-white/[0.08] bg-gray-50/80 dark:bg-white/[0.03] backdrop-blur-sm px-4 py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 dark:focus:border-blue-500/50 hover:border-gray-300 dark:hover:border-white/[0.14] transition-all duration-300 shadow-sm';
+
   return (
     <section
       id="contact"
-      className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors duration-500"
+      className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-[#050816] dark:via-[#0B1126] dark:to-[#111827] transition-colors duration-500"
     >
-      {/* Floating Animated Background */}
-      <motion.div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(circle at 30% 30%, rgba(59,130,246,0.15), transparent 60%)',
-        }}
-        animate={{ backgroundPosition: ['0% 0%', '100% 100%'] }}
-        transition={{ repeat: Infinity, duration: 10, ease: 'easeInOut' }}
-      />
+      {/* Ambient glows */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-20 left-[-80px] h-[380px] w-[380px] rounded-full bg-blue-500/8 dark:bg-blue-500/10 blur-[150px]" />
+        <div className="absolute right-[-80px] top-[80px] h-[360px] w-[360px] rounded-full bg-violet-500/8 dark:bg-violet-500/10 blur-[150px]" />
+        <div className="absolute bottom-[-100px] left-1/2 -translate-x-1/2 h-[300px] w-[300px] rounded-full bg-pink-500/6 dark:bg-pink-500/8 blur-[130px]" />
+      </div>
 
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-pink-50/30 dark:from-blue-900/10 dark:via-purple-900/10 dark:to-pink-900/10" />
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-        
-        {/* ================= Centered Heading ================= */}
-<motion.div
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.7 }}
-  viewport={{ once: true }}
-  className="text-center mb-16"
->
-  <h2
-    className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4"
-    style={{ fontFamily: 'Montserrat, sans-serif' }}
-  >
-    <TypingAnimation
-      text="Get In Touch"
-      className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-white"
-    />
-  </h2>
-
-  {/* === Neon Glow Underline === */}
-  <motion.div
-    initial={{ width: 0, opacity: 0 }}
-    whileInView={{ width: '90px', opacity: 1 }}
-    transition={{ duration: 0.6, ease: 'easeOut' }}
-    viewport={{ once: true }}
-    className="mx-auto h-[4px] rounded-full bg-gradient-to-r from-blue-400 to-purple-500 shadow-[0_0_8px_#8b5cf6,0_0_16px_#3b82f6]"
-  ></motion.div>
-
-  <p
-    className="max-w-3xl mx-auto mt-6 text-sm sm:text-base text-gray-500 dark:text-gray-400 leading-snug tracking-tight"
-    style={{ fontFamily: 'Inter, sans-serif' }}
-  >
-    Have a project in mind or want to discuss potential opportunities? Feel free to
-    reach out to me through any of the following channels.
-  </p>
-</motion.div>
-
-
-        {/* ================= Contact Grid ================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-          {/* ================= Left Column ================= */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="space-y-8"
+        {/* ── Heading ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2
+            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
+            style={{ fontFamily: "'Sora', Montserrat, sans-serif", letterSpacing: '-0.02em' }}
           >
-            {/* Contact Information */}
-             <div className="space-y-4">
-  <h3
-    className="text-2xl sm:text-3xl font-semibold text-gray-800 dark:text-white"
-    style={{ fontFamily: 'Poppins, sans-serif' }}
-  >
-    Contact Information
-  </h3>
+            <TypingAnimation
+              text="Get In Touch"
+              className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white"
+            />
+          </h2>
 
-  <div className="flex flex-col space-y-4 text-gray-600 dark:text-gray-400">
-    <div className="flex items-center space-x-3">
-      <Mail className="text-blue-500" size={22} />
-      <span>razazaheer2002@gmail.com</span>
-    </div>
+          {/* Accent line */}
+          <div className="flex items-center justify-center gap-2 mt-2">
+            <div className="h-px w-10 bg-gradient-to-r from-transparent to-blue-500/40" />
+            <div className="h-[3px] w-20 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
+            <div className="h-px w-10 bg-gradient-to-l from-transparent to-pink-500/40" />
+          </div>
 
-    <div className="flex items-center space-x-3">
-      <span className="text-purple-500 text-lg"> 🌐 </span>
-      <span>Karachi, Pakistan</span>
-    </div>
-  </div>
-</div>
+          <p
+            className="max-w-xl mx-auto mt-6 text-sm md:text-[0.95rem] text-gray-500 dark:text-gray-400 leading-[1.8]"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
+            Have a project in mind or want to discuss potential opportunities? Feel free to
+            reach out — I'd love to hear from you.
+          </p>
+        </motion.div>
 
+        {/* ── Grid ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-8 lg:gap-12 items-start">
 
-            {/* Follow Me */}
-            <div>
+          {/* ── Left: Info ── */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.65 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            {/* Contact info card */}
+            <div className="rounded-2xl border border-gray-200/70 dark:border-white/[0.07] bg-white/60 dark:bg-white/[0.03] backdrop-blur-xl p-6 shadow-sm space-y-5">
               <h3
-                className="text-2xl sm:text-3xl font-semibold text-gray-800 dark:text-white mb-4"
-                style={{ fontFamily: 'Poppins, sans-serif' }}
+                className="text-base font-semibold text-gray-900 dark:text-white"
+                style={{ fontFamily: "'Sora', sans-serif" }}
+              >
+                Contact Information
+              </h3>
+
+              {[
+                {
+                  icon: <Mail className="w-4 h-4" />,
+                  value: 'razazaheer2002@gmail.com',
+                  color: 'text-blue-500 dark:text-blue-400',
+                  bg: 'bg-blue-50 dark:bg-blue-500/10',
+                },
+                {
+                  icon: <MapPin className="w-4 h-4" />,
+                  value: 'Karachi, Pakistan',
+                  color: 'text-rose-500 dark:text-rose-400',
+                  bg: 'bg-rose-50 dark:bg-rose-500/10',
+                },
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <div className={`flex items-center justify-center w-8 h-8 rounded-xl ${item.bg} ${item.color} flex-shrink-0`}>
+                    {item.icon}
+                  </div>
+                  <span
+                    className="text-sm text-gray-600 dark:text-gray-300 break-all"
+                    style={{ fontFamily: "'DM Sans', sans-serif" }}
+                  >
+                    {item.value}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Social card */}
+            <div className="rounded-2xl border border-gray-200/70 dark:border-white/[0.07] bg-white/60 dark:bg-white/[0.03] backdrop-blur-xl p-6 shadow-sm">
+              <h3
+                className="text-base font-semibold text-gray-900 dark:text-white mb-4"
+                style={{ fontFamily: "'Sora', sans-serif" }}
               >
                 Follow Me
               </h3>
-              <div className="flex space-x-4 sm:space-x-6">
+              <div className="flex gap-3">
                 {[
                   {
                     href: 'https://github.com/razazaheer12',
-                    icon: <Github size={24} />,
-                    gradient: 'from-blue-600 to-purple-600',
-                    label: 'GitHub Profile',
+                    icon: <Github size={18} />,
+                    label: 'GitHub',
+                    gradient: 'from-gray-700 to-gray-900 dark:from-gray-600 dark:to-gray-800',
                   },
                   {
                     href: 'https://www.linkedin.com/in/raza-zaeer-416745340/',
-                    icon: <Linkedin size={24} />,
-                    gradient: 'from-purple-600 to-pink-500',
-                    label: 'LinkedIn Profile',
+                    icon: <Linkedin size={18} />,
+                    label: 'LinkedIn',
+                    gradient: 'from-blue-600 to-blue-700',
                   },
-                ].map(({ href, icon, gradient, label }, idx) => (
+                ].map(({ href, icon, label, gradient }, idx) => (
                   <motion.a
                     key={idx}
                     href={href}
                     aria-label={label}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{
-                      scale: 1.1,
-                      y: -5,
-                      boxShadow: '0 10px 25px rgba(59,130,246,0.3)',
-                    }}
+                    whileHover={{ y: -3, scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className={`w-14 h-14 bg-gradient-to-r ${gradient} rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300`}
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r ${gradient} text-white text-xs font-semibold shadow-md hover:shadow-lg transition-all duration-300`}
+                    style={{ fontFamily: "'Sora', sans-serif" }}
                   >
                     {icon}
+                    {label}
                   </motion.a>
                 ))}
               </div>
             </div>
           </motion.div>
 
-          {/* ================= Right Column ================= */}
+          {/* ── Right: Form ── */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.65, delay: 0.2 }}
             viewport={{ once: true }}
-            className="space-y-8"
           >
-            <div className="text-center lg:text-left">
+            <div className="rounded-2xl border border-gray-200/70 dark:border-white/[0.07] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:shadow-blue-500/8 dark:hover:shadow-blue-500/10 hover:border-gray-300/80 dark:hover:border-white/[0.12] transition-all duration-500">
+
               <h3
-                className="text-2xl sm:text-3xl font-semibold text-gray-800 dark:text-white mb-2"
-                style={{ fontFamily: 'Poppins, sans-serif' }}
+                className="text-base font-semibold text-gray-900 dark:text-white mb-1"
+                style={{ fontFamily: "'Sora', sans-serif" }}
               >
                 Send me an Email
               </h3>
               <p
-                className="text-gray-600 dark:text-gray-400 text-base leading-relaxed mb-6"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                className="text-xs text-gray-400 dark:text-gray-500 mb-6"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
               >
-                Ready to start a conversation? Feel free to reach out through LinkedIn or email me
-                directly.
+                Ready to start a conversation? Drop me a message below.
               </p>
-            </div>
 
-            {/* ===== Contact Form ===== */}
-            <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-100/50 dark:border-gray-700/50 transition-all hover:shadow-[0_0_30px_rgba(59,130,246,0.25)]">
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+
                 {/* Name */}
                 <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                  >
-                    Name <span className="text-red-500">*</span>
+                  <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Sora', sans-serif" }}>
+                    Name <span className="text-red-400">*</span>
                   </label>
                   <div className="relative">
-                    <User
-                      className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-                      size={20}
-                    />
-                    <motion.input
+                    <User className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <input
                       {...register('name', { required: 'Name is required' })}
                       type="text"
-                      id="name"
-                      whileFocus={{ scale: 1.02 }}
-                      className="pl-12 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white shadow-sm hover:shadow-md transition-all"
                       placeholder="Your name"
+                      className={`${inputBase} pl-10`}
                     />
                   </div>
                   {errors.name && (
-                    <p className="mt-2 text-sm text-red-600">{errors.name.message}</p>
+                    <p className="mt-1.5 text-xs text-red-500">{errors.name.message}</p>
                   )}
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                  >
-                    Email <span className="text-red-500">*</span>
+                  <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Sora', sans-serif" }}>
+                    Email <span className="text-red-400">*</span>
                   </label>
                   <div className="relative">
-                    <Mail
-                      className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
-                      size={20}
-                    />
-                    <motion.input
+                    <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <input
                       {...register('email', {
                         required: 'Email is required',
                         pattern: {
@@ -303,73 +287,66 @@ const Contact = () => {
                         },
                       })}
                       type="email"
-                      id="email"
-                      whileFocus={{ scale: 1.02 }}
-                      className="pl-12 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white shadow-sm hover:shadow-md transition-all"
-                      placeholder="razazaheer2002@gmail.com"
+                      placeholder="your@email.com"
+                      className={`${inputBase} pl-10`}
                     />
                   </div>
                   {errors.email && (
-                    <p className="mt-2 text-sm text-red-600">{errors.email.message}</p>
+                    <p className="mt-1.5 text-xs text-red-500">{errors.email.message}</p>
                   )}
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-                  >
-                    Message <span className="text-red-500">*</span>
+                  <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-1.5 uppercase tracking-wider" style={{ fontFamily: "'Sora', sans-serif" }}>
+                    Message <span className="text-red-400">*</span>
                   </label>
                   <div className="relative">
-                    <MessageSquare className="absolute left-4 top-4 text-gray-400" size={20} />
-                    <motion.textarea
+                    <MessageSquare className="absolute left-3.5 top-3.5 text-gray-400 w-4 h-4" />
+                    <textarea
                       {...register('message', { required: 'Message is required' })}
-                      id="message"
                       rows={5}
-                      whileFocus={{ scale: 1.02 }}
-                      className="pl-12 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white shadow-sm hover:shadow-md resize-none transition-all"
                       placeholder="Type your message..."
+                      className={`${inputBase} pl-10 resize-none`}
                     />
                   </div>
                   {errors.message && (
-                    <p className="mt-2 text-sm text-red-600">{errors.message.message}</p>
+                    <p className="mt-1.5 text-xs text-red-500">{errors.message.message}</p>
                   )}
                 </div>
 
                 {/* Submit */}
                 {isSubmitted ? (
                   <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="flex items-center justify-center text-green-500 text-lg font-semibold"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="flex items-center justify-center gap-2 py-4 text-sm font-semibold text-emerald-500"
+                    style={{ fontFamily: "'Sora', sans-serif" }}
                   >
-                    ✅ Message Sent!
+                    ✅ Message Sent Successfully!
                   </motion.div>
                 ) : (
-                  <motion.button
+                  <button
                     type="submit"
                     disabled={isSubmitting}
-                    whileHover={{
-                      scale: 1.05,
-                      boxShadow: '0 20px 40px rgba(37, 99, 235, 0.3)',
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-full flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 rounded-xl shadow-lg hover:shadow-2xl transition-all disabled:opacity-50"
+                    className="group relative w-full inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl border border-gray-300 dark:border-white/15 bg-white/80 dark:bg-white/5 backdrop-blur-sm px-7 py-3.5 text-gray-800 dark:text-white text-sm font-medium shadow-sm transition-all duration-500 hover:scale-[1.02] hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.4)] disabled:opacity-50 disabled:pointer-events-none"
+                    style={{ fontFamily: "'Sora', sans-serif" }}
                   >
+                    {/* Gradient fill on hover */}
+                    <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
                     {isSubmitting ? (
-                      <div className="flex items-center">
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                        Sending...
-                      </div>
+                      <>
+                        <div className="relative z-10 w-4 h-4 rounded-full border-2 border-current border-t-transparent animate-spin" />
+                        <span className="relative z-10">Sending...</span>
+                      </>
                     ) : (
                       <>
-                        Send Message
-                        <Send className="ml-2" size={20} />
+                        <Send className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                        <span className="relative z-10 tracking-wide">Send Message</span>
                       </>
                     )}
-                  </motion.button>
+                  </button>
                 )}
               </form>
             </div>
@@ -377,7 +354,6 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* Toast Notifications */}
       <Toaster position="bottom-center" />
     </section>
   );
