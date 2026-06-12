@@ -7,130 +7,220 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const menuItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Experience", href: "#experience" },
-    { name: "Contact", href: "#contact" },
+    "Home",
+    "About",
+    "Skills",
+    "Projects",
+    "Experience",
+    "Contact",
   ];
 
   return (
-    <nav
-      className="
-      fixed
-      top-0
-      left-0
-      w-full
-      z-50
-      backdrop-blur-xl
-      bg-white/80
-      dark:bg-[#060A16]/80
-      border-b
-      border-gray-200/60
-      dark:border-white/10
-      transition-all
-      duration-300
-    "
-    >
-      <div className="max-w-7xl mx-auto px-5 lg:px-10">
+    <>
+      <nav className="fixed top-5 left-0 w-full z-50 px-4">
 
-        <div className="h-[64px] flex items-center justify-between">
+        <div
+          className="
+          max-w-6xl
+          mx-auto
+          h-[62px]
+
+          rounded-[24px]
+
+          bg-white/75
+          dark:bg-[#080D18]/70
+
+          backdrop-blur-2xl
+
+          border
+          border-white/60
+          dark:border-white/10
+
+          shadow-[0_12px_60px_rgba(59,130,246,0.08)]
+
+          flex
+          items-center
+          justify-between
+
+          px-6
+          lg:px-8
+        "
+        >
 
           {/* Logo */}
-          <motion.a
+          <a
             href="#home"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="flex items-center gap-3"
+            className="
+            flex
+            items-center
+            gap-3
+            shrink-0
+          "
           >
-            <div
+
+            <motion.div
+              whileHover={{
+                rotate: 8,
+                scale: 1.08,
+              }}
               className="
-              w-9
-              h-9
-              rounded-xl
-              flex
-              items-center
-              justify-center
-              bg-gradient-to-r
+              w-10
+              h-10
+
+              rounded-[16px]
+
+              bg-gradient-to-br
               from-blue-600
               via-purple-600
               to-pink-500
+
               text-white
               font-bold
-              text-sm
-              shadow-md
+
+              flex
+              items-center
+              justify-center
+
+              shadow-lg
             "
             >
               R
-            </div>
+            </motion.div>
 
             <div>
-              <h2
+
+              <div
                 className="
-                text-[17px]
+                text-[18px]
                 font-bold
+
                 text-gray-900
                 dark:text-white
               "
                 style={{
-                  fontFamily: "Montserrat, sans-serif",
+                  fontFamily:
+                    "Montserrat,sans-serif",
                 }}
               >
-                Raza Zaheer
-              </h2>
+                Raza
+              </div>
+
+              <div
+                className="
+                text-[10px]
+                tracking-[3px]
+                uppercase
+
+                text-gray-500
+                dark:text-gray-400
+              "
+              >
+                Portfolio
+              </div>
+
             </div>
-          </motion.a>
+
+          </a>
 
           {/* Desktop */}
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden lg:flex">
 
-            {menuItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="
-                px-4
-                py-2
-                rounded-full
-                text-[14px]
-                font-medium
-                text-gray-700
-                dark:text-gray-300
-                transition
-                duration-300
-                hover:bg-blue-50
-                hover:text-blue-600
-                dark:hover:bg-white/5
-                dark:hover:text-white
-              "
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                }}
+            <div
+              className="
+              flex
+              items-center
+
+              rounded-full
+
+              bg-black/[0.02]
+              dark:bg-white/[0.03]
+
+              px-2
+              py-1
+            "
+            >
+
+              {menuItems.map((item) => (
+                <motion.a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  whileHover={{
+                    y: -1,
+                  }}
+                  className="
+                  relative
+
+                  px-5
+                  py-2.5
+
+                  rounded-full
+
+                  text-[14px]
+                  font-medium
+
+                  text-gray-700
+                  dark:text-gray-300
+
+                  transition
+                  duration-300
+
+                  hover:text-white
+
+                  group
+                "
               >
-                {item.name}
-              </a>
-            ))}
 
-            <div className="ml-2">
-              <ThemeToggle />
+                  <span
+                    className="
+                    absolute
+                    inset-0
+
+                    rounded-full
+
+                    bg-gradient-to-r
+                    from-blue-600
+                    via-purple-600
+                    to-pink-500
+
+                    opacity-0
+
+                    group-hover:opacity-100
+
+                    transition
+                  "
+                  />
+
+                  <span className="relative">
+                    {item}
+                  </span>
+
+                </motion.a>
+              ))}
+
             </div>
 
           </div>
 
-          {/* Mobile */}
-          <div className="lg:hidden flex items-center gap-2">
+          {/* Right */}
+          <div className="flex items-center gap-2">
 
             <ThemeToggle />
 
             <button
-              onClick={() => setIsOpen(!isOpen)}
+              onClick={() =>
+                setIsOpen(!isOpen)
+              }
               className="
+              lg:hidden
+
               w-10
               h-10
+
               rounded-xl
-              bg-gray-100
-              dark:bg-white/5
+
+              bg-black/[0.04]
+              dark:bg-white/[0.05]
+
               flex
               items-center
               justify-center
@@ -147,52 +237,65 @@ const Navbar: React.FC = () => {
 
         </div>
 
-      </div>
+        {/* Mobile */}
+        {isOpen && (
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: -10,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            className="
+            mt-3
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: -10,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          className="
-          lg:hidden
-          px-5
-          pb-4
-          bg-white
-          dark:bg-[#060A16]
-          border-t
-          border-gray-200
-          dark:border-white/10
-        "
-        >
-          {menuItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className="
-              block
-              px-4
-              py-3
-              rounded-xl
-              text-gray-800
-              dark:text-gray-200
-              hover:bg-blue-50
-              dark:hover:bg-white/5
-            "
-            >
-              {item.name}
-            </a>
-          ))}
-        </motion.div>
-      )}
-    </nav>
+            max-w-6xl
+            mx-auto
+
+            rounded-[24px]
+
+            bg-white/90
+            dark:bg-[#080D18]/95
+
+            backdrop-blur-2xl
+
+            border
+            border-white/20
+
+            p-3
+          "
+          >
+
+            {menuItems.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                onClick={() =>
+                  setIsOpen(false)
+                }
+                className="
+                block
+
+                px-5
+                py-4
+
+                rounded-2xl
+
+                hover:bg-blue-50
+                dark:hover:bg-white/5
+              "
+              >
+                {item}
+              </a>
+            ))}
+
+          </motion.div>
+        )}
+
+      </nav>
+    </>
   );
 };
 
