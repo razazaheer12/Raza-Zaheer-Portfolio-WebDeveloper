@@ -260,58 +260,18 @@ const Skills = () => {
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
           className="relative w-full overflow-hidden space-y-4"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+            maskImage:
+              "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+          }}
         >
-          {/* Edge fades — matched to section bg */}
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-28 md:w-40 z-10"
-            style={{
-              background: "linear-gradient(to right, var(--fade-color, white), transparent)",
-            }}
-          />
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-28 md:w-40 z-10"
-            style={{
-              background: "linear-gradient(to left, var(--fade-color, white), transparent)",
-            }}
-          />
-
-          {/* Tailwind-based fades for light/dark — layered on top */}
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-28 md:w-40 z-20 bg-gradient-to-r from-blue-50 via-blue-50/80 to-transparent dark:from-[#050816] dark:via-[#050816]/80 dark:to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-28 md:w-40 z-20 bg-gradient-to-l from-purple-50 via-purple-50/80 to-transparent dark:from-[#050816] dark:via-[#050816]/80 dark:to-transparent" />
-
-          {/* Row 1 — left to right */}
+          {/* Row 1 — left */}
           <MarqueeRow items={[...skills]} reverse={false} duration={32} />
 
-          {/* Row 2 — right to left */}
+          {/* Row 2 — right */}
           <MarqueeRow items={[...skills].reverse()} reverse={true} duration={26} />
-        </motion.div>
-
-        {/* ── Bottom stat strip ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mt-16 flex flex-wrap justify-center gap-6 md:gap-10"
-        >
-          {[
-            { value: "12+", label: "Technologies" },
-            { value: "1+", label: "Years Learning" },
-            { value: "10+", label: "Projects Built" },
-          ].map((stat, i) => (
-            <div key={i} className="flex flex-col items-center gap-1">
-              <span
-                className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 bg-clip-text text-transparent"
-                style={{ fontFamily: "'Sora', sans-serif" }}
-              >
-                {stat.value}
-              </span>
-              <span
-                className="text-xs text-gray-400 dark:text-gray-500 font-medium tracking-wide uppercase"
-                style={{ fontFamily: "'DM Sans', sans-serif" }}
-              >
-                {stat.label}
-              </span>
-            </div>
-          ))}
         </motion.div>
 
       </div>
