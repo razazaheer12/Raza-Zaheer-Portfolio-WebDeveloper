@@ -201,23 +201,6 @@ const Skills = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
 
-        {/* ── Badge ── */}
-        <motion.div
-          initial={{ opacity: 0, y: -16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
-          viewport={{ once: true }}
-          className="mb-5 flex justify-center"
-        >
-          <div
-            className="inline-flex items-center gap-2 rounded-full border border-blue-200 dark:border-blue-500/20 bg-blue-50 dark:bg-blue-500/8 px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400"
-            style={{ fontFamily: "'Sora', sans-serif" }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-            My Expertise
-          </div>
-        </motion.div>
-
         {/* ── Heading ── */}
         <motion.div
           initial="hidden"
