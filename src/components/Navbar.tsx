@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
           <div
             className="
             max-w-7xl mx-auto h-[68px] rounded-[22px]
-            bg-white/75 dark:bg-[#070C18]/80
+            bg-white/95 dark:bg-[#070C18]/98
             backdrop-blur-2xl
             border border-white/60 dark:border-white/10
             shadow-[0_8px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.35)]
