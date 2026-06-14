@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar: React.FC = () => {
@@ -17,83 +17,66 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav
-        className="
-        fixed
-        top-0
-        left-0
-        w-full
-        z-[999]
-      "
-      >
+      <nav className="fixed top-0 left-0 w-full z-[999]">
+
         <div className="px-4 pt-3">
 
           <div
             className="
-            max-w-7xl
-            mx-auto
+              max-w-7xl
+              mx-auto
+              h-[68px]
 
-            h-[68px]
+              rounded-[22px]
 
-            rounded-[22px]
+              bg-white/78
+              dark:bg-[#070C18]/82
 
-            bg-white/75
-            dark:bg-[#070C18]/80
+              backdrop-blur-[24px]
 
-            backdrop-blur-2xl
+              border
+              border-gray-200/60
+              dark:border-white/10
 
-            border
-            border-white/60
-            dark:border-white/10
+              shadow-[0_10px_40px_rgba(0,0,0,.06)]
+              dark:shadow-[0_10px_40px_rgba(0,0,0,.35)]
 
-            shadow-[0_8px_40px_rgba(0,0,0,0.06)]
-            dark:shadow-[0_8px_40px_rgba(0,0,0,0.35)]
+              flex
+              items-center
+              justify-between
 
-            flex
-            items-center
-            justify-between
-
-            px-5
-            lg:px-8
-          "
+              px-5
+              lg:px-8
+            "
           >
 
             {/* Logo */}
             <a
               href="#home"
-              className="
-              flex
-              items-center
-              gap-3
-              shrink-0
-            "
+              className="flex items-center gap-3 shrink-0"
             >
-
               <motion.div
                 whileHover={{
-                  rotate: 6,
-                  scale: 1.06,
+                  scale: 1.04,
+                  rotate: 5,
                 }}
                 className="
-                w-10
-                h-10
+                  w-10
+                  h-10
+                  rounded-[14px]
 
-                rounded-[14px]
+                  bg-gradient-to-br
+                  from-blue-600
+                  via-purple-600
+                  to-pink-500
 
-                flex
-                items-center
-                justify-center
+                  flex
+                  items-center
+                  justify-center
 
-                text-white
-                font-bold
-
-                bg-gradient-to-br
-                from-blue-600
-                via-purple-600
-                to-pink-500
-
-                shadow-lg
-              "
+                  text-white
+                  font-bold
+                "
               >
                 R
               </motion.div>
@@ -102,11 +85,11 @@ const Navbar: React.FC = () => {
 
                 <h2
                   className="
-                  text-[18px]
-                  font-bold
-                  text-gray-900
-                  dark:text-white
-                "
+                    text-[18px]
+                    font-bold
+                    text-gray-900
+                    dark:text-white
+                  "
                   style={{
                     fontFamily:
                       "Montserrat, sans-serif",
@@ -117,41 +100,39 @@ const Navbar: React.FC = () => {
 
                 <p
                   className="
-                  text-[10px]
-                  uppercase
-                  tracking-[3px]
+                    uppercase
+                    tracking-[3px]
+                    text-[10px]
 
-                  text-gray-500
-                  dark:text-gray-400
-                "
+                    text-gray-500
+                    dark:text-gray-400
+                  "
                 >
                   Portfolio
                 </p>
 
               </div>
-
             </a>
 
-            {/* Desktop */}
-            <div className="hidden lg:flex">
+            {/* Desktop Nav */}
+            <div className="hidden lg:flex items-center gap-5">
 
               <div
                 className="
-                flex
-                items-center
+                  flex
+                  items-center
+                  gap-1
 
-                gap-1
+                  rounded-full
 
-                rounded-full
+                  bg-black/[0.025]
+                  dark:bg-white/[0.03]
 
-                bg-black/[0.02]
-                dark:bg-white/[0.03]
-
-                p-1
-              "
+                  p-1.5
+                "
               >
-
                 {menuItems.map((item) => (
+
                   <motion.a
                     key={item.name}
                     href={item.href}
@@ -159,100 +140,76 @@ const Navbar: React.FC = () => {
                       y: -1,
                     }}
                     className="
-                    relative
-
-                    px-5
-                    py-2.5
-
-                    rounded-full
-
-                    text-[14px]
-                    font-medium
-
-                    text-gray-700
-                    dark:text-gray-300
-
-                    overflow-hidden
-
-                    group
-                  "
-                  >
-
-                    <span
-                      className="
-                      absolute
-                      inset-0
+                      px-5
+                      py-2.5
 
                       rounded-full
 
-                      bg-gradient-to-r
-                      from-blue-600
-                      via-purple-600
-                      to-pink-500
+                      text-[14px]
+                      font-medium
 
-                      scale-0
+                      text-gray-700
+                      dark:text-gray-300
+
+                      hover:text-blue-600
+                      dark:hover:text-white
 
                       transition
-                      duration-300
-
-                      group-hover:scale-100
                     "
-                    />
-
-                    <span
-                      className="
-                      relative
-                      group-hover:text-white
-                    "
-                    >
-                      {item.name}
-                    </span>
-
+                  >
+                    {item.name}
                   </motion.a>
-                ))}
 
+                ))}
               </div>
 
-            </div>
-
-            {/* Right */}
-            <div className="flex items-center gap-2">
-
-              {/* Desktop Theme ONLY */}
+              {/* CLEAN ICON ONLY */}
               <div
                 className="
-                hidden
-                lg:flex
+                  [&>button]:bg-transparent
+                  [&>button]:shadow-none
+                  [&>button]:border-0
 
-                [&>button]:bg-transparent
-                [&>button]:shadow-none
-                [&>button]:border-0
-                [&>button]:p-0
-              "
+                  [&>button]:w-auto
+                  [&>button]:h-auto
+
+                  [&>button:hover]:scale-110
+
+                  [&_svg]:w-6
+                  [&_svg]:h-6
+
+                  text-gray-600
+                  dark:text-gray-300
+                "
               >
                 <ThemeToggle />
               </div>
 
-              {/* Mobile Menu */}
+            </div>
+
+            {/* MOBILE */}
+            <div className="lg:hidden">
+
               <button
                 onClick={() =>
                   setIsOpen(!isOpen)
                 }
                 className="
-                lg:hidden
+                  w-10
+                  h-10
 
-                w-10
-                h-10
+                  rounded-xl
 
-                rounded-xl
+                  flex
+                  items-center
+                  justify-center
 
-                bg-black/[0.04]
-                dark:bg-white/[0.05]
+                  text-gray-700
+                  dark:text-white
 
-                flex
-                items-center
-                justify-center
-              "
+                  bg-black/[0.04]
+                  dark:bg-white/[0.05]
+                "
               >
                 {isOpen ? (
                   <X size={20} />
@@ -265,88 +222,104 @@ const Navbar: React.FC = () => {
 
           </div>
 
-          {/* Mobile */}
-          {isOpen && (
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: -10,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              className="
-              lg:hidden
+          {/* MOBILE MENU */}
+          <AnimatePresence>
 
-              mt-3
+            {isOpen && (
 
-              rounded-[22px]
-
-              bg-white/90
-              dark:bg-[#070C18]/95
-
-              backdrop-blur-2xl
-
-              border
-              border-gray-200
-              dark:border-white/10
-
-              overflow-hidden
-            "
-            >
-
-              {menuItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={() =>
-                    setIsOpen(false)
-                  }
-                  className="
-                  block
-
-                  px-6
-                  py-4
-
-                  text-gray-800
-                  dark:text-gray-200
-
-                  hover:bg-blue-50
-                  dark:hover:bg-white/5
-                "
-                >
-                  {item.name}
-                </a>
-              ))}
-
-              {/* Mobile Theme Toggle */}
-              <div
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: -10,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  y: -10,
+                }}
                 className="
-                border-t
-                border-gray-200
-                dark:border-white/10
+                  lg:hidden
 
-                py-5
+                  mt-3
 
-                flex
-                justify-center
+                  overflow-hidden
 
-                [&>button]:bg-transparent
-                [&>button]:shadow-none
-                [&>button]:border-0
-              "
+                  rounded-[22px]
+
+                  bg-white/90
+                  dark:bg-[#070C18]/95
+
+                  backdrop-blur-2xl
+
+                  border
+                  border-gray-200
+                  dark:border-white/10
+                "
               >
-                <ThemeToggle />
-              </div>
 
-            </motion.div>
-          )}
+                {menuItems.map((item) => (
+
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={() =>
+                      setIsOpen(false)
+                    }
+                    className="
+                      block
+
+                      px-6
+                      py-4
+
+                      text-gray-800
+                      dark:text-gray-200
+
+                      hover:bg-blue-50
+                      dark:hover:bg-white/5
+                    "
+                  >
+                    {item.name}
+                  </a>
+
+                ))}
+
+                {/* THEME TOGGLE LAST */}
+                <div
+                  className="
+                    border-t
+                    border-gray-200
+                    dark:border-white/10
+
+                    px-6
+                    py-5
+
+                    flex
+                    justify-center
+
+                    [&>button]:bg-transparent
+                    [&>button]:shadow-none
+                    [&>button]:border-0
+
+                    [&_svg]:w-7
+                    [&_svg]:h-7
+                  "
+                >
+                  <ThemeToggle />
+                </div>
+
+              </motion.div>
+
+            )}
+
+          </AnimatePresence>
 
         </div>
+
       </nav>
 
-      {/* Hero offset */}
       <div className="h-[88px]" />
     </>
   );
