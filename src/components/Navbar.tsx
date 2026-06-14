@@ -18,12 +18,13 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav className="fixed top-0 left-0 w-full z-[999] transition-all">
+        <div className="absolute top-0 left-0 w-full h-4 bg-white dark:bg-[#070C18]" />
         <div className="px-4 pt-3">
 
           <div
             className="
             max-w-7xl mx-auto h-[68px] rounded-[22px]
-            bg-white/95 dark:bg-[#070C18]/98
+            bg-white/75 dark:bg-[#070C18]/80
             backdrop-blur-2xl
             border border-white/60 dark:border-white/10
             shadow-[0_8px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.35)]
