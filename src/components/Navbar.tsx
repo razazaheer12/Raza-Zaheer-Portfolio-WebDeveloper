@@ -71,8 +71,8 @@ const Navbar: React.FC = () => {
             {/* Right side */}
             <div className="flex items-center gap-2">
 
-              {/* ThemeToggle — desktop only, no background */}
-              <div className="hidden lg:flex [&>*]:bg-transparent [&>*]:shadow-none [&>*]:border-none">
+              {/* ThemeToggle — desktop only */}
+              <div className="hidden lg:flex">
                 <ThemeToggle />
               </div>
 
