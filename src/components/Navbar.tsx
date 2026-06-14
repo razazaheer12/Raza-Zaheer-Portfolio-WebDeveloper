@@ -107,7 +107,7 @@ const Navbar: React.FC = () => {
 
               {/* ThemeToggle — mobile, last item */}
               <div className="px-6 py-4 border-t border-gray-100 dark:border-white/[0.06] flex items-center gap-3 text-gray-800 dark:text-gray-200">
-                <span className="text-sm font-medium">Toggle Theme</span>
+                <span className="text-sm font-medium"></span>
                 <ThemeToggle />
               </div>
             </motion.div>
