@@ -19,83 +19,81 @@ const Navbar: React.FC = () => {
     <>
       <nav
         className="
-          fixed
-          top-0
-          left-0
-          w-full
-          z-[9999]
-        "
+        fixed
+        top-0
+        left-0
+        w-full
+        z-[999]
+      "
       >
         <div className="px-4 pt-3">
 
-          {/* MAIN NAV */}
           <div
             className="
-              max-w-7xl
-              mx-auto
+            max-w-7xl
+            mx-auto
 
-              h-[72px]
+            h-[68px]
 
-              rounded-[24px]
+            rounded-[22px]
 
-              bg-white/80
-              dark:bg-[#060B16]/88
+            bg-white/75
+            dark:bg-[#070C18]/80
 
-              backdrop-blur-[28px]
+            backdrop-blur-2xl
 
-              border
-              border-gray-200/70
-              dark:border-white/[0.08]
+            border
+            border-white/60
+            dark:border-white/10
 
-              shadow-[0_10px_50px_rgba(0,0,0,0.06)]
-              dark:shadow-[0_20px_60px_rgba(0,0,0,0.45)]
+            shadow-[0_8px_40px_rgba(0,0,0,0.06)]
+            dark:shadow-[0_8px_40px_rgba(0,0,0,0.35)]
 
-              flex
-              items-center
-              justify-between
+            flex
+            items-center
+            justify-between
 
-              px-5
-              lg:px-8
-
-              transition-all
-              duration-500
-            "
+            px-5
+            lg:px-8
+          "
           >
 
-            {/* LOGO */}
+            {/* Logo */}
             <a
               href="#home"
-              className="flex items-center gap-3"
+              className="
+              flex
+              items-center
+              gap-3
+              shrink-0
+            "
             >
 
               <motion.div
                 whileHover={{
                   rotate: 6,
-                  scale: 1.04,
-                }}
-                transition={{
-                  duration: 0.25,
+                  scale: 1.06,
                 }}
                 className="
-                  w-11
-                  h-11
+                w-10
+                h-10
 
-                  rounded-[15px]
+                rounded-[14px]
 
-                  flex
-                  items-center
-                  justify-center
+                flex
+                items-center
+                justify-center
 
-                  bg-gradient-to-br
-                  from-blue-600
-                  via-purple-600
-                  to-pink-500
+                text-white
+                font-bold
 
-                  text-white
-                  font-bold
+                bg-gradient-to-br
+                from-blue-600
+                via-purple-600
+                to-pink-500
 
-                  shadow-lg
-                "
+                shadow-lg
+              "
               >
                 R
               </motion.div>
@@ -104,12 +102,11 @@ const Navbar: React.FC = () => {
 
                 <h2
                   className="
-                    text-[18px]
-                    font-bold
-                    text-gray-900
-                    dark:text-white
-                    leading-none
-                  "
+                  text-[18px]
+                  font-bold
+                  text-gray-900
+                  dark:text-white
+                "
                   style={{
                     fontFamily:
                       "Montserrat, sans-serif",
@@ -120,14 +117,13 @@ const Navbar: React.FC = () => {
 
                 <p
                   className="
-                    mt-1
-                    text-[10px]
-                    tracking-[4px]
-                    uppercase
+                  text-[10px]
+                  uppercase
+                  tracking-[3px]
 
-                    text-gray-500
-                    dark:text-gray-400
-                  "
+                  text-gray-500
+                  dark:text-gray-400
+                "
                 >
                   Portfolio
                 </p>
@@ -136,23 +132,23 @@ const Navbar: React.FC = () => {
 
             </a>
 
-            {/* DESKTOP */}
+            {/* Desktop */}
             <div className="hidden lg:flex">
 
               <div
                 className="
-                  flex
-                  items-center
+                flex
+                items-center
 
-                  gap-1
+                gap-1
 
-                  rounded-full
+                rounded-full
 
-                  bg-black/[0.03]
-                  dark:bg-white/[0.03]
+                bg-black/[0.02]
+                dark:bg-white/[0.03]
 
-                  p-1.5
-                "
+                p-1
+              "
               >
 
                 {menuItems.map((item) => (
@@ -163,52 +159,51 @@ const Navbar: React.FC = () => {
                       y: -1,
                     }}
                     className="
-                      relative
+                    relative
 
-                      px-5
-                      py-2.5
+                    px-5
+                    py-2.5
 
-                      rounded-full
+                    rounded-full
 
-                      text-[14px]
-                      font-medium
+                    text-[14px]
+                    font-medium
 
-                      text-gray-700
-                      dark:text-gray-300
+                    text-gray-700
+                    dark:text-gray-300
 
-                      overflow-hidden
+                    overflow-hidden
 
-                      group
-                    "
+                    group
+                  "
                   >
 
                     <span
                       className="
-                        absolute
-                        inset-0
+                      absolute
+                      inset-0
 
-                        rounded-full
+                      rounded-full
 
-                        bg-gradient-to-r
-                        from-blue-600
-                        via-purple-600
-                        to-pink-500
+                      bg-gradient-to-r
+                      from-blue-600
+                      via-purple-600
+                      to-pink-500
 
-                        opacity-0
+                      scale-0
 
-                        group-hover:opacity-100
+                      transition
+                      duration-300
 
-                        transition
-                      "
+                      group-hover:scale-100
+                    "
                     />
 
                     <span
                       className="
-                        relative
-                        z-10
-
-                        group-hover:text-white
-                      "
+                      relative
+                      group-hover:text-white
+                    "
                     >
                       {item.name}
                     </span>
@@ -220,44 +215,44 @@ const Navbar: React.FC = () => {
 
             </div>
 
-            {/* RIGHT */}
-            <div className="flex items-center">
+            {/* Right */}
+            <div className="flex items-center gap-2">
 
-              {/* DESKTOP THEME ICON ONLY */}
+              {/* Desktop Theme ONLY */}
               <div
                 className="
-                  hidden
-                  lg:flex
+                hidden
+                lg:flex
 
-                  ml-5
-
-                  text-gray-700
-                  dark:text-white
-                "
+                [&>button]:bg-transparent
+                [&>button]:shadow-none
+                [&>button]:border-0
+                [&>button]:p-0
+              "
               >
                 <ThemeToggle />
               </div>
 
-              {/* MOBILE */}
+              {/* Mobile Menu */}
               <button
                 onClick={() =>
                   setIsOpen(!isOpen)
                 }
                 className="
-                  lg:hidden
+                lg:hidden
 
-                  w-11
-                  h-11
+                w-10
+                h-10
 
-                  rounded-xl
+                rounded-xl
 
-                  bg-black/[0.04]
-                  dark:bg-white/[0.04]
+                bg-black/[0.04]
+                dark:bg-white/[0.05]
 
-                  flex
-                  items-center
-                  justify-center
-                "
+                flex
+                items-center
+                justify-center
+              "
               >
                 {isOpen ? (
                   <X size={20} />
@@ -270,38 +265,35 @@ const Navbar: React.FC = () => {
 
           </div>
 
-          {/* MOBILE MENU */}
+          {/* Mobile */}
           {isOpen && (
             <motion.div
               initial={{
                 opacity: 0,
-                y: -12,
+                y: -10,
               }}
               animate={{
                 opacity: 1,
                 y: 0,
               }}
-              transition={{
-                duration: 0.3,
-              }}
               className="
-                lg:hidden
+              lg:hidden
 
-                mt-3
+              mt-3
 
-                rounded-[24px]
+              rounded-[22px]
 
-                overflow-hidden
+              bg-white/90
+              dark:bg-[#070C18]/95
 
-                bg-white/92
-                dark:bg-[#070C18]/96
+              backdrop-blur-2xl
 
-                backdrop-blur-2xl
+              border
+              border-gray-200
+              dark:border-white/10
 
-                border
-                border-gray-200
-                dark:border-white/10
-              "
+              overflow-hidden
+            "
             >
 
               {menuItems.map((item) => (
@@ -312,36 +304,38 @@ const Navbar: React.FC = () => {
                     setIsOpen(false)
                   }
                   className="
-                    block
+                  block
 
-                    px-6
-                    py-4
+                  px-6
+                  py-4
 
-                    text-[15px]
+                  text-gray-800
+                  dark:text-gray-200
 
-                    text-gray-800
-                    dark:text-gray-200
-
-                    hover:bg-blue-50
-                    dark:hover:bg-white/5
-                  "
+                  hover:bg-blue-50
+                  dark:hover:bg-white/5
+                "
                 >
                   {item.name}
                 </a>
               ))}
 
-              {/* THEME TOGGLE BOTTOM */}
+              {/* Mobile Theme Toggle */}
               <div
                 className="
-                  border-t
-                  border-gray-200
-                  dark:border-white/10
+                border-t
+                border-gray-200
+                dark:border-white/10
 
-                  py-5
+                py-5
 
-                  flex
-                  justify-center
-                "
+                flex
+                justify-center
+
+                [&>button]:bg-transparent
+                [&>button]:shadow-none
+                [&>button]:border-0
+              "
               >
                 <ThemeToggle />
               </div>
@@ -352,8 +346,8 @@ const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      {/* OFFSET */}
-      <div className="h-[92px]" />
+      {/* Hero offset */}
+      <div className="h-[88px]" />
     </>
   );
 };
