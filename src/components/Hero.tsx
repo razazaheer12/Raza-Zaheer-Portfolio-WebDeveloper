@@ -1,38 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
-import { useThemeStore } from "../store/themeStore";
+import { Github, Linkedin, Mail } from "lucide-react";
 
-// ==================== Floating Gradient Shapes ====================
-const FloatingShapes = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    {[
-      { className: "top-20 left-10 w-32 h-32 from-blue-400/30 to-purple-500/30", dur: 8 },
-      { className: "top-40 right-20 w-24 h-24 from-pink-400/30 to-red-500/30", dur: 6, delay: 1 },
-      { className: "bottom-32 left-1/4 w-20 h-20 from-green-400/30 to-blue-500/30", dur: 10, delay: 2 },
-      { className: "top-1/2 right-1/3 w-20 h-20 from-yellow-400/30 to-orange-500/30", dur: 7, delay: 0.5 },
-    ].map((s, i) => (
-      <motion.div
-        key={i}
-        className={`absolute bg-gradient-to-br ${s.className} rounded-full blur-3xl`}
-        animate={{
-          x: [0, 40, 0],
-          y: [0, -30, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: s.dur,
-          delay: s.delay,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-    ))}
-  </div>
-);
-
-// ==================== Futuristic Particle Background ====================
-const ParticlesBackground = ({ count = 40 }: { count?: number }) => {
+// ── Particles Background ──────────────────────────────────────
+const ParticlesBackground = ({ count = 50 }: { count?: number }) => {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -50,10 +21,11 @@ const ParticlesBackground = ({ count = 40 }: { count?: number }) => {
     id: i,
     top: Math.random() * 100,
     left: Math.random() * 100,
-    size: Math.random() * 2 + 1.5,
+    size: Math.random() * 1.5 + 0.8,
     delay: Math.random() * 10,
     duration: Math.random() * 15 + 10,
-    depth: Math.random() * 0.5 + 0.5,
+    depth: Math.random() * 0.5 + 0.3,
+    opacity: Math.random() * 0.4 + 0.1,
   }));
 
   return (
@@ -61,18 +33,18 @@ const ParticlesBackground = ({ count = 40 }: { count?: number }) => {
       {particles.map((p) => (
         <motion.div
           key={p.id}
-          className="absolute rounded-full bg-white dark:bg-blue-300 shadow-[0_0_6px_rgba(255,255,255,0.8)]"
+          className="absolute rounded-full bg-white"
           style={{
             top: `${p.top}%`,
             left: `${p.left}%`,
             width: p.size,
             height: p.size,
+            opacity: p.opacity,
           }}
           animate={{
-            y: [0, -20 * p.depth, 0],
-            opacity: [0.3, 1, 0.3],
-            scale: [1, 1.3, 1],
-            x: mouse.x * 20 * p.depth,
+            y: [0, -18 * p.depth, 0],
+            opacity: [p.opacity, p.opacity * 2.5, p.opacity],
+            x: mouse.x * 14 * p.depth,
           }}
           transition={{
             duration: p.duration,
@@ -86,7 +58,7 @@ const ParticlesBackground = ({ count = 40 }: { count?: number }) => {
   );
 };
 
-// ==================== Typing Animation ====================
+// ── Typing Animation ──────────────────────────────────────────
 const TypingAnimation = ({
   text,
   className,
@@ -97,6 +69,7 @@ const TypingAnimation = ({
   delay?: number;
 }) => {
   const [displayText, setDisplayText] = useState("");
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -104,8 +77,11 @@ const TypingAnimation = ({
       const interval = setInterval(() => {
         setDisplayText(text.slice(0, i));
         i++;
-        if (i > text.length) clearInterval(interval);
-      }, 80);
+        if (i > text.length) {
+          clearInterval(interval);
+          setDone(true);
+        }
+      }, 75);
     }, delay);
     return () => clearTimeout(timeout);
   }, [text, delay]);
@@ -113,269 +89,524 @@ const TypingAnimation = ({
   return (
     <span className={className}>
       {displayText}
-      <span className="animate-pulse text-blue-500">|</span>
+      <motion.span
+        animate={{ opacity: [1, 0] }}
+        transition={{ repeat: Infinity, duration: 0.6 }}
+        className="inline-block w-[2px] h-[1em] bg-blue-500 align-middle ml-[2px] rounded-sm"
+      />
     </span>
   );
 };
 
-// ==================== Developer Illustration + Floating Logos ====================
-const DeveloperIllustration = () => {
-  const logos = [
-    {
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg",
-      alt: "React",
-      pos: "-top-10 left-1/2 -translate-x-1/2",
-      glow: "from-cyan-400 to-blue-500",
-    },
-    {
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg",
-      alt: "JavaScript",
-      pos: "top-1/4 -left-5 sm:-left-10",
-      glow: "from-yellow-400 to-yellow-600",
-    },
-    {
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg",
-      alt: "CSS",
-      pos: "top-1/3 -right-5 sm:-right-10",
-      glow: "from-blue-400 to-blue-600",
-    },
-    {
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg",
-      alt: "Node.js",
-      pos: "bottom-6 -left-5 sm:-left-10",
-      glow: "from-green-400 to-green-600",
-    },
-    {
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg",
-      alt: "Next.js",
-      pos: "bottom-8 right-0",
-      glow: "from-gray-300 to-gray-600",
-    },
-    {
-      src: "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg",
-      alt: "SQL",
-      pos: "bottom-1/4 -right-5 sm:-right-10",
-      glow: "from-blue-500 to-indigo-600",
-    },
-    {
-      src: "https://avatars.githubusercontent.com/u/54469796?s=200&v=4",
-      alt: "Supabase",
-      pos: "top-0 right-1/8 sm:right-1/4",
-      glow: "from-green-400 to-emerald-600",
-    },
+// ── 3D Card Visual ────────────────────────────────────────────
+const CardVisual = () => {
+  const bubbles = [
+    { label: "React", color: "#61dafb", bg: "#0d2137", top: "-28px", right: "10px" },
+    { label: "TS",    color: "#3b82f6", bg: "#0d1f3c", top: "80px",  right: "-18px" },
+    { label: "Next",  color: "#ffffff", bg: "#111120", top: "180px", right: "-14px" },
+    { label: "Node",  color: "#68a063", bg: "#0d200d", bottom: "80px", left: "-14px" },
+    { label: "JS",    color: "#f7df1e", bg: "#201c00", top: "160px", left: "-18px" },
   ];
+
+  const floatDelays = [0, 0.4, 0.8, 1.2, 1.6];
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 100 }}
+      initial={{ opacity: 0, x: 80 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 1, delay: 1.2 }}
-      className="relative"
+      transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      className="relative flex items-center justify-center"
+      style={{ width: 320, height: 400 }}
     >
+      {/* Ambient glow behind card */}
+      <div
+        className="absolute rounded-full pointer-events-none"
+        style={{
+          width: 280,
+          height: 280,
+          background: "radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 70%)",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
+          filter: "blur(20px)",
+        }}
+      />
+
+      {/* Main 3D card */}
       <motion.div
         animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="relative z-10"
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        style={{
+          width: 260,
+          height: 320,
+          borderRadius: 24,
+          background: "linear-gradient(145deg, rgba(30,20,80,0.97), rgba(12,8,44,0.99))",
+          border: "0.5px solid rgba(139,92,246,0.35)",
+          transform: "perspective(900px) rotateY(-9deg) rotateX(5deg)",
+          position: "relative",
+          overflow: "hidden",
+        }}
       >
-        {/* Laptop Illustration */}
-        <div className="w-48 h-48 sm:w-60 sm:h-60 lg:w-72 lg:h-72 relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl transform rotate-3">
-            <div className="absolute inset-4 bg-gradient-to-br from-blue-900/90 to-purple-900/90 rounded-lg overflow-hidden backdrop-blur-md">
-              <div className="p-3 space-y-2">
-                {[
-                  "from-green-400 to-blue-500",
-                  "from-yellow-400 to-red-500",
-                  "from-purple-400 to-pink-500",
-                ].map((g, i) => (
-                  <motion.div
-                    key={i}
-                    className={`h-2 bg-gradient-to-r ${g} rounded`}
-                    initial={{ width: 0 }}
-                    animate={{ width: ["0%", "90%"] }}
-                    transition={{ duration: 2, delay: 2 + i * 0.5 }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
+        {/* Inner glow */}
+        <div
+          style={{
+            position: "absolute",
+            top: -40,
+            left: -40,
+            width: 180,
+            height: 180,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(139,92,246,0.28) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+        />
 
-          {/* Floating Tech Logos */}
-          {logos.map((logo, i) => (
+        {/* Colored lines */}
+        <div style={{ padding: "36px 28px 0" }}>
+          {[
+            { gradient: "linear-gradient(90deg,#ec4899,#8b5cf6)", width: "78%" },
+            { gradient: "linear-gradient(90deg,#f59e0b,#ec4899)", width: "58%" },
+            { gradient: "linear-gradient(90deg,#3b82f6,#10b981)", width: "68%" },
+          ].map((line, i) => (
             <motion.div
               key={i}
-              className={`absolute ${logo.pos} flex items-center justify-center`}
-              animate={{ y: [0, -10, 0], rotate: [0, 360] }}
-              transition={{ duration: 6 + i, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <div className="p-1 rounded-full bg-white shadow-lg relative">
-                <img
-                  src={logo.src}
-                  alt={logo.alt}
-                  className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full relative z-10"
-                />
-                <div
-                  className={`absolute inset-0 rounded-full blur-md bg-gradient-to-r ${logo.glow} opacity-70 animate-pulse`}
-                />
-              </div>
-            </motion.div>
+              initial={{ width: 0 }}
+              animate={{ width: line.width }}
+              transition={{ duration: 1.2, delay: 1.2 + i * 0.3, ease: "easeOut" }}
+              style={{
+                height: 5,
+                borderRadius: 3,
+                background: line.gradient,
+                marginBottom: 12,
+              }}
+            />
+          ))}
+
+          {/* Blank area */}
+          <div
+            style={{
+              marginTop: 20,
+              height: 100,
+              background: "rgba(139,92,246,0.06)",
+              borderRadius: 12,
+              border: "0.5px solid rgba(139,92,246,0.14)",
+            }}
+          />
+        </div>
+
+        {/* Code lines */}
+        <div style={{ padding: "16px 28px 0" }}>
+          {[90, 65, 40, 85, 55].map((w, i) => (
+            <div
+              key={i}
+              style={{
+                height: 3,
+                borderRadius: 2,
+                background: "rgba(255,255,255,0.07)",
+                width: `${w}%`,
+                marginBottom: 9,
+              }}
+            />
           ))}
         </div>
       </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl -z-10" />
+
+      {/* Floating tech bubbles */}
+      {bubbles.map((b, i) => (
+        <motion.div
+          key={i}
+          animate={{ y: [0, -8, 0] }}
+          transition={{
+            duration: 3 + i * 0.5,
+            delay: floatDelays[i],
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          style={{
+            position: "absolute",
+            ...(b.top ? { top: b.top } : {}),
+            ...(b.bottom ? { bottom: b.bottom } : {}),
+            ...(b.right ? { right: b.right } : {}),
+            ...(b.left ? { left: b.left } : {}),
+            width: 46,
+            height: 46,
+            borderRadius: "50%",
+            background: b.bg,
+            border: "1.5px solid rgba(255,255,255,0.12)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: b.color,
+            fontSize: 10,
+            fontFamily: "'Sora', sans-serif",
+            fontWeight: 700,
+            boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
+            zIndex: 10,
+          }}
+        >
+          {b.label}
+        </motion.div>
+      ))}
     </motion.div>
   );
 };
 
-// ==================== Hero Section ====================
+// ── Hero Section ──────────────────────────────────────────────
 const Hero = () => {
-  const isDarkMode = useThemeStore((state) => state.isDarkMode);
-
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-950 dark:via-blue-900/40 dark:to-indigo-900/60"
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#050816]"
     >
-      <FloatingShapes />
-<ParticlesBackground count={40} />
-      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_30%_30%,rgba(0,0,0,0.1),transparent)]" />
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center min-h-[70vh] sm:min-h-[80vh]">
-          {/* Text Column */}
+      {/* Ambient glows */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 560,
+            height: 560,
+            top: -120,
+            left: -100,
+            background: "radial-gradient(circle, rgba(59,130,246,0.11) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 640,
+            height: 640,
+            top: -60,
+            right: -160,
+            background: "radial-gradient(circle, rgba(139,92,246,0.09) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 440,
+            height: 440,
+            bottom: -120,
+            left: "40%",
+            background: "radial-gradient(circle, rgba(236,72,153,0.07) 0%, transparent 70%)",
+          }}
+        />
+        {/* Corner rings */}
+        {[600, 400].map((s, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full pointer-events-none"
+            style={{
+              width: s,
+              height: s,
+              top: -s / 3,
+              right: -s / 3,
+              border: "0.5px solid rgba(255,255,255,0.04)",
+            }}
+          />
+        ))}
+      </div>
+
+      <ParticlesBackground count={50} />
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[85vh]">
+
+          {/* ── Left: Text ── */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={{
               hidden: {},
-              visible: { transition: { staggerChildren: 0.2, delayChildren: 0.3 } },
+              visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } },
             }}
           >
+
+            {/* Available badge */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+              className="inline-flex items-center gap-2 mb-7"
+              style={{
+                background: "rgba(16,185,129,0.08)",
+                border: "0.5px solid rgba(16,185,129,0.28)",
+                borderRadius: 50,
+                padding: "6px 16px",
+              }}
+            >
+              <motion.div
+                animate={{ opacity: [1, 0.3, 1] }}
+                transition={{ duration: 1.4, repeat: Infinity }}
+                style={{ width: 7, height: 7, borderRadius: "50%", background: "#10b981" }}
+              />
+              <span
+                style={{
+                  fontSize: 11,
+                  color: "#10b981",
+                  fontFamily: "'Sora', sans-serif",
+                  fontWeight: 600,
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Available for work
+              </span>
+            </motion.div>
+
+            {/* Name */}
             <motion.h1
-  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-  className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight font-montserrat"
->
-  <span
-    className={
-      isDarkMode
-        ? "text-[#FFF1F1]"
-        : "bg-gradient-to-r from-[#a941d2] to-[#2d0075] bg-clip-text text-transparent"
-    }
-  >
-    Raza Zaheer
-  </span>
-</motion.h1>
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              style={{
+                fontFamily: "'Sora', sans-serif",
+                fontWeight: 800,
+                lineHeight: 1.02,
+                letterSpacing: "-2px",
+                marginBottom: 14,
+              }}
+              className="text-6xl sm:text-7xl lg:text-8xl"
+            >
+              <span
+                style={{
+                  background: "linear-gradient(135deg, #ffffff 30%, rgba(139,92,246,0.95) 70%, rgba(236,72,153,0.85) 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  display: "block",
+                }}
+              >
+                Raza
+              </span>
+              <span style={{ color: "white", display: "block" }}>Zaheer</span>
+            </motion.h1>
 
-{/* “Frontend Web Developer” now uses same gradient as main heading */}
-<motion.div
-  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-  className="mt-3 font-semibold font-poppins"
->
-  <TypingAnimation
-    text="Frontend Web Developer"
-    className={
-      isDarkMode
-        ? "text-[#FFF1F1] text-xl sm:text-2xl lg:text-3xl"
-        : "bg-gradient-to-r from-[#a941d2] to-[#2d0075] bg-clip-text text-transparent text-xl sm:text-2xl lg:text-3xl"
-    }
-    delay={800}
-  />
-</motion.div>
-
-{/* tagline simplified and smaller */}
-<motion.p
-  variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-  className="mt-4 text-xs sm:text-sm lg:text-base text-gray-500 dark:text-gray-400 max-w-md leading-relaxed font-inter bg-transparent tracking-wide"
->
-  Where creativity meets code, futuristic, elegant, and seamlessly responsive.
-</motion.p>
-
-
+            {/* Role */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="mt-8 flex flex-wrap gap-4"
+              className="flex items-center gap-3 mb-5"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
+              <span style={{ color: "rgba(255,255,255,0.38)", fontSize: 18, fontWeight: 300 }}>
+                I'm a
+              </span>
+              <TypingAnimation
+                text="Frontend Developer"
+                className=""
+                delay={900}
+              />
+            </motion.div>
+
+            {/* Tagline */}
+            <motion.p
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: 15,
+                color: "rgba(255,255,255,0.35)",
+                lineHeight: 1.75,
+                maxWidth: 420,
+                marginBottom: 36,
+                fontWeight: 300,
+              }}
+            >
+              Where creativity meets code — crafting futuristic,<br />
+              elegant, and seamlessly responsive digital experiences.
+            </motion.p>
+
+            {/* Buttons */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="flex flex-wrap gap-3 mb-10"
             >
               <a
                 href="#projects"
-                className="px-6 py-3 text-base font-medium rounded-full text-white bg-gradient-to-r from-[#b805ff] to-[#2d0075] shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                className="group relative inline-flex items-center gap-2 overflow-hidden"
               >
-                View My Work <ArrowRight className="inline ml-2 w-4 h-4" />
+                <span
+                  className="relative inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-white font-semibold text-sm"
+                  style={{
+                    fontFamily: "'Sora', sans-serif",
+                    background: "linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899)",
+                    boxShadow: "0 8px 32px rgba(139,92,246,0.3)",
+                    letterSpacing: "0.3px",
+                  }}
+                >
+                  View My Work
+                  <span style={{ fontSize: 16 }}>→</span>
+                </span>
               </a>
+
               <a
                 href="#contact"
-                className="px-6 py-3 text-base font-medium rounded-full text-white bg-gradient-to-r from-[#2d0075] to-[#b805ff] shadow-lg hover:shadow-xl hover:scale-105 transition-all"
+                className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl"
+                style={{
+                  border: "0.5px solid rgba(255,255,255,0.15)",
+                  background: "rgba(255,255,255,0.05)",
+                  backdropFilter: "blur(8px)",
+                  padding: "14px 28px",
+                }}
               >
-                Contact Me
+                <span
+                  className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                />
+                <span
+                  className="relative z-10 text-sm font-medium group-hover:text-white transition-colors duration-300"
+                  style={{
+                    fontFamily: "'Sora', sans-serif",
+                    color: "rgba(255,255,255,0.75)",
+                    letterSpacing: "0.3px",
+                  }}
+                >
+                  Contact Me
+                </span>
               </a>
             </motion.div>
 
+            {/* Social icons */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="mt-6 flex space-x-6"
+              className="flex items-center gap-3"
             >
+              <span
+                style={{
+                  fontSize: 10,
+                  color: "rgba(255,255,255,0.25)",
+                  fontFamily: "'Sora', sans-serif",
+                  letterSpacing: "1.5px",
+                  textTransform: "uppercase",
+                  marginRight: 4,
+                }}
+              >
+                Find me
+              </span>
               {[
-                {
-                  href: "https://github.com/razazaheer12",
-                  icon: <Github size={28} />,
-                  color:
-                    "hover:text-green-400 hover:drop-shadow-[0_0_10px_rgba(34,197,94,0.8)]",
-                },
-                {
-                  href: "https://www.linkedin.com/in/raza-zaheer-416745340/",
-                  icon: <Linkedin size={28} />,
-                  color:
-                    "hover:text-blue-500 hover:drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]",
-                },
-                {
-                  href: "mailto:razazaheer2002@gmail.com",
-                  icon: <Mail size={28} />,
-                  color:
-                    "hover:text-pink-600 hover:drop-shadow-[0_0_10px_rgba(219,39,119,0.8)]",
-                },
+                { href: "https://github.com/razazaheer12", icon: <Github size={16} /> },
+                { href: "https://www.linkedin.com/in/raza-zaheer-416745340/", icon: <Linkedin size={16} /> },
+                { href: "mailto:razazaheer2002@gmail.com", icon: <Mail size={16} /> },
               ].map((item, i) => (
                 <motion.a
                   key={i}
                   href={item.href}
                   target="_blank"
-                  whileHover={{ scale: 1.2, rotate: i % 2 === 0 ? 5 : -5 }}
-                  className={`relative text-gray-600 dark:text-gray-400 ${item.color} transition`}
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -2, scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  style={{
+                    width: 38,
+                    height: 38,
+                    borderRadius: 10,
+                    background: "rgba(255,255,255,0.05)",
+                    border: "0.5px solid rgba(255,255,255,0.1)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "rgba(255,255,255,0.5)",
+                    transition: "all 0.3s",
+                  }}
+                  className="hover:border-blue-500/40 hover:text-white"
                 >
-                  <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-100 blur-md" />
                   {item.icon}
                 </motion.a>
               ))}
             </motion.div>
+
           </motion.div>
 
-          {/* Illustration Column */}
+          {/* ── Right: 3D Card ── */}
           <div className="flex justify-center lg:justify-end">
-            <DeveloperIllustration />
+            <CardVisual />
           </div>
+
         </div>
       </div>
 
-      {/* Scroll Down */}
+      {/* Stats strip */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.6 }}
+        className="absolute bottom-16 left-6 lg:left-16 flex items-center gap-8"
+      >
+        {[
+          { num: "8+", label: "Projects" },
+          { num: "12+", label: "Technologies" },
+          { num: "1+", label: "Years exp" },
+        ].map((stat, i) => (
+          <React.Fragment key={i}>
+            {i > 0 && (
+              <div style={{ width: "0.5px", height: 32, background: "rgba(255,255,255,0.08)" }} />
+            )}
+            <div className="flex flex-col gap-1">
+              <span
+                style={{
+                  fontFamily: "'Sora', sans-serif",
+                  fontWeight: 700,
+                  fontSize: 22,
+                  background: "linear-gradient(135deg,#3b82f6,#8b5cf6)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                {stat.num}
+              </span>
+              <span
+                style={{
+                  fontSize: 10,
+                  color: "rgba(255,255,255,0.25)",
+                  fontFamily: "'Sora', sans-serif",
+                  letterSpacing: "1.2px",
+                  textTransform: "uppercase",
+                }}
+              >
+                {stat.label}
+              </span>
+            </div>
+          </React.Fragment>
+        ))}
+      </motion.div>
+
+      {/* Scroll down */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        style={{ opacity: 0.32 }}
       >
-        <span className="text-gray-500 dark:text-gray-400 text-sm">Scroll Down</span>
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="text-blue-600 dark:text-blue-400 drop-shadow-[0_0_12px_rgba(59,130,246,0.8)]"
+        <span
+          style={{
+            fontSize: 10,
+            color: "white",
+            fontFamily: "'Sora', sans-serif",
+            letterSpacing: "2px",
+            textTransform: "uppercase",
+          }}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-8 w-8"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={3}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0l-6-6m6 6l6-6" />
-          </svg>
+          Scroll
+        </span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+          style={{
+            width: 28,
+            height: 28,
+            borderRadius: "50%",
+            border: "0.5px solid rgba(255,255,255,0.4)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
+            fontSize: 14,
+          }}
+        >
+          ↓
         </motion.div>
       </motion.div>
     </section>
