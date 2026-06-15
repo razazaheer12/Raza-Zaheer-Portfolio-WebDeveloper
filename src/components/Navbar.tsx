@@ -37,17 +37,17 @@ const Navbar: React.FC = () => {
                 whileHover={{ rotate: 6, scale: 1.06 }}
                 className="w-10 h-10 rounded-[14px] flex items-center justify-center text-white font-bold bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 shadow-lg"
               >
-                R
+                RZ
               </motion.div>
               <div>
                 <h2
                   className="text-[18px] font-bold text-gray-900 dark:text-white"
                   style={{ fontFamily: "Montserrat, sans-serif" }}
                 >
-                  Raza Zaheer
+                  
                 </h2>
                 <p className="text-[10px] uppercase tracking-[3px] text-gray-500 dark:text-gray-400">
-                  Portfolio
+                 
                 </p>
               </div>
             </a>
