@@ -63,7 +63,7 @@ const ParticlesBackground = ({ count = 60 }: { count?: number }) => {
 
 // ── Infinite Cycling Typing Animation ─────────────────────────
 // FIX #2: Uses background-clip text for gradient — NOT a background block.
-const roles = ["Frontend Developer", "Computer Science Graduate"];
+const roles = ["Frontend Web Developer", "Computer Science Graduate", "AI Engineer"];
 
 const CyclingTyping = ({ isDark }: { isDark: boolean }) => {
   const [displayText, setDisplayText] = useState("");
