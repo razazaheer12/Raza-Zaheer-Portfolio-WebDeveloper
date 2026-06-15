@@ -3,16 +3,13 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
 
-// ── Particles Background ──────────────────────────────────────
-const ParticlesBackground = ({ count = 60 }: { count?: number }) => {
+// ── Particles ─────────────────────────────────────────────────
+const ParticlesBackground = ({ count = 55 }: { count?: number }) => {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMouse({
-        x: (e.clientX / window.innerWidth - 0.5) * 2,
-        y: (e.clientY / window.innerHeight - 0.5) * 2,
-      });
+      setMouse({ x: (e.clientX / window.innerWidth - 0.5) * 2, y: (e.clientY / window.innerHeight - 0.5) * 2 });
     };
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
@@ -36,33 +33,16 @@ const ParticlesBackground = ({ count = 60 }: { count?: number }) => {
         <motion.div
           key={p.id}
           className="absolute rounded-full"
-          style={{
-            top: `${p.top}%`,
-            left: `${p.left}%`,
-            width: p.size,
-            height: p.size,
-            background: "rgba(139,92,246,0.6)",
-            opacity: p.opacity,
-          }}
-          animate={{
-            y: [0, -18 * p.depth, 0],
-            opacity: [p.opacity, p.opacity * 2, p.opacity],
-            x: mouse.x * 14 * p.depth,
-          }}
-          transition={{
-            duration: p.duration,
-            delay: p.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          style={{ top: `${p.top}%`, left: `${p.left}%`, width: p.size, height: p.size, background: "rgba(139,92,246,0.6)", opacity: p.opacity }}
+          animate={{ y: [0, -18 * p.depth, 0], opacity: [p.opacity, p.opacity * 2, p.opacity], x: mouse.x * 14 * p.depth }}
+          transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
         />
       ))}
     </div>
   );
 };
 
-// ── Infinite Cycling Typing Animation ─────────────────────────
-// FIX #2: Uses background-clip text for gradient — NOT a background block.
+// ── Cycling Typing ────────────────────────────────────────────
 const roles = ["Frontend Developer", "Computer Science Graduate"];
 
 const CyclingTyping = ({ isDark }: { isDark: boolean }) => {
@@ -79,10 +59,7 @@ const CyclingTyping = ({ isDark }: { isDark: boolean }) => {
       const interval = setInterval(() => {
         i++;
         setDisplayText(current.slice(0, i));
-        if (i >= current.length) {
-          clearInterval(interval);
-          timeout = setTimeout(() => setPhase("pause"), 1400);
-        }
+        if (i >= current.length) { clearInterval(interval); timeout = setTimeout(() => setPhase("pause"), 1400); }
       }, 75);
       return () => { clearInterval(interval); clearTimeout(timeout); };
     }
@@ -97,66 +74,37 @@ const CyclingTyping = ({ isDark }: { isDark: boolean }) => {
       const interval = setInterval(() => {
         i--;
         setDisplayText(current.slice(0, i));
-        if (i <= 0) {
-          clearInterval(interval);
-          timeout = setTimeout(() => {
-            setRoleIndex((prev) => (prev + 1) % roles.length);
-            setPhase("typing");
-          }, 300);
-        }
+        if (i <= 0) { clearInterval(interval); timeout = setTimeout(() => { setRoleIndex((prev) => (prev + 1) % roles.length); setPhase("typing"); }, 300); }
       }, 45);
       return () => { clearInterval(interval); clearTimeout(timeout); };
     }
   }, [phase, roleIndex]);
 
-  // FIX #2: Proper gradient text — no background block, only text gradient
+  // SOLID COLOR — no gradient, no WebkitTextFillColor, fully reliable
+  const textColor = isDark ? "#a78bfa" : "#7c3aed";
+  const cursorColor = isDark ? "#60a5fa" : "#3b82f6";
+
   return (
-    <span
-      style={{
-        background: isDark
-          ? "linear-gradient(135deg, #60a5fa, #a78bfa)"
-          : "linear-gradient(135deg, #3b82f6, #7c3aed)",
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-        backgroundClip: "text",
-        fontFamily: "'Sora', sans-serif",
-        fontWeight: 600,
-        fontSize: "clamp(18px, 2.4vw, 26px)",
-        display: "inline",
-        // IMPORTANT: padding-bottom prevents gradient clip from cutting descenders
-        paddingBottom: "2px",
-      }}
-    >
+    <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: "clamp(18px, 2.4vw, 26px)", color: textColor }}>
       {displayText}
       <motion.span
         animate={{ opacity: [1, 0] }}
         transition={{ repeat: Infinity, duration: 0.55 }}
-        style={{
-          display: "inline-block",
-          width: 2,
-          height: "0.9em",
-          background: isDark ? "#60a5fa" : "#3b82f6",
-          verticalAlign: "middle",
-          marginLeft: 3,
-          borderRadius: 1,
-          // Reset WebkitTextFillColor for the cursor element
-          WebkitTextFillColor: "initial",
-        }}
+        style={{ display: "inline-block", width: 2, height: "0.9em", background: cursorColor, verticalAlign: "middle", marginLeft: 3, borderRadius: 1 }}
       />
     </span>
   );
 };
 
-// ── 3D Card Visual ─────────────────────────────────────────────
+// ── 3D Card ───────────────────────────────────────────────────
 const CardVisual = () => {
   const bubbles = [
     { label: "React", color: "#61dafb", bg: "linear-gradient(135deg,#0d2137,#0a3050)", border: "rgba(97,218,251,0.3)", top: "-28px", right: "10px" },
-    { label: "TS",    color: "#3b82f6", bg: "linear-gradient(135deg,#0d1f3c,#091428)", border: "rgba(59,130,246,0.3)", top: "80px",  right: "-18px" },
-    { label: "Next",  color: "#ffffff", bg: "linear-gradient(135deg,#111120,#1a1a2e)", border: "rgba(255,255,255,0.15)", top: "180px", right: "-14px" },
+    { label: "TS",    color: "#3b82f6", bg: "linear-gradient(135deg,#0d1f3c,#091428)", border: "rgba(59,130,246,0.3)",  top: "80px",  right: "-18px" },
+    { label: "Next",  color: "#ffffff", bg: "linear-gradient(135deg,#111120,#1a1a2e)", border: "rgba(255,255,255,0.15)",top: "180px", right: "-14px" },
     { label: "Node",  color: "#68a063", bg: "linear-gradient(135deg,#0d200d,#091409)", border: "rgba(104,160,99,0.3)", bottom: "80px", left: "-14px" },
     { label: "JS",    color: "#f7df1e", bg: "linear-gradient(135deg,#201c00,#140f00)", border: "rgba(247,223,30,0.3)", top: "160px", left: "-18px" },
   ];
-  const floatDelays = [0, 0.4, 0.8, 1.2, 1.6];
 
   return (
     <motion.div
@@ -166,19 +114,8 @@ const CardVisual = () => {
       className="relative flex items-center justify-center"
       style={{ width: 320, height: 420 }}
     >
-      {/* Outer glow */}
-      <div
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: 300, height: 300,
-          background: "radial-gradient(circle, rgba(139,92,246,0.22) 0%, transparent 70%)",
-          top: "50%", left: "50%",
-          transform: "translate(-50%,-50%)",
-          filter: "blur(24px)",
-        }}
-      />
+      <div className="absolute rounded-full pointer-events-none" style={{ width: 300, height: 300, background: "radial-gradient(circle, rgba(139,92,246,0.22) 0%, transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", filter: "blur(24px)" }} />
 
-      {/* Main card */}
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -191,85 +128,52 @@ const CardVisual = () => {
           position: "relative", overflow: "hidden",
         }}
       >
-        {/* Inner glow top-left */}
         <div style={{ position: "absolute", top: -50, left: -50, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)", pointerEvents: "none" }} />
-        
-        {/* Shimmer line */}
         <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(139,92,246,0.6), transparent)" }} />
-
-        {/* Colored bar lines */}
         <div style={{ padding: "36px 28px 0" }}>
           {[
             { gradient: "linear-gradient(90deg,#ec4899,#8b5cf6,#60a5fa)", width: "80%" },
             { gradient: "linear-gradient(90deg,#f59e0b,#ec4899)", width: "60%" },
             { gradient: "linear-gradient(90deg,#3b82f6,#10b981)", width: "70%" },
           ].map((line, i) => (
-            <motion.div
-              key={i}
-              initial={{ width: 0 }}
-              animate={{ width: line.width }}
+            <motion.div key={i} initial={{ width: 0 }} animate={{ width: line.width }}
               transition={{ duration: 1.2, delay: 1.2 + i * 0.3, ease: "easeOut" }}
-              style={{ height: 5, borderRadius: 3, background: line.gradient, marginBottom: 12, boxShadow: "0 2px 8px rgba(139,92,246,0.3)" }}
-            />
+              style={{ height: 5, borderRadius: 3, background: line.gradient, marginBottom: 12, boxShadow: "0 2px 8px rgba(139,92,246,0.3)" }} />
           ))}
-
-          {/* Code block mockup */}
           <div style={{ marginTop: 18, height: 110, background: "rgba(0,0,0,0.3)", borderRadius: 12, border: "0.5px solid rgba(139,92,246,0.2)", padding: "10px 14px", overflow: "hidden" }}>
             {[
-              { color: "#60a5fa", width: "55%", opacity: 1 },
-              { color: "#a78bfa", width: "40%", opacity: 0.9 },
-              { color: "#34d399", width: "65%", opacity: 0.85 },
-              { color: "#f472b6", width: "35%", opacity: 0.8 },
-              { color: "#60a5fa", width: "50%", opacity: 0.7 },
+              { color: "#60a5fa", width: "55%", opacity: 0.7 },
+              { color: "#a78bfa", width: "40%", opacity: 0.63 },
+              { color: "#34d399", width: "65%", opacity: 0.595 },
+              { color: "#f472b6", width: "35%", opacity: 0.56 },
+              { color: "#60a5fa", width: "50%", opacity: 0.49 },
             ].map((line, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: line.opacity * 0.7, x: 0 }}
+              <motion.div key={i} initial={{ opacity: 0, x: -10 }} animate={{ opacity: line.opacity, x: 0 }}
                 transition={{ delay: 1.8 + i * 0.15, duration: 0.4 }}
-                style={{ height: 3, borderRadius: 2, background: line.color, width: line.width, marginBottom: 10 }}
-              />
+                style={{ height: 3, borderRadius: 2, background: line.color, width: line.width, marginBottom: 10 }} />
             ))}
           </div>
         </div>
-
-        {/* Text lines */}
         <div style={{ padding: "16px 28px 0" }}>
           {[90, 65, 78, 50, 85].map((w, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 2.2 + i * 0.1 }}
-              style={{ height: 3, borderRadius: 2, background: "rgba(255,255,255,0.08)", width: `${w}%`, marginBottom: 10 }}
-            />
+            <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 + i * 0.1 }}
+              style={{ height: 3, borderRadius: 2, background: "rgba(255,255,255,0.08)", width: `${w}%`, marginBottom: 10 }} />
           ))}
         </div>
-
-        {/* Bottom accent */}
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(139,92,246,0.4), transparent)" }} />
       </motion.div>
 
-      {/* Floating tech bubbles */}
       {bubbles.map((b, i) => (
-        <motion.div
-          key={i}
-          animate={{ y: [0, -8, 0] }}
-          transition={{ duration: 3 + i * 0.5, delay: floatDelays[i], repeat: Infinity, ease: "easeInOut" }}
+        <motion.div key={i} animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 3 + i * 0.5, delay: i * 0.4, repeat: Infinity, ease: "easeInOut" }}
           style={{
             position: "absolute",
-            ...(b.top ? { top: b.top } : {}),
-            ...(b.bottom ? { bottom: b.bottom } : {}),
-            ...(b.right ? { right: b.right } : {}),
-            ...(b.left ? { left: b.left } : {}),
-            width: 48, height: 48, borderRadius: "50%",
-            background: b.bg,
-            border: `1px solid ${b.border}`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            color: b.color, fontSize: 10,
-            fontFamily: "'Sora', sans-serif", fontWeight: 700,
-            boxShadow: `0 8px 28px rgba(0,0,0,0.5), 0 0 12px ${b.border}`,
-            zIndex: 10,
+            ...(b.top ? { top: b.top } : {}), ...(b.bottom ? { bottom: b.bottom } : {}),
+            ...(b.right ? { right: b.right } : {}), ...(b.left ? { left: b.left } : {}),
+            width: 48, height: 48, borderRadius: "50%", background: b.bg,
+            border: `1px solid ${b.border}`, display: "flex", alignItems: "center", justifyContent: "center",
+            color: b.color, fontSize: 10, fontFamily: "'Sora', sans-serif", fontWeight: 700,
+            boxShadow: `0 8px 28px rgba(0,0,0,0.5), 0 0 12px ${b.border}`, zIndex: 10,
           }}
         >
           {b.label}
@@ -279,31 +183,19 @@ const CardVisual = () => {
   );
 };
 
-// ── Social Icon with neon hover ────────────────────────────────
-const SocialIcon = ({
-  href, icon, hoverColor, hoverShadow, hoverBorder,
-  defaultColor, defaultBorder, defaultBg, label,
-}: {
+// ── Social Icon ───────────────────────────────────────────────
+const SocialIcon = ({ href, icon, hoverColor, hoverShadow, hoverBorder, defaultColor, defaultBorder, defaultBg, label }: {
   href: string; icon: React.ReactNode;
   hoverColor: string; hoverShadow: string; hoverBorder: string;
-  defaultColor: string; defaultBorder: string; defaultBg: string;
-  label: string;
+  defaultColor: string; defaultBorder: string; defaultBg: string; label: string;
 }) => {
   const [hovered, setHovered] = useState(false);
-
   return (
-    <motion.a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      whileHover={{ y: -2, scale: 1.12 }}
-      whileTap={{ scale: 0.95 }}
+    <motion.a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+      onHoverStart={() => setHovered(true)} onHoverEnd={() => setHovered(false)}
+      whileHover={{ y: -2, scale: 1.12 }} whileTap={{ scale: 0.95 }}
       style={{
-        width: 38, height: 38, borderRadius: 10,
-        background: defaultBg,
+        width: 38, height: 38, borderRadius: 10, background: defaultBg,
         border: `0.5px solid ${hovered ? hoverBorder : defaultBorder}`,
         display: "flex", alignItems: "center", justifyContent: "center",
         color: hovered ? hoverColor : defaultColor,
@@ -316,46 +208,20 @@ const SocialIcon = ({
   );
 };
 
-// ── Hero Section ───────────────────────────────────────────────
+// ── Hero ──────────────────────────────────────────────────────
 const Hero = () => {
   const isDarkMode = useThemeStore((state) => state.isDarkMode);
 
   const socialLinks = [
-    {
-      href: "https://github.com/razazaheer12",
-      icon: <Github size={17} />,
-      hoverColor: "#22c55e",
-      hoverShadow: "0 0 14px rgba(34,197,94,0.7)",
-      hoverBorder: "rgba(34,197,94,0.45)",
-      label: "GitHub",
-    },
-    {
-      href: "https://www.linkedin.com/in/raza-zaheer-416745340/",
-      icon: <Linkedin size={17} />,
-      hoverColor: "#0a66c2",
-      hoverShadow: "0 0 14px rgba(10,102,194,0.7)",
-      hoverBorder: "rgba(10,102,194,0.55)",
-      label: "LinkedIn",
-    },
-    {
-      href: "mailto:razazaheer2002@gmail.com",
-      icon: <Mail size={17} />,
-      hoverColor: "#e040fb",
-      hoverShadow: "0 0 14px rgba(224,64,251,0.7)",
-      hoverBorder: "rgba(224,64,251,0.45)",
-      label: "Email",
-    },
+    { href: "https://github.com/razazaheer12", icon: <Github size={17} />, hoverColor: "#22c55e", hoverShadow: "0 0 14px rgba(34,197,94,0.7)", hoverBorder: "rgba(34,197,94,0.45)", label: "GitHub" },
+    { href: "https://www.linkedin.com/in/raza-zaheer-416745340/", icon: <Linkedin size={17} />, hoverColor: "#0a66c2", hoverShadow: "0 0 14px rgba(10,102,194,0.7)", hoverBorder: "rgba(10,102,194,0.55)", label: "LinkedIn" },
+    { href: "mailto:razazaheer2002@gmail.com", icon: <Mail size={17} />, hoverColor: "#e040fb", hoverShadow: "0 0 14px rgba(224,64,251,0.7)", hoverBorder: "rgba(224,64,251,0.45)", label: "Email" },
   ];
 
-  // ─────────────────────────────────────────────────────────────
-  // FIX #1: "Raza" gradient — dark bg pe white→purple→pink works.
-  // Light mode pe white text invisible hota — isliye dark-to-purple use karo.
-  // "Zaheer" — dark mode: white solid. Light mode: dark indigo solid.
-  // ─────────────────────────────────────────────────────────────
-  const razaGradient = isDarkMode
-    ? "linear-gradient(135deg, #ffffff 30%, rgba(139,92,246,0.95) 70%, rgba(236,72,153,0.85) 100%)"
-    : "linear-gradient(135deg, #1e1b4b 20%, #7c3aed 60%, #db2777 100%)";
-
+  // ── SOLID COLORS — no WebkitTextFillColor/backgroundClip anywhere ──
+  // Dark mode: "Raza" = white, "Zaheer" = white
+  // Light mode: "Raza" = #7c3aed (purple), "Zaheer" = #1e1b4b (dark indigo)
+  const razaColor  = isDarkMode ? "#ffffff" : "#7c3aed";
   const zaheerColor = isDarkMode ? "#ffffff" : "#1e1b4b";
 
   const prefixColor = isDarkMode ? "rgba(255,255,255,0.38)" : "rgba(30,27,75,0.5)";
@@ -366,41 +232,34 @@ const Hero = () => {
   const findMeColor = isDarkMode ? "rgba(255,255,255,0.25)" : "rgba(30,27,75,0.35)";
   const scrollColor = isDarkMode ? "#ffffff" : "#1e1b4b";
   const scrollBorder = isDarkMode ? "rgba(255,255,255,0.4)" : "rgba(30,27,75,0.3)";
-
   const contactBorder = isDarkMode ? "0.5px solid rgba(255,255,255,0.15)" : "0.5px solid rgba(30,27,75,0.2)";
   const contactBg = isDarkMode ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.7)";
   const contactTextColor = isDarkMode ? "rgba(255,255,255,0.75)" : "rgba(30,27,75,0.75)";
+
+  // Stats solid colors
+  const statValueColor = isDarkMode ? "#a78bfa" : "#7c3aed";
+  const statLabelColor = isDarkMode ? "rgba(255,255,255,0.35)" : "rgba(30,27,75,0.45)";
 
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden transition-colors duration-500"
-      style={{
-        background: isDarkMode
-          ? "#050816"
-          : "linear-gradient(135deg, #eff6ff 0%, #f5f3ff 50%, #fdf2f8 100%)",
-      }}
+      style={{ background: isDarkMode ? "#050816" : "linear-gradient(135deg, #eff6ff 0%, #f5f3ff 50%, #fdf2f8 100%)" }}
     >
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: isDarkMode
-            ? "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)"
-            : "linear-gradient(rgba(30,27,75,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(30,27,75,0.04) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+      {/* Grid */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: isDarkMode
+          ? "linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px)"
+          : "linear-gradient(rgba(30,27,75,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(30,27,75,0.04) 1px, transparent 1px)",
+        backgroundSize: "60px 60px",
+      }} />
 
       {/* Ambient glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute rounded-full" style={{ width: 600, height: 600, top: -140, left: -100, background: isDarkMode ? "radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%)" : "radial-gradient(circle, rgba(99,102,241,0.13) 0%, transparent 70%)" }} />
         <div className="absolute rounded-full" style={{ width: 640, height: 640, top: -60, right: -160, background: isDarkMode ? "radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 70%)" : "radial-gradient(circle, rgba(168,85,247,0.11) 0%, transparent 70%)" }} />
         <div className="absolute rounded-full" style={{ width: 500, height: 500, bottom: -120, left: "35%", background: isDarkMode ? "radial-gradient(circle, rgba(236,72,153,0.07) 0%, transparent 70%)" : "radial-gradient(circle, rgba(219,39,119,0.07) 0%, transparent 70%)" }} />
-        {/* Decorative rings */}
-        {[600, 400].map((s, i) => (
-          <div key={i} className="absolute rounded-full pointer-events-none" style={{ width: s, height: s, top: -s / 3, right: -s / 3, border: `0.5px solid ${isDarkMode ? "rgba(255,255,255,0.04)" : "rgba(30,27,75,0.05)"}` }} />
-        ))}
+        {[600, 400].map((s, i) => <div key={i} className="absolute rounded-full pointer-events-none" style={{ width: s, height: s, top: -s / 3, right: -s / 3, border: `0.5px solid ${isDarkMode ? "rgba(255,255,255,0.04)" : "rgba(30,27,75,0.05)"}` }} />)}
       </div>
 
       <ParticlesBackground count={55} />
@@ -408,210 +267,78 @@ const Hero = () => {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[85vh]">
 
-          {/* ── Left Content ── */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}
-          >
-            {/* Available for work badge */}
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+          {/* Left */}
+          <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}>
+
+            {/* Badge */}
+            <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
               className="inline-flex items-center gap-2 mb-7"
-              style={{
-                background: "rgba(16,185,129,0.08)",
-                border: "0.5px solid rgba(16,185,129,0.28)",
-                borderRadius: 50,
-                padding: "6px 16px",
-              }}
-            >
-              <motion.div
-                animate={{ opacity: [1, 0.3, 1] }}
-                transition={{ duration: 1.4, repeat: Infinity }}
-                style={{ width: 7, height: 7, borderRadius: "50%", background: "#10b981" }}
-              />
-              <span style={{ fontSize: 11, color: "#10b981", fontFamily: "'Sora', sans-serif", fontWeight: 600, letterSpacing: "0.5px" }}>
-                Available for work
-              </span>
+              style={{ background: "rgba(16,185,129,0.08)", border: "0.5px solid rgba(16,185,129,0.28)", borderRadius: 50, padding: "6px 16px" }}>
+              <motion.div animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }}
+                style={{ width: 7, height: 7, borderRadius: "50%", background: "#10b981" }} />
+              <span style={{ fontSize: 11, color: "#10b981", fontFamily: "'Sora', sans-serif", fontWeight: 600, letterSpacing: "0.5px" }}>Available for work</span>
             </motion.div>
 
-            {/* ── FIX #1: Name ── */}
-            <motion.h1
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              style={{
-                fontFamily: "'Sora', sans-serif",
-                fontWeight: 800,
-                lineHeight: 1.02,
-                letterSpacing: "-2px",
-                marginBottom: 14,
-                fontSize: "clamp(52px, 8vw, 96px)",
-              }}
-            >
-              {/* "Raza" — gradient text. Works on both dark and light backgrounds */}
-              <span
-                style={{
-                  background: razaGradient,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  display: "block",
-                }}
-              >
-                Raza
-              </span>
-              {/* "Zaheer" — solid color */}
-              <span style={{ color: zaheerColor, display: "block" }}>
-                Zaheer
-              </span>
+            {/* Name — SOLID COLORS, no gradient clip */}
+            <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              style={{ fontFamily: "'Sora', sans-serif", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-2px", marginBottom: 14, fontSize: "clamp(52px, 8vw, 96px)" }}>
+              <span style={{ color: razaColor, display: "block" }}>Raza</span>
+              <span style={{ color: zaheerColor, display: "block" }}>Zaheer</span>
             </motion.h1>
 
-            {/* ── FIX #2: Role — cycling typing animation ── */}
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="flex items-center gap-3 mb-5"
-              style={{ fontFamily: "'Sora', sans-serif" }}
-            >
+            {/* Role */}
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="flex items-center gap-3 mb-5" style={{ fontFamily: "'Sora', sans-serif" }}>
               <span style={{ color: prefixColor, fontSize: 18, fontWeight: 300 }}>I'm a</span>
               <CyclingTyping isDark={isDarkMode} />
             </motion.div>
 
             {/* Tagline */}
-            <motion.p
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: 15,
-                color: taglineColor,
-                lineHeight: 1.8,
-                maxWidth: 420,
-                marginBottom: 36,
-                fontWeight: 300,
-              }}
-            >
+            <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: taglineColor, lineHeight: 1.8, maxWidth: 420, marginBottom: 36, fontWeight: 300 }}>
               Where creativity meets code — crafting futuristic,<br />
               elegant, and seamlessly responsive digital experiences.
             </motion.p>
 
-            {/* CTA Buttons */}
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="flex flex-wrap gap-3 mb-10"
-            >
-              {/* Primary */}
-              <motion.a
-                href="#projects"
-                whileHover={{ scale: 1.03, y: -1 }}
-                whileTap={{ scale: 0.97 }}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "14px 28px",
-                  borderRadius: 16,
-                  background: "linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899)",
-                  boxShadow: "0 8px 32px rgba(139,92,246,0.35)",
-                  color: "#ffffff",
-                  fontFamily: "'Sora', sans-serif",
-                  fontWeight: 600,
-                  fontSize: 14,
-                  letterSpacing: "0.3px",
-                  textDecoration: "none",
-                }}
-              >
+            {/* Buttons */}
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-3 mb-10">
+              <motion.a href="#projects" whileHover={{ scale: 1.03, y: -1 }} whileTap={{ scale: 0.97 }}
+                style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 16, background: "linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899)", boxShadow: "0 8px 32px rgba(139,92,246,0.35)", color: "#ffffff", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 14, letterSpacing: "0.3px", textDecoration: "none" }}>
                 View My Work <span style={{ fontSize: 16 }}>→</span>
               </motion.a>
-
-              {/* Secondary */}
-              <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.03, y: -1 }}
-                whileTap={{ scale: 0.97 }}
-                className="group"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "14px 28px",
-                  borderRadius: 16,
-                  border: contactBorder,
-                  background: contactBg,
-                  backdropFilter: "blur(8px)",
-                  color: contactTextColor,
-                  fontFamily: "'Sora', sans-serif",
-                  fontWeight: 500,
-                  fontSize: 14,
-                  letterSpacing: "0.3px",
-                  textDecoration: "none",
-                  transition: "all 0.3s ease",
-                }}
-              >
+              <motion.a href="#contact" whileHover={{ scale: 1.03, y: -1 }} whileTap={{ scale: 0.97 }}
+                style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 16, border: contactBorder, background: contactBg, backdropFilter: "blur(8px)", color: contactTextColor, fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 14, letterSpacing: "0.3px", textDecoration: "none", transition: "all 0.3s ease" }}>
                 Contact Me
               </motion.a>
             </motion.div>
 
-            {/* Social icons */}
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="flex items-center gap-3"
-            >
-              <span style={{ fontSize: 10, color: findMeColor, fontFamily: "'Sora', sans-serif", letterSpacing: "1.5px", textTransform: "uppercase", marginRight: 4 }}>
-                Find me
-              </span>
+            {/* Social */}
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-3">
+              <span style={{ fontSize: 10, color: findMeColor, fontFamily: "'Sora', sans-serif", letterSpacing: "1.5px", textTransform: "uppercase", marginRight: 4 }}>Find me</span>
               {socialLinks.map((item, i) => (
-                <SocialIcon
-                  key={i}
-                  href={item.href}
-                  icon={item.icon}
-                  hoverColor={item.hoverColor}
-                  hoverShadow={item.hoverShadow}
-                  hoverBorder={item.hoverBorder}
-                  defaultColor={socialDefaultColor}
-                  defaultBorder={socialDefaultBorder}
-                  defaultBg={socialDefaultBg}
-                  label={item.label}
-                />
+                <SocialIcon key={i} href={item.href} icon={item.icon}
+                  hoverColor={item.hoverColor} hoverShadow={item.hoverShadow} hoverBorder={item.hoverBorder}
+                  defaultColor={socialDefaultColor} defaultBorder={socialDefaultBorder} defaultBg={socialDefaultBg} label={item.label} />
               ))}
             </motion.div>
 
-            {/* Stats row — improvement #3 */}
-            <motion.div
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="flex items-center gap-6 mt-10"
-            >
+            {/* Stats — SOLID COLORS */}
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-6 mt-10">
               {[
                 { value: "5+", label: "Projects Built" },
                 { value: "2+", label: "Years Learning" },
                 { value: "10+", label: "Technologies" },
               ].map((stat, i) => (
                 <div key={i} style={{ textAlign: "center" }}>
-                  <div style={{
-                    fontFamily: "'Sora', sans-serif",
-                    fontWeight: 700,
-                    fontSize: 22,
-                    background: isDarkMode
-                      ? "linear-gradient(135deg, #60a5fa, #a78bfa)"
-                      : "linear-gradient(135deg, #3b82f6, #7c3aed)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}>
-                    {stat.value}
-                  </div>
-                  <div style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: 11,
-                    color: isDarkMode ? "rgba(255,255,255,0.35)" : "rgba(30,27,75,0.45)",
-                    letterSpacing: "0.5px",
-                    marginTop: 2,
-                  }}>
-                    {stat.label}
-                  </div>
+                  <div style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: 22, color: statValueColor }}>{stat.value}</div>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: statLabelColor, letterSpacing: "0.5px", marginTop: 2 }}>{stat.label}</div>
                 </div>
               ))}
             </motion.div>
+
           </motion.div>
 
-          {/* ── Right: 3D Card ── */}
+          {/* Right */}
           <div className="flex justify-center lg:justify-end">
             <CardVisual />
           </div>
@@ -619,26 +346,12 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.35 }}
-        transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span style={{ fontSize: 10, color: scrollColor, fontFamily: "'Sora', sans-serif", letterSpacing: "2px", textTransform: "uppercase" }}>
-          Scroll
-        </span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-          style={{
-            width: 28, height: 28, borderRadius: "50%",
-            border: `0.5px solid ${scrollBorder}`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            color: scrollColor, fontSize: 14,
-          }}
-        >
+      {/* Scroll */}
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.35 }} transition={{ duration: 1, delay: 2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        <span style={{ fontSize: 10, color: scrollColor, fontFamily: "'Sora', sans-serif", letterSpacing: "2px", textTransform: "uppercase" }}>Scroll</span>
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+          style={{ width: 28, height: 28, borderRadius: "50%", border: `0.5px solid ${scrollBorder}`, display: "flex", alignItems: "center", justifyContent: "center", color: scrollColor, fontSize: 14 }}>
           ↓
         </motion.div>
       </motion.div>
