@@ -21,16 +21,34 @@ const Navbar: React.FC = () => {
         <div className="absolute top-0 left-0 w-full h-4 bg-white dark:bg-[#070C18]" />
         <div className="px-4 pt-3">
 
-          <div
-            className="
-            max-w-7xl mx-auto h-[68px] rounded-[22px]
-            bg-white/75 dark:bg-[#070C18]/80
-            backdrop-blur-2xl
-            border border-white/60 dark:border-white/10
-            shadow-[0_8px_40px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_40px_rgba(0,0,0,0.35)]
-            flex items-center justify-between px-5 lg:px-8
-          "
-          >
+         <div
+  className="
+  max-w-7xl
+  mx-auto
+
+  h-[68px]
+
+  rounded-[22px]
+
+  bg-white/60
+  dark:bg-[#070C18]/72
+
+  backdrop-blur-[30px]
+
+  border
+  border-transparent
+
+  shadow-[0_10px_35px_rgba(0,0,0,0.05)]
+  dark:shadow-[0_12px_40px_rgba(0,0,0,0.28)]
+
+  flex
+  items-center
+  justify-between
+
+  px-5
+  lg:px-8
+"
+>
             {/* Logo */}
             <a href="#home" className="flex items-center gap-3 shrink-0">
               <motion.div
