@@ -121,7 +121,7 @@ const Navbar: React.FC = () => {
                   dark:text-gray-400
                 "
                 >
-                  
+                 Portfolio 
                 </p>
 
               </div>
