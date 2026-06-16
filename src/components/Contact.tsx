@@ -52,7 +52,7 @@ const TypingAnimation = ({
         <motion.span
           animate={{ opacity: [1, 0] }}
           transition={{ repeat: Infinity, duration: 0.5 }}
-          className="text-blue-400 dark:text-blue-300"
+          className="text-blue-600 dark:text-blue-400"
         >
           |
         </motion.span>
@@ -94,52 +94,64 @@ const Contact = () => {
   };
 
   return (
-    <section className="relative min-h-screen py-20 overflow-hidden bg-gray-950 dark:bg-[#060610]">
-
-      {/* ── Darker floating radial glow ── */}
+    <section
+      id="contact"
+      className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors duration-500"
+    >
+      {/* Floating Animated Background */}
       <motion.div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(circle at 30% 30%, rgba(59,130,246,0.08), transparent 55%), radial-gradient(circle at 70% 70%, rgba(168,85,247,0.07), transparent 55%)',
+            'radial-gradient(circle at 30% 30%, rgba(59,130,246,0.15), transparent 60%)',
         }}
         animate={{ backgroundPosition: ['0% 0%', '100% 100%'] }}
         transition={{ repeat: Infinity, duration: 10, ease: 'easeInOut' }}
       />
 
-      {/* ── Deep overlay gradient ── */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-950/40 via-purple-950/30 to-pink-950/30 dark:from-blue-950/50 dark:via-purple-950/40 dark:to-pink-950/40" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-pink-50/30 dark:from-blue-900/10 dark:via-purple-900/10 dark:to-pink-900/10" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-
+        
         {/* ================= Centered Heading ================= */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2
-            className="text-4xl sm:text-5xl font-bold text-white mb-4"
-            style={{ fontFamily: 'Poppins, sans-serif' }}
-          >
-            Contact Me
-          </h2>
+<motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.7 }}
+  viewport={{ once: true }}
+  className="text-center mb-16"
+>
+  <h2
+    className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4"
+    style={{ fontFamily: 'Montserrat, sans-serif' }}
+  >
+    <TypingAnimation
+      text="Get In Touch"
+      className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-white"
+    />
+  </h2>
 
-          {/* === Neon Glow Underline === */}
-          <motion.div
-            initial={{ width: 0, opacity: 0 }}
-            whileInView={{ width: '90px', opacity: 1 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="mx-auto h-[4px] rounded-full bg-gradient-to-r from-blue-400 to-purple-500 shadow-[0_0_10px_#8b5cf6,0_0_20px_#3b82f6]"
-          />
-        </motion.div>
+  {/* === Neon Glow Underline === */}
+  <motion.div
+    initial={{ width: 0, opacity: 0 }}
+    whileInView={{ width: '90px', opacity: 1 }}
+    transition={{ duration: 0.6, ease: 'easeOut' }}
+    viewport={{ once: true }}
+    className="mx-auto h-[4px] rounded-full bg-gradient-to-r from-blue-400 to-purple-500 shadow-[0_0_8px_#8b5cf6,0_0_16px_#3b82f6]"
+  ></motion.div>
+
+  <p
+    className="max-w-3xl mx-auto mt-6 text-sm sm:text-base text-gray-500 dark:text-gray-400 leading-snug tracking-tight"
+    style={{ fontFamily: 'Inter, sans-serif' }}
+  >
+    Have a project in mind or want to discuss potential opportunities? Feel free to
+    reach out to me through any of the following channels.
+  </p>
+</motion.div>
+
 
         {/* ================= Contact Grid ================= */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-
           {/* ================= Left Column ================= */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -149,17 +161,32 @@ const Contact = () => {
             className="space-y-8"
           >
             {/* Contact Information */}
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3 text-gray-300">
-                <span className="text-purple-400 text-lg">🌐</span>
-                <span>Karachi, Pakistan</span>
-              </div>
-            </div>
+             <div className="space-y-4">
+  <h3
+    className="text-2xl sm:text-3xl font-semibold text-gray-800 dark:text-white"
+    style={{ fontFamily: 'Poppins, sans-serif' }}
+  >
+    Contact Information
+  </h3>
+
+  <div className="flex flex-col space-y-4 text-gray-600 dark:text-gray-400">
+    <div className="flex items-center space-x-3">
+      <Mail className="text-blue-500" size={22} />
+      <span>razazaheer2002@gmail.com</span>
+    </div>
+
+    <div className="flex items-center space-x-3">
+      <span className="text-purple-500 text-lg"> 🌐 </span>
+      <span>Karachi, Pakistan</span>
+    </div>
+  </div>
+</div>
+
 
             {/* Follow Me */}
             <div>
               <h3
-                className="text-2xl sm:text-3xl font-semibold text-white mb-4"
+                className="text-2xl sm:text-3xl font-semibold text-gray-800 dark:text-white mb-4"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
               >
                 Follow Me
@@ -188,7 +215,7 @@ const Contact = () => {
                     whileHover={{
                       scale: 1.1,
                       y: -5,
-                      boxShadow: '0 10px 25px rgba(59,130,246,0.4)',
+                      boxShadow: '0 10px 25px rgba(59,130,246,0.3)',
                     }}
                     whileTap={{ scale: 0.95 }}
                     className={`w-14 h-14 bg-gradient-to-r ${gradient} rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300`}
@@ -210,13 +237,13 @@ const Contact = () => {
           >
             <div className="text-center lg:text-left">
               <h3
-                className="text-2xl sm:text-3xl font-semibold text-white mb-2"
+                className="text-2xl sm:text-3xl font-semibold text-gray-800 dark:text-white mb-2"
                 style={{ fontFamily: 'Poppins, sans-serif' }}
               >
                 Send me an Email
               </h3>
               <p
-                className="text-gray-400 text-base leading-relaxed mb-6"
+                className="text-gray-600 dark:text-gray-400 text-base leading-relaxed mb-6"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
                 Ready to start a conversation? Feel free to reach out through LinkedIn or email me
@@ -225,20 +252,19 @@ const Contact = () => {
             </div>
 
             {/* ===== Contact Form ===== */}
-            <div className="bg-gray-900/70 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-700/40 transition-all hover:shadow-[0_0_35px_rgba(59,130,246,0.2)] hover:border-blue-800/40">
+            <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-100/50 dark:border-gray-700/50 transition-all hover:shadow-[0_0_30px_rgba(59,130,246,0.25)]">
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-
                 {/* Name */}
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-medium text-gray-300 mb-2"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                   >
-                    Name <span className="text-red-400">*</span>
+                    Name <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
                     <User
-                      className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"
+                      className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
                       size={20}
                     />
                     <motion.input
@@ -246,12 +272,12 @@ const Contact = () => {
                       type="text"
                       id="name"
                       whileFocus={{ scale: 1.02 }}
-                      className="pl-12 w-full rounded-xl border border-gray-700 bg-gray-800/80 p-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-100 placeholder-gray-500 shadow-sm hover:border-gray-600 transition-all"
+                      className="pl-12 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white shadow-sm hover:shadow-md transition-all"
                       placeholder="Your name"
                     />
                   </div>
                   {errors.name && (
-                    <p className="mt-2 text-sm text-red-400">{errors.name.message}</p>
+                    <p className="mt-2 text-sm text-red-600">{errors.name.message}</p>
                   )}
                 </div>
 
@@ -259,13 +285,13 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-300 mb-2"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                   >
-                    Email <span className="text-red-400">*</span>
+                    Email <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
                     <Mail
-                      className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"
+                      className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"
                       size={20}
                     />
                     <motion.input
@@ -279,12 +305,12 @@ const Contact = () => {
                       type="email"
                       id="email"
                       whileFocus={{ scale: 1.02 }}
-                      className="pl-12 w-full rounded-xl border border-gray-700 bg-gray-800/80 p-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-100 placeholder-gray-500 shadow-sm hover:border-gray-600 transition-all"
+                      className="pl-12 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white shadow-sm hover:shadow-md transition-all"
                       placeholder="razazaheer2002@gmail.com"
                     />
                   </div>
                   {errors.email && (
-                    <p className="mt-2 text-sm text-red-400">{errors.email.message}</p>
+                    <p className="mt-2 text-sm text-red-600">{errors.email.message}</p>
                   )}
                 </div>
 
@@ -292,32 +318,32 @@ const Contact = () => {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-medium text-gray-300 mb-2"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                   >
-                    Message <span className="text-red-400">*</span>
+                    Message <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
-                    <MessageSquare className="absolute left-4 top-4 text-gray-500" size={20} />
+                    <MessageSquare className="absolute left-4 top-4 text-gray-400" size={20} />
                     <motion.textarea
                       {...register('message', { required: 'Message is required' })}
                       id="message"
                       rows={5}
                       whileFocus={{ scale: 1.02 }}
-                      className="pl-12 w-full rounded-xl border border-gray-700 bg-gray-800/80 p-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-100 placeholder-gray-500 shadow-sm hover:border-gray-600 resize-none transition-all"
+                      className="pl-12 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white shadow-sm hover:shadow-md resize-none transition-all"
                       placeholder="Type your message..."
                     />
                   </div>
                   {errors.message && (
-                    <p className="mt-2 text-sm text-red-400">{errors.message.message}</p>
+                    <p className="mt-2 text-sm text-red-600">{errors.message.message}</p>
                   )}
                 </div>
 
-                {/* Submit Button */}
+                {/* Submit — same style as Download Resume button */}
                 {isSubmitted ? (
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="flex items-center justify-center text-green-400 text-lg font-semibold"
+                    className="flex items-center justify-center text-green-500 text-lg font-semibold"
                   >
                     ✅ Message Sent!
                   </motion.div>
@@ -325,7 +351,7 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group relative w-full inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl border border-gray-600/50 bg-gray-800/50 backdrop-blur-sm px-7 py-4 text-gray-200 font-medium shadow-sm transition-all duration-500 hover:scale-105 hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.5)] disabled:opacity-50 disabled:pointer-events-none"
+                    className="group relative w-full inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl border border-gray-300 dark:border-white/15 bg-white/80 dark:bg-white/5 backdrop-blur-sm px-7 py-4 text-gray-800 dark:text-white font-medium shadow-sm transition-all duration-500 hover:scale-105 hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.4)] disabled:opacity-50 disabled:pointer-events-none"
                   >
                     {/* Gradient fill on hover */}
                     <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -350,16 +376,7 @@ const Contact = () => {
       </div>
 
       {/* Toast Notifications */}
-      <Toaster
-        position="bottom-center"
-        toastOptions={{
-          style: {
-            background: '#1f2937',
-            color: '#f3f4f6',
-            border: '1px solid #374151',
-          },
-        }}
-      />
+      <Toaster position="bottom-center" />
     </section>
   );
 };
