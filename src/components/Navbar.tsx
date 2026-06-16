@@ -108,7 +108,7 @@ const Navbar: React.FC = () => {
                       "Montserrat, sans-serif",
                   }}
                 >
-                  Raza Zaheer
+                  
                 </h2>
 
                 <p
@@ -121,7 +121,7 @@ const Navbar: React.FC = () => {
                   dark:text-gray-400
                 "
                 >
-                  PORTFOLIO
+                  
                 </p>
 
               </div>
