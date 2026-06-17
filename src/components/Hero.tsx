@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
@@ -15,7 +15,7 @@ const ParticlesBackground = ({ count = 55 }: { count?: number }) => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const particles = useMemo(() =>
+  const particles = React.useMemo(() =>
     Array.from({ length: count }, (_, i) => ({
       id: i,
       top: Math.random() * 100,
@@ -78,7 +78,7 @@ const CyclingTyping = ({ isDark }: { isDark: boolean }) => {
       }, 45);
       return () => { clearInterval(interval); clearTimeout(timeout); };
     }
-  }, [phase, roleIndex, displayText.length]);
+  }, [phase, roleIndex]);
 
   const textColor = isDark ? "#a78bfa" : "#7c3aed";
   const cursorColor = isDark ? "#60a5fa" : "#3b82f6";
@@ -173,15 +173,10 @@ const Hero = () => {
       <ParticlesBackground count={55} />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-12">
-        <div className="flex flex-col items-center justify-center text-center min-h-[85vh] max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[85vh]">
 
-          {/* Main Content Container */}
-          <motion.div 
-            initial="hidden" 
-            animate="visible" 
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}
-            className="flex flex-col items-center"
-          >
+          {/* Left */}
+          <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}>
 
             {/* Badge */}
             <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
@@ -208,13 +203,13 @@ const Hero = () => {
 
             {/* Tagline */}
             <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: taglineColor, lineHeight: 1.8, maxWidth: 500, marginBottom: 36, fontWeight: 300 }}>
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: taglineColor, lineHeight: 1.8, maxWidth: 420, marginBottom: 36, fontWeight: 300 }}>
               Where creativity meets code — crafting futuristic,<br />
               elegant, and seamlessly responsive digital experiences.
             </motion.p>
 
             {/* Buttons */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap justify-center gap-3 mb-10">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-3 mb-10">
               <motion.a href="#projects" whileHover={{ scale: 1.03, y: -1 }} whileTap={{ scale: 0.97 }}
                 style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 16, background: "linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899)", boxShadow: "0 8px 32px rgba(139,92,246,0.35)", color: "#ffffff", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 14, letterSpacing: "0.3px", textDecoration: "none" }}>
                 View My Work <span style={{ fontSize: 16 }}>→</span>
@@ -226,7 +221,7 @@ const Hero = () => {
             </motion.div>
 
             {/* Social */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center justify-center gap-3">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-3">
               <span style={{ fontSize: 10, color: findMeColor, fontFamily: "'Sora', sans-serif", letterSpacing: "1.5px", textTransform: "uppercase", marginRight: 4 }}>Find me</span>
               {socialLinks.map((item, i) => (
                 <SocialIcon key={i} href={item.href} icon={item.icon}
@@ -236,20 +231,25 @@ const Hero = () => {
             </motion.div>
 
             {/* Stats */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center justify-center gap-8 mt-12 w-full">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-6 mt-10">
               {[
                 { value: "5+", label: "Projects Built" },
                 { value: "2+", label: "Years Learning" },
                 { value: "10+", label: "Technologies" },
               ].map((stat, i) => (
                 <div key={i} style={{ textAlign: "center" }}>
-                  <div style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: 24, color: statValueColor }}>{stat.value}</div>
+                  <div style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: 22, color: statValueColor }}>{stat.value}</div>
                   <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: statLabelColor, letterSpacing: "0.5px", marginTop: 2 }}>{stat.label}</div>
                 </div>
               ))}
             </motion.div>
 
           </motion.div>
+
+          {/* Right (Empty wrapper to maintain grid/layout balance if needed, or you can adjust grid-cols if you want full width) */}
+          <div className="flex justify-center lg:justify-end">
+            {/* 3D Card Visual Removed */}
+          </div>
 
         </div>
       </div>
