@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
@@ -15,7 +15,7 @@ const ParticlesBackground = ({ count = 55 }: { count?: number }) => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const particles = React.useMemo(() =>
+  const particles = useMemo(() =>
     Array.from({ length: count }, (_, i) => ({
       id: i,
       top: Math.random() * 100,
@@ -78,7 +78,7 @@ const CyclingTyping = ({ isDark }: { isDark: boolean }) => {
       }, 45);
       return () => { clearInterval(interval); clearTimeout(timeout); };
     }
-  }, [phase, roleIndex]);
+  }, [phase, roleIndex, displayText.length]);
 
   const textColor = isDark ? "#a78bfa" : "#7c3aed";
   const cursorColor = isDark ? "#60a5fa" : "#3b82f6";
@@ -173,10 +173,9 @@ const Hero = () => {
       <ParticlesBackground count={55} />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-12">
-        {/* Updated to full-width centered layout */}
         <div className="flex flex-col items-center justify-center text-center min-h-[85vh] max-w-3xl mx-auto">
 
-          {/* Main Content Content Container */}
+          {/* Main Content Container */}
           <motion.div 
             initial="hidden" 
             animate="visible" 
@@ -260,7 +259,7 @@ const Hero = () => {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
         <span style={{ fontSize: 10, color: scrollColor, fontFamily: "'Sora', sans-serif", letterSpacing: "2px", textTransform: "uppercase" }}>Scroll</span>
         <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-          style={{ width: 28, height: 28, borderRadius: "50%", border: `0.5px solid ${scrollBorder}`, display: "flex", alignItems: "center", justify<IContent>Content: "center", color: scrollColor, fontSize: 14 }}>
+          style={{ width: 28, height: 28, borderRadius: "50%", border: `0.5px solid ${scrollBorder}`, display: "flex", alignItems: "center", justifyContent: "center", color: scrollColor, fontSize: 14 }}>
           ↓
         </motion.div>
       </motion.div>
