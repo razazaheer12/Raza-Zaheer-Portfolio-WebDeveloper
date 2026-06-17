@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
@@ -15,7 +15,7 @@ const ParticlesBackground = ({ count = 55 }: { count?: number }) => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  const particles = React.useMemo(() =>
+  const particles = useMemo(() =>
     Array.from({ length: count }, (_, i) => ({
       id: i,
       top: Math.random() * 100,
@@ -78,7 +78,7 @@ const CyclingTyping = ({ isDark }: { isDark: boolean }) => {
       }, 45);
       return () => { clearInterval(interval); clearTimeout(timeout); };
     }
-  }, [phase, roleIndex]);
+  }, [phase, roleIndex, displayText.length]);
 
   const textColor = isDark ? "#a78bfa" : "#7c3aed";
   const cursorColor = isDark ? "#60a5fa" : "#3b82f6";
@@ -214,7 +214,7 @@ const Hero = () => {
                 style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 16, background: "linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899)", boxShadow: "0 8px 32px rgba(139,92,246,0.35)", color: "#ffffff", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 14, letterSpacing: "0.3px", textDecoration: "none" }}>
                 View My Work <span style={{ fontSize: 16 }}>→</span>
               </motion.a>
-              <motion.a href="#contact" whileHover={{ scale: 1.03, y: -1 }} whileTap={{ scale: 0.97 }}
+              <motion.a href="#contact" whileHover={{ scale: 1.03, y: -1, boxShadow: "0 8px 32px rgba(139,92,246,0.35)" }} whileTap={{ scale: 0.97 }}
                 style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 16, border: contactBorder, background: contactBg, backdropFilter: "blur(8px)", color: contactTextColor, fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 14, letterSpacing: "0.3px", textDecoration: "none", transition: "all 0.3s ease" }}>
                 Contact Me
               </motion.a>
@@ -246,7 +246,7 @@ const Hero = () => {
 
           </motion.div>
 
-          {/* Right (Empty wrapper to maintain grid/layout balance if needed, or you can adjust grid-cols if you want full width) */}
+          {/* Right */}
           <div className="flex justify-center lg:justify-end">
             {/* 3D Card Visual Removed */}
           </div>
