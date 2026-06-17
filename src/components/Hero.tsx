@@ -80,7 +80,6 @@ const CyclingTyping = ({ isDark }: { isDark: boolean }) => {
     }
   }, [phase, roleIndex]);
 
-  // SOLID COLOR — no gradient, no WebkitTextFillColor, fully reliable
   const textColor = isDark ? "#a78bfa" : "#7c3aed";
   const cursorColor = isDark ? "#60a5fa" : "#3b82f6";
 
@@ -93,93 +92,6 @@ const CyclingTyping = ({ isDark }: { isDark: boolean }) => {
         style={{ display: "inline-block", width: 2, height: "0.9em", background: cursorColor, verticalAlign: "middle", marginLeft: 3, borderRadius: 1 }}
       />
     </span>
-  );
-};
-
-// ── 3D Card ───────────────────────────────────────────────────
-const CardVisual = () => {
-  const bubbles = [
-    { label: "React", color: "#61dafb", bg: "linear-gradient(135deg,#0d2137,#0a3050)", border: "rgba(97,218,251,0.3)", top: "-28px", right: "10px" },
-    { label: "TS",    color: "#3b82f6", bg: "linear-gradient(135deg,#0d1f3c,#091428)", border: "rgba(59,130,246,0.3)",  top: "80px",  right: "-18px" },
-    { label: "Next",  color: "#ffffff", bg: "linear-gradient(135deg,#111120,#1a1a2e)", border: "rgba(255,255,255,0.15)",top: "180px", right: "-14px" },
-    { label: "Node",  color: "#68a063", bg: "linear-gradient(135deg,#0d200d,#091409)", border: "rgba(104,160,99,0.3)", bottom: "80px", left: "-14px" },
-    { label: "JS",    color: "#f7df1e", bg: "linear-gradient(135deg,#201c00,#140f00)", border: "rgba(247,223,30,0.3)", top: "160px", left: "-18px" },
-  ];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 80 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="relative flex items-center justify-center"
-      style={{ width: 320, height: 420 }}
-    >
-      <div className="absolute rounded-full pointer-events-none" style={{ width: 300, height: 300, background: "radial-gradient(circle, rgba(139,92,246,0.22) 0%, transparent 70%)", top: "50%", left: "50%", transform: "translate(-50%,-50%)", filter: "blur(24px)" }} />
-
-      <motion.div
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        style={{
-          width: 260, height: 330, borderRadius: 24,
-          background: "linear-gradient(160deg, rgba(35,24,90,0.98) 0%, rgba(12,8,44,0.99) 100%)",
-          border: "1px solid rgba(139,92,246,0.3)",
-          boxShadow: "0 24px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)",
-          transform: "perspective(900px) rotateY(-9deg) rotateX(5deg)",
-          position: "relative", overflow: "hidden",
-        }}
-      >
-        <div style={{ position: "absolute", top: -50, left: -50, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(139,92,246,0.6), transparent)" }} />
-        <div style={{ padding: "36px 28px 0" }}>
-          {[
-            { gradient: "linear-gradient(90deg,#ec4899,#8b5cf6,#60a5fa)", width: "80%" },
-            { gradient: "linear-gradient(90deg,#f59e0b,#ec4899)", width: "60%" },
-            { gradient: "linear-gradient(90deg,#3b82f6,#10b981)", width: "70%" },
-          ].map((line, i) => (
-            <motion.div key={i} initial={{ width: 0 }} animate={{ width: line.width }}
-              transition={{ duration: 1.2, delay: 1.2 + i * 0.3, ease: "easeOut" }}
-              style={{ height: 5, borderRadius: 3, background: line.gradient, marginBottom: 12, boxShadow: "0 2px 8px rgba(139,92,246,0.3)" }} />
-          ))}
-          <div style={{ marginTop: 18, height: 110, background: "rgba(0,0,0,0.3)", borderRadius: 12, border: "0.5px solid rgba(139,92,246,0.2)", padding: "10px 14px", overflow: "hidden" }}>
-            {[
-              { color: "#60a5fa", width: "55%", opacity: 0.7 },
-              { color: "#a78bfa", width: "40%", opacity: 0.63 },
-              { color: "#34d399", width: "65%", opacity: 0.595 },
-              { color: "#f472b6", width: "35%", opacity: 0.56 },
-              { color: "#60a5fa", width: "50%", opacity: 0.49 },
-            ].map((line, i) => (
-              <motion.div key={i} initial={{ opacity: 0, x: -10 }} animate={{ opacity: line.opacity, x: 0 }}
-                transition={{ delay: 1.8 + i * 0.15, duration: 0.4 }}
-                style={{ height: 3, borderRadius: 2, background: line.color, width: line.width, marginBottom: 10 }} />
-            ))}
-          </div>
-        </div>
-        <div style={{ padding: "16px 28px 0" }}>
-          {[90, 65, 78, 50, 85].map((w, i) => (
-            <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 + i * 0.1 }}
-              style={{ height: 3, borderRadius: 2, background: "rgba(255,255,255,0.08)", width: `${w}%`, marginBottom: 10 }} />
-          ))}
-        </div>
-        <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(139,92,246,0.4), transparent)" }} />
-      </motion.div>
-
-      {bubbles.map((b, i) => (
-        <motion.div key={i} animate={{ y: [0, -8, 0] }}
-          transition={{ duration: 3 + i * 0.5, delay: i * 0.4, repeat: Infinity, ease: "easeInOut" }}
-          style={{
-            position: "absolute",
-            ...(b.top ? { top: b.top } : {}), ...(b.bottom ? { bottom: b.bottom } : {}),
-            ...(b.right ? { right: b.right } : {}), ...(b.left ? { left: b.left } : {}),
-            width: 48, height: 48, borderRadius: "50%", background: b.bg,
-            border: `1px solid ${b.border}`, display: "flex", alignItems: "center", justifyContent: "center",
-            color: b.color, fontSize: 10, fontFamily: "'Sora', sans-serif", fontWeight: 700,
-            boxShadow: `0 8px 28px rgba(0,0,0,0.5), 0 0 12px ${b.border}`, zIndex: 10,
-          }}
-        >
-          {b.label}
-        </motion.div>
-      ))}
-    </motion.div>
   );
 };
 
@@ -218,9 +130,6 @@ const Hero = () => {
     { href: "mailto:razazaheer2002@gmail.com", icon: <Mail size={17} />, hoverColor: "#e040fb", hoverShadow: "0 0 14px rgba(224,64,251,0.7)", hoverBorder: "rgba(224,64,251,0.45)", label: "Email" },
   ];
 
-  // ── SOLID COLORS — no WebkitTextFillColor/backgroundClip anywhere ──
-  // Dark mode: "Raza" = white, "Zaheer" = white
-  // Light mode: "Raza" = #7c3aed (purple), "Zaheer" = #1e1b4b (dark indigo)
   const razaColor  = isDarkMode ? "#ffffff" : "#7c3aed";
   const zaheerColor = isDarkMode ? "#ffffff" : "#1e1b4b";
 
@@ -236,7 +145,6 @@ const Hero = () => {
   const contactBg = isDarkMode ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.7)";
   const contactTextColor = isDarkMode ? "rgba(255,255,255,0.75)" : "rgba(30,27,75,0.75)";
 
-  // Stats solid colors
   const statValueColor = isDarkMode ? "#a78bfa" : "#7c3aed";
   const statLabelColor = isDarkMode ? "rgba(255,255,255,0.35)" : "rgba(30,27,75,0.45)";
 
@@ -279,7 +187,7 @@ const Hero = () => {
               <span style={{ fontSize: 11, color: "#10b981", fontFamily: "'Sora', sans-serif", fontWeight: 600, letterSpacing: "0.5px" }}>Available for work</span>
             </motion.div>
 
-            {/* Name — SOLID COLORS, no gradient clip */}
+            {/* Name */}
             <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               style={{ fontFamily: "'Sora', sans-serif", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-2px", marginBottom: 14, fontSize: "clamp(52px, 8vw, 96px)" }}>
               <span style={{ color: razaColor, display: "block" }}>Raza</span>
@@ -322,7 +230,7 @@ const Hero = () => {
               ))}
             </motion.div>
 
-            {/* Stats — SOLID COLORS */}
+            {/* Stats */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-6 mt-10">
               {[
                 { value: "5+", label: "Projects Built" },
@@ -338,9 +246,9 @@ const Hero = () => {
 
           </motion.div>
 
-          {/* Right */}
+          {/* Right (Empty wrapper to maintain grid/layout balance if needed, or you can adjust grid-cols if you want full width) */}
           <div className="flex justify-center lg:justify-end">
-            <CardVisual />
+            {/* 3D Card Visual Removed */}
           </div>
 
         </div>
