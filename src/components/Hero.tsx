@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
@@ -43,42 +43,53 @@ const ParticlesBackground = ({ count = 55 }: { count?: number }) => {
 };
 
 // ── Cycling Typing ────────────────────────────────────────────
-const roles = ["Frontend Developer", "Computer Science Graduate"];
+// Infinite loop: type → pause → erase → next role → repeat forever
+const roles = ["Full-Stack Developer", "MERN Stack Developer", "Computer Science Graduate"];
 
 const CyclingTyping = ({ isDark }: { isDark: boolean }) => {
   const [displayText, setDisplayText] = useState("");
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [phase, setPhase] = useState<"typing" | "pause" | "erasing">("typing");
+  const roleIndexRef = useRef(0);
+  const charIndexRef = useRef(0);
 
   useEffect(() => {
-    const current = roles[roleIndex];
-    let timeout: ReturnType<typeof setTimeout>;
+    let timeoutId: ReturnType<typeof setTimeout>;
+    let intervalId: ReturnType<typeof setInterval>;
 
-    if (phase === "typing") {
-      let i = displayText.length;
-      const interval = setInterval(() => {
-        i++;
-        setDisplayText(current.slice(0, i));
-        if (i >= current.length) { clearInterval(interval); timeout = setTimeout(() => setPhase("pause"), 1400); }
+    const typeNext = () => {
+      const current = roles[roleIndexRef.current];
+      intervalId = setInterval(() => {
+        charIndexRef.current++;
+        setDisplayText(current.slice(0, charIndexRef.current));
+
+        if (charIndexRef.current >= current.length) {
+          clearInterval(intervalId);
+          timeoutId = setTimeout(eraseNext, 1400); // pause after typing
+        }
       }, 75);
-      return () => { clearInterval(interval); clearTimeout(timeout); };
-    }
+    };
 
-    if (phase === "pause") {
-      timeout = setTimeout(() => setPhase("erasing"), 200);
-      return () => clearTimeout(timeout);
-    }
+    const eraseNext = () => {
+      const current = roles[roleIndexRef.current];
+      intervalId = setInterval(() => {
+        charIndexRef.current--;
+        setDisplayText(current.slice(0, charIndexRef.current));
 
-    if (phase === "erasing") {
-      let i = displayText.length;
-      const interval = setInterval(() => {
-        i--;
-        setDisplayText(current.slice(0, i));
-        if (i <= 0) { clearInterval(interval); timeout = setTimeout(() => { setRoleIndex((prev) => (prev + 1) % roles.length); setPhase("typing"); }, 300); }
+        if (charIndexRef.current <= 0) {
+          clearInterval(intervalId);
+          roleIndexRef.current = (roleIndexRef.current + 1) % roles.length;
+          timeoutId = setTimeout(typeNext, 300); // pause before next word starts typing
+        }
       }, 45);
-      return () => { clearInterval(interval); clearTimeout(timeout); };
-    }
-  }, [phase, roleIndex, displayText.length]);
+    };
+
+    // Kick off the loop
+    typeNext();
+
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(timeoutId);
+    };
+  }, []);
 
   const textColor = isDark ? "#a78bfa" : "#7c3aed";
   const cursorColor = isDark ? "#60a5fa" : "#3b82f6";
