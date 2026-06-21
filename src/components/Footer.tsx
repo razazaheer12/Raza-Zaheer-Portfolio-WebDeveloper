@@ -28,9 +28,9 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 border-t border-gray-200 dark:border-gray-700 py-12">
+    <footer className="relative bg-gradient-to-b from-gray-50 to-white dark:from-[#0B1126] dark:to-[#050816] border-t border-gray-200 dark:border-white/10 py-12">
       {/* Background subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/30 via-purple-50/20 to-pink-50/30 dark:from-blue-900/10 dark:via-purple-900/10 dark:to-pink-900/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-50/30 via-purple-50/20 to-pink-50/30 dark:from-blue-500/8 dark:via-purple-500/8 dark:to-pink-500/8" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
@@ -71,7 +71,7 @@ const Footer = () => {
                     ${social.color} ${social.glowColor}
                     transition-all duration-300 ease-in-out
                     p-3 rounded-full
-                    hover:bg-white/50 dark:hover:bg-gray-800/50
+                    hover:bg-white/50 dark:hover:bg-white/[0.06]
                     backdrop-blur-sm
                     group
                   `}
