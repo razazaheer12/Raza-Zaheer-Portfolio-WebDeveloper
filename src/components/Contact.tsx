@@ -96,7 +96,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-20 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors duration-500"
+      className="py-20 bg-white dark:bg-[#050816] relative overflow-hidden transition-colors duration-500"
     >
       {/* Floating Animated Background */}
       <motion.div
@@ -109,7 +109,7 @@ const Contact = () => {
         transition={{ repeat: Infinity, duration: 10, ease: 'easeInOut' }}
       />
 
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-pink-50/30 dark:from-blue-900/10 dark:via-purple-900/10 dark:to-pink-900/10" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-pink-50/30 dark:from-blue-500/5 dark:via-purple-500/5 dark:to-pink-500/5" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         
@@ -252,7 +252,7 @@ const Contact = () => {
             </div>
 
             {/* ===== Contact Form ===== */}
-            <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-100/50 dark:border-gray-700/50 transition-all hover:shadow-[0_0_30px_rgba(59,130,246,0.25)]">
+            <div className="bg-white/80 dark:bg-white/[0.03] backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-100/50 dark:border-white/[0.08] transition-all hover:shadow-[0_0_30px_rgba(59,130,246,0.25)]">
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Name */}
                 <div>
@@ -272,7 +272,7 @@ const Contact = () => {
                       type="text"
                       id="name"
                       whileFocus={{ scale: 1.02 }}
-                      className="pl-12 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white shadow-sm hover:shadow-md transition-all"
+                      className="pl-12 w-full rounded-xl border border-gray-300 dark:border-white/10 bg-white dark:bg-[#0d1325] p-4 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white shadow-sm hover:shadow-md transition-all"
                       placeholder="Your name"
                     />
                   </div>
@@ -305,7 +305,7 @@ const Contact = () => {
                       type="email"
                       id="email"
                       whileFocus={{ scale: 1.02 }}
-                      className="pl-12 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white shadow-sm hover:shadow-md transition-all"
+                      className="pl-12 w-full rounded-xl border border-gray-300 dark:border-white/10 bg-white dark:bg-[#0d1325] p-4 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white shadow-sm hover:shadow-md transition-all"
                       placeholder="razazaheer2002@gmail.com"
                     />
                   </div>
@@ -329,7 +329,7 @@ const Contact = () => {
                       id="message"
                       rows={5}
                       whileFocus={{ scale: 1.02 }}
-                      className="pl-12 w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white shadow-sm hover:shadow-md resize-none transition-all"
+                      className="pl-12 w-full rounded-xl border border-gray-300 dark:border-white/10 bg-white dark:bg-[#0d1325] p-4 focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white shadow-sm hover:shadow-md resize-none transition-all"
                       placeholder="Type your message..."
                     />
                   </div>
