@@ -13,6 +13,8 @@ import {
   SiTypescript,
   SiExpress,
   SiPostgresql,
+  SiMongodb,
+  SiDocker,
 } from "react-icons/si";
 
 // ─── Skills Data ───────────────────────────────────────────────
@@ -81,6 +83,20 @@ const skills = [
     ring: "group-hover:ring-sky-600/20",
   },
   {
+    name: "MongoDB",
+    icon: <SiMongodb />,
+    color: "text-green-600",
+    glow: "group-hover:shadow-green-600/20",
+    ring: "group-hover:ring-green-600/20",
+  },
+  {
+    name: "Docker",
+    icon: <SiDocker />,
+    color: "text-blue-400",
+    glow: "group-hover:shadow-blue-400/20",
+    ring: "group-hover:ring-blue-400/20",
+  },
+  {
     name: "TailwindCSS",
     icon: <SiTailwindcss />,
     color: "text-cyan-400",
@@ -103,9 +119,9 @@ const skills = [
   },
 ];
 
-// Split into two rows
-const row1 = skills.slice(0, 6);
-const row2 = skills.slice(6);
+// Split into two rows (Yeh code automatically poori array handle kar lega chahe jitne items hon)
+const row1 = skills.slice(0, Math.ceil(skills.length / 2));
+const row2 = skills.slice(Math.ceil(skills.length / 2));
 
 // ─── Typing animation variants ────────────────────────────────
 const typingContainer = {
