@@ -3,6 +3,14 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github, ArrowRight, ArrowUp } from "lucide-react";
 
 const projects = [
+    { title: "🤖 PDF RAG Chatbot",
+    description:
+      "An intelligent chatbot that lets you upload any PDF and have a real conversation with it — powered by RAG (Retrieval-Augmented Generation), Pinecone Vector DB, and Google Gemma AI.",
+    image: "https://i.ibb.co/bMFv7gjm/607546176-9b0c21e5-9508-4cb8-a001-95792037d7a1.png",
+    tech: ["React", "TypeScript", "Next.JS", "Tailwind CSS", "Pinecone", "Google Gemma","Vector DB", "RAG", "LangChain", "Lucide React", "Shadcn", "LLM Integration"],
+    githubUrl: "https://github.com/razazaheer12/Pdf-RAG-Chatbot",
+
+  },
   {
     title: "Quizlett - Advanced MCQ's based Web/App",
     description:
