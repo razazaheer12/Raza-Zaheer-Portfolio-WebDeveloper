@@ -198,8 +198,8 @@ const About: React.FC = () => {
 
             {/* Resume Button */}
             <a
-              href="/razazaheer_resume.pdf"
-              download="razazaheer_resume.pdf"
+              href="/Raza_Zaheer_Resume.pdf"
+              download="Raza_Zaheer_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative inline-flex items-center gap-3 rounded-2xl border border-gray-300 dark:border-white/15 bg-white/80 dark:bg-white/5 backdrop-blur-sm px-7 py-4 text-gray-800 dark:text-white font-medium shadow-sm transition-all duration-500 hover:scale-105 hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.4)] overflow-hidden"
