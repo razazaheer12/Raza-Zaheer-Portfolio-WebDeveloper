@@ -24,7 +24,7 @@ const projects = [
     title: "Quizlett - Advanced MCQ's based Web/App",
     description:
       "A modern, interactive multiple-choice quiz application built with Next.js, featuring three comprehensive quiz sections: Mathematics, Programming, and General Knowledge. Test your knowledge with instant feedback, progress tracking, achievements, and a beautiful dark/light theme interface.",
-    image: "https://i.ibb.co/k2kXHJ49/Screenshot-2025-09-24-042547.png",
+    image: "https://i.ibb.co/hRH5F9Zk/Gemini-Generated-Image-odfpbtodfpbtodfp.png",
     tech: ["React", "TypeScript", "Next.JS", "Tailwind CSS", "Shadcn-ui", "Lucide React"],
     liveUrl: "https://advanced-mcq-quiz.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Quizlett--advanced-mcq-quiz",
