@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Box, GraduationCap, Cpu } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
 
 // ── Particles ─────────────────────────────────────────────────
@@ -212,12 +212,12 @@ const Hero = () => {
               <CyclingTyping isDark={isDarkMode} />
             </motion.div>
 
-            {/* Tagline */}
-            <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: taglineColor, lineHeight: 1.8, maxWidth: 420, marginBottom: 36, fontWeight: 300 }}>
-              Where creativity meets code — crafting futuristic,<br />
-              elegant, and seamlessly responsive digital experiences.
-            </motion.p>
+           {/* Tagline */}
+<motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+  style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: taglineColor, lineHeight: 1.8, maxWidth: 420, marginBottom: 36, fontWeight: 400 }}>
+  Where creativity meets code — crafting futuristic,<br />
+  elegant, and seamlessly responsive digital experiences.
+</motion.p>
 
             {/* Buttons */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-3 mb-10">
@@ -241,19 +241,22 @@ const Hero = () => {
               ))}
             </motion.div>
 
-            {/* Stats */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-6 mt-10">
-              {[
-                { value: "5+", label: "Projects Built" },
-                { value: "2+", label: "Years Learning" },
-                { value: "10+", label: "Technologies" },
-              ].map((stat, i) => (
-                <div key={i} style={{ textAlign: "center" }}>
-                  <div style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: 22, color: statValueColor }}>{stat.value}</div>
-                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: statLabelColor, letterSpacing: "0.5px", marginTop: 2 }}>{stat.label}</div>
-                </div>
-              ))}
-            </motion.div>
+          {/* Stats */}
+<motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-8 mt-10">
+  {[
+    { value: "5+", label: "Projects Built", icon: <Box size={16} />, color: statValueColor },
+    { value: "2+", label: "Years Learning", icon: <GraduationCap size={16} />, color: "#34d399" },
+    { value: "10+", label: "Technologies", icon: <Cpu size={16} />, color: "#60a5fa" },
+  ].map((stat, i) => (
+    <div key={i} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 6, color: stat.color }}>
+        {stat.icon}
+        <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: 22, color: statValueColor }}>{stat.value}</span>
+      </div>
+      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: statLabelColor, letterSpacing: "0.5px" }}>{stat.label}</div>
+    </div>
+  ))}
+</motion.div>
 
           </motion.div>
 
@@ -266,14 +269,15 @@ const Hero = () => {
       </div>
 
       {/* Scroll */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.35 }} transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span style={{ fontSize: 10, color: scrollColor, fontFamily: "'Sora', sans-serif", letterSpacing: "2px", textTransform: "uppercase" }}>Scroll</span>
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-          style={{ width: 28, height: 28, borderRadius: "50%", border: `0.5px solid ${scrollBorder}`, display: "flex", alignItems: "center", justifyContent: "center", color: scrollColor, fontSize: 14 }}>
-          ↓
-        </motion.div>
-      </motion.div>
+<motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.6 }} transition={{ duration: 1, delay: 2 }}
+  className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+  <span style={{ fontSize: 10, color: scrollColor, fontFamily: "'Sora', sans-serif", letterSpacing: "2px", textTransform: "uppercase" }}>Scroll</span>
+  <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+    style={{ width: 28, height: 28, borderRadius: "50%", border: `1px solid ${scrollBorder}`, display: "flex", alignItems: "center", justifyContent: "center", color: scrollColor, fontSize: 14 }}>
+    ↓
+  </motion.div>
+</motion.div>
+
     </section>
   );
 };
