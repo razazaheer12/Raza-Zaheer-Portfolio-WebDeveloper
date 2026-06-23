@@ -11,6 +11,15 @@ const projects = [
     githubUrl: "https://github.com/razazaheer12/Pdf-RAG-Chatbot",
 
   },
+   {
+    title: "Real-Time Chat App",
+    description:
+      "Real-Time Chat App is a modern, production-ready messaging platform where users can sign up, join topic-based chat rooms, send private direct messages, see who's online in real time, and personalize their profile — all wrapped in a sleek, mobile-responsive dark UI. Built from the ground up with the MERN stack (MongoDB, Express, React, Node.js) and powered by Socket.io for instant, bidirectional communication.",
+    image: "https://i.ibb.co/sJ5V7yL8/Gemini-Generated-Image-sk1pkdsk1pkdsk1p.png",
+    tech: ["React (Vite)", "Zustand", "Tailwind CSS", "React Router ", "Socket.io", "Node.js + Express", "MongoDB Atlas + Mongoose", "JWT ", "bcrypt.js", "Cloudinary"],
+    liveUrl: "https://real-time-chat-app-pi-lake.vercel.app",
+    githubUrl: "https://github.com/razazaheer12/Real-Time-Chat_App",
+  },  
   {
     title: "Quizlett - Advanced MCQ's based Web/App",
     description:
