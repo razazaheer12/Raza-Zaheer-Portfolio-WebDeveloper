@@ -6,7 +6,7 @@ const projects = [
     { title: "🤖 PDF RAG Chatbot",
     description:
       "An intelligent chatbot that lets you upload any PDF and have a real conversation with it — powered by RAG (Retrieval-Augmented Generation), Pinecone Vector DB, and Google Gemma AI.",
-    image: "https://i.ibb.co/bMFv7gjm/607546176-9b0c21e5-9508-4cb8-a001-95792037d7a1.png",
+    image: "https://i.ibb.co/pB4tTTp5/Gemini-Generated-Image-e637dde637dde637.png",
     tech: ["React", "TypeScript", "Next.JS", "Tailwind CSS", "Pinecone", "Google Gemma","Vector DB", "RAG", "LangChain", "Lucide React", "Shadcn", "LLM Integration"],
     githubUrl: "https://github.com/razazaheer12/Pdf-RAG-Chatbot",
 
@@ -28,15 +28,6 @@ const projects = [
     tech: ["React", "TypeScript", "Next.JS", "Tailwind CSS", "Shadcn-ui", "Lucide React"],
     liveUrl: "https://advanced-mcq-quiz.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Quizlett--advanced-mcq-quiz",
-  },
-  {
-    title: "Neural Canvas - AI Style Studio",
-    description:
-      "Neural Canvas, your ultimate AI-powered art style studio. This innovative web application transforms your ordinary photos into stunning masterpieces by applying sophisticated AI-inspired filters and real-time adjustments.",
-    image: "https://i.ibb.co/QhzDFNC/Screenshot-2026-05-07-000415.png",
-    tech: ["JavaScript", "CSS", "HTML"],
-    liveUrl: "https://canvas-photoeditor-ai.netlify.app/",
-    githubUrl: "https://github.com/razazaheer12/Neural-Canvas--AI-Art-Style-Transfer-Studio",
   },
   {
     title: "WeatherFlow NextGen - App",
@@ -83,6 +74,15 @@ const projects = [
     liveUrl: "https://cocktail-explorer-psi.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Cocktail-Explorer",
   },
+    {
+    title: "Neural Canvas - AI Style Studio",
+    description:
+      "Neural Canvas, your ultimate AI-powered art style studio. This innovative web application transforms your ordinary photos into stunning masterpieces by applying sophisticated AI-inspired filters and real-time adjustments.",
+    image: "https://i.ibb.co/QhzDFNC/Screenshot-2026-05-07-000415.png",
+    tech: ["JavaScript", "CSS", "HTML"],
+    liveUrl: "https://canvas-photoeditor-ai.netlify.app/",
+    githubUrl: "https://github.com/razazaheer12/Neural-Canvas--AI-Art-Style-Transfer-Studio",
+  },    
   {
     title: "🐍 Modern Snake Game",
     description:
