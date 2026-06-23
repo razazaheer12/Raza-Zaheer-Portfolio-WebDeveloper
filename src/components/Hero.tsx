@@ -275,16 +275,16 @@ const Hero = () => {
             {/* Role */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               className="flex items-center gap-3 mb-5" style={{ fontFamily: "'Sora', sans-serif" }}>
-              <span style={{ color: theme.prefix, fontSize: 18, fontWeight: 300 }}>I'm a</span>
+              <span style={{ color: "#ffffff", fontSize: 18, fontWeight: 300 }}>I'm a</span>
               <CyclingTyping cursorColor={theme.cursor} />
             </motion.div>
 
             {/* Tagline */}
-            <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: theme.tagline, lineHeight: 1.8, maxWidth: 420, marginBottom: 36, fontWeight: 400 }}>
-              Where creativity meets code — crafting futuristic,<br />
-              elegant, and seamlessly responsive digital experiences.
-            </motion.p>
+           <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+  style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: "#ffffff", lineHeight: 1.8, maxWidth: 420, marginBottom: 36, fontWeight: 400 }}>
+  Where creativity meets code — crafting futuristic,<br />
+  elegant, and seamlessly responsive digital experiences.
+</motion.p>
 
             {/* Buttons */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-3 mb-10">
@@ -316,7 +316,7 @@ const Hero = () => {
                     {stat.icon}
                     <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: 22, color: theme.statValue }}>{stat.value}</span>
                   </div>
-                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: theme.statLabel, letterSpacing: "0.5px" }}>{stat.label}</div>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: "#ffffff", letterSpacing: "0.5px" }}>{stat.label}</div>
                 </div>
               ))}
             </motion.div>
