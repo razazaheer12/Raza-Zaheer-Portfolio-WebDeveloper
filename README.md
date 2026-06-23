@@ -4,7 +4,8 @@
 
 A stunning, responsive portfolio website showcasing my skills as a Frontend Web Developer. Built with modern technologies to deliver a seamless user experience with smooth animations, dark/light theme toggle, and interactive elements.
 
-<img width="958" height="436" alt="image" src="https://github.com/user-attachments/assets/324db2ff-4ad6-4f94-841b-974e13949f77" />
+<img width="959" height="437" alt="image" src="https://github.com/user-attachments/assets/45a4bead-08cd-4041-9f3f-d7c20b536ab4" />
+
 
 
 
