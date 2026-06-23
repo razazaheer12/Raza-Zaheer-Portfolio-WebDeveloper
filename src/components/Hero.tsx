@@ -250,8 +250,8 @@ const Hero = () => {
 
       <ParticlesBackground count={55} color={theme.particle} />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[85vh]">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-12 pb-24 lg:pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] lg:min-h-[85vh]">
 
           {/* Left */}
           <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}>
@@ -309,7 +309,7 @@ const Hero = () => {
             </motion.div>
 
             {/* Stats — left-aligned, icon + value (borrowed layout from Option A) */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-8 mt-10">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-8 mt-10 mb-16 lg:mb-0">
               {stats.map((stat, i) => (
                 <div key={i} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 6, color: stat.color }}>
