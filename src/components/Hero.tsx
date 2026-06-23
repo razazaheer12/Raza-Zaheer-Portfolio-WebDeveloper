@@ -323,9 +323,41 @@ const Hero = () => {
 
           </motion.div>
 
-          {/* Right */}
-          <div className="flex justify-center lg:justify-end">
-            {/* 3D Card Visual Removed */}
+          {/* Right — subtle animated mesh-glow orb (ambient, not a competing visual) */}
+          <div className="hidden lg:flex justify-center lg:justify-end items-center relative h-full">
+            <motion.div
+              animate={{
+                y: [0, -22, 0],
+                scale: [1, 1.06, 1],
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              style={{
+                width: 360,
+                height: 360,
+                borderRadius: "50%",
+                background: `radial-gradient(circle, ${theme.glow1} 0%, ${theme.glow2} 45%, transparent 75%)`,
+                filter: "blur(50px)",
+                opacity: 0.9,
+              }}
+            />
+            {/* secondary smaller orb, offset, slower pulse for depth */}
+            <motion.div
+              animate={{
+                y: [0, 16, 0],
+                opacity: [0.5, 0.8, 0.5],
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+              style={{
+                position: "absolute",
+                width: 180,
+                height: 180,
+                borderRadius: "50%",
+                background: `radial-gradient(circle, ${theme.glow2} 0%, transparent 70%)`,
+                filter: "blur(40px)",
+                top: "30%",
+                right: "18%",
+              }}
+            />
           </div>
 
         </div>
