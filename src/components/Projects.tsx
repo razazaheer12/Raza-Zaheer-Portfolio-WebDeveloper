@@ -33,7 +33,7 @@ const projects = [
     title: "WeatherFlow NextGen - App",
     description:
       "Advance Weather App - Next Gen, a cutting-edge, user-friendly weather application built with modern web technologies. Delivers real-time weather insights, interactive forecasts, and seamless offline capabilities.",
-    image: "https://i.ibb.co/7xr4JTLZ/Screenshot-2025-09-19-015926.png",
+    image: "https://i.ibb.co/VWGvfcth/Gemini-Generated-Image-7i62xc7i62xc7i62.png",
     tech: ["React", "Next.js", "OpenWeather API", "TypeScript", "Chart.js", "Tailwind CSS"],
     liveUrl: "https://advance-weather-app-next-gen.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Advance_Weather_App-Next_Gen",
