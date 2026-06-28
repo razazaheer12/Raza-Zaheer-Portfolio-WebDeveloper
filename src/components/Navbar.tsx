@@ -1,10 +1,14 @@
 import React from "react";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  // Full-page scroll progress — drives the navbar progress bar
+  const { scrollYProgress } = useScroll();
+  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   const menuItems = [
     { name: "Home", href: "#home" },
@@ -34,6 +38,8 @@ const Navbar: React.FC = () => {
           {/* NAVBAR */}
           <div
             className="
+            relative
+
             max-w-7xl
             mx-auto
 
@@ -58,8 +64,31 @@ const Navbar: React.FC = () => {
 
             px-5
             lg:px-8
+
+            overflow-hidden
           "
           >
+
+            {/* SCROLL PROGRESS BAR — dynamically fills as the page scrolls */}
+            <motion.div
+              style={{ width: progressWidth }}
+              className="
+              absolute
+              bottom-0
+              left-0
+
+              h-[3px]
+
+              rounded-full
+
+              bg-gradient-to-r
+              from-blue-500
+              via-purple-500
+              to-pink-500
+
+              shadow-[0_0_10px_rgba(139,92,255,0.6)]
+            "
+            />
 
             {/* LOGO */}
             <a
