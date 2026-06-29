@@ -196,8 +196,8 @@ const About: React.FC = () => {
               viewport={{ once: true }}
               className="inline-flex items-center gap-2 rounded-full bg-blue-100 dark:bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-700 dark:text-blue-300 mb-6"
             >
-              <Briefcase size={16} />
-              Frontend Web Developer
+            <Briefcase size={16} />
+            Frontend Developer · Exploring Full-Stack & AI
             </motion.div>
 
             {/* Main Title */}
@@ -209,17 +209,22 @@ const About: React.FC = () => {
             </h3>
 
             {/* Paragraph */}
-            <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-5">
-              I'm a passionate Frontend Developer focused on building sleek,
-              responsive, and user-friendly websites that combine clean code
-              with elegant design principles.
-            </p>
+             <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-5">
+  I'm a Front-End Developer with 2+ years of freelance experience building
+  production React.js and Next.js applications — currently expanding into
+  full-stack and AI-integrated development. I've independently architected
+  and deployed two end-to-end systems: a real-time MERN chat platform with
+  live presence tracking and instant messaging via Socket.io, and a RAG-powered
+  chatbot using Pinecone and LangChain for context-aware document retrieval.
+</p>
 
-            <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-8">
-              I enjoy transforming ideas into visually engaging digital products
-              while staying updated with the latest technologies, frameworks,
-              animations, and UI/UX trends to create impactful experiences.
-            </p>
+<p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-8">
+  Beyond writing clean components, I enjoy solving the harder engineering
+  problems — resolving WebSocket reconnection issues, handling cross-origin
+  auth in split production deployments, and integrating REST APIs end-to-end.
+  Across my freelance work, I've maintained 100% on-time delivery while
+  improving user engagement by up to 35% through better UX and performance.
+</p>
 
             {/* Info Cards — staggered entrance + hover lift */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
