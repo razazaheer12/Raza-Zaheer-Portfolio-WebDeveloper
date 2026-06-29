@@ -196,8 +196,8 @@ const About: React.FC = () => {
               viewport={{ once: true }}
               className="inline-flex items-center gap-2 rounded-full bg-blue-100 dark:bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-700 dark:text-blue-300 mb-6"
             >
-            <Briefcase size={16} />
-            Frontend Developer · Exploring Full-Stack & AI
+              <Briefcase size={16} />
+              Frontend Developer · Exploring Full-Stack &amp; AI
             </motion.div>
 
             {/* Main Title */}
@@ -209,22 +209,57 @@ const About: React.FC = () => {
             </h3>
 
             {/* Paragraph */}
-             <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-5">
-  I'm a Front-End Developer with 2+ years of freelance experience building
-  production React.js and Next.js applications — currently expanding into
-  full-stack and AI-integrated development. I've independently architected
-  and deployed two end-to-end systems: a real-time MERN chat platform with
-  live presence tracking and instant messaging via Socket.io, and a RAG-powered
-  chatbot using Pinecone and LangChain for context-aware document retrieval.
-</p>
+            <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-5">
+              I'm a Front-End Developer with 2+ years of freelance experience building
+              production React.js and Next.js applications — currently expanding into
+              full-stack and AI-integrated development. I've independently architected
+              and deployed two end-to-end systems: a real-time MERN chat platform with
+              live presence tracking and instant messaging via Socket.io, and a RAG-powered
+              chatbot using Pinecone and LangChain for context-aware document retrieval.
+            </p>
 
-<p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-8">
-  Beyond writing clean components, I enjoy solving the harder engineering
-  problems — resolving WebSocket reconnection issues, handling cross-origin
-  auth in split production deployments, and integrating REST APIs end-to-end.
-  Across my freelance work, I've maintained 100% on-time delivery while
-  improving user engagement by up to 35% through better UX and performance.
-</p>
+            <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-8">
+              Beyond writing clean components, I enjoy solving the harder engineering
+              problems — resolving WebSocket reconnection issues, handling cross-origin
+              auth in split production deployments, and integrating REST APIs end-to-end.
+              Across my freelance work, I've maintained 100% on-time delivery while
+              improving user engagement by up to 35% through better UX and performance.
+            </p>
+
+            {/* Highlights — quick-scan proof points for recruiters */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-3 gap-3 mb-8"
+            >
+              {[
+                { value: "2", label: "Production Systems Shipped" },
+                { value: "35%", label: "Engagement Boost" },
+                { value: "100%", label: "On-time Delivery" },
+              ].map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 * i }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -3 }}
+                  className="rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl px-3 py-4 text-center shadow-sm hover:shadow-lg hover:border-purple-300/40 dark:hover:border-purple-400/30 transition-all duration-300"
+                >
+                  <div
+                    className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text text-transparent"
+                    style={{ fontFamily: "Poppins, sans-serif" }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="mt-1 text-[11px] md:text-xs leading-tight text-gray-500 dark:text-gray-400">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
 
             {/* Info Cards — staggered entrance + hover lift */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
