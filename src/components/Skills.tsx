@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ShieldCheck, Database } from "lucide-react";
 import {
   SiReact,
   SiJavascript,
@@ -48,6 +49,8 @@ const allSkills = {
     { name: "Socket.io", icon: <SiSocketdotio />, color: "text-gray-700 dark:text-white", glow: "group-hover:shadow-gray-400/25", ring: "group-hover:ring-gray-400/20" },
     { name: "LangChain", icon: <SiOpenai />,      color: "text-green-400",                glow: "group-hover:shadow-green-400/25", ring: "group-hover:ring-green-400/20" },
     { name: "Pinecone",  icon: <SiOpenai />,      color: "text-teal-400",                 glow: "group-hover:shadow-teal-400/25",  ring: "group-hover:ring-teal-400/20" },
+    { name: "JWT Auth",  icon: <ShieldCheck className="w-full h-full" />, color: "text-yellow-500", glow: "group-hover:shadow-yellow-500/25", ring: "group-hover:ring-yellow-500/20" },
+    { name: "RAG Pipelines",  icon: <Database className="w-full h-full" />,    color: "text-purple-400", glow: "group-hover:shadow-purple-400/25", ring: "group-hover:ring-purple-400/20" },
   ],
   Tools: [
     { name: "Git",     icon: <SiGit />,    color: "text-orange-600",               glow: "group-hover:shadow-orange-600/25", ring: "group-hover:ring-orange-600/20" },
