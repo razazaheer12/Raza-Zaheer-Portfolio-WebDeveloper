@@ -20,9 +20,12 @@ import {
   SiVercel,
   SiNetlify,
   SiGit,
-  SiPinecone,
-  SiLangchain,
+  
 } from "react-icons/si";
+
+// Aur upar add karo:
+import { SiOpenai } from "react-icons/si";
+import { VscCode } from "react-icons/vsc";
 import { VscVscode } from "react-icons/vsc";
 
 // ─── Skills Data (resume-complete) ────────────────────────────
@@ -47,7 +50,7 @@ const allSkills = {
   ],
   "Real-Time & AI": [
     { name: "Socket.io",  icon: <SiSocketdotio />, color: "text-gray-700 dark:text-white",  glow: "group-hover:shadow-gray-400/25",  ring: "group-hover:ring-gray-400/20" },
-    { name: "LangChain",  icon: <SiLangchain />,   color: "text-green-400",  glow: "group-hover:shadow-green-400/25",  ring: "group-hover:ring-green-400/20" },
+    { name: "LangChain", icon: <SiOpenai />, color: "text-green-400", ... }, glow: "group-hover:shadow-green-400/25",  ring: "group-hover:ring-green-400/20" },
     { name: "Pinecone",   icon: <SiPinecone />,    color: "text-teal-400",   glow: "group-hover:shadow-teal-400/25",   ring: "group-hover:ring-teal-400/20" },
   ],
   Tools: [
