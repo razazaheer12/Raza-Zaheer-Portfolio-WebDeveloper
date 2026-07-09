@@ -20,13 +20,9 @@ import {
   SiVercel,
   SiNetlify,
   SiGit,
-  
+  SiOpenai,
 } from "react-icons/si";
-
-// Aur upar add karo:
-import { SiOpenai } from "react-icons/si";
 import { VscCode } from "react-icons/vsc";
-import { VscVscode } from "react-icons/vsc";
 
 // ─── Skills Data (resume-complete) ────────────────────────────
 const allSkills = {
@@ -49,16 +45,16 @@ const allSkills = {
     { name: "Docker",     icon: <SiDocker />,     color: "text-blue-400",   glow: "group-hover:shadow-blue-400/25",   ring: "group-hover:ring-blue-400/20" },
   ],
   "Real-Time & AI": [
-    { name: "Socket.io",  icon: <SiSocketdotio />, color: "text-gray-700 dark:text-white",  glow: "group-hover:shadow-gray-400/25",  ring: "group-hover:ring-gray-400/20" },
-    { name: "LangChain", icon: <SiOpenai />, color: "text-green-400", ... }, glow: "group-hover:shadow-green-400/25",  ring: "group-hover:ring-green-400/20" },
-    { name: "Pinecone",   icon: <SiPinecone />,    color: "text-teal-400",   glow: "group-hover:shadow-teal-400/25",   ring: "group-hover:ring-teal-400/20" },
+    { name: "Socket.io", icon: <SiSocketdotio />, color: "text-gray-700 dark:text-white", glow: "group-hover:shadow-gray-400/25", ring: "group-hover:ring-gray-400/20" },
+    { name: "LangChain", icon: <SiOpenai />,      color: "text-green-400",                glow: "group-hover:shadow-green-400/25", ring: "group-hover:ring-green-400/20" },
+    { name: "Pinecone",  icon: <SiOpenai />,      color: "text-teal-400",                 glow: "group-hover:shadow-teal-400/25",  ring: "group-hover:ring-teal-400/20" },
   ],
   Tools: [
-    { name: "Git",     icon: <SiGit />,      color: "text-orange-600", glow: "group-hover:shadow-orange-600/25", ring: "group-hover:ring-orange-600/20" },
-    { name: "GitHub",  icon: <SiGithub />,   color: "text-gray-800 dark:text-white", glow: "group-hover:shadow-gray-400/25", ring: "group-hover:ring-gray-400/20" },
-    { name: "VS Code", icon: <VscVscode />,  color: "text-blue-500",   glow: "group-hover:shadow-blue-500/25",   ring: "group-hover:ring-blue-500/20" },
-    { name: "Vercel",  icon: <SiVercel />,   color: "text-gray-800 dark:text-white", glow: "group-hover:shadow-gray-400/25", ring: "group-hover:ring-gray-400/20" },
-    { name: "Netlify", icon: <SiNetlify />,  color: "text-teal-500",   glow: "group-hover:shadow-teal-500/25",   ring: "group-hover:ring-teal-500/20" },
+    { name: "Git",     icon: <SiGit />,    color: "text-orange-600",               glow: "group-hover:shadow-orange-600/25", ring: "group-hover:ring-orange-600/20" },
+    { name: "GitHub",  icon: <SiGithub />, color: "text-gray-800 dark:text-white", glow: "group-hover:shadow-gray-400/25",   ring: "group-hover:ring-gray-400/20" },
+    { name: "VS Code", icon: <VscCode />,  color: "text-blue-500",                 glow: "group-hover:shadow-blue-500/25",   ring: "group-hover:ring-blue-500/20" },
+    { name: "Vercel",  icon: <SiVercel />, color: "text-gray-800 dark:text-white", glow: "group-hover:shadow-gray-400/25",   ring: "group-hover:ring-gray-400/20" },
+    { name: "Netlify", icon: <SiNetlify />,color: "text-teal-500",                 glow: "group-hover:shadow-teal-500/25",   ring: "group-hover:ring-teal-500/20" },
   ],
 };
 
