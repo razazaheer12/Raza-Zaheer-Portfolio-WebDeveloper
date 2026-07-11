@@ -132,28 +132,12 @@ const FeaturedCard = ({ project, index }: { project: (typeof projects)[0]; index
       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-400 pointer-events-none" />
 
       {/* Featured badge */}
-      <div className="absolute top-4 left-4">
+      <div className="absolute top-4 left-4 z-20">
         <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold text-white bg-gradient-to-r ${project.badgeColor} shadow-lg`}
           style={{ fontFamily: "'Sora', sans-serif" }}>
           <Star size={10} fill="white" />
           {project.badge}
         </span>
-      </div>
-
-      {/* Action buttons */}
-      <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-400">
-        {project.liveUrl && (
-          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/90 dark:bg-white/15 backdrop-blur-md text-gray-800 dark:text-white text-xs font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-lg"
-            style={{ fontFamily: "'Sora', sans-serif" }}>
-            <ExternalLink size={12} /> Live
-          </a>
-        )}
-        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-          className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/90 dark:bg-white/15 backdrop-blur-md text-gray-800 dark:text-white text-xs font-semibold hover:bg-violet-600 hover:text-white transition-all duration-300 shadow-lg"
-          style={{ fontFamily: "'Sora', sans-serif" }}>
-          <Github size={12} /> Code
-        </a>
       </div>
 
       {/* Sheen sweep */}
@@ -163,14 +147,31 @@ const FeaturedCard = ({ project, index }: { project: (typeof projects)[0]; index
     {/* Content */}
     <div className="flex flex-col flex-1 p-6">
       {/* Hover gradient wash */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
 
-      <h3
-        className="relative text-lg font-bold mb-2.5 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 leading-snug"
-        style={{ fontFamily: "'Sora', sans-serif" }}
-      >
-        {project.title}
-      </h3>
+      {/* Title + action buttons row */}
+      <div className="relative flex items-start justify-between gap-3 mb-2.5">
+        <h3
+          className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 leading-snug"
+          style={{ fontFamily: "'Sora', sans-serif" }}
+        >
+          {project.title}
+        </h3>
+        <div className="flex gap-2 shrink-0">
+          {project.liveUrl && (
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-500/20 text-xs font-semibold hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300"
+              style={{ fontFamily: "'Sora', sans-serif" }}>
+              <ExternalLink size={11} /> Live
+            </a>
+          )}
+          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 text-xs font-semibold hover:bg-violet-600 hover:text-white hover:border-transparent transition-all duration-300"
+            style={{ fontFamily: "'Sora', sans-serif" }}>
+            <Github size={11} /> Code
+          </a>
+        </div>
+      </div>
       <p
         className="relative text-sm text-gray-500 dark:text-gray-400 mb-5 leading-[1.8] line-clamp-3"
         style={{ fontFamily: "'DM Sans', sans-serif" }}
@@ -273,7 +274,7 @@ const Projects = () => {
 
   const featuredProjects = projects.filter((p) => p.featured);
   const regularProjects = projects.filter((p) => !p.featured);
-  const visibleRegular = showAll ? regularProjects : regularProjects.slice(0, 4);
+  const visibleRegular = showAll ? regularProjects : regularProjects.slice(0, 3);
 
   const handleToggle = () => {
     if (showAll) sectionRef.current?.scrollIntoView({ behavior: "smooth" });
