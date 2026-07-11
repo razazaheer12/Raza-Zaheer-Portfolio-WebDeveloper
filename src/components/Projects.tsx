@@ -129,7 +129,7 @@ const FeaturedCard = ({ project, index }: { project: (typeof projects)[0]; index
       />
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-400" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-400 pointer-events-none" />
 
       {/* Featured badge */}
       <div className="absolute top-4 left-4">
@@ -157,7 +157,8 @@ const FeaturedCard = ({ project, index }: { project: (typeof projects)[0]; index
       </div>
 
       {/* Sheen sweep */}
-      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-400 pointer-events-none" />
+      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full pointer-events-none" />
     </div>
 
     {/* Content */}
@@ -212,7 +213,8 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
         alt={project.title}
         className="w-full h-48 object-cover transition-transform duration-600 group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
+    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full pointer-events-none" />
 
       {/* Action buttons */}
       <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-400">
