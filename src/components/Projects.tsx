@@ -157,7 +157,6 @@ const FeaturedCard = ({ project, index }: { project: (typeof projects)[0]; index
       </div>
 
       {/* Sheen sweep */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-400 pointer-events-none" />
       <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full pointer-events-none" />
     </div>
 
@@ -213,8 +212,7 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
         alt={project.title}
         className="w-full h-48 object-cover transition-transform duration-600 group-hover:scale-105"
       />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
-    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
 
       {/* Action buttons */}
       <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-400">
@@ -232,12 +230,12 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
         </a>
       </div>
 
-      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full pointer-events-none" />
     </div>
 
     {/* Content */}
     <div className="flex flex-col flex-1 p-5">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
 
       <h3
         className="relative text-sm md:text-base font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 leading-snug"
@@ -275,7 +273,7 @@ const Projects = () => {
 
   const featuredProjects = projects.filter((p) => p.featured);
   const regularProjects = projects.filter((p) => !p.featured);
-  const visibleRegular = showAll ? regularProjects : regularProjects.slice(0, 3);
+  const visibleRegular = showAll ? regularProjects : regularProjects.slice(0, 4);
 
   const handleToggle = () => {
     if (showAll) sectionRef.current?.scrollIntoView({ behavior: "smooth" });
