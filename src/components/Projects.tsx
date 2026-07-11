@@ -273,7 +273,7 @@ const Projects = () => {
 
   const featuredProjects = projects.filter((p) => p.featured);
   const regularProjects = projects.filter((p) => !p.featured);
-  const visibleRegular = showAll ? regularProjects : regularProjects.slice(0, 4);
+  const visibleRegular = showAll ? regularProjects : regularProjects.slice(0, 5);
 
   const handleToggle = () => {
     if (showAll) sectionRef.current?.scrollIntoView({ behavior: "smooth" });
