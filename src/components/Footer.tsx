@@ -13,7 +13,7 @@ const Footer = () => {
     },
     {
       name: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/raza-zaheer-416745340/',
+      href: 'https://www.linkedin.com/in/raza-zaheer/',
       icon: Linkedin,
       color: 'hover:text-purple-600 dark:hover:text-purple-400',
       glowColor: 'hover:shadow-[0_0_20px_rgba(147,51,234,0.3)]',
