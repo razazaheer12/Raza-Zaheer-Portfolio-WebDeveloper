@@ -200,7 +200,7 @@ const Contact = () => {
                     label: 'GitHub Profile',
                   },
                   {
-                    href: 'https://www.linkedin.com/in/raza-zaeer-416745340/',
+                    href: 'https://www.linkedin.com/in/raza-zaheer/',
                     icon: <Linkedin size={24} />,
                     gradient: 'from-purple-600 to-pink-500',
                     label: 'LinkedIn Profile',
