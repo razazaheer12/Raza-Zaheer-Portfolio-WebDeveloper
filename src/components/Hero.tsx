@@ -213,7 +213,7 @@ const Hero = () => {
 
   const socialLinks = [
     { href: "https://github.com/razazaheer12", icon: <Github size={17} />, hoverColor: "#22c55e", hoverShadow: "0 0 14px rgba(34,197,94,0.7)", hoverBorder: "rgba(34,197,94,0.45)", label: "GitHub" },
-    { href: "https://www.linkedin.com/in/raza-zaheer-416745340/", icon: <Linkedin size={17} />, hoverColor: "#0a66c2", hoverShadow: "0 0 14px rgba(10,102,194,0.7)", hoverBorder: "rgba(10,102,194,0.55)", label: "LinkedIn" },
+    { href: "https://www.linkedin.com/in/raza-zaheer/", icon: <Linkedin size={17} />, hoverColor: "#0a66c2", hoverShadow: "0 0 14px rgba(10,102,194,0.7)", hoverBorder: "rgba(10,102,194,0.55)", label: "LinkedIn" },
     { href: "mailto:razazaheer2002@gmail.com", icon: <Mail size={17} />, hoverColor: "#e040fb", hoverShadow: "0 0 14px rgba(224,64,251,0.7)", hoverBorder: "rgba(224,64,251,0.45)", label: "Email" },
   ];
 
