@@ -1,139 +1,253 @@
-# 🚀 Raza Zaheer - Modern Portfolio
+# 🚀 Raza Zaheer — Modern Portfolio (React + TypeScript)
 
-## 📖 Description
+A modern, responsive portfolio website built with **React + TypeScript**, **Tailwind CSS**, and **Framer Motion**.
 
-A stunning, responsive portfolio website showcasing my skills as a Frontend Web Developer. Built with modern technologies to deliver a seamless user experience with smooth animations, dark/light theme toggle, and interactive elements.
+The site is designed as a single-page experience with smooth section navigation, scroll-linked UI, rich hover effects, and dark/light theming.
 
-<img width="959" height="437" alt="image" src="https://github.com/user-attachments/assets/45a4bead-08cd-4041-9f3f-d7c20b536ab4" />
+---
 
+## ✨ Live Experience (What You’ll See)
 
+### Hero (Home)
+- **Animated particle background** that subtly moves with the mouse.
+- **Cycling typing headline** (role text changes automatically):
+  - Gradient-filled role text (`Full-Stack Developer → MERN Stack Developer → Computer Science Graduate`).
+  - Blinking cursor animation.
+- **Theme-aware visual system** (dark and light mode tokens for colors, glows, borders, cursor, etc.).
+- **Ambient grid + glow orbs** behind the hero.
+- **Social icon links** (GitHub/LinkedIn/Email):
+  - Hover lift + scale, border + glow changes.
+- **CTA buttons** with hover transitions:
+  - “View My Work” scrolls to Projects.
+  - “Contact Me” jumps to Contact.
+- **Animated scroll hint** at the bottom of the hero.
 
+### Navbar
+- **Fixed glassmorphism navbar** with smooth desktop/mobile interactions.
+- **Scroll progress bar**:
+  - Uses `useScroll()` + `useTransform()` to fill a gradient line as you scroll.
+- **Desktop nav hover glow** with gradient “ink” hover effect.
+- **Mobile menu**:
+  - Opens/closes with Framer Motion animations.
+  - Includes the theme toggle inside the menu.
 
-## ✨ Features
+### About
+- **Animated heading**:
+  - Letter-by-letter reveal.
+- **Animated gradient divider** (draw-in effect).
+- **Rotating conic-gradient ring** behind the profile image.
+- **Hover sheen sweep** on the avatar card.
+- **Recruiter-friendly proof cards** with staggered entrance + hover lift.
+- **Resume download button**:
+  - Gradient slide-in on hover.
+  - Downloads: `Raza_Zaheer_Resume.pdf`.
 
-- 🌟 **Hero Section**: Typing animation, floating gradient shapes, particle background, and developer illustration with tech logos
-- 👨‍💻 **About Section**: Personal information, location, availability, and resume download
-- 💼 **Experience & Education**: Interactive timeline showcasing professional and academic background
-- 🛠️ **Skills Section**: Animated marquee display of technical skills with icons
-- 📁 **Projects Showcase**: Featured projects with images, descriptions, tech stacks, and links to live demos and GitHub repos
-- 📧 **Contact Form**: Integrated with EmailJS for sending messages
-- 🌙 **Theme Toggle**: Switch between light and dark modes
-- 📱 **Responsive Design**: Optimized for all devices
-- 🎨 **Smooth Animations**: Powered by Framer Motion
-- 🔝 **Scroll to Top**: Convenient navigation button
-- 🎯 **SEO Optimized**: Includes SEO component for better search visibility
+### Skills
+- Section is built as a **full “skills dashboard”**:
+- **Animated section heading** (character reveal via Framer Motion).
+- **Accent line draw-in** divider.
+- **Category tabs** (Frontend / Backend & DB / Real-Time & AI / Tools):
+  - Active tab uses a smooth gradient background with `layoutId`.
+  - Tab content swaps with `AnimatePresence`.
+- **Skill cards**:
+  - Animate into view (`whileInView`).
+  - Hover lift + scale.
+  - Hover glow + wash gradient.
+- **Two-row technology marquee**:
+  - Uses duplicated arrays to create continuous motion.
+  - Masked with a gradient mask so the marquee fades at edges.
+  - Second row runs in reverse for a premium “motion balance”.
 
-## 🛠️ Tech Stack
+### Projects
+- Projects are split into:
+  - **Hero Projects (Featured)**: top 2 in a bigger, more detailed card layout.
+  - **More Projects**: remaining projects in a responsive grid.
+- **Featured cards include**:
+  - Gradient overlays + hover sheen sweep.
+  - “AI Project / Full-Stack” badge.
+  - Action buttons:
+    - **Live** (if available)
+    - **Code (GitHub)**
+  - Hover transforms (image zoom, card lift, shadows).
+- **Regular project cards include**:
+  - Action buttons appear on hover (Live + Code).
+  - Technology tags displayed as pill badges.
+- **Show All / Show Less toggle**:
+  - Expands/collapses the regular projects list.
+  - On toggle, the section scrolls smoothly back into view.
 
-### Frontend
-- **React** - Component-based UI library
-- **TypeScript** - Typed JavaScript for better development experience
-- **Vite** - Fast build tool and development server
+### Experience & Education
+- A **center timeline** with scroll-linked progress:
+  - Timeline line fill grows using `useScroll({ target, offset })` + `useTransform()`.
+- Timeline entries alternate left/right:
+  - Cards slide in from their side on scroll.
+- Each card includes:
+  - Pulsing timeline icon ring.
+  - Hover effects:
+    - Gradient wash overlay
+    - Sheen sweep across the card
+    - Side border “grows” in height
+    - Tech chips animate in (staggered)
+
+### Contact
+- **Fully functional contact form** using:
+  - `react-hook-form`
+  - `EmailJS` (client-side email sending)
+  - `react-hot-toast` notifications
+- **Typing animation** in the form header (“Get In Touch”)
+- **Validation**:
+  - Name required
+  - Email required + regex validation
+  - Message required
+  - Inline error messages for each field
+- **Submit states**:
+  - Loading state (“Sending…”) while EmailJS is sending
+  - Success state: confirmation panel with icon
+- **Toaster styling** is theme-aware (dark/light toast background & borders).
+
+### Footer
+- Animated footer content with:
+  - Gradient ambient glows
+  - Staggered nav links
+  - Social icons with hover lift + border/glow changes
+  - “Made with ❤️” heartbeat animation
+  - Back-to-top button
+
+### Scroll to Top Button
+- Appears when scrolling past **280px**.
+- Smoothly scrolls back to the **Hero section (#home)**.
+- Animated entrance/exit using `AnimatePresence`.
+
+---
+
+## 🧩 Features Summary (Highlights)
+- Scroll progress bar in the navbar
+- Theme toggle powered by **Zustand**
+- Dark-mode tokenized design system (Hero + Contact styling)
+- Particle background + mouse interaction
+- Multiple Framer Motion animation styles:
+  - entrance on view (`whileInView`)
+  - hover wash + sheen sweeps
+  - scroll-linked timeline progress
+  - tab layout transitions (`layoutId`)
+- Skill marquee with edge masking
+- Projects featured vs regular cards + show-all toggle
+- Contact form with EmailJS + form validation + toast feedback
+- SEO metadata via React Helmet (Open Graph + Twitter cards)
+
+---
+
+ ## 🛠️ Tech Stack
+
+### Core
+- **React**
+- **TypeScript**
+- **Vite**
 
 ### Styling & UI
-- **Tailwind CSS** - Utility-first CSS framework
-- **Framer Motion** - Animation library for React
-- **Lucide React** - Beautiful icon library
-- **React Icons** - Popular icon packs
+- **Tailwind CSS**
+- **Framer Motion** (animations)
+- **Lucide React** + **React Icons** (icons)
 
 ### Functionality
-- **EmailJS** - Send emails directly from the client-side
-- **React Hook Form** - Performant forms with easy validation
-- **React Hot Toast** - Beautiful notifications
-- **Zustand** - Small, fast state management
-- **React Helmet** - Manage document head
+- **Zustand** (theme state)
+- **EmailJS** (client-side contact sending)
+- **React Hook Form** (form validation)
+- **React Hot Toast** (notifications)
+- **React Helmet** (SEO metadata)
 
-### Development
-- **ESLint** - Code linting
-- **PostCSS** - CSS processing
-- **Autoprefixer** - CSS vendor prefixing
+---
 
 ## 🚀 Installation
 
-Follow these steps to set up the project locally:
-
-1. **Clone the repository:**
+1. Clone the repository:
    ```bash
    git clone https://github.com/razazaheer12/raza-zaheer-portfolio-WebDeveloper.git
    ```
 
-2. **Navigate to the project directory:**
+2. Go to the project directory:
    ```bash
    cd project
    ```
 
-3. **Install dependencies:**
+3. Install dependencies:
    ```bash
    npm install
    ```
 
-4. **Start the development server:**
+4. Start the dev server:
    ```bash
    npm run dev
    ```
 
-5. **Open your browser:**
-   
-   Visit [http://localhost:5173](http://localhost:5173) to view the portfolio.
-
-## 📋 Usage
-
-- **Navigation**: Use the navbar to jump to different sections or scroll naturally
-- **Theme**: Click the theme toggle button to switch between light and dark modes
-- **Projects**: Hover over project cards to see live demo and GitHub links
-- **Contact**: Fill out the contact form to send a message directly
-- **Resume**: Download the resume PDF from the About section
-
-## 🎯 Featured Projects
-
-Here are some of my notable projects showcased in the portfolio:
-
-1. **🧠 Quizlett - Advanced MCQ's based Web/App**
-   - Interactive quiz application with multiple categories
-   - Built with Next.js, TypeScript, and Tailwind CSS
-   - Features: Progress tracking, achievements, dark/light themes
-
-2. **🎨 Neural Canvas - AI Style Studio**
-   - AI-powered photo editing with style transfer
-   - Pure JavaScript, CSS, and HTML implementation
-   - Real-time filters and adjustments
-
-3. **🌤️ WeatherFlow NextGen-App**
-   - Advanced weather application with forecasts
-   - Built with React, Next.js, and Chart.js
-   - Features: Offline capabilities, interactive charts
-
-4. **🐍 Modern Snake Game**
-   - Retro game with modern enhancements
-   - HTML5, CSS3, and JavaScript
-   - Speed boosts, sound effects, pause/resume
-
-5. **📄 MyPDF - Free Online PDF Toolkit**
-   - PDF conversion and manipulation tool
-   - Built with Next.js and TypeScript
-   - Drag-and-drop interface with progress tracking
-
-6. **🎓 Student Grade Calculator**
-   - Academic performance calculator
-   - Clean UI with animations
-   - Calculates grades, percentages, and pass/fail status
-
-## 📞 Contact
-
-I'm always open to discussing new opportunities and interesting projects!
-
-- **📧 Email:** razazaheer2002@gmail.com
-- **📍 Location:** Karachi, Pakistan
-- **💼 Availability:** Full-time
-- **🐙 GitHub:** [razazaheer12](https://github.com/razazaheer12)
-- **💼 LinkedIn:** [Raza Zaheer](https://www.linkedin.com/in/raza-zaheer-416745340/)
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+5. Open in your browser:
+   - http://localhost:5173
 
 ---
 
-⭐ **Star this repo** if you found it helpful or inspiring!
+## 📧 EmailJS Configuration (Required)
+The Contact form sends emails using environment variables.
+Create a `.env` file in the `project/` folder with:
+
+- `VITE_EMAILJS_SERVICE_ID`
+- `VITE_EMAILJS_TEMPLATE_ID`
+- `VITE_EMAILJS_PUBLIC_KEY`
+
+Then restart the dev server.
+
+---
+
+## 📌 Sections & Navigation
+Use the navbar to jump to:
+- **Home** (`#home`)
+- **About** (`#about`)
+- **Skills** (`#skills`)
+- **Projects** (`#projects`)
+- **Experience** (`#experience`)
+- **Contact** (`#contact`)
+
+---
+
+## 🎯 Featured Projects (From the Current Portfolio)
+
+### Hero Projects
+1. **PDF RAG Chatbot**
+   - RAG chat using Pinecone Vector DB + Google Gemma AI
+   - Tech: Next.js, TypeScript, LangChain, RAG, LLM integration, Shadcn
+
+2. **Real-Time Chat App**
+   - Topic-based chat rooms, private DMs, real-time presence with Socket.io
+   - Tech: React, Node.js, MongoDB, Socket.io, JWT, Zustand, Cloudinary
+
+### Other Projects
+- **Quizlett - MCQ Platform** (Next.js + TypeScript)
+- **WeatherFlow NextGen** (Next.js + OpenWeather + Chart.js)
+- **Sun & Moon Tracker** (React + Date-fns)
+- **MyPDF - Free PDF Toolkit** (Next.js + drag/drop + progress tracking)
+- **Recipe Finder** (MealDB API)
+- **Cocktail Explorer** (Express + EJS + TheCocktailDB)
+- **Neural Canvas - AI Art Studio** (vanilla JS/CSS/HTML)
+- **Modern Snake Game** (vanilla JS + pause/speed/sound)
+
+---
+
+## 🧾 SEO
+SEO tags are managed through `react-helmet`:
+- Title
+- Meta description
+- Keywords
+- Canonical link
+- Open Graph (Facebook)
+- Twitter card metadata
+
+---
+
+## 📄 License
+This project is open source and available under the **MIT License**.
+
+---
+
+⭐ **Star this repo** if you found it helpful or inspiring.
 
 **Built with ❤️ by Raza Zaheer**
+
