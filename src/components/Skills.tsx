@@ -172,7 +172,7 @@ const MarqueeRow = ({ items, reverse = false, duration = 28 }: {
 
 // ─── Main Component ───────────────────────────────────────────
 const Skills = () => {
-  const heading = "My Skills";
+  const heading = "Skills & Technologies";
   const [activeCategory, setActiveCategory] = useState<string>("Frontend");
 
   return (
