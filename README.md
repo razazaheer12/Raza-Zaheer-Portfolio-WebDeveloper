@@ -1,4 +1,4 @@
-# 🚀 Raza Zaheer — Modern Portfolio (React + TypeScript)
+# 🚀 Raza Zaheer Modern Portfolio (React + TypeScript)
 
 A modern, responsive portfolio website built with **React + TypeScript**, **Tailwind CSS**, and **Framer Motion**.
 
