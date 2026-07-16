@@ -1,6 +1,6 @@
 <div align="center">
 
-# Raza Zaheer — Portfolio
+# Raza Zaheer Portfolio
 
 ### Modern · Animated · Production-Ready
 
