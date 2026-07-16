@@ -15,7 +15,8 @@
 
 <br/>
 
-<img width="956" height="435" alt="image" src="https://github.com/user-attachments/assets/8c9f53e6-6c07-468a-9f0e-5d6978093a9e" />
+<img width="958" height="439" alt="Screenshot 2026-07-16 053700" src="https://github.com/user-attachments/assets/782929b3-c6d0-4f39-9261-8913239c54da" />
+
 
 
 </div>
