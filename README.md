@@ -1,6 +1,6 @@
 <div align="center">
 
-# ✦ Raza Zaheer — Portfolio
+# Raza Zaheer — Portfolio
 
 ### Modern · Animated · Production-Ready
 
@@ -15,7 +15,8 @@
 
 <br/>
 
-![Hero Preview](https://i.ibb.co/sJ5V7yL8/Gemini-Generated-Image-sk1pkdsk1pkdsk1p.png)
+<img width="956" height="435" alt="image" src="https://github.com/user-attachments/assets/8c9f53e6-6c07-468a-9f0e-5d6978093a9e" />
+
 
 </div>
 
