@@ -79,9 +79,9 @@ const Contact = () => {
     }
   };
 
-  const socialLinks = [
-    { href: 'https://github.com/razazaheer12', icon: <Github size={20} />, label: 'GitHub', gradient: 'from-gray-700 to-gray-900 dark:from-gray-600 dark:to-gray-800', hoverShadow: 'hover:shadow-gray-500/30' },
-    { href: 'https://www.linkedin.com/in/raza-zaheer/', icon: <Linkedin size={20} />, label: 'LinkedIn', gradient: 'from-blue-600 to-blue-700', hoverShadow: 'hover:shadow-blue-500/30' },
+const socialLinks = [
+    { href: 'https://github.com/razazaheer12', icon: <Github size={20} aria-hidden="true" />, label: 'GitHub', gradient: 'from-gray-700 to-gray-900 dark:from-gray-600 dark:to-gray-800', hoverShadow: 'hover:shadow-gray-500/30' },
+    { href: 'https://www.linkedin.com/in/raza-zaheer/', icon: <Linkedin size={20} aria-hidden="true" />, label: 'LinkedIn', gradient: 'from-blue-600 to-blue-700', hoverShadow: 'hover:shadow-blue-500/30' },
   ];
 
   return (
