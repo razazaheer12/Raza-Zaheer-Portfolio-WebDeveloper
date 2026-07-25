@@ -144,7 +144,7 @@ const Footer = () => {
                     transition-all duration-300
                   `}
                 >
-                  <Icon size={17} />
+                  <Icon size={17} aria-hidden="true" />
                 </motion.a>
               );
             })}
