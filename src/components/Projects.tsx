@@ -27,6 +27,17 @@ const projects = [
     badgeColor: "from-blue-500 to-cyan-400",
   },
   {
+  title: "Real-Time Analytics Dashboard",
+  description:
+    "A production-grade, RBAC analytics dashboard that streams live business metrics via WebSockets. Features role-scoped data visualization (Admin/Analyst/Viewer), dynamic filtering, and admin-only CSV/PDF export — built with a fully type-safe TypeScript stack.",
+  image: "https://github.com/user-attachments/assets/27b90ee2-7411-4750-b63b-0c150d486f8e",
+  tech: ["Next.js 16", "NestJS", "TypeScript", "Socket.io", "Prisma", "Supabase PostgreSQL", "Recharts", "Zustand", "JWT", "Tailwind CSS"],
+  githubUrl: "https://github.com/razazaheer12/Real-Time-Analytics-Dashboard",
+  featured: true,
+  badge: "Enterprise",
+  badgeColor: "from-emerald-500 to-teal-400",
+},
+  {
     title: "Quizlett - MCQ Platform",
     description:
       "Modern interactive quiz app with Math, Programming, and General Knowledge sections. Features instant feedback, progress tracking, achievements, and dark/light theme.",
