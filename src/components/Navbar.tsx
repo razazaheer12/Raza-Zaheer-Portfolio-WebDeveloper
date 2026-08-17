@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
@@ -21,6 +21,21 @@ const menuItems: MenuItem[] = [
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Dynamic Scroll Listener
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Scroll Progress Bar logic
   const { scrollYProgress } = useScroll();
@@ -28,18 +43,23 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* Seamless Navbar: No background, no borders, 100% background gradient blend */}
-      <header className="fixed top-0 left-0 w-full z-[999] pt-4 px-4 lg:px-8 bg-transparent pointer-events-none">
-        
-        {/* Scroll Progress Bar - Subtle glowing top trace */}
+      {/* Header Container with Conditional Dynamic Styling */}
+      <header
+        className={`fixed top-0 left-0 w-full z-[999] transition-all duration-300 ${
+          isScrolled
+            ? "bg-[#070c18]/70 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)] py-3"
+            : "bg-transparent py-5"
+        }`}
+      >
+        {/* Scroll Progress Bar at bottom of navbar */}
         <motion.div
           style={{ width: progressWidth }}
-          className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-[0_0_12px_rgba(139,92,246,0.9)]"
+          className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-[0_0_12px_rgba(139,92,246,0.9)]"
         />
 
-        <div className="max-w-7xl mx-auto h-[60px] flex items-center justify-between pointer-events-auto">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between">
           
-          {/* Logo Badge (Left) */}
+          {/* Logo Section */}
           <a href="#home" className="flex items-center gap-3 shrink-0 group">
             <motion.div
               whileHover={{ rotate: 6, scale: 1.05 }}
@@ -57,7 +77,7 @@ const Navbar: React.FC = () => {
             </div>
           </a>
 
-          {/* Floating Dark Center Pill (Exact Reference Style) */}
+          {/* Center Floating Pill Navigation */}
           <nav className="hidden lg:flex items-center gap-1 bg-[#050914]/80 backdrop-blur-md border border-white/10 rounded-full p-1.5 px-2 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
             {menuItems.map((item) => {
               const isActive = activeTab === item.id;
@@ -83,7 +103,7 @@ const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Right Floating Pill CTA */}
+          {/* CTA Button */}
           <div className="hidden lg:flex items-center">
             <a
               href="#contact"
@@ -105,7 +125,7 @@ const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Full-Screen Mobile Drawer Menu */}
+      {/* Full-Screen Mobile Menu Drawer */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
