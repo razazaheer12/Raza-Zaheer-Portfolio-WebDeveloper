@@ -69,10 +69,10 @@ const Navbar: React.FC = () => {
             </motion.div>
             <div className="hidden sm:block">
               <h2 className="text-[15px] font-bold text-white tracking-wide leading-tight" style={{ fontFamily: "Sora, sans-serif" }}>
-                Raza Zaheer
+                
               </h2>
               <p className="text-[9px] uppercase tracking-[2.5px] text-purple-400 font-semibold">
-                Portfolio
+                
               </p>
             </div>
           </a>
