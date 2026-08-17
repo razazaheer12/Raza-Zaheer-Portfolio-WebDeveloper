@@ -28,35 +28,37 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full z-[999] px-4 pt-3">
-        <div className="relative max-w-7xl mx-auto h-[68px] rounded-[22px] bg-[#070C18]/80 backdrop-blur-2xl border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.4)] flex items-center justify-between px-5 lg:px-8 overflow-hidden">
-          
-          {/* Scroll Progress Bar (Theme Matched Gradient) */}
-          <motion.div
-            style={{ width: progressWidth }}
-            className="absolute bottom-0 left-0 h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-[0_0_12px_rgba(139,92,246,0.8)]"
-          />
+      {/* Full-width Blurred Edge-to-Edge Header (Exactly like reference image) */}
+      <header className="fixed top-0 left-0 w-full z-[999] bg-[#070c18]/60 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.3)] transition-all duration-300">
+        
+        {/* Scroll Progress Bar at very bottom of header */}
+        <motion.div
+          style={{ width: progressWidth }}
+          className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-[0_0_12px_rgba(139,92,246,0.9)]"
+        />
 
-          {/* Logo Section */}
+        <div className="max-w-7xl mx-auto h-[72px] px-4 lg:px-8 flex items-center justify-between">
+          
+          {/* Logo Badge (Left) */}
           <a href="#home" className="flex items-center gap-3 shrink-0 group">
             <motion.div
               whileHover={{ rotate: 6, scale: 1.05 }}
-              className="w-10 h-10 rounded-[14px] flex items-center justify-center text-white font-bold bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 shadow-[0_0_15px_rgba(139,92,246,0.5)] transition-all"
+              className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 shadow-[0_0_15px_rgba(139,92,246,0.5)] transition-all"
             >
               RZ
             </motion.div>
             <div className="hidden sm:block">
-              <h2 className="text-[16px] font-bold text-white tracking-wide" style={{ fontFamily: "Sora, sans-serif" }}>
+              <h2 className="text-[15px] font-bold text-white tracking-wide leading-tight" style={{ fontFamily: "Sora, sans-serif" }}>
                 Raza Zaheer
               </h2>
-              <p className="text-[10px] uppercase tracking-[3px] text-purple-400 font-medium">
+              <p className="text-[9px] uppercase tracking-[2.5px] text-purple-400 font-medium">
                 Portfolio
               </p>
             </div>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-1 bg-white/[0.03] border border-white/10 rounded-full p-1.5 px-2">
+          {/* Center Floating Pill Menu (Exactly matching screenshot layout) */}
+          <nav className="hidden lg:flex items-center gap-1 bg-[#030712]/70 border border-white/10 rounded-full p-1.5 px-2 shadow-inner">
             {menuItems.map((item) => {
               const isActive = activeTab === item.id;
               return (
@@ -64,31 +66,31 @@ const Navbar: React.FC = () => {
                   key={item.id}
                   href={item.href}
                   onClick={() => setActiveTab(item.id)}
-                  className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
+                  className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-colors duration-300 ${
                     isActive ? "text-white" : "text-gray-300 hover:text-white"
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activePill"
-                      className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 rounded-full shadow-[0_0_20px_rgba(139,92,246,0.6)]"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 rounded-full shadow-[0_0_18px_rgba(139,92,246,0.7)]"
+                      transition={{ type: "spring", stiffness: 400, damping: 32 }}
                     />
                   )}
                   <span className="relative z-10">{item.name}</span>
                 </a>
               );
             })}
-          </div>
+          </nav>
 
-          {/* Right CTA Button */}
+          {/* Glowing CTA Button (Right) */}
           <div className="hidden lg:flex items-center">
             <a
               href="#contact"
-              className="inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-medium text-sm px-5 py-2.5 rounded-full shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 hover:opacity-90 text-white font-medium text-xs px-5 py-2.5 rounded-full shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all duration-300 hover:scale-105"
             >
               Let's talk
-              <ArrowUpRight size={16} />
+              <ArrowUpRight size={15} />
             </a>
           </div>
 
@@ -101,17 +103,17 @@ const Navbar: React.FC = () => {
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
-      </nav>
+      </header>
 
-      {/* Full-Screen Mobile Drawer Menu */}
+      {/* Full-Screen Mobile Drawer Menu with Blur */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[990] bg-[#070C18]/98 backdrop-blur-2xl flex flex-col justify-between px-6 pt-28 pb-8 lg:hidden"
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[990] bg-[#070c18]/95 backdrop-blur-2xl flex flex-col justify-between px-6 pt-28 pb-8 lg:hidden"
           >
             <div className="flex flex-col gap-3">
               {menuItems.map((item) => {
@@ -164,7 +166,7 @@ const Navbar: React.FC = () => {
         )}
       </AnimatePresence>
 
-      <div className="h-[88px]" />
+      <div className="h-[72px]" />
     </>
   );
 };
