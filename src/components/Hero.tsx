@@ -167,56 +167,6 @@ const SocialIcon = ({ href, icon, hoverColor, hoverShadow, hoverBorder, label }:
   );
 };
 
-// ─────────────────────────────────────────────────────────────────
-// TECH MARQUEE
-// ─────────────────────────────────────────────────────────────────
-const techStack = [
-  { label: "React.js", color: "#61dafb" },
-  { label: "Next.js", color: "#ffffff" },
-  { label: "TypeScript", color: "#3b82f6" },
-  { label: "Node.js", color: "#22c55e" },
-  { label: "NestJS", color: "#f43f5e" },
-  { label: "MongoDB", color: "#4ade80" },
-  { label: "Socket.io", color: "#a3a3a3" },
-  { label: "LangChain", color: "#34d399" },
-  { label: "Pinecone", color: "#2dd4bf" },
-  { label: "Tailwind", color: "#38bdf8" },
-  { label: "Docker", color: "#60a5fa" },
-  { label: "Prisma", color: "#a78bfa" },
-];
-
-const TechMarquee = () => {
-  const doubled = [...techStack, ...techStack];
-  return (
-    <div className="relative w-full overflow-hidden mt-10"
-      style={{
-        WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)",
-        maskImage: "linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)",
-      }}
-    >
-      <motion.div
-        className="flex gap-3 whitespace-nowrap"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ repeat: Infinity, duration: 22, ease: "linear" }}
-        style={{ willChange: "transform" }}
-      >
-        {doubled.map((tech, i) => (
-          <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold shrink-0"
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: `1px solid rgba(255,255,255,0.08)`,
-              color: tech.color,
-              fontFamily: "'Sora', sans-serif",
-              letterSpacing: "0.3px",
-            }}>
-            <span style={{ width: 5, height: 5, borderRadius: "50%", background: tech.color, display: "inline-block", opacity: 0.9 }} />
-            {tech.label}
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  );
-};
 
 // ─────────────────────────────────────────────────────────────────
 // DEVELOPER CARD (Right Column) — Glassmorphism + 3D Tilt
