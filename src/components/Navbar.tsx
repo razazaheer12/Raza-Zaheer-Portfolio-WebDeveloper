@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
-
-// External MrzLogo import 
-import MrzLogo from "./MrzLogo"; 
+import MrzLogo from "./MrzLogo"; // Apne path ke hisab se adjust karein
 
 interface MenuItem {
   id: string;
-  number: string;
   name: string;
   href: string;
 }
 
 const menuItems: MenuItem[] = [
-  { id: "home", number: "01", name: "Home", href: "#home" },
-  { id: "about", number: "02", name: "About", href: "#about" },
-  { id: "skills", number: "03", name: "Skills", href: "#skills" },
-  { id: "projects", number: "04", name: "Projects", href: "#projects" },
-  { id: "experience", number: "05", name: "Experience", href: "#experience" },
-  { id: "contact", number: "06", name: "Contact", href: "#contact" },
+  { id: "home", name: "Home", href: "#home" },
+  { id: "about", name: "About", href: "#about" },
+  { id: "skills", name: "Skills", href: "#skills" },
+  { id: "projects", name: "Projects", href: "#projects" },
+  { id: "experience", name: "Experience", href: "#experience" },
+  { id: "contact", name: "Contact", href: "#contact" },
 ];
 
 const Navbar: React.FC = () => {
@@ -26,7 +23,7 @@ const Navbar: React.FC = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Scroll listener for dynamic frosted glass blur on scroll
+  // Scroll position listener for dynamic backdrop blur
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -40,18 +37,17 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Full-page scroll progress bar
+  // Top progress bar based on page scroll
   const { scrollYProgress } = useScroll();
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <>
-      {/* Header Container with Dynamic Blur Effect */}
       <header
-        className={`fixed top-0 left-0 w-full z-[999] transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full h-20 z-[999] transition-all duration-300 flex items-center ${
           isScrolled
-            ? "bg-[#070c18]/75 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.4)] py-3"
-            : "bg-transparent py-5"
+            ? "bg-[#030712]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.4)]"
+            : "bg-transparent"
         }`}
       >
         {/* Scroll Progress Line */}
@@ -60,7 +56,7 @@ const Navbar: React.FC = () => {
           className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-[0_0_12px_rgba(139,92,246,0.9)]"
         />
 
-        <div className="max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl w-full mx-auto px-4 lg:px-8 flex items-center justify-between">
           
           {/* Logo Section */}
           <a href="#home" className="flex items-center gap-3 shrink-0 group">
@@ -73,15 +69,15 @@ const Navbar: React.FC = () => {
 
             <div className="hidden sm:block">
               <h2 className="text-[15px] font-bold text-white tracking-wide leading-tight" style={{ fontFamily: "Sora, sans-serif" }}>
-                
+                Raza Zaheer
               </h2>
               <p className="text-[9px] uppercase tracking-[2.5px] text-purple-400 font-semibold">
-                
+                Portfolio
               </p>
             </div>
           </a>
 
-          {/* Floating Pill Navigation */}
+          {/* Floating Center Pill Navigation */}
           <nav className="hidden lg:flex items-center gap-1 bg-[#050914]/80 backdrop-blur-md border border-white/10 rounded-full p-1.5 px-2 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
             {menuItems.map((item) => {
               const isActive = activeTab === item.id;
@@ -129,7 +125,7 @@ const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Full-Screen Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -140,7 +136,7 @@ const Navbar: React.FC = () => {
             className="fixed inset-0 z-[990] bg-[#030712]/98 backdrop-blur-2xl flex flex-col justify-between px-6 pt-28 pb-8 lg:hidden"
           >
             <div className="flex flex-col gap-3">
-              {menuItems.map((item) => {
+              {menuItems.map((item, index) => {
                 const isActive = activeTab === item.id;
                 return (
                   <a
@@ -154,7 +150,7 @@ const Navbar: React.FC = () => {
                   >
                     <div className="flex items-center gap-4">
                       <span className="text-xs font-mono text-purple-400 group-hover:text-pink-400 transition-colors">
-                        {item.number}
+                        0{index + 1}
                       </span>
                       <span
                         className={`text-lg font-medium transition-colors ${
