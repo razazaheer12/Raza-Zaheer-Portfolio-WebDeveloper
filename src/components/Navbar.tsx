@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
+// External MrzLogo import 
+import MrzLogo from "./MrzLogo"; 
+
 interface MenuItem {
   id: string;
   number: string;
@@ -23,7 +26,7 @@ const Navbar: React.FC = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Dynamic Scroll Listener
+  // Scroll listener for dynamic frosted glass blur on scroll
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -37,21 +40,21 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Scroll Progress Bar logic
+  // Full-page scroll progress bar
   const { scrollYProgress } = useScroll();
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <>
-      {/* Header Container with Conditional Dynamic Styling */}
+      {/* Header Container with Dynamic Blur Effect */}
       <header
         className={`fixed top-0 left-0 w-full z-[999] transition-all duration-300 ${
           isScrolled
-            ? "bg-[#070c18]/70 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)] py-3"
+            ? "bg-[#070c18]/75 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.4)] py-3"
             : "bg-transparent py-5"
         }`}
       >
-        {/* Scroll Progress Bar at bottom of navbar */}
+        {/* Scroll Progress Line */}
         <motion.div
           style={{ width: progressWidth }}
           className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-[0_0_12px_rgba(139,92,246,0.9)]"
@@ -62,22 +65,23 @@ const Navbar: React.FC = () => {
           {/* Logo Section */}
           <a href="#home" className="flex items-center gap-3 shrink-0 group">
             <motion.div
-              whileHover={{ rotate: 6, scale: 1.05 }}
-              className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 shadow-[0_0_18px_rgba(139,92,246,0.5)] transition-all"
+              whileHover={{ scale: 1.08, rotate: 3 }}
+              className="p-1 flex items-center justify-center transition-all duration-300"
             >
-              RZ
+              <MrzLogo className="w-9 h-9 sm:w-10 sm:h-10 text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] group-hover:text-purple-400 group-hover:drop-shadow-[0_0_16px_rgba(168,85,247,0.8)] transition-all duration-300" />
             </motion.div>
+
             <div className="hidden sm:block">
               <h2 className="text-[15px] font-bold text-white tracking-wide leading-tight" style={{ fontFamily: "Sora, sans-serif" }}>
-                
+                Raza Zaheer
               </h2>
               <p className="text-[9px] uppercase tracking-[2.5px] text-purple-400 font-semibold">
-                
+                Portfolio
               </p>
             </div>
           </a>
 
-          {/* Center Floating Pill Navigation */}
+          {/* Floating Pill Navigation */}
           <nav className="hidden lg:flex items-center gap-1 bg-[#050914]/80 backdrop-blur-md border border-white/10 rounded-full p-1.5 px-2 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
             {menuItems.map((item) => {
               const isActive = activeTab === item.id;
@@ -103,7 +107,7 @@ const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* CTA Button */}
+          {/* Right CTA Button */}
           <div className="hidden lg:flex items-center">
             <a
               href="#contact"
@@ -125,7 +129,7 @@ const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Full-Screen Mobile Menu Drawer */}
+      {/* Full-Screen Mobile Drawer Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -133,7 +137,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[990] bg-[#030712]/95 backdrop-blur-2xl flex flex-col justify-between px-6 pt-28 pb-8 lg:hidden"
+            className="fixed inset-0 z-[990] bg-[#030712]/98 backdrop-blur-2xl flex flex-col justify-between px-6 pt-28 pb-8 lg:hidden"
           >
             <div className="flex flex-col gap-3">
               {menuItems.map((item) => {
