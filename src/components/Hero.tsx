@@ -257,9 +257,9 @@ const socialLinks = [
           <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}>
 
             {/* Badge */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
-              className="inline-flex items-center gap-2 mb-7"
-              style={{ background: theme.badgeBg, border: theme.badgeBorder, borderRadius: 50, padding: "6px 16px" }}>
+           <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+           className="inline-flex items-center gap-2 mt-12 lg:mt-6 mb-7"
+           style={{ background: theme.badgeBg, border: theme.badgeBorder, borderRadius: 50, padding: "6px 16px" }}>
               <motion.div animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }}
                 style={{ width: 7, height: 7, borderRadius: "50%", background: theme.badgeDot }} />
               <span style={{ fontSize: 11, color: theme.badgeText, fontFamily: "'Sora', sans-serif", fontWeight: 600, letterSpacing: "0.5px" }}>Available for work</span>
