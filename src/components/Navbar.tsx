@@ -21,9 +21,17 @@ const menuItems: MenuItem[] = [
 const Navbar: React.FC = () => {
   const [isOpen,    setIsOpen]    = useState(false);
   const [activeTab, setActiveTab] = useState("home");
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const { scrollYProgress } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll();
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  // Detect scroll state for background adaptation
+  useEffect(() => {
+    return scrollY.on("change", (latest) => {
+      setIsScrolled(latest > 20);
+    });
+  }, [scrollY]);
 
   // Auto-detect active section on scroll
   useEffect(() => {
@@ -43,8 +51,14 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* ── Fixed Header Wrapper with Top Blur Overlay ── */}
-      <header className="fixed top-0 left-0 w-full z-[999] pt-4 px-4 lg:px-8 bg-gradient-to-b from-[#030712]/95 via-[#030712]/80 to-transparent backdrop-blur-xl pb-3 transition-all duration-300">
+      {/* ── Dynamic Header Wrapper (Dark at top, Blurred on Scroll) ── */}
+      <header 
+        className={`fixed top-0 left-0 w-full z-[999] pt-4 px-4 lg:px-8 pb-3 transition-all duration-300 ${
+          isScrolled 
+            ? "bg-[#030712]/80 backdrop-blur-xl shadow-lg border-b border-white/[0.05]" 
+            : "bg-[#030712]/95 lg:bg-transparent backdrop-blur-sm"
+        }`}
+      >
 
         {/* Scroll Progress Bar */}
         <motion.div
@@ -54,7 +68,7 @@ const Navbar: React.FC = () => {
 
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           
-          {/* ── Left Isolated Clean Logo ── */}
+          {/* ── Left Isolated Logo ── */}
           <a 
             href="#home" 
             onClick={() => setActiveTab("home")} 
