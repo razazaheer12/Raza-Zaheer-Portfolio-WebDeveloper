@@ -54,11 +54,11 @@ const Navbar: React.FC = () => {
 
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           
-          {/* ── Left Isolated Big Logo ── */}
+          {/* ── Left Isolated Clean Logo ── */}
           <a 
             href="#home" 
             onClick={() => setActiveTab("home")} 
-            className="shrink-0 flex items-center pl-1" 
+            className="shrink-0 flex items-center justify-center pl-1" 
             aria-label="Home"
           >
             <motion.img
@@ -66,14 +66,14 @@ const Navbar: React.FC = () => {
               alt="MRZ"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              style={{ height: 56, width: "auto" }} // Size Increased
+              style={{ height: 56, width: "auto" }}
               className="object-contain filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
             />
           </a>
 
           {/* ── Center Floating Dark Pill Nav ── */}
           <nav 
-            className="hidden lg:flex items-center gap-1 bg-[#030712]/85 backdrop-blur-2xl border border-white/10 rounded-full p-1.5 px-3 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
+            className="hidden lg:flex items-center gap-1.5 bg-[#030712]/85 backdrop-blur-2xl border border-white/10 rounded-full p-2 px-3 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
           >
             {menuItems.map((item) => {
               const isActive = activeTab === item.id;
@@ -82,8 +82,8 @@ const Navbar: React.FC = () => {
                   key={item.id}
                   href={item.href}
                   onClick={() => setActiveTab(item.id)}
-                  className={`relative px-4 py-2 rounded-full text-xs font-medium transition-colors duration-300 ${
-                    isActive ? "text-white" : "text-gray-300 hover:text-white"
+                  className={`relative px-5 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
+                    isActive ? "text-white font-semibold" : "text-gray-300 hover:text-white"
                   }`}
                   style={{ fontFamily: "'Sora', sans-serif", textDecoration: "none" }}
                 >
@@ -104,14 +104,14 @@ const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* ── Right CTA ── */}
+          {/* ── Right CTA Button ── */}
           <div className="hidden lg:flex items-center">
             <motion.a
               href="#contact"
               onClick={() => setActiveTab("contact")}
               whileHover={{ scale: 1.05, boxShadow: "0 0 28px rgba(168,85,247,0.6)" }}
               whileTap={{ scale: 0.96 }}
-              className="inline-flex items-center gap-1.5 text-white font-semibold text-xs px-6 py-2.5 rounded-full transition-all duration-300"
+              className="inline-flex items-center gap-1.5 text-white font-semibold text-sm px-6 py-2.5 rounded-full transition-all duration-300"
               style={{
                 fontFamily: "'Sora', sans-serif",
                 background: "linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%)",
@@ -119,7 +119,7 @@ const Navbar: React.FC = () => {
                 textDecoration: "none",
               }}
             >
-              Let's talk <ArrowUpRight size={14} aria-hidden="true" />
+              Let's talk <ArrowUpRight size={16} aria-hidden="true" />
             </motion.a>
           </div>
 
@@ -189,7 +189,7 @@ const Navbar: React.FC = () => {
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center justify-center gap-2 text-white font-semibold py-4 rounded-full transition-all"
+                className="w-full flex items-center justify-center gap-2 text-white font-semibold py-4 rounded-full transition-all text-base"
                 style={{
                   fontFamily: "'Sora', sans-serif",
                   background: "linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%)",
