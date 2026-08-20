@@ -250,7 +250,7 @@ const socialLinks = [
 
       <ParticlesBackground count={55} color={theme.particle} />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 py-12 pb-24 lg:pb-12">
+       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-36 lg:pt-44 pb-24 lg:pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] lg:min-h-[85vh]">
 
           {/* Left */}
