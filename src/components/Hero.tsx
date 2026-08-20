@@ -250,20 +250,20 @@ const socialLinks = [
 
       <ParticlesBackground count={55} color={theme.particle} />
 
-       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-36 lg:pt-44 pb-24 lg:pb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] lg:min-h-[85vh]">
+       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-24 lg:pt-28 pb-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] lg:min-h-[80vh]">
 
-          {/* Left */}
-          <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}>
+    {/* Left */}
+    <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}>
 
-            {/* Badge */}
-           <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
-           className="inline-flex items-center gap-2 mt-6 lg:mt-8 mb-7"
-           style={{ background: theme.badgeBg, border: theme.badgeBorder, borderRadius: 50, padding: "6px 16px" }}>
-              <motion.div animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }}
-                style={{ width: 7, height: 7, borderRadius: "50%", background: theme.badgeDot }} />
-              <span style={{ fontSize: 11, color: theme.badgeText, fontFamily: "'Sora', sans-serif", fontWeight: 600, letterSpacing: "0.5px" }}>Available for work</span>
-            </motion.div>
+      {/* Badge */}
+      <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+        className="inline-flex items-center gap-2 mb-6"
+        style={{ background: theme.badgeBg, border: theme.badgeBorder, borderRadius: 50, padding: "6px 16px" }}>
+        <motion.div animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }}
+          style={{ width: 7, height: 7, borderRadius: "50%", background: theme.badgeDot }} />
+        <span style={{ fontSize: 11, color: theme.badgeText, fontFamily: "'Sora', sans-serif", fontWeight: 600, letterSpacing: "0.5px" }}>Available for work</span>
+      </motion.div>
 
             {/* Name */}
             <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
