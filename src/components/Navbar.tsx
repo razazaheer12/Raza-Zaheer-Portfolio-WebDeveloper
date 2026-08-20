@@ -43,41 +43,38 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* ── Fixed header wrapper ── */}
-      <header className="fixed top-0 left-0 w-full z-[999] pt-3 px-4 lg:px-6 bg-transparent pointer-events-none">
+      {/* ── Fixed Header Wrapper with Top Blur Overlay ── */}
+      <header className="fixed top-0 left-0 w-full z-[999] pt-4 px-4 lg:px-8 bg-gradient-to-b from-[#030712]/95 via-[#030712]/80 to-transparent backdrop-blur-xl pb-3 transition-all duration-300">
 
         {/* Scroll Progress Bar */}
         <motion.div
           style={{ width: progressWidth }}
-          className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-[0_0_12px_rgba(139,92,246,0.9)]"
+          className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-[0_0_12px_rgba(139,92,246,0.9)] z-50"
         />
 
-        {/* ── Glass container pill ── */}
-        <div
-          className="relative max-w-7xl mx-auto h-[64px] flex items-center justify-between px-5 lg:px-8 pointer-events-auto overflow-hidden"
-          style={{
-            borderRadius: 18,
-            background: "rgba(5,9,20,0.75)",
-            backdropFilter: "blur(22px)",
-            WebkitBackdropFilter: "blur(22px)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.45)",
-          }}
-        >
-
-          {/* ── MRZ Logo ── */}
-          <a href="#home" onClick={() => setActiveTab("home")} className="shrink-0" aria-label="Home">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          
+          {/* ── Left Isolated Big Logo ── */}
+          <a 
+            href="#home" 
+            onClick={() => setActiveTab("home")} 
+            className="shrink-0 flex items-center pl-1" 
+            aria-label="Home"
+          >
             <motion.img
               src="/MRZ VECTOR LOGO.png"
               alt="MRZ"
-              whileHover={{ scale: 1.08, opacity: 0.85 }}
-              whileTap={{ scale: 0.94 }}
-              style={{ height: 42, width: "auto" }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              style={{ height: 56, width: "auto" }} // Size Increased
+              className="object-contain filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
             />
           </a>
 
-          {/* ── Center floating dark pill nav ── */}
-          <nav className="hidden lg:flex items-center gap-1 bg-[#030712]/70 backdrop-blur-md border border-white/10 rounded-full p-1.5 px-2 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+          {/* ── Center Floating Dark Pill Nav ── */}
+          <nav 
+            className="hidden lg:flex items-center gap-1 bg-[#030712]/85 backdrop-blur-2xl border border-white/10 rounded-full p-1.5 px-3 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
+          >
             {menuItems.map((item) => {
               const isActive = activeTab === item.id;
               return (
@@ -85,7 +82,7 @@ const Navbar: React.FC = () => {
                   key={item.id}
                   href={item.href}
                   onClick={() => setActiveTab(item.id)}
-                  className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-colors duration-300 ${
+                  className={`relative px-4 py-2 rounded-full text-xs font-medium transition-colors duration-300 ${
                     isActive ? "text-white" : "text-gray-300 hover:text-white"
                   }`}
                   style={{ fontFamily: "'Sora', sans-serif", textDecoration: "none" }}
@@ -114,7 +111,7 @@ const Navbar: React.FC = () => {
               onClick={() => setActiveTab("contact")}
               whileHover={{ scale: 1.05, boxShadow: "0 0 28px rgba(168,85,247,0.6)" }}
               whileTap={{ scale: 0.96 }}
-              className="inline-flex items-center gap-1.5 text-white font-semibold text-xs px-5 py-2.5 rounded-full transition-all duration-300"
+              className="inline-flex items-center gap-1.5 text-white font-semibold text-xs px-6 py-2.5 rounded-full transition-all duration-300"
               style={{
                 fontFamily: "'Sora', sans-serif",
                 background: "linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%)",
@@ -126,7 +123,7 @@ const Navbar: React.FC = () => {
             </motion.a>
           </div>
 
-          {/* ── Mobile hamburger ── */}
+          {/* ── Mobile Hamburger ── */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
@@ -146,7 +143,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[990] bg-[#030712]/96 backdrop-blur-2xl flex flex-col justify-between px-6 pt-24 pb-8 lg:hidden"
+            className="fixed inset-0 z-[990] bg-[#030712]/96 backdrop-blur-2xl flex flex-col justify-between px-6 pt-28 pb-8 lg:hidden"
           >
             <div className="flex flex-col gap-3">
               {menuItems.map((item) => {
@@ -208,7 +205,7 @@ const Navbar: React.FC = () => {
       </AnimatePresence>
 
       {/* Spacer */}
-      <div className="h-[80px]" />
+      <div className="h-[90px]" />
     </>
   );
 };
