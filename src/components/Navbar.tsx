@@ -111,7 +111,7 @@ const Navbar: React.FC = () => {
               aria-label="Go to home"
             >
               <motion.img
-                src="/MRZ_VECTOR_LOGO.png"
+                src="/MRZ VECTOR LOGO.png"
                 alt="MRZ Logo"
                 whileHover={{ scale: 1.08, opacity: 0.85 }}
                 whileTap={{ scale: 0.95 }}
