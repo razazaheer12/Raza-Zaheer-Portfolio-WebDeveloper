@@ -24,13 +24,7 @@ const Navbar: React.FC = () => {
   const [activeTab, setActiveTab]   = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Hero page wala same Theme Store
   const isDarkMode = useThemeStore((state) => state.isDarkMode);
-
-  // Exact Hero Backgrounds
-  const currentBg = isDarkMode
-    ? "#050816"
-    : "linear-gradient(135deg, #eff6ff 0%, #f5f3ff 50%, #fdf2f8 100%)";
 
   const textColor = isDarkMode ? "text-white" : "text-[#1e1b4b]";
   const subTextColor = isDarkMode ? "text-gray-300" : "text-[#1e1b4b]/70";
@@ -38,14 +32,12 @@ const Navbar: React.FC = () => {
   const { scrollY, scrollYProgress } = useScroll();
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
-  // Scroll detect karke state update
   useEffect(() => {
     return scrollY.on("change", (latest) => {
       setIsScrolled(latest > 20);
     });
   }, [scrollY]);
 
-  // Auto-detect active section on scroll
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
     menuItems.forEach(({ id }) => {
@@ -63,19 +55,19 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* ── Header Wrapper: Exactly Matches Hero Background ── */}
+      {/* ── Header Wrapper ── */}
       <header 
-        className={`fixed top-0 left-0 w-full z-[999] pt-4 px-4 lg:px-8 pb-3 transition-all duration-500 ${
+        className={`fixed top-0 left-0 w-full z-[999] pt-4 px-4 lg:px-8 pb-3 transition-all duration-300 ${
           isScrolled 
             ? "backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.3)] border-b border-white/[0.08]" 
-            : "backdrop-blur-none border-b border-transparent"
+            : "backdrop-blur-none border-b border-transparent bg-transparent"
         }`}
         style={{
           background: isScrolled
             ? isDarkMode
               ? "rgba(5, 8, 22, 0.85)"
               : "rgba(239, 246, 255, 0.85)"
-            : currentBg,
+            : "transparent", // Top par transparent rahega taake Hero ki grid/ambient backdrop dikhe
         }}
       >
 
@@ -106,10 +98,11 @@ const Navbar: React.FC = () => {
 
           {/* ── Center Floating Pill Nav ── */}
           <nav 
-            className="hidden lg:flex items-center gap-1.5 border rounded-full p-2 px-3 shadow-[0_8px_32px_rgba(0,0,0,0.15)] transition-colors duration-500"
+            className="hidden lg:flex items-center gap-1.5 border rounded-full p-2 px-3 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-colors duration-500"
             style={{
-              background: isDarkMode ? "#050816" : "rgba(255, 255, 255, 0.8)",
-              borderColor: isDarkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(30, 27, 75, 0.1)",
+              background: isDarkMode ? "rgba(5, 8, 22, 0.6)" : "rgba(255, 255, 255, 0.6)",
+              backdropFilter: "blur(12px)",
+              borderColor: isDarkMode ? "rgba(255, 255, 255, 0.12)" : "rgba(30, 27, 75, 0.12)",
             }}
           >
             {menuItems.map((item) => {
@@ -247,9 +240,6 @@ const Navbar: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Spacer */}
-      <div className="h-[90px]" />
     </>
   );
 };
