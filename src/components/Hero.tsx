@@ -258,7 +258,7 @@ const socialLinks = [
 
             {/* Badge */}
            <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
-           className="inline-flex items-center gap-2 mt-12 lg:mt-6 mb-7"
+           className="inline-flex items-center gap-2 mt-6 lg:mt-8 mb-7"
            style={{ background: theme.badgeBg, border: theme.badgeBorder, borderRadius: 50, padding: "6px 16px" }}>
               <motion.div animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }}
                 style={{ width: 7, height: 7, borderRadius: "50%", background: theme.badgeDot }} />
