@@ -217,23 +217,34 @@ const About: React.FC = () => {
               Who I Am
             </h3>
 
-            {/* Bio — tightened, single strong paragraph instead of two dense blocks */}
-            <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-6">
-              I'm <span className="font-semibold text-gray-900 dark:text-white">Raza Zaheer</span>,
-              a Front-End Developer with 2+ years of freelance experience delivering
-              production React.js and Next.js applications, now expanding into full-stack
-              and AI-integrated development. I've independently architected and deployed
-              two end-to-end systems: a real-time analytics platform with role-based access
-              control and live Socket.io data streaming, and a RAG-powered chatbot built on
-              Pinecone and LangChain for context-aware document retrieval.
+            {/* Bio — italic body copy with bold name/role, matching the reference style */}
+            <p className="text-sm md:text-base italic text-gray-600 dark:text-gray-300 leading-7 mb-6">
+              I'm{" "}
+              <span className="font-bold not-italic text-gray-900 dark:text-white">
+                Raza Zaheer
+              </span>
+              , a Computer Science graduate and{" "}
+              <span className="font-bold not-italic text-gray-900 dark:text-white">
+                Front-End Developer
+              </span>{" "}
+              with 2+ years of freelance experience delivering production React.js and
+              Next.js applications, now expanding into full-stack and AI-integrated
+              development. I've independently architected and deployed two end-to-end
+              systems: a real-time analytics platform with role-based access control and
+              live Socket.io data streaming, and a RAG-powered chatbot built on Pinecone
+              and LangChain for context-aware document retrieval.
             </p>
 
-            <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-6">
+            <p className="text-sm md:text-base italic text-gray-600 dark:text-gray-300 leading-7 mb-6">
               Beyond writing clean components, I enjoy the harder engineering problems —
               WebSocket reconnection handling, cross-origin auth across split production
-              deployments, and REST API integration end-to-end. Across 10+ client projects,
-              I've maintained 100% on-time delivery while improving user engagement by up
-              to 35% through better UX and performance.
+              deployments, and REST API integration end-to-end. Across 10+ client
+              projects, I've maintained{" "}
+              <span className="font-bold not-italic text-gray-900 dark:text-white">
+                100% on-time delivery
+              </span>{" "}
+              while improving user engagement by up to 35% through better UX and
+              performance.
             </p>
 
             {/* Focus areas — replaces a dense clause list with a scannable grid */}
@@ -269,17 +280,17 @@ const About: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 * i }}
                   viewport={{ once: true }}
-                  whileHover={{ y: -3 }}
-                  className="rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl px-3 py-4 text-center shadow-sm hover:shadow-lg hover:border-purple-300/40 dark:hover:border-purple-400/30 transition-all duration-300"
+                  whileHover={{ y: -4, scale: 1.03 }}
+                  className="group/stat rounded-2xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl px-3 py-5 md:py-6 text-center shadow-sm hover:shadow-xl hover:border-purple-400/50 dark:hover:border-purple-400/40 hover:bg-purple-50 dark:hover:bg-purple-500/10 transition-all duration-300 cursor-default"
                 >
-                  <stat.icon className="w-4 h-4 mx-auto mb-1.5 text-purple-500 dark:text-purple-400" />
+                  <stat.icon className="w-5 h-5 mx-auto mb-2 text-gray-400 dark:text-gray-500 group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-400 transition-colors duration-300" />
                   <div
-                    className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text text-transparent"
+                    className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-400 transition-colors duration-300"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
                     {stat.value}
                   </div>
-                  <div className="mt-1 text-[11px] md:text-xs leading-tight text-gray-500 dark:text-gray-400">
+                  <div className="mt-1.5 text-[10px] md:text-xs font-medium tracking-wide uppercase leading-tight text-gray-500 dark:text-gray-400 group-hover/stat:text-purple-500 dark:group-hover/stat:text-purple-300 transition-colors duration-300">
                     {stat.label}
                   </div>
                 </motion.div>
