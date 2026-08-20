@@ -6,6 +6,9 @@ import {
   Mail,
   User,
   Briefcase,
+  Rocket,
+  TrendingUp,
+  CheckCircle2,
 } from "lucide-react";
 
 const About: React.FC = () => {
@@ -63,10 +66,25 @@ const About: React.FC = () => {
     },
   ];
 
+  // Icon-backed stats — small change that gives the numbers more visual weight
+  const stats = [
+    { icon: Rocket, value: "2", label: "Production Systems Shipped" },
+    { icon: TrendingUp, value: "35%", label: "Engagement Boost" },
+    { icon: CheckCircle2, value: "100%", label: "On-time Delivery" },
+  ];
+
+  // Short, scannable proof points — replaces the dense second paragraph
+  const focusAreas = [
+    "Real-time systems with Socket.io & WebSockets",
+    "RAG pipelines with LangChain & Pinecone",
+    "Role-based access control (JWT + RBAC)",
+    "Cross-origin auth in split production deployments",
+  ];
+
   return (
     <section
       id="about"
-      className="relative overflow-hidden py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-[#050816] dark:via-[#0B1126] dark:to-[#111827]"
+      className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-[#050816] dark:via-[#0B1126] dark:to-[#111827]"
     >
       {/* Background Glow Effects */}
       <div className="absolute inset-0 overflow-hidden">
@@ -91,9 +109,8 @@ const About: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
-          className="text-center mb-16"
+          className="text-center mb-16 md:mb-20"
         >
-          {/* Animated Heading */}
           <h2
             className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white flex justify-center flex-wrap"
             style={{ fontFamily: "Montserrat, sans-serif" }}
@@ -109,7 +126,6 @@ const About: React.FC = () => {
             ))}
           </h2>
 
-          {/* Gradient Line — animated draw-in */}
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: 112 }}
@@ -118,7 +134,6 @@ const About: React.FC = () => {
             className="h-[4px] bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 mx-auto mt-5 rounded-full"
           />
 
-          {/* Small Intro */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -143,14 +158,12 @@ const About: React.FC = () => {
             viewport={{ once: true }}
             className="relative flex justify-center"
           >
-            {/* Glow Behind — slow pulse */}
             <motion.div
               animate={{ scale: [1, 1.08, 1], opacity: [0.7, 1, 0.7] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="absolute h-[420px] w-[420px] rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-[120px]"
             />
 
-            {/* Rotating gradient ring behind the card */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
@@ -162,21 +175,18 @@ const About: React.FC = () => {
               }}
             />
 
-            {/* Image Container */}
             <motion.div
               whileHover={{ y: -6 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="relative group"
             >
-              {/* Main Card */}
-              <div className="relative overflow-hidden rounded-[30px] border border-white/20 bg-white/70 dark:bg-white/5 backdrop-blur-2xl shadow-2xl">
+              {/* Main Card — tighter border, no glow bleed on the edge */}
+              <div className="relative overflow-hidden rounded-[30px] border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)]">
                 <img
                   src="/raza.png"
                   alt="Raza Zaheer"
                   className="w-full max-w-sm lg:max-w-md object-cover rounded-[30px] transition duration-700 group-hover:scale-105"
                 />
-
-                {/* Sheen sweep on hover */}
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </div>
             </motion.div>
@@ -200,7 +210,6 @@ const About: React.FC = () => {
               Frontend Developer · Exploring Full-Stack &amp; AI
             </motion.div>
 
-            {/* Main Title */}
             <h3
               className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-5 leading-snug"
               style={{ fontFamily: "Poppins, sans-serif" }}
@@ -208,25 +217,44 @@ const About: React.FC = () => {
               Who I Am
             </h3>
 
-            {/* Paragraph */}
-            <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-5">
-              I'm a Front-End Developer with 2+ years of freelance experience building
-              production React.js and Next.js applications — currently expanding into
-              full-stack and AI-integrated development. I've independently architected
-              and deployed two end-to-end systems: a real-time MERN chat platform with
-              live presence tracking and instant messaging via Socket.io, and a RAG-powered
-              chatbot using Pinecone and LangChain for context-aware document retrieval.
+            {/* Bio — tightened, single strong paragraph instead of two dense blocks */}
+            <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-6">
+              I'm <span className="font-semibold text-gray-900 dark:text-white">Raza Zaheer</span>,
+              a Front-End Developer with 2+ years of freelance experience delivering
+              production React.js and Next.js applications, now expanding into full-stack
+              and AI-integrated development. I've independently architected and deployed
+              two end-to-end systems: a real-time analytics platform with role-based access
+              control and live Socket.io data streaming, and a RAG-powered chatbot built on
+              Pinecone and LangChain for context-aware document retrieval.
             </p>
 
-            <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-8">
-              Beyond writing clean components, I enjoy solving the harder engineering
-              problems — resolving WebSocket reconnection issues, handling cross-origin
-              auth in split production deployments, and integrating REST APIs end-to-end.
-              Across my freelance work, I've maintained 100% on-time delivery while
-              improving user engagement by up to 35% through better UX and performance.
+            <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 leading-7 mb-6">
+              Beyond writing clean components, I enjoy the harder engineering problems —
+              WebSocket reconnection handling, cross-origin auth across split production
+              deployments, and REST API integration end-to-end. Across 10+ client projects,
+              I've maintained 100% on-time delivery while improving user engagement by up
+              to 35% through better UX and performance.
             </p>
 
-            {/* Highlights — quick-scan proof points for recruiters */}
+            {/* Focus areas — replaces a dense clause list with a scannable grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-8"
+            >
+              {focusAreas.map((item) => (
+                <div key={item} className="flex items-start gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-blue-600 to-purple-500" />
+                  <span className="text-xs md:text-sm text-gray-600 dark:text-gray-300 leading-6">
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Stat cards — icon-backed, more visual weight than plain numbers */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -234,11 +262,7 @@ const About: React.FC = () => {
               viewport={{ once: true }}
               className="grid grid-cols-3 gap-3 mb-8"
             >
-              {[
-                { value: "2", label: "Production Systems Shipped" },
-                { value: "35%", label: "Engagement Boost" },
-                { value: "100%", label: "On-time Delivery" },
-              ].map((stat, i) => (
+              {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
                   initial={{ opacity: 0, y: 10 }}
@@ -248,6 +272,7 @@ const About: React.FC = () => {
                   whileHover={{ y: -3 }}
                   className="rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl px-3 py-4 text-center shadow-sm hover:shadow-lg hover:border-purple-300/40 dark:hover:border-purple-400/30 transition-all duration-300"
                 >
+                  <stat.icon className="w-4 h-4 mx-auto mb-1.5 text-purple-500 dark:text-purple-400" />
                   <div
                     className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text text-transparent"
                     style={{ fontFamily: "Poppins, sans-serif" }}
@@ -261,7 +286,7 @@ const About: React.FC = () => {
               ))}
             </motion.div>
 
-            {/* Info Cards — staggered entrance + hover lift */}
+            {/* Info Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               {infoCards.map((card, i) => (
                 <motion.div
@@ -299,7 +324,7 @@ const About: React.FC = () => {
               ))}
             </div>
 
-            {/* Resume Button */}
+            {/* CTAs — resume is now the primary filled action, "Let's talk" lives in the navbar already */}
             <motion.a
               href="/Raza_Zaheer_Resume.pdf"
               download="Raza_Zaheer_Resume.pdf"
@@ -307,11 +332,8 @@ const About: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="group relative inline-flex items-center gap-3 rounded-2xl border border-gray-300 dark:border-white/15 bg-white/80 dark:bg-white/5 backdrop-blur-sm px-7 py-4 text-gray-800 dark:text-white font-medium shadow-sm transition-all duration-500 hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.4)] overflow-hidden"
+              className="group relative inline-flex items-center gap-3 rounded-2xl px-7 py-4 text-white font-medium shadow-[0_10px_40px_-10px_rgba(168,85,247,0.6)] transition-all duration-500 hover:shadow-[0_15px_50px_-10px_rgba(168,85,247,0.8)] overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500"
             >
-              {/* Gradient fill — slides in on hover */}
-              <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
               <Download className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" />
               <span className="relative z-10 tracking-wide">Download Resume</span>
             </motion.a>
