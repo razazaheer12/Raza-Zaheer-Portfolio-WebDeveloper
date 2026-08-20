@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
   const { scrollY, scrollYProgress } = useScroll();
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
-  // Detect scroll state for background adaptation
+  // Scroll detect karke background transform karne ke liye logic
   useEffect(() => {
     return scrollY.on("change", (latest) => {
       setIsScrolled(latest > 20);
@@ -51,12 +51,12 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* ── Dynamic Header Wrapper (Dark at top, Blurred on Scroll) ── */}
+      {/* ── Header Wrapper: Top par Dark Solid, Scroll par Frosted Blur Glass ── */}
       <header 
         className={`fixed top-0 left-0 w-full z-[999] pt-4 px-4 lg:px-8 pb-3 transition-all duration-300 ${
           isScrolled 
-            ? "bg-[#030712]/80 backdrop-blur-xl shadow-lg border-b border-white/[0.05]" 
-            : "bg-[#030712]/95 lg:bg-transparent backdrop-blur-sm"
+            ? "bg-[#030712]/75 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] border-b border-white/[0.08]" 
+            : "bg-[#030712] backdrop-blur-none border-b border-transparent"
         }`}
       >
 
@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
 
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           
-          {/* ── Left Isolated Logo ── */}
+          {/* ── Left Logo ── */}
           <a 
             href="#home" 
             onClick={() => setActiveTab("home")} 
@@ -85,9 +85,9 @@ const Navbar: React.FC = () => {
             />
           </a>
 
-          {/* ── Center Floating Dark Pill Nav ── */}
+          {/* ── Center Floating Pill Nav ── */}
           <nav 
-            className="hidden lg:flex items-center gap-1.5 bg-[#030712]/85 backdrop-blur-2xl border border-white/10 rounded-full p-2 px-3 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
+            className="hidden lg:flex items-center gap-1.5 bg-[#030712] border border-white/10 rounded-full p-2 px-3 shadow-[0_8px_32px_rgba(0,0,0,0.6)]"
           >
             {menuItems.map((item) => {
               const isActive = activeTab === item.id;
