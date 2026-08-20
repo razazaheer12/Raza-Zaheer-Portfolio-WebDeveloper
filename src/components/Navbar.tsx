@@ -25,10 +25,9 @@ const Navbar: React.FC = () => {
   const { scrollYProgress } = useScroll();
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
-  // ── Auto-detect active section on scroll ──────────────────
+  // Auto-detect active section on scroll
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
-
     menuItems.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (!el) return;
@@ -39,13 +38,13 @@ const Navbar: React.FC = () => {
       obs.observe(el);
       observers.push(obs);
     });
-
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-[999] pt-4 px-4 lg:px-8 bg-transparent pointer-events-none">
+      {/* ── Fixed header wrapper ── */}
+      <header className="fixed top-0 left-0 w-full z-[999] pt-3 px-4 lg:px-6 bg-transparent pointer-events-none">
 
         {/* Scroll Progress Bar */}
         <motion.div
@@ -53,21 +52,32 @@ const Navbar: React.FC = () => {
           className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-[0_0_12px_rgba(139,92,246,0.9)]"
         />
 
-        <div className="max-w-7xl mx-auto h-[60px] flex items-center justify-between pointer-events-auto">
+        {/* ── Glass container pill ── */}
+        <div
+          className="relative max-w-7xl mx-auto h-[64px] flex items-center justify-between px-5 lg:px-8 pointer-events-auto overflow-hidden"
+          style={{
+            borderRadius: 18,
+            background: "rgba(5,9,20,0.75)",
+            backdropFilter: "blur(22px)",
+            WebkitBackdropFilter: "blur(22px)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.45)",
+          }}
+        >
 
-          {/* ── MRZ Vector Logo (Left) ───────────────────── */}
-          <a href="#home" className="flex items-center shrink-0 group">
+          {/* ── MRZ Logo ── */}
+          <a href="#home" onClick={() => setActiveTab("home")} className="shrink-0" aria-label="Home">
             <motion.img
-              src="/MRZ VECTOR LOGO.png"
+              src="/MRZ_VECTOR_LOGO.png"
               alt="MRZ"
               whileHover={{ scale: 1.08, opacity: 0.85 }}
               whileTap={{ scale: 0.94 }}
-              style={{ height: 44, width: "auto" }}
+              style={{ height: 42, width: "auto" }}
             />
           </a>
 
-          {/* ── Center Floating Dark Pill Nav ─────────────── */}
-          <nav className="hidden lg:flex items-center gap-1 bg-[#050914]/80 backdrop-blur-md border border-white/10 rounded-full p-1.5 px-2 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+          {/* ── Center floating dark pill nav ── */}
+          <nav className="hidden lg:flex items-center gap-1 bg-[#030712]/70 backdrop-blur-md border border-white/10 rounded-full p-1.5 px-2 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
             {menuItems.map((item) => {
               const isActive = activeTab === item.id;
               return (
@@ -78,12 +88,16 @@ const Navbar: React.FC = () => {
                   className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-colors duration-300 ${
                     isActive ? "text-white" : "text-gray-300 hover:text-white"
                   }`}
-                  style={{ fontFamily: "'Sora', sans-serif" }}
+                  style={{ fontFamily: "'Sora', sans-serif", textDecoration: "none" }}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activePill"
-                      className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 rounded-full shadow-[0_0_20px_rgba(168,85,247,0.7)]"
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        background: "linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%)",
+                        boxShadow: "0 0 20px rgba(168,85,247,0.65)",
+                      }}
                       transition={{ type: "spring", stiffness: 400, damping: 32 }}
                     />
                   )}
@@ -93,21 +107,29 @@ const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* ── Right CTA ─────────────────────────────────── */}
+          {/* ── Right CTA ── */}
           <div className="hidden lg:flex items-center">
-            <a
+            <motion.a
               href="#contact"
-              className="inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 hover:opacity-90 text-white font-medium text-xs px-5 py-2.5 rounded-full shadow-[0_0_20px_rgba(168,85,247,0.5)] transition-all duration-300 hover:scale-105"
-              style={{ fontFamily: "'Sora', sans-serif" }}
+              onClick={() => setActiveTab("contact")}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 28px rgba(168,85,247,0.6)" }}
+              whileTap={{ scale: 0.96 }}
+              className="inline-flex items-center gap-1.5 text-white font-semibold text-xs px-5 py-2.5 rounded-full transition-all duration-300"
+              style={{
+                fontFamily: "'Sora', sans-serif",
+                background: "linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%)",
+                boxShadow: "0 0 20px rgba(168,85,247,0.45)",
+                textDecoration: "none",
+              }}
             >
-              Let's talk <ArrowUpRight size={15} aria-hidden="true" />
-            </a>
+              Let's talk <ArrowUpRight size={14} aria-hidden="true" />
+            </motion.a>
           </div>
 
-          {/* ── Mobile Hamburger ──────────────────────────── */}
+          {/* ── Mobile hamburger ── */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden w-10 h-10 rounded-xl bg-[#050914]/80 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+            className="lg:hidden w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
             aria-label="Toggle Menu"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -116,7 +138,7 @@ const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* ── Mobile Fullscreen Drawer ──────────────────────── */}
+      {/* ── Mobile Fullscreen Drawer ── */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -124,7 +146,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[990] bg-[#030712]/95 backdrop-blur-2xl flex flex-col justify-between px-6 pt-28 pb-8 lg:hidden"
+            className="fixed inset-0 z-[990] bg-[#030712]/96 backdrop-blur-2xl flex flex-col justify-between px-6 pt-24 pb-8 lg:hidden"
           >
             <div className="flex flex-col gap-3">
               {menuItems.map((item) => {
@@ -138,14 +160,16 @@ const Navbar: React.FC = () => {
                     style={{ textDecoration: "none" }}
                   >
                     <div className="flex items-center gap-4">
-                      <span className="text-xs font-mono text-purple-400 group-hover:text-pink-400 transition-colors"
-                        style={{ fontFamily: "'Sora', sans-serif" }}>
+                      <span
+                        className="text-xs font-mono text-purple-400 group-hover:text-pink-400 transition-colors"
+                        style={{ fontFamily: "'Sora', sans-serif" }}
+                      >
                         {item.number}
                       </span>
                       <span
-                        className={`text-lg font-medium transition-colors ${
+                        className={`text-2xl font-bold transition-colors ${
                           isActive
-                            ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-bold"
+                            ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400"
                             : "text-gray-200 group-hover:text-white"
                         }`}
                         style={{ fontFamily: "'Sora', sans-serif" }}
@@ -156,7 +180,7 @@ const Navbar: React.FC = () => {
                     <ArrowUpRight
                       size={18}
                       aria-hidden="true"
-                      className="text-gray-500 group-hover:text-purple-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                      className="text-gray-500 group-hover:text-purple-400 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     />
                   </a>
                 );
@@ -168,8 +192,13 @@ const Navbar: React.FC = () => {
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 text-white font-medium py-3.5 rounded-full shadow-[0_0_25px_rgba(139,92,246,0.5)] transition-all"
-                style={{ fontFamily: "'Sora', sans-serif", textDecoration: "none" }}
+                className="w-full flex items-center justify-center gap-2 text-white font-semibold py-4 rounded-full transition-all"
+                style={{
+                  fontFamily: "'Sora', sans-serif",
+                  background: "linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%)",
+                  boxShadow: "0 0 28px rgba(139,92,246,0.5)",
+                  textDecoration: "none",
+                }}
               >
                 Let's talk <ArrowUpRight size={18} aria-hidden="true" />
               </a>
@@ -177,6 +206,9 @@ const Navbar: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Spacer */}
+      <div className="h-[80px]" />
     </>
   );
 };
