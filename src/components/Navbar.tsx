@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
           {/* ── MRZ Logo ── */}
           <a href="#home" onClick={() => setActiveTab("home")} className="shrink-0" aria-label="Home">
             <motion.img
-              src="/MRZ_VECTOR_LOGO.png"
+              src="/MRZ VECTOR LOGO.png"
               alt="MRZ"
               whileHover={{ scale: 1.08, opacity: 0.85 }}
               whileTap={{ scale: 0.94 }}
