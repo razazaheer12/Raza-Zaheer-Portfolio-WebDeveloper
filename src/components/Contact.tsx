@@ -192,31 +192,35 @@ const Contact = () => {
               ))}
             </div>
 
-            {/* Social links */}
-            <div>
-              <p className="text-xs uppercase tracking-[2px] text-gray-400 dark:text-gray-500 font-semibold mb-4"
-                style={{ fontFamily: "'Sora', sans-serif" }}>
-                Find me on
-              </p>
-              <div className="flex gap-3">
-                {socialLinks.map(({ href, icon, label, gradient, hoverShadow }) => (
-                  <motion.a
-                    key={label}
-                    href={href}
-                    aria-label={label}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ y: -4, scale: 1.08 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r ${gradient} text-white text-sm font-semibold shadow-md hover:shadow-xl ${hoverShadow} transition-all duration-300`}
-                    style={{ fontFamily: "'Sora', sans-serif" }}
-                  >
-                    {icon} {label}
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+         {/* Social links */}
+<div>
+  <p className="text-xs uppercase tracking-[2px] text-gray-400 dark:text-gray-500 font-semibold mb-4"
+    style={{ fontFamily: "'Sora', sans-serif" }}>
+    Find me on
+  </p>
+  <div className="flex gap-3">
+    {[
+      { href: 'https://github.com/razazaheer12', icon: <Github size={20} aria-hidden="true" />, label: 'GitHub' },
+      { href: 'https://www.linkedin.com/in/raza-zaheer/', icon: <Linkedin size={20} aria-hidden="true" />, label: 'LinkedIn' },
+    ].map(({ href, icon, label }) => (
+      <motion.a
+        key={label}
+        href={href}
+        aria-label={label}
+        target="_blank"
+        rel="noopener noreferrer"
+        whileHover={{ y: -4, scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-white/[0.04] dark:bg-white/[0.04] border border-purple-500/30 text-gray-200 text-sm font-semibold shadow-sm hover:border-purple-500 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.35)] transition-all duration-300"
+        style={{ fontFamily: "'Sora', sans-serif" }}
+      >
+        <span className="text-purple-400">{icon}</span> {label}
+      </motion.a>
+    ))}
+  </div>
+</div>
+          
+     </motion.div>
 
           {/* Right Column — Form */}
           <motion.div
