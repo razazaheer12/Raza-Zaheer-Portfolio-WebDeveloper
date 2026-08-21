@@ -268,8 +268,9 @@ const Skills = () => {
                 {/* Internal subtle gradient highlight on hover */}
                 <span className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-fuchsia-500/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
                 <span className="relative z-10 tracking-wide">{cat}</span>
-            </motion.button>
-          ))}
+              </motion.button>
+            );
+          })}
         </motion.div>
 
         {/* Category Grid — AnimatePresence for smooth tab switching */}
