@@ -286,49 +286,68 @@ const Projects = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
-        {/* Heading Section */}
-        <motion.div variants={typingContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center mb-16">
-          
-          {/* Requested Purple Gradient PORTFOLIO Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-4 bg-purple-900/30 border border-purple-500/40 text-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.25)] backdrop-blur-md"
-          >
-            <FolderGit2 className="w-3.5 h-3.5 text-purple-400" />
-            <span
-              className="text-xs uppercase tracking-[2.5px] font-bold bg-gradient-to-r from-purple-300 via-fuchsia-300 to-pink-300 bg-clip-text text-transparent"
-              style={{ fontFamily: "'Sora', sans-serif" }}
-            >
-              PORTFOLIO
-            </span>
-          </motion.div>
+      {/* Heading Section */}
+<motion.div
+  variants={typingContainer}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  className="text-center mb-16"
+>
+  {/* DISCOVERY Style - PORTFOLIO Badge */}
+  <motion.div
+    initial={{ opacity: 0, y: -10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    viewport={{ once: true }}
+    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 border border-[#A855F7]/40 bg-[#A855F7]/10 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.2)]"
+  >
+    <FolderGit2 className="w-3.5 h-3.5 text-[#A855F7]" />
+    <span
+      className="text-xs uppercase tracking-[2.5px] font-bold text-white"
+      style={{ fontFamily: "'Sora', sans-serif" }}
+    >
+      PORTFOLIO
+    </span>
+  </motion.div>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white flex justify-center flex-wrap"
-            style={{ fontFamily: "'Sora', Montserrat, sans-serif", letterSpacing: "-0.02em" }}>
-            {title.split("").map((char, i) => (
-              <motion.span key={i} variants={typingText} className="inline-block">
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-          </h2>
-          <div className="flex items-center justify-center gap-2 mt-5">
-            <div className="h-px w-10 bg-gradient-to-r from-transparent to-blue-500/40" />
-            <motion.div initial={{ width: 0 }} whileInView={{ width: 80 }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }} viewport={{ once: true }}
-              className="h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
-            <div className="h-px w-10 bg-gradient-to-l from-transparent to-pink-500/40" />
-          </div>
-          <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }} viewport={{ once: true }}
-            className="mt-6 text-sm md:text-[0.95rem] text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-[1.8]"
-            style={{ fontFamily: "'DM Sans', sans-serif" }}>
-            From AI-integrated backends to pixel-perfect frontends — each project
-            was built to solve a real problem and ship to production.
-          </motion.p>
-        </motion.div>
+  {/* Main Title with #A855F7 -> #F472FF Gradient */}
+  <h2
+    className="text-4xl md:text-5xl font-bold flex justify-center flex-wrap gap-x-3"
+    style={{ fontFamily: "'Sora', Montserrat, sans-serif", letterSpacing: "-0.02em" }}
+  >
+    <span className="text-gray-900 dark:text-white">Featured</span>
+    <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
+      Projects
+    </span>
+  </h2>
+
+  {/* Bottom Multicolor Underline */}
+  <div className="flex items-center justify-center gap-2 mt-5">
+    <div className="h-px w-10 bg-gradient-to-r from-transparent to-blue-500/40" />
+    <motion.div
+      initial={{ width: 0 }}
+      whileInView={{ width: 80 }}
+      transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
+      viewport={{ once: true }}
+      className="h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-[#A855F7] to-[#F472FF]"
+    />
+    <div className="h-px w-10 bg-gradient-to-l from-transparent to-[#F472FF]/40" />
+  </div>
+
+  {/* Description Subtext */}
+  <motion.p
+    initial={{ opacity: 0, y: 10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, delay: 0.4 }}
+    viewport={{ once: true }}
+    className="mt-6 text-sm md:text-[0.95rem] text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-[1.8]"
+    style={{ fontFamily: "'DM Sans', sans-serif" }}
+  >
+    From AI-integrated backends to pixel-perfect frontends — each project
+    was built to solve a real problem and ship to production.
+  </motion.p>
+</motion.div>
 
         {/* Hero Projects label */}
         <div className="flex items-center gap-4 mb-6">
