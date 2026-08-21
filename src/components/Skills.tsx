@@ -206,8 +206,8 @@ const Skills = () => {
           className="text-center mb-12"
         >
           <h2
-            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 flex justify-center"
-            style={{ fontFamily: "'Sora', Montserrat, sans-serif", letterSpacing: "-0.02em" }}
+            className="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-white via-[#D8B4FE] to-[#A855F7] bg-clip-text text-transparent mb-4 flex justify-center"
+            style={{ fontFamily: "'Sora', Montserrat, sans-serif" }}
           >
             {heading.split("").map((char, i) => (
               <motion.span key={i} variants={typingLetter} className="inline-block">
