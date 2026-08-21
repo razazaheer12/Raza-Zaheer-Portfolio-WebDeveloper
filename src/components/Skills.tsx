@@ -241,36 +241,33 @@ const Skills = () => {
             the full stack I build with.
           </motion.p>
         </motion.div>
-
-        {/* Category Tabs */}
+        
+      {/* Dark Glassmorphic Category Buttons (Matched with Contact Theme) */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-3 mb-10"
+          className="flex flex-wrap justify-center gap-3.5 mb-10"
         >
-          {categories.map((cat) => (
-            <motion.button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              whileHover={{ y: -2, scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className={`relative px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 overflow-hidden
-                ${activeCategory === cat
-                  ? "text-white shadow-lg"
-                  : "text-gray-600 dark:text-gray-400 bg-white/60 dark:bg-white/[0.04] border border-gray-200 dark:border-white/10 hover:border-purple-300/40 dark:hover:border-white/20"
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat;
+            return (
+              <motion.button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`relative px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-md overflow-hidden ${
+                  isActive
+                    ? "bg-purple-900/40 text-white border border-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+                    : "bg-white/[0.04] text-purple-200/80 border border-purple-500/30 hover:border-purple-500 hover:text-white hover:shadow-[0_0_15px_rgba(168,85,247,0.3)]"
                 }`}
-              style={{ fontFamily: "'Sora', sans-serif" }}
-            >
-              {activeCategory === cat && (
-                <motion.span
-                  layoutId="activeTab"
-                  className={`absolute inset-0 rounded-full bg-gradient-to-r ${categoryColors[cat]}`}
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
-                />
-              )}
-              <span className="relative z-10">{cat}</span>
+                style={{ fontFamily: "'Sora', sans-serif" }}
+              >
+                {/* Internal subtle gradient highlight on hover */}
+                <span className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-fuchsia-500/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                <span className="relative z-10 tracking-wide">{cat}</span>
             </motion.button>
           ))}
         </motion.div>
