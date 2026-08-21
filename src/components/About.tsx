@@ -167,7 +167,7 @@ const About: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Content */}
+     {/* Right Content */}
           <motion.div
             initial={{ opacity: 0, x: 70 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -179,14 +179,15 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 rounded-full bg-blue-100 dark:bg-blue-500/10 px-3.5 py-1.5 text-xs font-semibold text-blue-700 dark:text-blue-300 mb-4"
+              className="inline-flex items-center gap-2 rounded-full bg-blue-100 dark:bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-700 dark:text-blue-300 mb-6"
             >
-              <Briefcase size={14} />
+              <Briefcase size={16} />
               Frontend Developer · Exploring Full-Stack &amp; AI
             </motion.div>
 
+            {/* Main Title */}
             <h3
-              className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4 leading-snug"
+              className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-5 leading-snug"
               style={{ fontFamily: "Poppins, sans-serif" }}
             >
               Who I Am
