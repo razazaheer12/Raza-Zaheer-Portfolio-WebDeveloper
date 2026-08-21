@@ -34,19 +34,19 @@ const TypingAnimation = ({ text, className, delay = 0 }: { text: string; classNa
       <motion.span
         animate={{ opacity: [1, 0] }}
         transition={{ repeat: Infinity, duration: 0.55 }}
-        className="text-blue-500 dark:text-blue-400"
+        className="text-[#8FA8FF]"
       >|</motion.span>
     </span>
   );
 };
 
 // ── Info Card ─────────────────────────────────────────────────
-const InfoCard = ({ icon, label, value, color }: { icon: React.ReactNode; label: string; value: string; color: string }) => (
+const InfoCard = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) => (
   <motion.div
     whileHover={{ y: -4, scale: 1.02 }}
     className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200/70 dark:border-white/[0.07] bg-white/60 dark:bg-white/[0.03] backdrop-blur-xl shadow-sm hover:shadow-lg hover:border-purple-300/40 dark:hover:border-white/[0.15] transition-all duration-300"
   >
-    <div className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${color}`}>
+    <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-[#131C39]/80 border border-[#6B4EFF]/40 shadow-[0_0_12px_rgba(104,87,255,0.15)]">
       {icon}
     </div>
     <div>
@@ -79,7 +79,7 @@ const Contact = () => {
     }
   };
 
-const socialLinks = [
+  const socialLinks = [
     { href: 'https://github.com/razazaheer12', icon: <Github size={20} aria-hidden="true" />, label: 'GitHub', gradient: 'from-gray-700 to-gray-900 dark:from-gray-600 dark:to-gray-800', hoverShadow: 'hover:shadow-gray-500/30' },
     { href: 'https://www.linkedin.com/in/raza-zaheer/', icon: <Linkedin size={20} aria-hidden="true" />, label: 'LinkedIn', gradient: 'from-blue-600 to-blue-700', hoverShadow: 'hover:shadow-blue-500/30' },
   ];
@@ -115,15 +115,15 @@ const socialLinks = [
           className="text-center mb-16"
         >
           <h2
-            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4"
-            style={{ fontFamily: "'Sora', Montserrat, sans-serif", letterSpacing: '-0.02em' }}
+            className="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-white via-[#D8B4FE] to-[#A855F7] bg-clip-text text-transparent mb-4"
+            style={{ fontFamily: "'Sora', Montserrat, sans-serif" }}
           >
             <TypingAnimation text="Get In Touch" className="" />
           </h2>
 
-          {/* Accent line — draw-in */}
+          {/* Accent line */}
           <div className="flex items-center justify-center gap-2 mt-4">
-            <div className="h-px w-10 bg-gradient-to-r from-transparent to-blue-500/40" />
+            <div className="h-px w-10 bg-gradient-to-r from-transparent to-purple-500/40" />
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: 90 }}
@@ -176,9 +176,9 @@ const socialLinks = [
             {/* Info Cards */}
             <div className="space-y-3">
               {[
-                { icon: <Mail size={18} className="text-blue-500" />, label: 'Email', value: 'razazaheer2002@gmail.com', color: 'bg-blue-50 dark:bg-blue-500/10' },
-                { icon: <MapPin size={18} className="text-pink-500" />, label: 'Location', value: 'Karachi, Pakistan', color: 'bg-pink-50 dark:bg-pink-500/10' },
-                { icon: <CheckCircle2 size={18} className="text-green-500" />, label: 'Status', value: 'Available for Work', color: 'bg-green-50 dark:bg-green-500/10' },
+                { icon: <Mail size={18} className="text-[#8FA8FF]" />, label: 'Email', value: 'razazaheer2002@gmail.com' },
+                { icon: <MapPin size={18} className="text-[#8FA8FF]" />, label: 'Location', value: 'Karachi, Pakistan' },
+                { icon: <CheckCircle2 size={18} className="text-[#8FA8FF]" />, label: 'Status', value: 'Available for Work' },
               ].map((item, i) => (
                 <motion.div
                   key={item.label}
@@ -251,7 +251,7 @@ const socialLinks = [
                       {...register('name', { required: 'Name is required' })}
                       type="text"
                       placeholder="Your name"
-                      className="pl-11 w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] p-3.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300"
+                      className="pl-11 w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] p-3.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300"
                       style={{ fontFamily: "'DM Sans', sans-serif" }}
                     />
                   </div>
@@ -273,7 +273,7 @@ const socialLinks = [
                       })}
                       type="email"
                       placeholder="your@email.com"
-                      className="pl-11 w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] p-3.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300"
+                      className="pl-11 w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] p-3.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300"
                       style={{ fontFamily: "'DM Sans', sans-serif" }}
                     />
                   </div>
@@ -292,7 +292,7 @@ const socialLinks = [
                       {...register('message', { required: 'Message is required' })}
                       rows={5}
                       placeholder="Tell me about your project or opportunity..."
-                      className="pl-11 w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] p-3.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 hover:border-gray-300 dark:hover:border-white/20 resize-none transition-all duration-300"
+                      className="pl-11 w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] p-3.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 hover:border-gray-300 dark:hover:border-white/20 resize-none transition-all duration-300"
                       style={{ fontFamily: "'DM Sans', sans-serif" }}
                     />
                   </div>
