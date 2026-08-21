@@ -72,13 +72,6 @@ const About: React.FC = () => {
     { icon: CheckCircle2, value: "100%", label: "On-time Delivery" },
   ];
 
-  const focusAreas = [
-    "Real-time systems with Socket.io & WebSockets",
-    "RAG pipelines with LangChain & Pinecone",
-    "Role-based access control (JWT + RBAC)",
-    "Cross-origin auth in split production deployments",
-  ];
-
   return (
     <section
       id="about"
@@ -216,7 +209,7 @@ const About: React.FC = () => {
               and LangChain for context-aware document retrieval.
             </p>
 
-            <p className="text-sm md:text-base italic text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
+            <p className="text-sm md:text-base italic text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
               Beyond writing clean components, I enjoy the harder engineering problems —
               WebSocket reconnection handling, cross-origin auth across split production
               deployments, and REST API integration end-to-end. Across 10+ client
@@ -227,24 +220,6 @@ const About: React.FC = () => {
               while improving user engagement by up to 35% through better UX and
               performance.
             </p>
-
-            {/* Compact Focus Area Tags */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="flex flex-wrap gap-2 mb-6"
-            >
-              {focusAreas.map((item) => (
-                <span
-                  key={item}
-                  className="text-[11px] font-medium text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full px-3 py-1"
-                >
-                  {item}
-                </span>
-              ))}
-            </motion.div>
 
             {/* Compact Stat Boxes with Purple Hover */}
             <motion.div
