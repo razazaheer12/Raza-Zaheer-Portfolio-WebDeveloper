@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, ArrowRight, ArrowUp, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, Github, ArrowRight, ArrowUp, Star, ChevronLeft, ChevronRight, Briefcase } from "lucide-react";
 
 const projects = [
   {
@@ -103,15 +103,6 @@ const projects = [
   },
 ];
 
-const typingContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
-};
-const typingText = {
-  hidden: { opacity: 0, y: "0.25em" },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
-};
-
 // ── Featured Spotlight Card ───────────────────────────────────
 const SpotlightCard = ({ project, direction }: { project: (typeof projects)[0]; direction: number }) => (
   <motion.div
@@ -120,9 +111,9 @@ const SpotlightCard = ({ project, direction }: { project: (typeof projects)[0]; 
     animate={{ opacity: 1, x: 0 }}
     exit={{ opacity: 0, x: direction > 0 ? -60 : 60 }}
     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-    className="group relative flex flex-col lg:flex-row rounded-3xl overflow-hidden border border-gray-200/70 dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl shadow-lg hover:shadow-2xl hover:shadow-purple-500/10 hover:border-purple-300/40 dark:hover:border-white/[0.15] transition-all duration-500"
+    className="group relative flex flex-col lg:flex-row rounded-3xl overflow-hidden border border-purple-500/10 dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl shadow-lg hover:shadow-2xl hover:shadow-purple-500/15 hover:border-purple-400/30 transition-all duration-500"
   >
-    {/* Image — left on desktop, top on mobile */}
+    {/* Image */}
     <div className="relative overflow-hidden lg:w-[55%] h-64 lg:h-auto shrink-0">
       <img
         src={project.image}
@@ -142,15 +133,14 @@ const SpotlightCard = ({ project, direction }: { project: (typeof projects)[0]; 
       </div>
     </div>
 
-    {/* Content — right on desktop */}
+    {/* Content */}
     <div className="relative flex flex-col flex-1 p-6 lg:p-8 justify-between">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-r-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-violet-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-r-3xl" />
 
       <div className="relative">
-        {/* Title + buttons */}
         <div className="flex items-start justify-between gap-3 mb-3">
           <h3
-            className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 leading-snug"
+            className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-purple-400 transition-colors duration-300 leading-snug"
             style={{ fontFamily: "'Sora', sans-serif" }}
           >
             {project.title}
@@ -158,13 +148,13 @@ const SpotlightCard = ({ project, direction }: { project: (typeof projects)[0]; 
           <div className="flex gap-2 shrink-0 mt-0.5">
             {project.liveUrl && (
               <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-500/20 text-xs font-semibold hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300"
+                className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-300 border border-purple-100 dark:border-purple-500/20 text-xs font-semibold hover:bg-purple-600 hover:text-white hover:border-transparent transition-all duration-300"
                 style={{ fontFamily: "'Sora', sans-serif" }}>
                 <ExternalLink size={11} aria-hidden="true" /> Live
               </a>
             )}
             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 text-xs font-semibold hover:bg-violet-600 hover:text-white hover:border-transparent transition-all duration-300"
+              className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 text-xs font-semibold hover:bg-purple-600 hover:text-white hover:border-transparent transition-all duration-300"
               style={{ fontFamily: "'Sora', sans-serif" }}>
               <Github size={11} aria-hidden="true" /> Code
             </a>
@@ -181,7 +171,7 @@ const SpotlightCard = ({ project, direction }: { project: (typeof projects)[0]; 
           {project.tech.map((tech) => (
             <span
               key={tech}
-              className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-500/20"
+              className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-300 border border-purple-500/20"
               style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
               {tech}
@@ -201,7 +191,7 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
     transition={{ duration: 0.5, delay: (index % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
     viewport={{ once: true }}
     whileHover={{ y: -6 }}
-    className="group relative flex flex-col rounded-2xl overflow-hidden border border-gray-200/70 dark:border-white/[0.07] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl shadow-sm hover:shadow-xl hover:shadow-blue-500/8 dark:hover:shadow-purple-500/8 hover:border-gray-300/80 dark:hover:border-white/[0.12] transition-all duration-500"
+    className="group relative flex flex-col rounded-2xl overflow-hidden border border-gray-200/70 dark:border-white/[0.07] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl shadow-sm hover:shadow-xl hover:shadow-purple-500/10 hover:border-purple-500/30 transition-all duration-500"
   >
     <div className="relative overflow-hidden">
       <img src={project.image} alt={project.title}
@@ -210,13 +200,13 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
       <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-400">
         {project.liveUrl && (
           <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/90 dark:bg-white/10 backdrop-blur-md border border-white/30 text-gray-800 dark:text-white text-xs font-semibold hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300 shadow-lg"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/90 dark:bg-white/10 backdrop-blur-md border border-white/30 text-gray-800 dark:text-white text-xs font-semibold hover:bg-purple-600 hover:text-white hover:border-transparent transition-all duration-300 shadow-lg"
             style={{ fontFamily: "'Sora', sans-serif" }}>
             <ExternalLink size={13} aria-hidden="true" /> Live
           </a>
         )}
         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-          className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/90 dark:bg-white/10 backdrop-blur-md border border-white/30 text-gray-800 dark:text-white text-xs font-semibold hover:bg-violet-600 hover:text-white hover:border-transparent transition-all duration-300 shadow-lg"
+          className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/90 dark:bg-white/10 backdrop-blur-md border border-white/30 text-gray-800 dark:text-white text-xs font-semibold hover:bg-purple-600 hover:text-white hover:border-transparent transition-all duration-300 shadow-lg"
           style={{ fontFamily: "'Sora', sans-serif" }}>
           <Github size={13} aria-hidden="true" /> Code
         </a>
@@ -225,8 +215,8 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
     </div>
 
     <div className="flex flex-col flex-1 p-5">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
-      <h3 className="relative text-sm md:text-base font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 leading-snug"
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-violet-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+      <h3 className="relative text-sm md:text-base font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-purple-400 transition-colors duration-300 leading-snug"
         style={{ fontFamily: "'Sora', sans-serif" }}>
         {project.title}
       </h3>
@@ -237,7 +227,7 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
       <div className="relative flex flex-wrap gap-1.5 mt-auto">
         {project.tech.map((tech) => (
           <span key={tech}
-            className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-500/20"
+            className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-purple-500/10 text-purple-600 dark:text-purple-300 border border-purple-500/20"
             style={{ fontFamily: "'DM Sans', sans-serif" }}>
             {tech}
           </span>
@@ -249,7 +239,6 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index:
 
 // ── Main Component ─────────────────────────────────────────────
 const Projects = () => {
-  const title = "Featured Projects";
   const [showAll, setShowAll] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -273,54 +262,82 @@ const Projects = () => {
 
   return (
     <section id="projects" ref={sectionRef}
-      className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-[#050816] dark:via-[#0B1126] dark:to-[#111827]">
+      className="relative py-24 overflow-hidden bg-gradient-to-br from-purple-950/20 via-[#0a0518] to-[#050816]">
 
       {/* Ambient glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-24 left-[-80px] h-[400px] w-[400px] rounded-full bg-blue-500/10 blur-[150px]" />
+          className="absolute -top-24 left-[-80px] h-[400px] w-[400px] rounded-full bg-purple-600/15 blur-[150px]" />
         <motion.div animate={{ y: [0, 18, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="absolute right-[-80px] top-[100px] h-[360px] w-[360px] rounded-full bg-violet-500/10 blur-[150px]" />
-        <div className="absolute bottom-[-120px] left-1/2 -translate-x-1/2 h-[320px] w-[320px] rounded-full bg-pink-500/8 blur-[140px]" />
+          className="absolute right-[-80px] top-[100px] h-[360px] w-[360px] rounded-full bg-violet-600/15 blur-[150px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
-        {/* Heading */}
-        <motion.div variants={typingContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white flex justify-center flex-wrap"
-            style={{ fontFamily: "'Sora', Montserrat, sans-serif", letterSpacing: "-0.02em" }}>
-            {title.split("").map((char, i) => (
-              <motion.span key={i} variants={typingText} className="inline-block">
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-          </h2>
-          <div className="flex items-center justify-center gap-2 mt-5">
-            <div className="h-px w-10 bg-gradient-to-r from-transparent to-blue-500/40" />
-            <motion.div initial={{ width: 0 }} whileInView={{ width: 80 }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }} viewport={{ once: true }}
-              className="h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
-            <div className="h-px w-10 bg-gradient-to-l from-transparent to-pink-500/40" />
-          </div>
-          <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }} viewport={{ once: true }}
-            className="mt-6 text-sm md:text-[0.95rem] text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-[1.8]"
-            style={{ fontFamily: "'DM Sans', sans-serif" }}>
+        {/* Top Badge & Header Section — Matched with About Page */}
+        <div className="flex flex-col items-center justify-center text-center mb-16">
+          
+          {/* Portfolio Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider text-purple-300 bg-purple-950/50 border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.2)] backdrop-blur-md uppercase">
+              <Briefcase size={13} className="text-purple-400" />
+              PORTFOLIO
+            </span>
+          </motion.div>
+
+          {/* Heading with Purple-White Gradient Flow */}
+          <motion.h2 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-5xl font-extrabold tracking-tight"
+            style={{ fontFamily: "'Sora', sans-serif" }}
+          >
+            <span className="text-white">Featured </span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-300">
+              Projects
+            </span>
+          </motion.h2>
+
+          {/* Gradient Underline Divider */}
+          <motion.div 
+            initial={{ width: 0 }} 
+            whileInView={{ width: 80 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }} 
+            viewport={{ once: true }}
+            className="h-[3px] rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-purple-400 my-5 shadow-[0_0_10px_rgba(168,85,247,0.5)]" 
+          />
+
+          {/* Description Paragraph */}
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }} 
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }} 
+            viewport={{ once: true }}
+            className="text-sm md:text-[0.95rem] text-gray-400 max-w-2xl mx-auto leading-[1.8]"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
             From AI-integrated backends to pixel-perfect frontends — each project
             was built to solve a real problem and ship to production.
           </motion.p>
-        </motion.div>
+        </div>
 
         {/* Hero Projects label */}
         <div className="flex items-center gap-4 mb-6">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300/50 dark:via-white/10 to-transparent" />
-          <span className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[2.5px] text-gray-400 dark:text-gray-500 font-semibold whitespace-nowrap"
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
+          <span className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[2.5px] text-purple-300/60 font-semibold whitespace-nowrap"
             style={{ fontFamily: "'Sora', sans-serif" }}>
-            <Star size={11} className="text-yellow-400" fill="currentColor" aria-hidden="true" />
+            <Star size={11} className="text-purple-400" fill="currentColor" aria-hidden="true" />
             Hero Projects
           </span>
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300/50 dark:via-white/10 to-transparent" />
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
         </div>
 
         {/* ── Spotlight Carousel ── */}
@@ -343,34 +360,27 @@ const Projects = () => {
               onClick={prev}
               whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.93 }}
               aria-label="Previous project"
-              className="w-10 h-10 rounded-xl flex items-center justify-center border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] backdrop-blur-sm text-gray-500 dark:text-gray-400 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300"
+              className="w-10 h-10 rounded-xl flex items-center justify-center border border-purple-500/20 bg-purple-950/20 backdrop-blur-sm text-purple-300 hover:bg-purple-600 hover:text-white hover:border-transparent transition-all duration-300"
             >
               <ChevronLeft size={18} aria-hidden="true" />
             </motion.button>
 
-            {/* Thumbnail chips */}
+            {/* Hero Project Interactive Buttons */}
             <div className="flex items-center gap-3">
               {featuredProjects.map((p, i) => (
                 <motion.button
                   key={p.title}
                   onClick={() => goTo(i)}
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  className={`relative flex items-center gap-2.5 px-4 py-2.5 rounded-xl border transition-all duration-300 overflow-hidden ${
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`relative flex items-center gap-2 px-4 py-2 rounded-xl border transition-all duration-300 overflow-hidden ${
                     i === activeIndex
-                      ? "border-transparent text-white shadow-lg"
-                      : "border-gray-200 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] text-gray-500 dark:text-gray-400 hover:border-purple-300/40 dark:hover:border-white/20"
+                      ? "border-purple-500/50 bg-purple-950/80 text-white shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+                      : "border-purple-500/20 bg-purple-950/20 text-purple-300/70 hover:border-purple-400/50 hover:bg-purple-900/40 hover:text-white"
                   }`}
                   style={{ fontFamily: "'Sora', sans-serif" }}
                 >
-                  {i === activeIndex && (
-                    <motion.span
-                      layoutId="activeThumb"
-                      className={`absolute inset-0 bg-gradient-to-r ${p.badgeColor}`}
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
-                    />
-                  )}
-                  <span className="relative text-[11px] font-semibold whitespace-nowrap">
+                  <span className="relative text-xs font-semibold whitespace-nowrap z-10">
                     {p.badge}
                   </span>
                 </motion.button>
@@ -382,7 +392,7 @@ const Projects = () => {
               onClick={next}
               whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.93 }}
               aria-label="Next project"
-              className="w-10 h-10 rounded-xl flex items-center justify-center border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] backdrop-blur-sm text-gray-500 dark:text-gray-400 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300"
+              className="w-10 h-10 rounded-xl flex items-center justify-center border border-purple-500/20 bg-purple-950/20 backdrop-blur-sm text-purple-300 hover:bg-purple-600 hover:text-white hover:border-transparent transition-all duration-300"
             >
               <ChevronRight size={18} aria-hidden="true" />
             </motion.button>
@@ -390,13 +400,13 @@ const Projects = () => {
         </div>
 
         {/* More projects label */}
-        <div className="flex items-center gap-4 mb-6 mt-10">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300/50 dark:via-white/10 to-transparent" />
-          <span className="text-xs uppercase tracking-[2.5px] text-gray-400 dark:text-gray-500 font-semibold whitespace-nowrap"
+        <div className="flex items-center gap-4 mb-6 mt-12">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
+          <span className="text-xs uppercase tracking-[2.5px] text-purple-300/60 font-semibold whitespace-nowrap"
             style={{ fontFamily: "'Sora', sans-serif" }}>
             More Projects
           </span>
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300/50 dark:via-white/10 to-transparent" />
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
         </div>
 
         {/* Regular grid */}
@@ -412,9 +422,9 @@ const Projects = () => {
         {regularProjects.length > 3 && (
           <div className="mt-14 flex justify-center">
             <motion.button onClick={handleToggle} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl border border-gray-300 dark:border-white/15 bg-white/80 dark:bg-white/5 backdrop-blur-sm px-7 py-4 text-gray-800 dark:text-white font-medium shadow-sm transition-all duration-500 hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.4)]"
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl border border-purple-500/30 bg-purple-950/30 backdrop-blur-sm px-7 py-4 text-purple-200 font-medium shadow-sm transition-all duration-500 hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.4)]"
               style={{ fontFamily: "'Sora', sans-serif" }}>
-              <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               {showAll ? (
                 <>
                   <ArrowUp className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" aria-hidden="true" />
