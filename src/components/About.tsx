@@ -160,16 +160,21 @@ const About: React.FC = () => {
             </motion.div>
           </motion.div>
 
-         {/* Matched Frontend Developer Badge */}
+        {/* Right Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 70 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9 }}
+            viewport={{ once: true }}
+          >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 rounded-full border border-[#6B4EFF]/50 bg-[#131C39]/80 px-4 py-1.5 text-xs font-semibold tracking-wide text-[#8FA8FF] shadow-[0_0_15px_rgba(104,87,255,0.2)] backdrop-blur-md mb-6"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              className="inline-flex items-center gap-2 rounded-full bg-blue-100 dark:bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-700 dark:text-blue-300 mb-6"
             >
-              <Briefcase size={14} className="text-[#8FA8FF]" />
+              <Briefcase size={16} />
               Frontend Developer · Exploring Full-Stack &amp; AI
             </motion.div>
 
