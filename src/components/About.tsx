@@ -98,19 +98,16 @@ const About: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Centered Title */}
+          {/* Centered Continuous Gradient Title */}
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+            className="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-white via-[#D8B4FE] to-[#A855F7] bg-clip-text text-transparent"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
-            About{" "}
-            <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
-              Me
-            </span>
+            About Me
           </motion.h2>
 
           {/* Centered Accent Underline */}
