@@ -78,16 +78,16 @@ const About: React.FC = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
-        {/* Section Heading Center Aligned */}
+     {/* Section Heading Center Aligned */}
         <div className="mb-12 md:mb-16 flex flex-col items-center text-center justify-center">
           
-          {/* Centered Purple Badge */}
+          {/* Centered Purple Badge with Better Spacing */}
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="mb-4"
+            className="mb-6 md:mb-8"
           >
             <div
               className="inline-flex items-center gap-2 rounded-full border border-[#6B4EFF]/50 bg-[#131C39]/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[2.5px] text-[#8FA8FF] shadow-[0_0_15px_rgba(104,87,255,0.2)] backdrop-blur-md"
@@ -119,7 +119,7 @@ const About: React.FC = () => {
             whileInView={{ width: 100 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true }}
-            className="h-[4px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF] mt-3 mx-auto"
+            className="h-[4px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF] mt-4 mx-auto"
           />
 
           {/* Centered Description */}
@@ -128,7 +128,7 @@ const About: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="max-w-2xl mt-5 text-sm md:text-base leading-7 text-gray-600 dark:text-[#A0A7C0] mx-auto text-center"
+            className="max-w-2xl mt-6 text-sm md:text-base leading-7 text-gray-600 dark:text-[#A0A7C0] mx-auto text-center"
           >
             Passionate about crafting modern, visually engaging, and highly
             responsive digital experiences with clean code and elegant UI design.
