@@ -138,40 +138,40 @@ const About: React.FC = () => {
           </motion.p>
         </motion.div>
 
-        {/* Main Content Container with Vertical Stretch Alignment */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+        {/* Main Content Container with Balanced Vertical Alignment */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
 
-          {/* Left Large Image */}
+          {/* Left Image Column */}
           <motion.div
             initial={{ opacity: 0, x: -70 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9 }}
             viewport={{ once: true }}
-            className="lg:col-span-5 flex items-center justify-center"
+            className="lg:col-span-5 flex justify-center"
           >
             <motion.div
               whileHover={{ y: -6 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="relative group w-full h-full max-w-[380px] lg:max-w-none flex items-center justify-center"
+              className="relative group w-full max-w-[340px] sm:max-w-[380px]"
             >
-              <div className="relative w-full h-full max-h-[520px] overflow-hidden rounded-[26px] border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-2xl shadow-2xl flex items-center justify-center">
+              <div className="relative overflow-hidden rounded-[26px] border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-2xl shadow-2xl">
                 <img
                   src="/raza.png"
                   alt="Raza Zaheer"
-                  className="w-full h-full object-cover rounded-[26px] transition duration-700 group-hover:scale-105"
+                  className="w-full h-auto max-h-[460px] object-cover rounded-[26px] transition duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Content */}
+          {/* Right Content Column */}
           <motion.div
             initial={{ opacity: 0, x: 70 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9 }}
             viewport={{ once: true }}
-            className="lg:col-span-7 flex flex-col justify-between"
+            className="lg:col-span-7 flex flex-col justify-center"
           >
             <div>
               <motion.div
@@ -222,92 +222,90 @@ const About: React.FC = () => {
               </p>
             </div>
 
-            <div>
-              {/* Compact Stat Boxes with Purple Hover */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="grid grid-cols-3 gap-2.5 mb-4"
-              >
-                {stats.map((stat, i) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.1 * i }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -3 }}
-                    className="group/stat rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl px-2.5 py-2.5 text-center shadow-sm hover:border-purple-500 hover:bg-purple-50/50 dark:hover:bg-purple-500/10 transition-all duration-300 cursor-default"
-                  >
-                    <stat.icon className="w-4 h-4 mx-auto mb-1 text-gray-400 dark:text-gray-400 group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-400 transition-colors duration-300" />
-                    <div
-                      className="text-lg md:text-xl font-bold text-gray-900 dark:text-white group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-400 transition-colors duration-300"
-                      style={{ fontFamily: "Poppins, sans-serif" }}
-                    >
-                      {stat.value}
-                    </div>
-                    <div className="mt-0.5 text-[9px] font-medium tracking-wide uppercase leading-tight text-gray-500 dark:text-gray-400 group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-300 transition-colors duration-300">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              {/* Name, Email, Location Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-5">
-                {infoCards.map((card, i) => (
-                  <motion.div
-                    key={card.label}
-                    custom={i}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={cardVariants}
-                    whileHover={{ y: -3, scale: 1.01 }}
-                    className="relative overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl p-3 shadow-sm hover:border-purple-400/40 transition-all duration-300"
-                  >
-                    <div className="flex items-center gap-2 mb-0.5">
-                      {card.pulse ? (
-                        <span className="relative flex h-3 w-3 items-center justify-center">
-                          <motion.span
-                            animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
-                            transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
-                            className="absolute inline-flex h-2 w-2 rounded-full bg-green-500"
-                          />
-                          {card.icon}
-                        </span>
-                      ) : (
-                        card.icon
-                      )}
-                      <h4 className="text-xs font-semibold text-gray-900 dark:text-white">
-                        {card.label}
-                      </h4>
-                    </div>
-
-                    <p className={`text-xs ${card.valueClass}`}>
-                      {card.value}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Download Resume Button */}
-              <div>
-                <motion.a
-                  href="/Raza_Zaheer_Resume.pdf"
-                  download="Raza_Zaheer_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="group relative inline-flex items-center gap-3 rounded-2xl px-6 py-3 text-white font-medium shadow-[0_10px_40px_-10px_rgba(168,85,247,0.6)] transition-all duration-500 hover:shadow-[0_15px_50px_-10px_rgba(168,85,247,0.8)] overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 text-xs sm:text-sm"
+            {/* Stats Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-3 gap-2.5 mb-4"
+            >
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.1 * i }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -3 }}
+                  className="group/stat rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl px-2.5 py-2.5 text-center shadow-sm hover:border-purple-500 hover:bg-purple-50/50 dark:hover:bg-purple-500/10 transition-all duration-300 cursor-default"
                 >
-                  <Download className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" />
-                  <span className="relative z-10 tracking-wide">Download Resume</span>
-                </motion.a>
-              </div>
+                  <stat.icon className="w-4 h-4 mx-auto mb-1 text-gray-400 dark:text-gray-400 group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-400 transition-colors duration-300" />
+                  <div
+                    className="text-lg md:text-xl font-bold text-gray-900 dark:text-white group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-400 transition-colors duration-300"
+                    style={{ fontFamily: "Poppins, sans-serif" }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="mt-0.5 text-[9px] font-medium tracking-wide uppercase leading-tight text-gray-500 dark:text-gray-400 group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-300 transition-colors duration-300">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Cards Section */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-5">
+              {infoCards.map((card, i) => (
+                <motion.div
+                  key={card.label}
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={cardVariants}
+                  whileHover={{ y: -3, scale: 1.01 }}
+                  className="relative overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl p-3 shadow-sm hover:border-purple-400/40 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-2 mb-0.5">
+                    {card.pulse ? (
+                      <span className="relative flex h-3 w-3 items-center justify-center">
+                        <motion.span
+                          animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
+                          transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
+                          className="absolute inline-flex h-2 w-2 rounded-full bg-green-500"
+                        />
+                        {card.icon}
+                      </span>
+                    ) : (
+                      card.icon
+                    )}
+                    <h4 className="text-xs font-semibold text-gray-900 dark:text-white">
+                      {card.label}
+                    </h4>
+                  </div>
+
+                  <p className={`text-xs ${card.valueClass}`}>
+                    {card.value}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Button */}
+            <div>
+              <motion.a
+                href="/Raza_Zaheer_Resume.pdf"
+                download="Raza_Zaheer_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="group relative inline-flex items-center gap-3 rounded-2xl px-6 py-3 text-white font-medium shadow-[0_10px_40px_-10px_rgba(168,85,247,0.6)] transition-all duration-500 hover:shadow-[0_15px_50px_-10px_rgba(168,85,247,0.8)] overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 text-xs sm:text-sm"
+              >
+                <Download className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" />
+                <span className="relative z-10 tracking-wide">Download Resume</span>
+              </motion.a>
             </div>
 
           </motion.div>
