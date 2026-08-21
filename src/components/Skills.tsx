@@ -172,7 +172,7 @@ const MarqueeRow = ({ items, reverse = false, duration = 28 }: {
 
 // ─── Main Component ───────────────────────────────────────────
 const Skills = () => {
-  const heading = "Skills & Tech";
+  const heading = "Tech Stack";
   const [activeCategory, setActiveCategory] = useState<string>("Frontend");
 
   return (
@@ -237,8 +237,7 @@ const Skills = () => {
             className="text-center text-sm md:text-base text-gray-500 dark:text-gray-400 max-w-xl mx-auto mt-6 leading-[1.8]"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
-            From pixel-perfect frontends to AI-integrated backends — here's
-            the full stack I build with.
+            The languages, frameworks, tools, and architecture I leverage to build high-performance products.
           </motion.p>
         </motion.div>
         
