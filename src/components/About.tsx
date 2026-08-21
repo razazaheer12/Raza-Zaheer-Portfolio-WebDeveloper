@@ -253,8 +253,8 @@ const About: React.FC = () => {
               ))}
             </motion.div>
 
-            {/* Name, Email, Location Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+           {/* Info Cards — staggered entrance + hover lift */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               {infoCards.map((card, i) => (
                 <motion.div
                   key={card.label}
@@ -263,12 +263,12 @@ const About: React.FC = () => {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={cardVariants}
-                  whileHover={{ y: -3, scale: 1.01 }}
-                  className="relative overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl p-3.5 shadow-sm hover:border-purple-400/40 transition-all duration-300"
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  className="relative overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl p-4 shadow-md hover:shadow-xl hover:border-purple-300/40 dark:hover:border-purple-400/30 transition-all duration-300"
                 >
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-2 mb-1.5">
                     {card.pulse ? (
-                      <span className="relative flex h-3.5 w-3.5 items-center justify-center">
+                      <span className="relative flex h-4 w-4 items-center justify-center">
                         <motion.span
                           animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
                           transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
@@ -279,7 +279,7 @@ const About: React.FC = () => {
                     ) : (
                       card.icon
                     )}
-                    <h4 className="text-xs font-semibold text-gray-900 dark:text-white">
+                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white">
                       {card.label}
                     </h4>
                   </div>
@@ -291,22 +291,22 @@ const About: React.FC = () => {
               ))}
             </div>
 
-            {/* Download Resume Button */}
-            <div>
-              <motion.a
-                href="/Raza_Zaheer_Resume.pdf"
-                download="Raza_Zaheer_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="group relative inline-flex items-center gap-3 rounded-2xl px-6 py-3.5 text-white font-medium shadow-[0_10px_40px_-10px_rgba(168,85,247,0.6)] transition-all duration-500 hover:shadow-[0_15px_50px_-10px_rgba(168,85,247,0.8)] overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 text-sm"
-              >
-                <Download className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" />
-                <span className="relative z-10 tracking-wide">Download Resume</span>
-              </motion.a>
-            </div>
+            {/* Resume Button */}
+            <motion.a
+              href="/Raza_Zaheer_Resume.pdf"
+              download="Raza_Zaheer_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="group relative inline-flex items-center gap-3 rounded-2xl border border-gray-300 dark:border-white/15 bg-white/80 dark:bg-white/5 backdrop-blur-sm px-7 py-4 text-gray-800 dark:text-white font-medium shadow-sm transition-all duration-500 hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.4)] overflow-hidden"
+            >
+              {/* Gradient fill — slides in on hover */}
+              <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
+              <Download className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" />
+              <span className="relative z-10 tracking-wide">Download Resume</span>
+            </motion.a>
           </motion.div>
         </div>
       </div>
