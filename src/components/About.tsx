@@ -1,6 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
+  Download,
+  MapPin,
+  Mail,
+  User,
   Briefcase,
   Rocket,
   TrendingUp,
@@ -24,6 +28,43 @@ const About: React.FC = () => {
     hidden: { opacity: 0, y: 12 },
     visible: { opacity: 1, y: 0 },
   };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, delay: 0.08 * i, ease: "easeOut" },
+    }),
+  };
+
+  const infoCards = [
+    {
+      icon: <User className="w-4 h-4 text-blue-600 dark:text-blue-400" />,
+      label: "Full Name",
+      value: "Raza Zaheer",
+      valueClass: "text-gray-700 dark:text-gray-300",
+    },
+    {
+      icon: <Mail className="w-4 h-4 text-purple-600 dark:text-purple-400" />,
+      label: "Email",
+      value: "razazaheer2002@gmail.com",
+      valueClass: "text-gray-700 dark:text-gray-300 break-all",
+    },
+    {
+      icon: <MapPin className="w-4 h-4 text-pink-600 dark:text-pink-400" />,
+      label: "Location",
+      value: "Karachi, Pakistan",
+      valueClass: "text-gray-700 dark:text-gray-300",
+    },
+    {
+      icon: <Briefcase className="w-4 h-4 text-green-600 dark:text-green-400" />,
+      label: "Availability",
+      value: "Available for Work",
+      valueClass: "text-green-600 dark:text-green-400 font-semibold",
+      pulse: true,
+    },
+  ];
 
   const stats = [
     { icon: Rocket, value: "2", label: "Production Systems Shipped" },
@@ -205,13 +246,13 @@ const About: React.FC = () => {
               ))}
             </motion.div>
 
-            {/* Smaller Compact Stat Boxes */}
+            {/* Compact Stat Boxes with Purple Hover */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="grid grid-cols-3 gap-2.5"
+              className="grid grid-cols-3 gap-2.5 mb-6"
             >
               {stats.map((stat, i) => (
                 <motion.div
@@ -221,21 +262,75 @@ const About: React.FC = () => {
                   transition={{ duration: 0.4, delay: 0.1 * i }}
                   viewport={{ once: true }}
                   whileHover={{ y: -3 }}
-                  className="group/stat rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl px-2.5 py-3 text-center shadow-sm hover:border-purple-400/40 transition-all duration-300"
+                  className="group/stat rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl px-2.5 py-3 text-center shadow-sm hover:border-purple-500 hover:bg-purple-50/50 dark:hover:bg-purple-500/10 transition-all duration-300 cursor-default"
                 >
-                  <stat.icon className="w-4 h-4 mx-auto mb-1 text-gray-400 dark:text-gray-400 group-hover/stat:text-purple-400 transition-colors duration-300" />
+                  <stat.icon className="w-4 h-4 mx-auto mb-1 text-gray-400 dark:text-gray-400 group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-400 transition-colors duration-300" />
                   <div
-                    className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white"
+                    className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-400 transition-colors duration-300"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
                     {stat.value}
                   </div>
-                  <div className="mt-1 text-[9px] md:text-[10px] font-medium tracking-wide uppercase leading-tight text-gray-500 dark:text-gray-400">
+                  <div className="mt-1 text-[9px] md:text-[10px] font-medium tracking-wide uppercase leading-tight text-gray-500 dark:text-gray-400 group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-300 transition-colors duration-300">
                     {stat.label}
                   </div>
                 </motion.div>
               ))}
             </motion.div>
+
+            {/* Name, Email, Location Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+              {infoCards.map((card, i) => (
+                <motion.div
+                  key={card.label}
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={cardVariants}
+                  whileHover={{ y: -3, scale: 1.01 }}
+                  className="relative overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl p-3.5 shadow-sm hover:border-purple-400/40 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    {card.pulse ? (
+                      <span className="relative flex h-3.5 w-3.5 items-center justify-center">
+                        <motion.span
+                          animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
+                          transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
+                          className="absolute inline-flex h-2 w-2 rounded-full bg-green-500"
+                        />
+                        {card.icon}
+                      </span>
+                    ) : (
+                      card.icon
+                    )}
+                    <h4 className="text-xs font-semibold text-gray-900 dark:text-white">
+                      {card.label}
+                    </h4>
+                  </div>
+
+                  <p className={`text-xs ${card.valueClass}`}>
+                    {card.value}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Download Resume Button */}
+            <div>
+              <motion.a
+                href="/Raza_Zaheer_Resume.pdf"
+                download="Raza_Zaheer_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="group relative inline-flex items-center gap-3 rounded-2xl px-6 py-3.5 text-white font-medium shadow-[0_10px_40px_-10px_rgba(168,85,247,0.6)] transition-all duration-500 hover:shadow-[0_15px_50px_-10px_rgba(168,85,247,0.8)] overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 text-sm"
+              >
+                <Download className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" />
+                <span className="relative z-10 tracking-wide">Download Resume</span>
+              </motion.a>
+            </div>
 
           </motion.div>
         </div>
