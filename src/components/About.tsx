@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   Download,
   MapPin,
@@ -77,7 +78,7 @@ const About: React.FC = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
-     {/* Section Heading Center Aligned */}
+        {/* Section Heading Center Aligned */}
         <div className="mb-12 md:mb-16 flex flex-col items-center text-center justify-center">
           
           {/* Centered Purple Badge with Better Spacing */}
@@ -160,21 +161,23 @@ const About: React.FC = () => {
             </motion.div>
           </motion.div>
 
-        {/* Right Content */}
+          {/* Right Content */}
           <motion.div
             initial={{ opacity: 0, x: 70 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9 }}
             viewport={{ once: true }}
           >
+            {/* Matched Frontend Developer Badge (Exact DISCOVERY Style) */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 rounded-full bg-blue-100 dark:bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-700 dark:text-blue-300 mb-6"
+              className="inline-flex items-center gap-2 rounded-full border border-[#6B4EFF]/50 bg-[#131C39]/80 px-4 py-1.5 text-xs font-semibold tracking-wide text-[#8FA8FF] shadow-[0_0_15px_rgba(104,87,255,0.2)] backdrop-blur-md mb-6"
+              style={{ fontFamily: 'Inter, sans-serif' }}
             >
-              <Briefcase size={16} />
+              <Briefcase size={14} className="text-[#8FA8FF]" />
               Frontend Developer · Exploring Full-Stack &amp; AI
             </motion.div>
 
