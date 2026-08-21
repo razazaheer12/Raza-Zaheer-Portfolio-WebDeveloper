@@ -9,26 +9,10 @@ import {
   Rocket,
   TrendingUp,
   CheckCircle2,
+  Compass,
 } from "lucide-react";
 
 const About: React.FC = () => {
-  const heading = "About Me";
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.07,
-      },
-    },
-  };
-
-  const letterVariants = {
-    hidden: { opacity: 0, y: 12 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   const cardVariants = {
     hidden: { opacity: 0, y: 16 },
     visible: (i: number) => ({
@@ -94,54 +78,67 @@ const About: React.FC = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
-        {/* Section Heading */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-          className="text-center mb-12 md:mb-16"
-        >
-          <h2
-            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white flex justify-center flex-wrap"
+        {/* Section Heading with Purple DISCOVERY Badge */}
+        <div className="mb-12 md:mb-16 flex flex-col items-start text-left">
+          
+          {/* Top Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mb-4"
+          >
+            <div
+              className="inline-flex items-center gap-2 rounded-full border border-[#6B4EFF]/50 bg-[#131C39]/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[2.5px] text-[#8FA8FF] shadow-[0_0_15px_rgba(104,87,255,0.2)] backdrop-blur-md"
+              style={{ fontFamily: 'Inter, sans-serif' }}
+            >
+              <Compass size={14} className="text-[#8FA8FF]" />
+              DISCOVERY
+            </div>
+          </motion.div>
+
+          {/* Main Title */}
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white"
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
-            {heading.split("").map((char, index) => (
-              <motion.span
-                key={index}
-                variants={letterVariants}
-                className="inline-block"
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-          </h2>
+            About{" "}
+            <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
+              Me
+            </span>
+          </motion.h2>
 
+          {/* Accent Underline */}
           <motion.div
             initial={{ width: 0 }}
-            whileInView={{ width: 112 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
+            whileInView={{ width: 100 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true }}
-            className="h-[4px] bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 mx-auto mt-5 rounded-full"
+            className="h-[4px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF] mt-3"
           />
 
+          {/* Description */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="max-w-2xl mx-auto mt-6 text-sm md:text-base leading-7 text-gray-600 dark:text-gray-300"
+            className="max-w-2xl mt-5 text-sm md:text-base leading-7 text-gray-600 dark:text-[#A0A7C0]"
           >
             Passionate about crafting modern, visually engaging, and highly
-            responsive digital experiences with clean code and elegant UI
-            design.
+            responsive digital experiences with clean code and elegant UI design.
           </motion.p>
-        </motion.div>
+        </div>
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
-          {/* Left Large Image */}
+          {/* Left Large Image (Height increased) */}
           <motion.div
             initial={{ opacity: 0, x: -70 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -154,20 +151,20 @@ const About: React.FC = () => {
             <motion.div
               whileHover={{ y: -6 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="relative group w-full max-w-[380px] lg:max-w-[420px]"
+              className="relative group w-full max-w-[420px] lg:max-w-[460px]"
             >
               <div className="relative overflow-hidden rounded-[26px] border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-2xl shadow-2xl">
                 <img
                   src="/raza.png"
                   alt="Raza Zaheer"
-                  className="w-full h-auto object-cover rounded-[26px] transition duration-700 group-hover:scale-105"
+                  className="w-full h-[520px] sm:h-[580px] lg:h-[620px] object-cover object-top rounded-[26px] transition duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </div>
             </motion.div>
           </motion.div>
 
-     {/* Right Content */}
+          {/* Right Content */}
           <motion.div
             initial={{ opacity: 0, x: 70 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -254,7 +251,7 @@ const About: React.FC = () => {
               ))}
             </motion.div>
 
-           {/* Info Cards — staggered entrance + hover lift */}
+            {/* Info Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               {infoCards.map((card, i) => (
                 <motion.div
@@ -302,9 +299,7 @@ const About: React.FC = () => {
               whileTap={{ scale: 0.97 }}
               className="group relative inline-flex items-center gap-3 rounded-2xl border border-gray-300 dark:border-white/15 bg-white/80 dark:bg-white/5 backdrop-blur-sm px-7 py-4 text-gray-800 dark:text-white font-medium shadow-sm transition-all duration-500 hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.4)] overflow-hidden"
             >
-              {/* Gradient fill — slides in on hover */}
               <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
               <Download className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" />
               <span className="relative z-10 tracking-wide">Download Resume</span>
             </motion.a>
