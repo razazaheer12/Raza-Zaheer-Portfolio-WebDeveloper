@@ -148,7 +148,7 @@ const About: React.FC = () => {
         </motion.div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
           {/* Left Image */}
           <motion.div
@@ -156,36 +156,22 @@ const About: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9 }}
             viewport={{ once: true }}
-            className="relative flex justify-center"
+            className="relative flex justify-center lg:justify-start lg:pt-2"
           >
-            <motion.div
-              animate={{ scale: [1, 1.08, 1], opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute h-[420px] w-[420px] rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-[120px]"
-            />
-
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-              className="absolute h-[360px] w-[360px] rounded-[34px]"
-              style={{
-                background:
-                  "conic-gradient(from 0deg, rgba(59,130,246,0.35), rgba(168,85,247,0.35), rgba(236,72,153,0.35), rgba(59,130,246,0.35))",
-                filter: "blur(18px)",
-              }}
-            />
+            {/* Soft ambient glow only — rotating ring removed for a cleaner, less busy backdrop */}
+            <div className="absolute h-[340px] w-[340px] rounded-full bg-gradient-to-r from-blue-500/15 to-purple-500/15 blur-[100px]" />
 
             <motion.div
               whileHover={{ y: -6 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="relative group"
             >
-              {/* Main Card — tighter border, no glow bleed on the edge */}
-              <div className="relative overflow-hidden rounded-[30px] border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)]">
+              {/* Main Card — slightly smaller so it reads in proportion with the text column */}
+              <div className="relative overflow-hidden rounded-[26px] border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] w-full max-w-[300px] md:max-w-[340px]">
                 <img
                   src="/raza.png"
                   alt="Raza Zaheer"
-                  className="w-full max-w-sm lg:max-w-md object-cover rounded-[30px] transition duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover rounded-[26px] transition duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </div>
@@ -217,14 +203,14 @@ const About: React.FC = () => {
               Who I Am
             </h3>
 
-            {/* Bio — italic body copy with bold name/role, matching the reference style */}
+            {/* Bio — italic body copy with a lighter bold weight for the name/role, matching the reference style */}
             <p className="text-sm md:text-base italic text-gray-600 dark:text-gray-300 leading-7 mb-6">
               I'm{" "}
-              <span className="font-bold not-italic text-gray-900 dark:text-white">
+              <span className="font-semibold not-italic text-gray-900 dark:text-white">
                 Raza Zaheer
               </span>
               , a Computer Science graduate and{" "}
-              <span className="font-bold not-italic text-gray-900 dark:text-white">
+              <span className="font-semibold not-italic text-gray-900 dark:text-white">
                 Front-End Developer
               </span>{" "}
               with 2+ years of freelance experience delivering production React.js and
@@ -240,28 +226,28 @@ const About: React.FC = () => {
               WebSocket reconnection handling, cross-origin auth across split production
               deployments, and REST API integration end-to-end. Across 10+ client
               projects, I've maintained{" "}
-              <span className="font-bold not-italic text-gray-900 dark:text-white">
+              <span className="font-semibold not-italic text-gray-900 dark:text-white">
                 100% on-time delivery
               </span>{" "}
               while improving user engagement by up to 35% through better UX and
               performance.
             </p>
 
-            {/* Focus areas — replaces a dense clause list with a scannable grid */}
+            {/* Focus areas — compact tag chips instead of a two-column bullet list, keeps the block short */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-8"
+              className="flex flex-wrap gap-2 mb-8"
             >
               {focusAreas.map((item) => (
-                <div key={item} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-blue-600 to-purple-500" />
-                  <span className="text-xs md:text-sm text-gray-600 dark:text-gray-300 leading-6">
-                    {item}
-                  </span>
-                </div>
+                <span
+                  key={item}
+                  className="text-[11px] md:text-xs font-medium text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full px-3 py-1.5"
+                >
+                  {item}
+                </span>
               ))}
             </motion.div>
 
