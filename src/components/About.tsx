@@ -78,10 +78,10 @@ const About: React.FC = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
-        {/* Section Heading with Purple DISCOVERY Badge */}
-        <div className="mb-12 md:mb-16 flex flex-col items-start text-left">
+        {/* Section Heading Center Aligned */}
+        <div className="mb-12 md:mb-16 flex flex-col items-center text-center justify-center">
           
-          {/* Top Badge */}
+          {/* Centered Purple Badge */}
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ const About: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Main Title */}
+          {/* Centered Title */}
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -113,22 +113,22 @@ const About: React.FC = () => {
             </span>
           </motion.h2>
 
-          {/* Accent Underline */}
+          {/* Centered Accent Underline */}
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: 100 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true }}
-            className="h-[4px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF] mt-3"
+            className="h-[4px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF] mt-3 mx-auto"
           />
 
-          {/* Description */}
+          {/* Centered Description */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="max-w-2xl mt-5 text-sm md:text-base leading-7 text-gray-600 dark:text-[#A0A7C0]"
+            className="max-w-2xl mt-5 text-sm md:text-base leading-7 text-gray-600 dark:text-[#A0A7C0] mx-auto text-center"
           >
             Passionate about crafting modern, visually engaging, and highly
             responsive digital experiences with clean code and elegant UI design.
@@ -138,7 +138,7 @@ const About: React.FC = () => {
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
-          {/* Left Large Image (Height increased) */}
+          {/* Left Large Image */}
           <motion.div
             initial={{ opacity: 0, x: -70 }}
             whileInView={{ opacity: 1, x: 0 }}
