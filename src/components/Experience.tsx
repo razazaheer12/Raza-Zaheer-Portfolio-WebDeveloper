@@ -5,6 +5,7 @@ import {
   GraduationCap,
   Building2,
   Code2,
+  Sparkles,
 } from 'lucide-react';
 
 const timelineData = [
@@ -100,61 +101,112 @@ const Experience: React.FC = () => {
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
 
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-5 flex justify-center"
-        >
-          <div
-            className="rounded-md border border-[#6B4EFF]/40 bg-gray-100 dark:bg-[#131C39] px-5 py-2 text-xs font-semibold uppercase tracking-[3px] text-[#6B4EFF] dark:text-[#8FA8FF] shadow-[0_0_20px_rgba(104,87,255,0.15)]"
-            style={{ fontFamily: 'Inter, sans-serif' }}
-          >
-            MY JOURNEY
-          </div>
-        </motion.div>
+        {/* =========================================================
+            SECTION HEADING (Matched Theme & Exact Order)
+            ========================================================= */}
+        <div className="mb-12 md:mb-16 flex flex-col items-center text-center justify-center">
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mx-auto mb-10 max-w-2xl text-center text-base leading-7 text-gray-600 dark:text-[#A0A7C0]"
-          style={{ fontFamily: 'Inter, sans-serif' }}
-        >
-          A timeline of my professional experience and academic background
-          that shaped my skills and knowledge.
-        </motion.p>
-
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-16 text-center"
-        >
-          <h2
-            className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white md:text-5xl"
-            style={{ fontFamily: 'Montserrat, sans-serif' }}
+          {/* 1. Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mb-6 md:mb-7"
           >
-            Experience{' '}
-            <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
+            <div
+              className="
+                inline-flex items-center gap-2
+                rounded-full
+                border border-[#8B5CF6]/50
+                bg-[#0F1228]/80
+                px-4 py-1.5
+                text-[10px] md:text-xs
+                font-semibold
+                uppercase
+                tracking-[2.8px]
+                text-[#C4B5FD]
+                shadow-[0_0_20px_rgba(139,92,246,0.16)]
+                backdrop-blur-md
+                transition-all duration-300
+                hover:border-[#A855F7]/80
+                hover:text-white
+                hover:shadow-[0_0_25px_rgba(168,85,247,0.25)]
+              "
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              <Sparkles
+                size={13}
+                className="text-[#A78BFA]"
+              />
+              MY JOURNEY
+            </div>
+          </motion.div>
+
+          {/* 2. Dual-Tone Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="
+              text-4xl md:text-5xl
+              font-extrabold
+              tracking-tight
+              text-gray-900 dark:text-white
+            "
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
+            Experience{" "}
+            <span
+              className="
+                bg-gradient-to-r
+                from-[#A78BFA]
+                via-[#C084FC]
+                to-[#EC4899]
+                bg-clip-text
+                text-transparent
+              "
+            >
               & Education
             </span>
-          </h2>
+          </motion.h2>
 
+          {/* Glowing Accent Underline */}
           <motion.div
             initial={{ width: 0 }}
-            whileInView={{ width: 90 }}
-            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+            whileInView={{ width: 88 }}
+            transition={{
+              duration: 0.7,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
             viewport={{ once: true }}
-            className="mx-auto mt-4 h-[4px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF]"
+            className="
+              h-[3px]
+              rounded-full
+              bg-gradient-to-r
+              from-[#3B82F6]
+              via-[#8B5CF6]
+              to-[#EC4899]
+              mt-4
+              mx-auto
+            "
           />
-        </motion.div>
+
+          {/* 3. Description Line */}
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="max-w-2xl mx-auto mt-6 text-sm md:text-base text-gray-600 dark:text-[#A0A7C0] leading-[1.8]"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            A timeline of my professional experience and academic background
+            that shaped my skills and knowledge.
+          </motion.p>
+        </div>
 
         {/* Timeline */}
         <div ref={containerRef} className="relative mx-auto max-w-5xl">
