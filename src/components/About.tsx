@@ -68,55 +68,115 @@ const About: React.FC = () => {
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-0 left-[-120px] h-[320px] w-[320px] rounded-full bg-blue-500/10 blur-[120px]"
         />
+
         <motion.div
           animate={{ y: [0, 18, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.5,
+          }}
           className="absolute right-[-100px] top-[100px] h-[300px] w-[300px] rounded-full bg-purple-500/10 blur-[120px]"
         />
+
         <div className="absolute bottom-[-120px] left-1/2 h-[280px] w-[280px] -translate-x-1/2 rounded-full bg-pink-500/10 blur-[120px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
-        {/* Section Heading Center Aligned */}
+        {/* =========================================================
+            SECTION HEADING
+            ========================================================= */}
         <div className="mb-12 md:mb-16 flex flex-col items-center text-center justify-center">
-          
-          {/* Centered Purple Badge with Better Spacing */}
+
+          {/* Premium Project-Style Badge */}
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="mb-6 md:mb-8"
+            className="mb-6 md:mb-7"
           >
             <div
-              className="inline-flex items-center gap-2 rounded-full border border-[#6B4EFF]/50 bg-[#131C39]/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-[2.5px] text-[#8FA8FF] shadow-[0_0_15px_rgba(104,87,255,0.2)] backdrop-blur-md"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              className="
+                inline-flex items-center gap-2
+                rounded-full
+                border border-[#8B5CF6]/50
+                bg-[#0F1228]/80
+                px-4 py-1.5
+                text-[10px] md:text-xs
+                font-semibold
+                uppercase
+                tracking-[2.8px]
+                text-[#C4B5FD]
+                shadow-[0_0_20px_rgba(139,92,246,0.16)]
+                backdrop-blur-md
+                transition-all duration-300
+                hover:border-[#A855F7]/80
+                hover:text-white
+                hover:shadow-[0_0_25px_rgba(168,85,247,0.25)]
+              "
+              style={{ fontFamily: "Inter, sans-serif" }}
             >
-              <Compass size={14} className="text-[#8FA8FF]" />
+              <Compass
+                size={13}
+                className="text-[#A78BFA]"
+              />
+
               DISCOVERY
             </div>
           </motion.div>
 
-          {/* Centered Continuous Gradient Title */}
+          {/* Project-Style Heading */}
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-white via-[#D8B4FE] to-[#A855F7] bg-clip-text text-transparent"
+            className="
+              text-4xl md:text-5xl
+              font-extrabold
+              tracking-tight
+              text-white
+            "
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
-            About Me
+            About{" "}
+            <span
+              className="
+                bg-gradient-to-r
+                from-[#A78BFA]
+                via-[#C084FC]
+                to-[#EC4899]
+                bg-clip-text
+                text-transparent
+              "
+            >
+              Me
+            </span>
           </motion.h2>
 
-          {/* Centered Accent Underline */}
+          {/* Project-Style Accent Underline */}
           <motion.div
             initial={{ width: 0 }}
-            whileInView={{ width: 100 }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+            whileInView={{ width: 88 }}
+            transition={{
+              duration: 0.7,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
             viewport={{ once: true }}
-            className="h-[4px] rounded-full bg-gradient-to-r from-[#3B82F6] via-[#8B5CFF] to-[#D946EF] mt-4 mx-auto"
+            className="
+              h-[3px]
+              rounded-full
+              bg-gradient-to-r
+              from-[#3B82F6]
+              via-[#8B5CF6]
+              to-[#EC4899]
+              mt-4
+              mx-auto
+            "
           />
 
           {/* Centered Description */}
@@ -132,7 +192,9 @@ const About: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* Main Content */}
+        {/* =========================================================
+            MAIN CONTENT
+            ========================================================= */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
           {/* Left Large Image */}
@@ -156,6 +218,7 @@ const About: React.FC = () => {
                   alt="Raza Zaheer"
                   className="w-full h-[520px] sm:h-[580px] lg:h-[620px] object-cover object-top rounded-[26px] transition duration-700 group-hover:scale-105"
                 />
+
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </div>
             </motion.div>
@@ -168,16 +231,37 @@ const About: React.FC = () => {
             transition={{ duration: 0.9 }}
             viewport={{ once: true }}
           >
-            {/* Matched Frontend Developer Badge (Exact DISCOVERY Style) */}
+
+            {/* Matched Frontend Developer Badge */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 rounded-full border border-[#6B4EFF]/50 bg-[#131C39]/80 px-4 py-1.5 text-xs font-semibold tracking-wide text-[#8FA8FF] shadow-[0_0_15px_rgba(104,87,255,0.2)] backdrop-blur-md mb-6"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              className="
+                inline-flex items-center gap-2
+                rounded-full
+                border border-[#8B5CF6]/50
+                bg-[#131C39]/80
+                px-4 py-1.5
+                text-xs
+                font-semibold
+                tracking-wide
+                text-[#C4B5FD]
+                shadow-[0_0_18px_rgba(139,92,246,0.16)]
+                backdrop-blur-md
+                mb-6
+                transition-all duration-300
+                hover:border-[#A855F7]/80
+                hover:text-white
+              "
+              style={{ fontFamily: "Inter, sans-serif" }}
             >
-              <Briefcase size={14} className="text-[#8FA8FF]" />
+              <Briefcase
+                size={14}
+                className="text-[#A78BFA]"
+              />
+
               Frontend Developer · Exploring Full-Stack &amp; AI
             </motion.div>
 
@@ -234,15 +318,33 @@ const About: React.FC = () => {
                   transition={{ duration: 0.4, delay: 0.1 * i }}
                   viewport={{ once: true }}
                   whileHover={{ y: -3 }}
-                  className="group/stat rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl px-2.5 py-3 text-center shadow-sm hover:border-purple-500 hover:bg-purple-50/50 dark:hover:bg-purple-500/10 transition-all duration-300 cursor-default"
+                  className="
+                    group/stat
+                    rounded-xl
+                    border border-gray-200
+                    dark:border-white/10
+                    bg-white/70
+                    dark:bg-white/5
+                    backdrop-blur-xl
+                    px-2.5 py-3
+                    text-center
+                    shadow-sm
+                    hover:border-purple-500
+                    hover:bg-purple-50/50
+                    dark:hover:bg-purple-500/10
+                    transition-all duration-300
+                    cursor-default
+                  "
                 >
                   <stat.icon className="w-4 h-4 mx-auto mb-1 text-gray-400 dark:text-gray-400 group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-400 transition-colors duration-300" />
+
                   <div
                     className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-400 transition-colors duration-300"
                     style={{ fontFamily: "Poppins, sans-serif" }}
                   >
                     {stat.value}
                   </div>
+
                   <div className="mt-1 text-[9px] md:text-[10px] font-medium tracking-wide uppercase leading-tight text-gray-500 dark:text-gray-400 group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-300 transition-colors duration-300">
                     {stat.label}
                   </div>
@@ -261,21 +363,42 @@ const About: React.FC = () => {
                   viewport={{ once: true }}
                   variants={cardVariants}
                   whileHover={{ y: -4, scale: 1.02 }}
-                  className="relative overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl p-4 shadow-md hover:shadow-xl hover:border-purple-300/40 dark:hover:border-purple-400/30 transition-all duration-300"
+                  className="
+                    relative
+                    overflow-hidden
+                    rounded-xl
+                    border border-gray-200
+                    dark:border-white/10
+                    bg-white/70
+                    dark:bg-white/5
+                    backdrop-blur-xl
+                    p-4
+                    shadow-md
+                    hover:shadow-xl
+                    hover:border-purple-300/40
+                    dark:hover:border-purple-400/30
+                    transition-all duration-300
+                  "
                 >
                   <div className="flex items-center gap-2 mb-1.5">
                     {card.pulse ? (
                       <span className="relative flex h-4 w-4 items-center justify-center">
                         <motion.span
                           animate={{ scale: [1, 1.8], opacity: [0.6, 0] }}
-                          transition={{ duration: 1.6, repeat: Infinity, ease: "easeOut" }}
+                          transition={{
+                            duration: 1.6,
+                            repeat: Infinity,
+                            ease: "easeOut",
+                          }}
                           className="absolute inline-flex h-2 w-2 rounded-full bg-green-500"
                         />
+
                         {card.icon}
                       </span>
                     ) : (
                       card.icon
                     )}
+
                     <h4 className="text-sm font-semibold text-gray-900 dark:text-white">
                       {card.label}
                     </h4>
@@ -288,7 +411,10 @@ const About: React.FC = () => {
               ))}
             </div>
 
-            {/* Resume Button */}
+            {/* =====================================================
+                DOWNLOAD RESUME
+                Project-Style Purple / White Button
+                ===================================================== */}
             <motion.a
               href="/Raza_Zaheer_Resume.pdf"
               download="Raza_Zaheer_Resume.pdf"
@@ -296,11 +422,73 @@ const About: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
-              className="group relative inline-flex items-center gap-3 rounded-2xl border border-gray-300 dark:border-white/15 bg-white/80 dark:bg-white/5 backdrop-blur-sm px-7 py-4 text-gray-800 dark:text-white font-medium shadow-sm transition-all duration-500 hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.4)] overflow-hidden"
+              className="
+                group
+                relative
+                inline-flex
+                items-center
+                gap-3
+                overflow-hidden
+                rounded-2xl
+                border
+                border-[#8B5CF6]/70
+                bg-[#11152C]/90
+                backdrop-blur-md
+                px-7 py-4
+                text-white
+                font-semibold
+                shadow-[0_0_20px_rgba(139,92,246,0.12)]
+                transition-all
+                duration-500
+                hover:border-[#C084FC]
+                hover:shadow-[0_10px_45px_rgba(168,85,247,0.35)]
+              "
             >
-              <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <Download className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" />
-              <span className="relative z-10 tracking-wide">Download Resume</span>
+              {/* Purple Gradient Hover Background */}
+              <span
+                className="
+                  absolute
+                  inset-0
+                  bg-gradient-to-r
+                  from-[#7C3AED]
+                  via-[#A855F7]
+                  to-[#EC4899]
+                  opacity-0
+                  group-hover:opacity-100
+                  transition-opacity
+                  duration-500
+                "
+              />
+
+              {/* Subtle Shine */}
+              <span
+                className="
+                  absolute
+                  inset-y-0
+                  left-[-100%]
+                  w-[45%]
+                  skew-x-[-20deg]
+                  bg-white/20
+                  group-hover:left-[120%]
+                  transition-all
+                  duration-700
+                "
+              />
+
+              <Download
+                className="
+                  relative
+                  z-10
+                  w-5 h-5
+                  transition-transform
+                  duration-300
+                  group-hover:translate-y-1
+                "
+              />
+
+              <span className="relative z-10 tracking-wide">
+                Download Resume
+              </span>
             </motion.a>
           </motion.div>
         </div>
