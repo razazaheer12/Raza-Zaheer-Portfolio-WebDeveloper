@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShieldCheck, Database } from "lucide-react";
+import { ShieldCheck, Database, Compass } from "lucide-react";
 import {
   SiReact,
   SiJavascript,
@@ -65,23 +65,6 @@ const categories = Object.keys(allSkills) as (keyof typeof allSkills)[];
 const allFlat = Object.values(allSkills).flat();
 const row1 = allFlat.slice(0, Math.ceil(allFlat.length / 2));
 const row2 = allFlat.slice(Math.ceil(allFlat.length / 2));
-
-// ─── Typing animation variants ────────────────────────────────
-const typingContainer = {
-  hidden: { opacity: 1 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.07 } },
-};
-const typingLetter = {
-  hidden: { opacity: 0, y: "0.3em" },
-  visible: { opacity: 1, y: "0em", transition: { duration: 0.35 } },
-};
-
-const categoryColors: Record<string, string> = {
-  Frontend:         "from-blue-500 to-cyan-400",
-  "Backend & DB":   "from-green-500 to-emerald-400",
-  "Real-Time & AI": "from-purple-500 to-pink-500",
-  Tools:            "from-orange-500 to-yellow-400",
-};
 
 // ─── Skill Card (for grid) ────────────────────────────────────
 const SkillCard = ({ skill, index }: { skill: (typeof allFlat)[0]; index: number }) => (
@@ -172,7 +155,6 @@ const MarqueeRow = ({ items, reverse = false, duration = 28 }: {
 
 // ─── Main Component ───────────────────────────────────────────
 const Skills = () => {
-  const heading = "Tech Stack";
   const [activeCategory, setActiveCategory] = useState<string>("Frontend");
 
   return (
@@ -197,51 +179,113 @@ const Skills = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
 
-        {/* Heading */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          variants={typingContainer}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2
-            className="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-white via-[#D8B4FE] to-[#A855F7] bg-clip-text text-transparent mb-4 flex justify-center"
-            style={{ fontFamily: "'Sora', Montserrat, sans-serif" }}
+        {/* =========================================================
+            SECTION HEADING (Matched with About Page Theme)
+            ========================================================= */}
+        <div className="mb-12 md:mb-16 flex flex-col items-center text-center justify-center">
+
+          {/* Premium Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mb-6 md:mb-7"
           >
-            {heading.split("").map((char, i) => (
-              <motion.span key={i} variants={typingLetter} className="inline-block">
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
-          </h2>
+            <div
+              className="
+                inline-flex items-center gap-2
+                rounded-full
+                border border-[#8B5CF6]/50
+                bg-[#0F1228]/80
+                px-4 py-1.5
+                text-[10px] md:text-xs
+                font-semibold
+                uppercase
+                tracking-[2.8px]
+                text-[#C4B5FD]
+                shadow-[0_0_20px_rgba(139,92,246,0.16)]
+                backdrop-blur-md
+                transition-all duration-300
+                hover:border-[#A855F7]/80
+                hover:text-white
+                hover:shadow-[0_0_25px_rgba(168,85,247,0.25)]
+              "
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              <Compass
+                size={13}
+                className="text-[#A78BFA]"
+              />
+              TECH STACK
+            </div>
+          </motion.div>
 
-          {/* Accent line — animated draw-in */}
-          <div className="flex items-center justify-center gap-2 mt-4">
-            <div className="h-px w-10 bg-gradient-to-r from-transparent to-blue-500/40" />
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: 80 }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
-              viewport={{ once: true }}
-              className="h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-            />
-            <div className="h-px w-10 bg-gradient-to-l from-transparent to-pink-500/40" />
-          </div>
+          {/* Project-Style Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="
+              text-4xl md:text-5xl
+              font-extrabold
+              tracking-tight
+              text-white
+            "
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
+            Tech{" "}
+            <span
+              className="
+                bg-gradient-to-r
+                from-[#A78BFA]
+                via-[#C084FC]
+                to-[#EC4899]
+                bg-clip-text
+                text-transparent
+              "
+            >
+              Stack
+            </span>
+          </motion.h2>
 
+          {/* Glowing Accent Underline */}
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 88 }}
+            transition={{
+              duration: 0.7,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
+            viewport={{ once: true }}
+            className="
+              h-[3px]
+              rounded-full
+              bg-gradient-to-r
+              from-[#3B82F6]
+              via-[#8B5CF6]
+              to-[#EC4899]
+              mt-4
+              mx-auto
+            "
+          />
+
+          {/* Subtitle Description */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-center text-sm md:text-base text-gray-500 dark:text-gray-400 max-w-xl mx-auto mt-6 leading-[1.8]"
+            className="text-center text-sm md:text-base text-gray-600 dark:text-[#A0A7C0] max-w-xl mx-auto mt-6 leading-[1.8]"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             The languages, frameworks, tools, and architecture I leverage to build high-performance products.
           </motion.p>
-        </motion.div>
-        
-      {/* Dark Glassmorphic Category Buttons (Matched with Contact Theme) */}
+        </div>
+
+        {/* Dark Glassmorphic Category Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
