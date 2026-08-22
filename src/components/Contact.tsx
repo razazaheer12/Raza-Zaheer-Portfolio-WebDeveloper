@@ -336,7 +336,7 @@ const Contact = () => {
                   {errors.message && <p className="mt-1.5 text-xs text-red-500">{errors.message.message}</p>}
                 </div>
 
-                {/* Submit */}
+                {/* Submit Button with Explore Projects Styling */}
                 {isSubmitted ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -351,21 +351,23 @@ const Contact = () => {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="group relative w-full inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl border border-gray-300 dark:border-white/15 bg-white/80 dark:bg-white/5 backdrop-blur-sm px-7 py-4 text-gray-800 dark:text-white font-semibold shadow-sm transition-all duration-500 hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.4)] disabled:opacity-50 disabled:pointer-events-none"
+                    whileHover={{ scale: 1.025 }}
+                    whileTap={{ scale: 0.975 }}
+                    className="group relative w-full inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl border border-purple-900/70 bg-[#0b0a1d]/80 px-7 py-4 font-medium text-gray-200 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-purple-500 hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.25)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-gray-200 disabled:opacity-50 disabled:pointer-events-none"
                     style={{ fontFamily: "'Sora', sans-serif" }}
                   >
-                    <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    {/* Hover purple background fill */}
+                    <span className="absolute inset-0 rounded-2xl bg-purple-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
                     {isSubmitting ? (
                       <>
                         <div className="relative z-10 animate-spin rounded-full h-5 w-5 border-b-2 border-current" />
-                        <span className="relative z-10 tracking-wide">Sending...</span>
+                        <span className="relative z-10 text-xs tracking-wide">Sending...</span>
                       </>
                     ) : (
                       <>
-                        <Send className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                        <span className="relative z-10 tracking-wide">Send Message</span>
+                        <Send className="relative z-10 w-4.5 h-4.5 transition-transform duration-300 group-hover:translate-x-1" />
+                        <span className="relative z-10 text-xs tracking-wide">Send Message</span>
                       </>
                     )}
                   </motion.button>
