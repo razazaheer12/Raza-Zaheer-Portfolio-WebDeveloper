@@ -875,31 +875,31 @@ const Projects = () => {
 
             {/* Project selectors */}
             <div className="flex items-center gap-2 overflow-x-auto px-1 scrollbar-none sm:gap-3">
-              {featuredProjects.map((project, index) => {
-                const isActive = index === activeIndex;
+            {featuredProjects.map((project, index) => {
+  const isActive = index === activeIndex;
 
-                return (
-                  <motion.button
-                    type="button"
-                    key={project.title}
-                    onClick={() => goTo(index)}
-                    whileHover={{
-                      scale: 1.025,
-                    }}
-                    whileTap={{
-                      scale: 0.97,
-                    }}
-                    aria-label={`View ${project.title}`}
-                    aria-current={isActive ? "true" : undefined}
-                    className={`relative flex shrink-0 items-center gap-2 overflow-hidden rounded-xl border px-3 py-2.5 transition-all duration-300 sm:px-4 ${
-                      isActive
-                        ? "border-transparent text-white shadow-lg"
-                        : "border-gray-200 bg-white/60 text-gray-500 hover:border-purple-300/40 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400 dark:hover:border-white/20"
-                    }`}
-                    style={{
-                      fontFamily: "'Sora', sans-serif",
-                    }}
-                  >
+  return (
+    <motion.button
+      type="button"
+      key={project.title}
+      onClick={() => goTo(index)}
+      whileHover={{
+        scale: 1.025,
+      }}
+      whileTap={{
+        scale: 0.97,
+      }}
+      aria-label={`View ${project.title}`}
+      aria-current={isActive ? "true" : undefined}
+      className={`relative flex shrink-0 items-center gap-2 overflow-hidden rounded-xl border px-3 py-2.5 transition-all duration-300 sm:px-4 ${
+        isActive
+          ? "border-transparent text-white shadow-lg"
+          : "border-gray-200 bg-white/60 text-gray-500 hover:border-purple-300/40 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400 dark:hover:border-white/20"
+      }`}
+      style={{
+        fontFamily: "'Sora', sans-serif",
+      }}
+    >
                     {isActive && (
                       <motion.span
                         layoutId="activeProjectSelector"
