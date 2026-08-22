@@ -59,22 +59,22 @@ const Navbar: React.FC = () => {
       <header 
         className={`fixed top-0 left-0 w-full z-[999] pt-4 px-4 lg:px-8 pb-3 transition-all duration-300 ${
           isScrolled 
-            ? "backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.3)] border-b border-white/[0.08]" 
+            ? "backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.3)] border-b border-purple-500/10" 
             : "backdrop-blur-none border-b border-transparent bg-transparent"
         }`}
         style={{
           background: isScrolled
             ? isDarkMode
-              ? "rgba(5, 8, 22, 0.85)"
+              ? "rgba(11, 10, 29, 0.85)"
               : "rgba(239, 246, 255, 0.85)"
-            : "transparent", // Top par transparent rahega taake Hero ki grid/ambient backdrop dikhe
+            : "transparent",
         }}
       >
 
         {/* Scroll Progress Bar */}
         <motion.div
           style={{ width: progressWidth }}
-          className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-[0_0_12px_rgba(139,92,246,0.9)] z-50"
+          className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-purple-600 via-purple-500 to-pink-500 shadow-[0_0_12px_rgba(168,85,247,0.9)] z-50"
         />
 
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -100,9 +100,9 @@ const Navbar: React.FC = () => {
           <nav 
             className="hidden lg:flex items-center gap-1.5 border rounded-full p-2 px-3 shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-colors duration-500"
             style={{
-              background: isDarkMode ? "rgba(5, 8, 22, 0.6)" : "rgba(255, 255, 255, 0.6)",
+              background: isDarkMode ? "rgba(11, 10, 29, 0.7)" : "rgba(255, 255, 255, 0.7)",
               backdropFilter: "blur(12px)",
-              borderColor: isDarkMode ? "rgba(255, 255, 255, 0.12)" : "rgba(30, 27, 75, 0.12)",
+              borderColor: isDarkMode ? "rgba(139, 92, 246, 0.2)" : "rgba(30, 27, 75, 0.12)",
             }}
           >
             {menuItems.map((item) => {
@@ -120,11 +120,7 @@ const Navbar: React.FC = () => {
                   {isActive && (
                     <motion.div
                       layoutId="activePill"
-                      className="absolute inset-0 rounded-full"
-                      style={{
-                        background: "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%)",
-                        boxShadow: "0 0 20px rgba(139,92,246,0.5)",
-                      }}
+                      className="absolute inset-0 rounded-full bg-purple-600 shadow-[0_0_20px_rgba(168,85,247,0.4)]"
                       transition={{ type: "spring", stiffness: 400, damping: 32 }}
                     />
                   )}
@@ -139,17 +135,17 @@ const Navbar: React.FC = () => {
             <motion.a
               href="#contact"
               onClick={() => setActiveTab("contact")}
-              whileHover={{ scale: 1.05, boxShadow: "0 0 28px rgba(139,92,246,0.6)" }}
-              whileTap={{ scale: 0.96 }}
-              className="inline-flex items-center gap-1.5 text-white font-semibold text-sm px-6 py-2.5 rounded-full transition-all duration-300"
+              whileHover={{ scale: 1.025 }}
+              whileTap={{ scale: 0.975 }}
+              className="group relative inline-flex items-center gap-1.5 overflow-hidden rounded-full border border-purple-900/70 bg-[#0b0a1d]/80 px-6 py-2.5 text-xs font-medium text-gray-200 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-purple-500 hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.25)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-gray-200"
               style={{
                 fontFamily: "'Sora', sans-serif",
-                background: "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%)",
-                boxShadow: "0 0 20px rgba(139,92,246,0.35)",
                 textDecoration: "none",
               }}
             >
-              Let's talk <ArrowUpRight size={16} aria-hidden="true" />
+              <span className="absolute inset-0 rounded-full bg-purple-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <span className="relative z-10 tracking-wide">Let's talk</span>
+              <ArrowUpRight size={16} aria-hidden="true" className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </motion.a>
           </div>
 
@@ -179,7 +175,7 @@ const Navbar: React.FC = () => {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 z-[990] backdrop-blur-2xl flex flex-col justify-between px-6 pt-28 pb-8 lg:hidden"
             style={{
-              background: isDarkMode ? "rgba(5, 8, 22, 0.96)" : "rgba(239, 246, 255, 0.96)",
+              background: isDarkMode ? "rgba(11, 10, 29, 0.96)" : "rgba(239, 246, 255, 0.96)",
             }}
           >
             <div className="flex flex-col gap-3">
@@ -195,7 +191,7 @@ const Navbar: React.FC = () => {
                   >
                     <div className="flex items-center gap-4">
                       <span
-                        className="text-xs font-mono text-purple-400 group-hover:text-pink-400 transition-colors"
+                        className="text-xs font-mono text-purple-400 group-hover:text-purple-300 transition-colors"
                         style={{ fontFamily: "'Sora', sans-serif" }}
                       >
                         {item.number}
@@ -203,7 +199,7 @@ const Navbar: React.FC = () => {
                       <span
                         className={`text-2xl font-bold transition-colors ${
                           isActive
-                            ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400"
+                            ? "text-purple-400"
                             : `${textColor} group-hover:text-purple-400`
                         }`}
                         style={{ fontFamily: "'Sora', sans-serif" }}
@@ -226,15 +222,15 @@ const Navbar: React.FC = () => {
               <a
                 href="#contact"
                 onClick={() => setIsOpen(false)}
-                className="w-full flex items-center justify-center gap-2 text-white font-semibold py-4 rounded-full transition-all text-base"
+                className="group relative w-full inline-flex items-center justify-center gap-2 overflow-hidden rounded-full border border-purple-900/70 bg-[#0b0a1d]/90 py-4 text-gray-200 font-medium text-base shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-purple-500 hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.25)]"
                 style={{
                   fontFamily: "'Sora', sans-serif",
-                  background: "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%)",
-                  boxShadow: "0 0 28px rgba(139,92,246,0.5)",
                   textDecoration: "none",
                 }}
               >
-                Let's talk <ArrowUpRight size={18} aria-hidden="true" />
+                <span className="absolute inset-0 rounded-full bg-purple-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <span className="relative z-10">Let's talk</span>
+                <ArrowUpRight size={18} aria-hidden="true" className="relative z-10 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
           </motion.div>
