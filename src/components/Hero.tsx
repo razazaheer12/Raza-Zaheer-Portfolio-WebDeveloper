@@ -1,12 +1,12 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Box, GraduationCap, Cpu } from "lucide-react";
+import { Github, Linkedin, Mail, Box, GraduationCap, Cpu, ArrowRight } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
 
 // ────────────────────────────────────────────────────────────────
-// Gradient used for the cycling role text (borrowed from Option A)
+// Clean Purple Accent Gradient for Role Text
 // ────────────────────────────────────────────────────────────────
-const mernGradient = "linear-gradient(90deg, #a855f7 0%, #3b82f6 100%)";
+const mernGradient = "linear-gradient(90deg, #c084fc 0%, #a855f7 50%, #818cf8 100%)";
 
 // ── Particles ─────────────────────────────────────────────────
 const ParticlesBackground = ({ count = 55, color }: { count?: number; color: string }) => {
@@ -47,7 +47,7 @@ const ParticlesBackground = ({ count = 55, color }: { count?: number; color: str
   );
 };
 
-// ── Cycling Typing (Option B timing/sizing + Option A gradient fill) ──
+// ── Cycling Typing ────────────────────────────────────────────
 const roles = ["Full-Stack Developer", "MERN Stack Developer", "Computer Science Graduate"];
 
 const CyclingTyping = ({ cursorColor }: { cursorColor: string }) => {
@@ -67,7 +67,7 @@ const CyclingTyping = ({ cursorColor }: { cursorColor: string }) => {
 
         if (charIndexRef.current >= current.length) {
           clearInterval(intervalId);
-          timeoutId = setTimeout(eraseNext, 1400); // pause after typing
+          timeoutId = setTimeout(eraseNext, 1400);
         }
       }, 75);
     };
@@ -81,12 +81,11 @@ const CyclingTyping = ({ cursorColor }: { cursorColor: string }) => {
         if (charIndexRef.current <= 0) {
           clearInterval(intervalId);
           roleIndexRef.current = (roleIndexRef.current + 1) % roles.length;
-          timeoutId = setTimeout(typeNext, 300); // pause before next word starts typing
+          timeoutId = setTimeout(typeNext, 300);
         }
       }, 45);
     };
 
-    // Kick off the loop
     typeNext();
 
     return () => {
@@ -118,66 +117,44 @@ const CyclingTyping = ({ cursorColor }: { cursorColor: string }) => {
 };
 
 // ── Social Icon ───────────────────────────────────────────────
-const SocialIcon = ({ href, icon, hoverColor, hoverShadow, hoverBorder, defaultColor, defaultBorder, defaultBg, label }: {
-  href: string; icon: React.ReactNode;
-  hoverColor: string; hoverShadow: string; hoverBorder: string;
-  defaultColor: string; defaultBorder: string; defaultBg: string; label: string;
-}) => {
-  const [hovered, setHovered] = useState(false);
+const SocialIcon = ({ href, icon, label }: { href: string; icon: React.ReactNode; label: string }) => {
   return (
-    <motion.a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-      onHoverStart={() => setHovered(true)} onHoverEnd={() => setHovered(false)}
-      whileHover={{ y: -2, scale: 1.12 }} whileTap={{ scale: 0.95 }}
-      style={{
-        width: 38, height: 38, borderRadius: 10, background: defaultBg,
-        border: `0.5px solid ${hovered ? hoverBorder : defaultBorder}`,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        color: hovered ? hoverColor : defaultColor,
-        filter: hovered ? `drop-shadow(${hoverShadow})` : "none",
-        transition: "all 0.3s ease",
-      }}
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      whileHover={{ scale: 1.05, y: -2 }}
+      whileTap={{ scale: 0.95 }}
+      className="group relative flex h-10 w-10 items-center justify-center rounded-xl border border-purple-900/50 bg-[#0b0a1d]/60 text-gray-400 backdrop-blur-sm transition-all duration-300 hover:border-purple-500 hover:text-purple-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] dark:border-purple-900/60 dark:bg-[#0b0a1d]/80"
     >
-      {icon}
+      <span className="relative z-10">{icon}</span>
     </motion.a>
   );
 };
 
-// ── Hero ──────────────────────────────────────────────────────
+// ── Hero Component ────────────────────────────────────────────
 const Hero = () => {
   const isDarkMode = useThemeStore((state) => state.isDarkMode);
 
-  // ── Centralized theme token system (borrowed from Option A) ──
   const theme = isDarkMode
     ? {
-        background: "#050816",
-        gridLine: "rgba(255,255,255,0.018)",
-        glow1: "rgba(59,130,246,0.12)",
-        glow2: "rgba(139,92,246,0.1)",
-        glow3: "rgba(236,72,153,0.07)",
-        ringBorder: "rgba(255,255,255,0.04)",
-        particle: "rgba(139,92,246,0.6)",
+        background: "#0b0a1d",
+        gridLine: "rgba(168,85,247,0.03)",
+        glow1: "rgba(147,51,234,0.15)",
+        glow2: "rgba(168,85,247,0.12)",
+        glow3: "rgba(99,102,241,0.08)",
+        ringBorder: "rgba(168,85,247,0.08)",
+        particle: "rgba(168,85,247,0.6)",
         nameA: "#ffffff",
         nameB: "#ffffff",
-        prefix: "rgba(255,255,255,0.38)",
-        tagline: "rgba(255,255,255,0.5)",
-        cursor: "#60a5fa",
-        contactBorder: "0.5px solid rgba(255,255,255,0.15)",
-        contactBg: "rgba(255,255,255,0.05)",
-        contactText: "rgba(255,255,255,0.75)",
-        socialColor: "rgba(255,255,255,0.45)",
-        socialBorder: "rgba(255,255,255,0.1)",
-        socialBg: "rgba(255,255,255,0.05)",
-        findMe: "rgba(255,255,255,0.25)",
-        statValue: "#a78bfa",
-        statLabel: "rgba(255,255,255,0.4)",
+        prefix: "rgba(255,255,255,0.45)",
+        tagline: "rgba(255,255,255,0.6)",
+        cursor: "#c084fc",
+        statValue: "#c084fc",
+        statLabel: "rgba(255,255,255,0.45)",
         scrollColor: "#ffffff",
-        scrollBorder: "rgba(255,255,255,0.4)",
-        badgeBg: "rgba(16,185,129,0.08)",
-        badgeBorder: "0.5px solid rgba(16,185,129,0.28)",
-        badgeText: "#10b981",
-        badgeDot: "#10b981",
-        btnGradient: "linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899)",
-        btnShadow: "0 8px 32px rgba(139,92,246,0.35)",
+        scrollBorder: "rgba(168,85,247,0.4)",
       }
     : {
         background: "linear-gradient(135deg, #eff6ff 0%, #f5f3ff 50%, #fdf2f8 100%)",
@@ -191,36 +168,23 @@ const Hero = () => {
         nameB: "#1e1b4b",
         prefix: "rgba(30,27,75,0.5)",
         tagline: "rgba(30,27,75,0.6)",
-        cursor: "#3b82f6",
-        contactBorder: "0.5px solid rgba(30,27,75,0.2)",
-        contactBg: "rgba(255,255,255,0.7)",
-        contactText: "rgba(30,27,75,0.75)",
-        socialColor: "rgba(30,27,75,0.45)",
-        socialBorder: "rgba(30,27,75,0.15)",
-        socialBg: "rgba(255,255,255,0.6)",
-        findMe: "rgba(30,27,75,0.35)",
+        cursor: "#9333ea",
         statValue: "#7c3aed",
         statLabel: "rgba(30,27,75,0.45)",
         scrollColor: "#1e1b4b",
         scrollBorder: "rgba(30,27,75,0.3)",
-        badgeBg: "rgba(16,185,129,0.08)",
-        badgeBorder: "0.5px solid rgba(16,185,129,0.28)",
-        badgeText: "#0d9488",
-        badgeDot: "#10b981",
-        btnGradient: "linear-gradient(135deg,#3b82f6,#8b5cf6,#ec4899)",
-        btnShadow: "0 8px 32px rgba(139,92,246,0.25)",
       };
 
-const socialLinks = [
-    { href: "https://github.com/razazaheer12", icon: <Github size={17} aria-hidden="true" />, hoverColor: "#22c55e", hoverShadow: "0 0 14px rgba(34,197,94,0.7)", hoverBorder: "rgba(34,197,94,0.45)", label: "GitHub" },
-    { href: "https://www.linkedin.com/in/raza-zaheer/", icon: <Linkedin size={17} aria-hidden="true" />, hoverColor: "#0a66c2", hoverShadow: "0 0 14px rgba(10,102,194,0.7)", hoverBorder: "rgba(10,102,194,0.55)", label: "LinkedIn" },
-    { href: "mailto:razazaheer2002@gmail.com", icon: <Mail size={17} aria-hidden="true" />, hoverColor: "#e040fb", hoverShadow: "0 0 14px rgba(224,64,251,0.7)", hoverBorder: "rgba(224,64,251,0.45)", label: "Email" },
+  const socialLinks = [
+    { href: "https://github.com/razazaheer12", icon: <Github size={18} aria-hidden="true" />, label: "GitHub" },
+    { href: "https://www.linkedin.com/in/raza-zaheer/", icon: <Linkedin size={18} aria-hidden="true" />, label: "LinkedIn" },
+    { href: "mailto:razazaheer2002@gmail.com", icon: <Mail size={18} aria-hidden="true" />, label: "Email" },
   ];
 
   const stats = [
-    { value: "5+", label: "Projects Built", icon: <Box size={16} />, color: theme.statValue },
+    { value: "5+", label: "Projects Built", icon: <Box size={16} />, color: "#c084fc" },
     { value: "2+", label: "Years Learning", icon: <GraduationCap size={16} />, color: "#34d399" },
-    { value: "10+", label: "Technologies", icon: <Cpu size={16} />, color: theme.cursor },
+    { value: "10+", label: "Technologies", icon: <Cpu size={16} />, color: "#818cf8" },
   ];
 
   return (
@@ -250,69 +214,99 @@ const socialLinks = [
 
       <ParticlesBackground count={55} color={theme.particle} />
 
-       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-24 lg:pt-28 pb-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] lg:min-h-[80vh]">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-28 lg:pt-32 pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] lg:min-h-[80vh]">
 
-    {/* Left */}
-    <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}>
+          {/* Left Side */}
+          <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}>
 
-      {/* Badge */}
-      <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
-        className="inline-flex items-center gap-2 mb-6"
-        style={{ background: theme.badgeBg, border: theme.badgeBorder, borderRadius: 50, padding: "6px 16px" }}>
-        <motion.div animate={{ opacity: [1, 0.3, 1] }} transition={{ duration: 1.4, repeat: Infinity }}
-          style={{ width: 7, height: 7, borderRadius: "50%", background: theme.badgeDot }} />
-        <span style={{ fontSize: 11, color: theme.badgeText, fontFamily: "'Sora', sans-serif", fontWeight: 600, letterSpacing: "0.5px" }}>Available for work</span>
-      </motion.div>
+            {/* Glowing Availability Badge */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+              className="inline-flex items-center gap-2 mb-6 rounded-full border border-purple-500/30 bg-purple-950/20 px-4 py-1.5 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.15)]"
+            >
+              <motion.div
+                animate={{ opacity: [1, 0.3, 1] }}
+                transition={{ duration: 1.4, repeat: Infinity }}
+                className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"
+              />
+              <span className="text-xs font-semibold text-purple-200 tracking-wide" style={{ fontFamily: "'Sora', sans-serif" }}>
+                Available for work
+              </span>
+            </motion.div>
 
             {/* Name */}
-            <motion.h1 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              style={{ fontFamily: "'Sora', sans-serif", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-2px", marginBottom: 14, fontSize: "clamp(52px, 8vw, 96px)" }}>
+            <motion.h1
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              style={{ fontFamily: "'Sora', sans-serif", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-2px", marginBottom: 14, fontSize: "clamp(52px, 8vw, 96px)" }}
+            >
               <span style={{ color: theme.nameA, display: "block" }}>Raza</span>
               <span style={{ color: theme.nameB, display: "block" }}>Zaheer</span>
             </motion.h1>
 
             {/* Role */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="flex items-center gap-3 mb-5" style={{ fontFamily: "'Sora', sans-serif" }}>
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="flex items-center gap-3 mb-5"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
               <span style={{ color: theme.prefix, fontSize: 18, fontWeight: 300 }}>I'm a</span>
               <CyclingTyping cursorColor={theme.cursor} />
             </motion.div>
 
             {/* Tagline */}
-            <motion.p variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: theme.tagline, lineHeight: 1.8, maxWidth: 420, marginBottom: 36, fontWeight: 400 }}>
+            <motion.p
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: theme.tagline, lineHeight: 1.8, maxWidth: 420, marginBottom: 36, fontWeight: 400 }}
+            >
               Where creativity meets code — crafting futuristic,<br />
               elegant, and seamlessly responsive digital experiences.
             </motion.p>
 
-            {/* Buttons */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-3 mb-10">
-              <motion.a href="#projects" whileHover={{ scale: 1.03, y: -1 }} whileTap={{ scale: 0.97 }}
-                style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 16, background: theme.btnGradient, boxShadow: theme.btnShadow, color: "#ffffff", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 14, letterSpacing: "0.3px", textDecoration: "none" }}>
-                View My Work <span style={{ fontSize: 16 }}>→</span>
+            {/* Uniform Buttons */}
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-4 mb-10">
+              
+              {/* Primary Glowing Button */}
+              <motion.a
+                href="#projects"
+                whileHover={{ scale: 1.025 }}
+                whileTap={{ scale: 0.975 }}
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-purple-500/50 bg-purple-600 px-7 py-3 text-sm font-semibold text-white shadow-[0_0_30px_rgba(168,85,247,0.35)] backdrop-blur-sm transition-all duration-500 hover:bg-purple-500 hover:shadow-[0_10px_50px_rgba(168,85,247,0.5)]"
+                style={{ fontFamily: "'Sora', sans-serif", textDecoration: "none" }}
+              >
+                <span className="relative z-10 tracking-wide">View My Work</span>
+                <ArrowRight size={16} aria-hidden="true" className="relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
               </motion.a>
-              <motion.a href="#contact" whileHover={{ scale: 1.03, y: -1, boxShadow: theme.btnShadow }} whileTap={{ scale: 0.97 }}
-                style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 28px", borderRadius: 16, border: theme.contactBorder, background: theme.contactBg, backdropFilter: "blur(8px)", color: theme.contactText, fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 14, letterSpacing: "0.3px", textDecoration: "none", transition: "all 0.3s ease" }}>
-                Contact Me
+
+              {/* Secondary Glowing Border Button */}
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.025 }}
+                whileTap={{ scale: 0.975 }}
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-purple-900/70 bg-[#0b0a1d]/80 px-7 py-3 text-sm font-medium text-gray-200 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-purple-500 hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.25)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-gray-200"
+                style={{ fontFamily: "'Sora', sans-serif", textDecoration: "none" }}
+              >
+                <span className="absolute inset-0 rounded-full bg-purple-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <span className="relative z-10 tracking-wide">Contact Me</span>
               </motion.a>
+
             </motion.div>
 
-            {/* Social */}
+            {/* Social Icons */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-3">
-              <span style={{ fontSize: 10, color: theme.findMe, fontFamily: "'Sora', sans-serif", letterSpacing: "1.5px", textTransform: "uppercase", marginRight: 4 }}>Find me</span>
+              <span className="mr-2 text-xs font-mono uppercase tracking-widest text-purple-300/50" style={{ fontFamily: "'Sora', sans-serif" }}>
+                Find me
+              </span>
               {socialLinks.map((item, i) => (
-                <SocialIcon key={i} href={item.href} icon={item.icon}
-                  hoverColor={item.hoverColor} hoverShadow={item.hoverShadow} hoverBorder={item.hoverBorder}
-                  defaultColor={theme.socialColor} defaultBorder={theme.socialBorder} defaultBg={theme.socialBg} label={item.label} />
+                <SocialIcon key={i} href={item.href} icon={item.icon} label={item.label} />
               ))}
             </motion.div>
 
-            {/* Stats — left-aligned, icon + value (borrowed layout from Option A) */}
+            {/* Stats */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-8 mt-10 mb-16 lg:mb-0">
               {stats.map((stat, i) => (
-                <div key={i} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6, color: stat.color }}>
+                <div key={i} className="flex flex-col gap-1">
+                  <div className="flex items-center gap-2" style={{ color: stat.color }}>
                     {stat.icon}
                     <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: 22, color: theme.statValue }}>{stat.value}</span>
                   </div>
@@ -323,7 +317,7 @@ const socialLinks = [
 
           </motion.div>
 
-          {/* Right — subtle animated mesh-glow orb (ambient, not a competing visual) */}
+          {/* Right — Glowing Mesh Orb */}
           <div className="hidden lg:flex justify-center lg:justify-end items-center relative h-full">
             <motion.div
               animate={{
@@ -340,7 +334,6 @@ const socialLinks = [
                 opacity: 0.9,
               }}
             />
-            {/* secondary smaller orb, offset, slower pulse for depth */}
             <motion.div
               animate={{
                 y: [0, 16, 0],
@@ -363,12 +356,19 @@ const socialLinks = [
         </div>
       </div>
 
-      {/* Scroll — opacity raised from 0.35 → 0.6, border thickened for visibility */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.6 }} transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      {/* Scroll Down Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.7 }}
+        transition={{ duration: 1, delay: 2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
         <span style={{ fontSize: 10, color: theme.scrollColor, fontFamily: "'Sora', sans-serif", letterSpacing: "2px", textTransform: "uppercase" }}>Scroll</span>
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-          style={{ width: 28, height: 28, borderRadius: "50%", border: `1px solid ${theme.scrollBorder}`, display: "flex", alignItems: "center", justifyContent: "center", color: theme.scrollColor, fontSize: 14 }}>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+          className="flex h-7 w-7 items-center justify-center rounded-full border border-purple-500/40 bg-purple-950/20 text-xs text-purple-300 backdrop-blur-sm shadow-[0_0_10px_rgba(168,85,247,0.2)]"
+        >
           ↓
         </motion.div>
       </motion.div>
