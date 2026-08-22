@@ -1,77 +1,148 @@
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, ArrowRight, ArrowUp, Star, ChevronLeft, ChevronRight, FolderGit2 } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  ArrowRight,
+  ArrowUp,
+  Star,
+  ChevronLeft,
+  ChevronRight,
+  FolderGit2,
+  Sparkles,
+  Layers3,
+  Code2,
+} from "lucide-react";
 
 const projects = [
   {
     title: "Real-Time Analytics Dashboard",
     description:
       "A production-grade, RBAC analytics dashboard that streams live business metrics via WebSockets. Features role-scoped data visualization (Admin/Analyst/Viewer), dynamic filtering, and admin-only CSV/PDF export — built with a fully type-safe TypeScript stack.",
-    image: "https://github.com/user-attachments/assets/27b90ee2-7411-4750-b63b-0c150d486f8e",
-    tech: ["Next.js 16", "NestJS", "TypeScript", "Socket.io", "Prisma", "Supabase", "Recharts", "Zustand", "JWT", "Tailwind CSS"],
-    githubUrl: "https://github.com/razazaheer12/Real-Time-Analytics-Dashboard",
+    image:
+      "https://github.com/user-attachments/assets/27b90ee2-7411-4750-b63b-0c150d486f8e",
+    tech: [
+      "Next.js 16",
+      "NestJS",
+      "TypeScript",
+      "Socket.io",
+      "Prisma",
+      "Supabase",
+      "Recharts",
+      "Zustand",
+      "JWT",
+      "Tailwind CSS",
+    ],
+    githubUrl:
+      "https://github.com/razazaheer12/Real-Time-Analytics-Dashboard",
     featured: true,
     badge: "Enterprise",
     badgeColor: "from-emerald-500 to-teal-400",
+    projectType: "Production Dashboard",
+    focus: "Real-time analytics & RBAC",
+    highlights: ["Live metrics", "Role-based access", "Data export"],
   },
   {
     title: "PDF RAG Chatbot",
     description:
       "An intelligent chatbot that lets you upload any PDF and have a real conversation with it — powered by RAG (Retrieval-Augmented Generation), Pinecone Vector DB, and Google Gemma AI.",
-    image: "https://i.ibb.co/pB4tTTp5/Gemini-Generated-Image-e637dde637dde637.png",
-    tech: ["Next.JS", "TypeScript", "Pinecone", "LangChain", "RAG", "LLM Integration", "Shadcn", "Tailwind CSS"],
+    image:
+      "https://i.ibb.co/pB4tTTp5/Gemini-Generated-Image-e637dde637dde637.png",
+    tech: [
+      "Next.JS",
+      "TypeScript",
+      "Pinecone",
+      "LangChain",
+      "RAG",
+      "LLM Integration",
+      "Shadcn",
+      "Tailwind CSS",
+    ],
     githubUrl: "https://github.com/razazaheer12/Pdf-RAG-Chatbot",
     featured: true,
     badge: "AI Project",
     badgeColor: "from-purple-500 to-pink-500",
+    projectType: "AI Application",
+    focus: "Document intelligence & RAG",
+    highlights: ["PDF conversations", "Vector search", "LLM integration"],
   },
   {
     title: "Real-Time Chat App",
     description:
       "Production-ready messaging platform with topic-based chat rooms, private DMs, real-time online presence, and profile customization. Built with MERN stack and Socket.io for instant bidirectional communication.",
-    image: "https://i.ibb.co/sJ5V7yL8/Gemini-Generated-Image-sk1pkdsk1pkdsk1p.png",
-    tech: ["React", "Node.js", "MongoDB", "Socket.io", "JWT", "Zustand", "Cloudinary", "Tailwind CSS"],
+    image:
+      "https://i.ibb.co/sJ5V7yL8/Gemini-Generated-Image-sk1pkdsk1pkdsk1p.png",
+    tech: [
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Socket.io",
+      "JWT",
+      "Zustand",
+      "Cloudinary",
+      "Tailwind CSS",
+    ],
     liveUrl: "https://real-time-chat-app-pi-lake.vercel.app",
     githubUrl: "https://github.com/razazaheer12/Real-Time-Chat_App",
     featured: true,
     badge: "Full-Stack",
     badgeColor: "from-blue-500 to-cyan-400",
+    projectType: "Full-Stack Application",
+    focus: "Real-time communication",
+    highlights: ["Live messaging", "Private DMs", "Online presence"],
   },
   {
     title: "Quizlett - MCQ Platform",
-    description: "Modern interactive quiz app with Math, Programming, and General Knowledge sections. Features instant feedback, progress tracking, achievements, and dark/light theme.",
-    image: "https://i.ibb.co/hRH5F9Zk/Gemini-Generated-Image-odfpbtodfpbtodfp.png",
+    description:
+      "Modern interactive quiz app with Math, Programming, and General Knowledge sections. Features instant feedback, progress tracking, achievements, and dark/light theme.",
+    image:
+      "https://i.ibb.co/hRH5F9Zk/Gemini-Generated-Image-odfpbtodfpbtodfp.png",
     tech: ["Next.JS", "TypeScript", "Tailwind CSS", "Shadcn-ui"],
     liveUrl: "https://advanced-mcq-quiz.vercel.app/",
-    githubUrl: "https://github.com/razazaheer12/Quizlett--advanced-mcq-quiz",
+    githubUrl:
+      "https://github.com/razazaheer12/Quizlett--advanced-mcq-quiz",
   },
   {
     title: "WeatherFlow NextGen",
-    description: "Cutting-edge weather application with real-time insights, interactive forecasts, and seamless offline capabilities built with modern web technologies.",
-    image: "https://i.ibb.co/VWGvfcth/Gemini-Generated-Image-7i62xc7i62xc7i62.png",
-    tech: ["Next.js", "TypeScript", "OpenWeather API", "Chart.js", "Tailwind CSS"],
+    description:
+      "Cutting-edge weather application with real-time insights, interactive forecasts, and seamless offline capabilities built with modern web technologies.",
+    image:
+      "https://i.ibb.co/VWGvfcth/Gemini-Generated-Image-7i62xc7i62xc7i62.png",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "OpenWeather API",
+      "Chart.js",
+      "Tailwind CSS",
+    ],
     liveUrl: "https://advance-weather-app-next-gen.vercel.app/",
-    githubUrl: "https://github.com/razazaheer12/Advance_Weather_App-Next_Gen",
+    githubUrl:
+      "https://github.com/razazaheer12/Advance_Weather_App-Next_Gen",
   },
   {
     title: "Sun & Moon Tracker",
-    description: "High-precision interactive app visualizing real-time positions of the sun and moon with timezone-aware world time windows.",
-    image: "https://i.ibb.co/ym34jL7c/Screenshot-2026-05-06-234111.png",
+    description:
+      "High-precision interactive app visualizing real-time positions of the sun and moon with timezone-aware world time windows.",
+    image:
+      "https://i.ibb.co/ym34jL7c/Screenshot-2026-05-06-234111.png",
     tech: ["React.js", "TypeScript", "Tailwind CSS", "Vite", "Date-fns"],
     liveUrl: "https://sun-moon-tracker-a27p.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Sun_Moon-Tracker",
   },
   {
     title: "MyPDF - Free PDF Toolkit",
-    description: "Fast and secure PDF-to-Word converter with drag-and-drop uploads, real-time progress tracking, and download history management.",
-    image: "https://i.ibb.co/hJ6ZgTz4/Screenshot-2025-09-24-041724.png",
+    description:
+      "Fast and secure PDF-to-Word converter with drag-and-drop uploads, real-time progress tracking, and download history management.",
+    image:
+      "https://i.ibb.co/hJ6ZgTz4/Screenshot-2025-09-24-041724.png",
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://mypdf-converter.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/MyPDF_converter",
   },
   {
     title: "Recipe Finder",
-    description: "Feature-rich app to discover recipes worldwide. Search meals, view detailed instructions, check ingredients, and watch cooking videos.",
+    description:
+      "Feature-rich app to discover recipes worldwide. Search meals, view detailed instructions, check ingredients, and watch cooking videos.",
     image: "https://i.ibb.co/W4JDQ78s/Screenshot-2026-05-06-030926.png",
     tech: ["HTML5", "CSS3", "JavaScript ES6", "TheMealDB API"],
     liveUrl: "https://recipe-finder-12.netlify.app/",
@@ -79,24 +150,31 @@ const projects = [
   },
   {
     title: "Cocktail Explorer",
-    description: "Premium Express + EJS web app using TheCocktailDB API to search and display cocktail recipes with ingredients and instructions.",
-    image: "https://i.ibb.co/YBKRpzCY/Screenshot-2026-05-19-041257.png",
+    description:
+      "Premium Express + EJS web app using TheCocktailDB API to search and display cocktail recipes with ingredients and instructions.",
+    image:
+      "https://i.ibb.co/YBKRpzCY/Screenshot-2026-05-19-041257.png",
     tech: ["Node.js", "Express.js", "EJS", "AXIOS", "TheCocktailDB API"],
     liveUrl: "https://cocktail-explorer-psi.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Cocktail-Explorer",
   },
   {
     title: "Neural Canvas - AI Art Studio",
-    description: "AI-powered art style studio that transforms photos into stunning masterpieces using sophisticated AI-inspired filters and real-time adjustments.",
-    image: "https://i.ibb.co/QhzDFNC/Screenshot-2026-05-07-000415.png",
+    description:
+      "AI-powered art style studio that transforms photos into stunning masterpieces using sophisticated AI-inspired filters and real-time adjustments.",
+    image:
+      "https://i.ibb.co/QhzDFNC/Screenshot-2026-05-07-000415.png",
     tech: ["JavaScript", "CSS3", "HTML5"],
     liveUrl: "https://canvas-photoeditor-ai.netlify.app/",
-    githubUrl: "https://github.com/razazaheer12/Neural-Canvas--AI-Art-Style-Transfer-Studio",
+    githubUrl:
+      "https://github.com/razazaheer12/Neural-Canvas--AI-Art-Style-Transfer-Studio",
   },
   {
     title: "Modern Snake Game",
-    description: "Classic Snake Game reimagined with pause/resume, speed boosts, sound effects, and a clean modern UI. Built with vanilla JS.",
-    image: "https://i.ibb.co/PZ4hSbHB/Screenshot-2025-09-19-012154.png",
+    description:
+      "Classic Snake Game reimagined with pause/resume, speed boosts, sound effects, and a clean modern UI. Built with vanilla JS.",
+    image:
+      "https://i.ibb.co/PZ4hSbHB/Screenshot-2025-09-19-012154.png",
     tech: ["HTML5", "CSS3", "JavaScript ES6"],
     liveUrl: "https://snake-game0999.netlify.app/",
     githubUrl: "https://github.com/razazaheer12/Snake-game",
@@ -105,362 +183,856 @@ const projects = [
 
 const typingContainer = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
-};
-const typingText = {
-  hidden: { opacity: 0, y: "0.25em" },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
 };
 
-// ── Featured Spotlight Card ───────────────────────────────────
-const SpotlightCard = ({ project, direction }: { project: (typeof projects)[0]; direction: number }) => (
+const typingText = {
+  hidden: {
+    opacity: 0,
+    y: "0.25em",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
+// ─────────────────────────────────────────────────────────────
+// Featured Spotlight Card
+// ─────────────────────────────────────────────────────────────
+
+const SpotlightCard = ({
+  project,
+  direction,
+  projectNumber,
+}: {
+  project: (typeof projects)[0];
+  direction: number;
+  projectNumber: number;
+}) => (
   <motion.div
     key={project.title}
-    initial={{ opacity: 0, x: direction > 0 ? 60 : -60 }}
-    animate={{ opacity: 1, x: 0 }}
-    exit={{ opacity: 0, x: direction > 0 ? -60 : 60 }}
-    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-    className="group relative flex flex-col lg:flex-row rounded-3xl overflow-hidden border border-gray-200/70 dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl shadow-lg hover:shadow-2xl hover:shadow-purple-500/10 hover:border-purple-300/40 dark:hover:border-white/[0.15] transition-all duration-500"
+    custom={direction}
+    initial={{
+      opacity: 0,
+      x: direction > 0 ? 70 : -70,
+      scale: 0.985,
+    }}
+    animate={{
+      opacity: 1,
+      x: 0,
+      scale: 1,
+    }}
+    exit={{
+      opacity: 0,
+      x: direction > 0 ? -70 : 70,
+      scale: 0.985,
+    }}
+    transition={{
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+    className="group relative flex flex-col lg:flex-row overflow-hidden rounded-[1.75rem] border border-gray-200/70 bg-white/75 shadow-xl shadow-gray-900/[0.03] backdrop-blur-xl transition-all duration-500 dark:border-white/[0.08] dark:bg-white/[0.035] dark:shadow-black/20"
   >
-    {/* Image — left on desktop, top on mobile */}
-    <div className="relative overflow-hidden lg:w-[55%] h-64 lg:h-auto shrink-0">
+    {/* Image */}
+    <div className="relative h-64 shrink-0 overflow-hidden sm:h-80 lg:h-auto lg:min-h-[390px] lg:w-[55%]">
       <img
         src={project.image}
-        alt={project.title}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        alt={`${project.title} project preview`}
+        className="h-full w-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.035]"
       />
-      <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-75 transition-opacity duration-400 pointer-events-none" />
-      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full pointer-events-none" />
 
-      {/* Badge */}
-      <div className="absolute top-4 left-4 z-10">
-        <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold text-white bg-gradient-to-r ${project.badgeColor} shadow-lg`}
-          style={{ fontFamily: "'Sora', sans-serif" }}>
-          <Star size={10} fill="white" aria-hidden="true" />
+      {/* Image overlays */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent opacity-70" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/20" />
+
+      {/* Subtle image shine */}
+      <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.12] to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
+
+      {/* Project category badge */}
+      <div className="absolute left-5 top-5 z-10">
+        <span
+          className={`inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r ${project.badgeColor} px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.8px] text-white shadow-lg shadow-black/20`}
+          style={{ fontFamily: "'Sora', sans-serif" }}
+        >
+          <Star size={10} fill="currentColor" aria-hidden="true" />
           {project.badge}
+        </span>
+      </div>
+
+      {/* Project number */}
+      <div className="absolute bottom-5 left-5 z-10">
+        <span
+          className="text-[11px] font-semibold uppercase tracking-[2px] text-white/60"
+          style={{ fontFamily: "'Sora', sans-serif" }}
+        >
+          Project {String(projectNumber).padStart(2, "0")}
         </span>
       </div>
     </div>
 
-    {/* Content — right on desktop */}
-    <div className="relative flex flex-col flex-1 p-6 lg:p-8 justify-between">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-r-3xl" />
+    {/* Content */}
+    <div className="relative flex flex-1 flex-col justify-between p-6 sm:p-7 lg:p-8 xl:p-9">
+      {/* Ambient hover layer */}
+      <div className="pointer-events-none absolute inset-0 rounded-r-[1.75rem] bg-gradient-to-br from-blue-500/[0.04] via-purple-500/[0.05] to-pink-500/[0.04] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-      <div className="relative">
-        {/* Title + buttons */}
-        <div className="flex items-start justify-between gap-3 mb-3">
+      <div className="relative z-10">
+        {/* Top metadata */}
+        <div className="mb-5 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <span
+              className="text-[10px] font-bold uppercase tracking-[1.8px] text-blue-600 dark:text-blue-400"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
+              {project.projectType}
+            </span>
+
+            <span className="h-1 w-1 rounded-full bg-gray-300 dark:bg-white/20" />
+
+            <span
+              className="text-[10px] font-medium uppercase tracking-[1.2px] text-gray-400 dark:text-gray-500"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
+              Featured
+            </span>
+          </div>
+
+          <span
+            className="hidden text-[11px] font-medium text-gray-400 sm:block dark:text-gray-500"
+            style={{ fontFamily: "'Sora', sans-serif" }}
+          >
+            0{projectNumber} / 03
+          </span>
+        </div>
+
+        {/* Title */}
+        <div className="mb-4">
           <h3
-            className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 leading-snug"
+            className="max-w-2xl text-2xl font-bold leading-tight tracking-[-0.025em] text-gray-950 transition-colors duration-300 group-hover:text-blue-600 sm:text-3xl dark:text-white dark:group-hover:text-blue-400"
             style={{ fontFamily: "'Sora', sans-serif" }}
           >
             {project.title}
           </h3>
-          <div className="flex gap-2 shrink-0 mt-0.5">
-            {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-500/20 text-xs font-semibold hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300"
-                style={{ fontFamily: "'Sora', sans-serif" }}>
-                <ExternalLink size={11} aria-hidden="true" /> Live
-              </a>
-            )}
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 border border-gray-200 dark:border-white/10 text-xs font-semibold hover:bg-violet-600 hover:text-white hover:border-transparent transition-all duration-300"
-              style={{ fontFamily: "'Sora', sans-serif" }}>
-              <Github size={11} aria-hidden="true" /> Code
-            </a>
-          </div>
+
+          <p
+            className="mt-2 text-xs font-medium text-gray-400 dark:text-gray-500"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
+            {project.focus}
+          </p>
         </div>
 
-        <p className="text-sm text-gray-500 dark:text-gray-400 leading-[1.8] mb-5"
-          style={{ fontFamily: "'DM Sans', sans-serif" }}>
+        {/* Description */}
+        <p
+          className="max-w-xl text-sm leading-[1.8] text-gray-500 dark:text-gray-400"
+          style={{ fontFamily: "'DM Sans', sans-serif" }}
+        >
           {project.description}
         </p>
 
-        {/* Tech tags */}
+        {/* Highlights */}
+        {project.highlights && (
+          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+            {project.highlights.map((highlight) => (
+              <div
+                key={highlight}
+                className="flex items-center gap-2"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+                <span className="text-[11px] font-medium text-gray-600 dark:text-gray-300">
+                  {highlight}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Divider */}
+        <div className="my-6 h-px w-full bg-gray-200/80 dark:bg-white/[0.07]" />
+
+        {/* Built with */}
+        <div>
+          <div className="mb-2.5 flex items-center gap-2">
+            <Code2
+              size={13}
+              className="text-gray-400 dark:text-gray-500"
+              aria-hidden="true"
+            />
+            <span
+              className="text-[10px] font-bold uppercase tracking-[1.8px] text-gray-400 dark:text-gray-500"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
+              Built with
+            </span>
+          </div>
+
+          <div className="flex flex-wrap gap-1.5">
+            {project.tech.slice(0, 7).map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 text-[10px] font-semibold text-gray-600 transition-colors duration-300 hover:border-blue-300 hover:text-blue-600 dark:border-white/[0.08] dark:bg-white/[0.035] dark:text-gray-400 dark:hover:border-blue-500/30 dark:hover:text-blue-400"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                {tech}
+              </span>
+            ))}
+
+            {project.tech.length > 7 && (
+              <span
+                className="rounded-full border border-dashed border-gray-200 bg-gray-50 px-2.5 py-1 text-[10px] font-semibold text-gray-400 dark:border-white/[0.08] dark:bg-white/[0.035] dark:text-gray-500"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                +{project.tech.length - 7} more
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* CTA row */}
+      <div className="relative z-10 mt-7 flex flex-wrap items-center gap-2.5">
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View live ${project.title} project`}
+            className="group/cta inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-blue-600/15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-purple-600/25"
+            style={{ fontFamily: "'Sora', sans-serif" }}
+          >
+            <ExternalLink size={13} aria-hidden="true" />
+            View Live
+            <ArrowRight
+              size={13}
+              className="transition-transform duration-300 group-hover/cta:translate-x-0.5"
+              aria-hidden="true"
+            />
+          </a>
+        )}
+
+        <a
+          href={project.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`View ${project.title} source code on GitHub`}
+          className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white/70 px-4 py-2.5 text-xs font-bold text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-300 hover:bg-gray-100 dark:border-white/[0.1] dark:bg-white/[0.04] dark:text-gray-300 dark:hover:border-white/20 dark:hover:bg-white/[0.08]"
+          style={{ fontFamily: "'Sora', sans-serif" }}
+        >
+          <Github size={13} aria-hidden="true" />
+          View Code
+        </a>
+      </div>
+    </div>
+  </motion.div>
+);
+
+// ─────────────────────────────────────────────────────────────
+// Regular Project Card
+// ─────────────────────────────────────────────────────────────
+
+const ProjectCard = ({
+  project,
+  index,
+}: {
+  project: (typeof projects)[0];
+  index: number;
+}) => (
+  <motion.article
+    initial={{
+      opacity: 0,
+      y: 30,
+    }}
+    whileInView={{
+      opacity: 1,
+      y: 0,
+    }}
+    transition={{
+      duration: 0.5,
+      delay: (index % 3) * 0.08,
+      ease: [0.22, 1, 0.36, 1],
+    }}
+    viewport={{
+      once: true,
+      margin: "-50px",
+    }}
+    whileHover={{
+      y: -6,
+    }}
+    className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/70 bg-white/75 shadow-sm backdrop-blur-xl transition-all duration-500 hover:border-gray-300/80 hover:shadow-xl hover:shadow-blue-500/[0.06] dark:border-white/[0.07] dark:bg-white/[0.03] dark:hover:border-white/[0.13] dark:hover:shadow-purple-500/[0.07]"
+  >
+    {/* Image */}
+    <div className="relative aspect-[16/10] overflow-hidden">
+      <img
+        src={project.image}
+        alt={`${project.title} project preview`}
+        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.045]"
+      />
+
+      {/* Image overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent opacity-0 transition-opacity duration-400 group-hover:opacity-100" />
+
+      {/* Image actions */}
+      <div className="absolute inset-x-0 bottom-0 flex translate-y-3 items-center justify-center gap-2.5 px-4 pb-4 opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100">
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View live ${project.title}`}
+            className="inline-flex items-center gap-1.5 rounded-xl border border-white/30 bg-white/90 px-3.5 py-2 text-[11px] font-bold text-gray-800 shadow-lg backdrop-blur-md transition-all duration-300 hover:bg-blue-600 hover:text-white hover:border-transparent dark:bg-black/40 dark:text-white dark:hover:bg-blue-600"
+            style={{ fontFamily: "'Sora', sans-serif" }}
+          >
+            <ExternalLink size={12} aria-hidden="true" />
+            Live
+          </a>
+        )}
+
+        <a
+          href={project.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`View ${project.title} source code`}
+          className="inline-flex items-center gap-1.5 rounded-xl border border-white/30 bg-white/90 px-3.5 py-2 text-[11px] font-bold text-gray-800 shadow-lg backdrop-blur-md transition-all duration-300 hover:bg-violet-600 hover:text-white hover:border-transparent dark:bg-black/40 dark:text-white dark:hover:bg-violet-600"
+          style={{ fontFamily: "'Sora', sans-serif" }}
+        >
+          <Github size={12} aria-hidden="true" />
+          Code
+        </a>
+      </div>
+
+      {/* Shine */}
+      <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.1] to-transparent transition-transform duration-800 group-hover:translate-x-full" />
+    </div>
+
+    {/* Content */}
+    <div className="relative flex flex-1 flex-col p-5">
+      {/* Hover ambient layer */}
+      <div className="pointer-events-none absolute inset-0 rounded-b-2xl bg-gradient-to-br from-blue-500/[0.035] via-purple-500/[0.04] to-pink-500/[0.035] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+      <div className="relative">
+        <div className="mb-2 flex items-start justify-between gap-3">
+          <h3
+            className="text-sm font-semibold leading-snug text-gray-900 transition-colors duration-300 group-hover:text-blue-600 sm:text-base dark:text-white dark:group-hover:text-blue-400"
+            style={{ fontFamily: "'Sora', sans-serif" }}
+          >
+            {project.title}
+          </h3>
+
+          <ArrowUp
+            size={14}
+            className="mt-0.5 shrink-0 rotate-45 text-gray-300 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-500 dark:text-gray-600 dark:group-hover:text-blue-400"
+            aria-hidden="true"
+          />
+        </div>
+
+        <p
+          className="mb-5 line-clamp-3 text-xs leading-[1.75] text-gray-500 dark:text-gray-400"
+          style={{ fontFamily: "'DM Sans', sans-serif" }}
+        >
+          {project.description}
+        </p>
+      </div>
+
+      {/* Bottom content */}
+      <div className="relative mt-auto">
+        <div className="mb-4 h-px w-full bg-gray-200/70 dark:bg-white/[0.06]" />
+
         <div className="flex flex-wrap gap-1.5">
-          {project.tech.map((tech) => (
+          {project.tech.slice(0, 5).map((tech) => (
             <span
               key={tech}
-              className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-500/20"
+              className="rounded-full border border-blue-100 bg-blue-50/70 px-2.5 py-1 text-[10px] font-semibold text-blue-600 transition-colors duration-300 group-hover:border-blue-200 dark:border-blue-500/15 dark:bg-blue-500/[0.07] dark:text-blue-400 dark:group-hover:border-blue-500/25"
               style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
               {tech}
             </span>
           ))}
+
+          {project.tech.length > 5 && (
+            <span
+              className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 text-[10px] font-semibold text-gray-400 dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-gray-500"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
+            >
+              +{project.tech.length - 5}
+            </span>
+          )}
+        </div>
+
+        {/* Mobile-friendly direct action */}
+        <div className="mt-4 flex items-center gap-4 sm:hidden">
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[11px] font-bold text-blue-600 dark:text-blue-400"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
+              Live
+              <ExternalLink size={11} aria-hidden="true" />
+            </a>
+          )}
+
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-[11px] font-bold text-gray-500 dark:text-gray-400"
+            style={{ fontFamily: "'Sora', sans-serif" }}
+          >
+            Code
+            <Github size={11} aria-hidden="true" />
+          </a>
         </div>
       </div>
     </div>
-  </motion.div>
+  </motion.article>
 );
 
-// ── Regular Card ──────────────────────────────────────────────
-const ProjectCard = ({ project, index }: { project: (typeof projects)[0]; index: number }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 36 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay: (index % 3) * 0.1, ease: [0.22, 1, 0.36, 1] }}
-    viewport={{ once: true }}
-    whileHover={{ y: -6 }}
-    className="group relative flex flex-col rounded-2xl overflow-hidden border border-gray-200/70 dark:border-white/[0.07] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl shadow-sm hover:shadow-xl hover:shadow-blue-500/8 dark:hover:shadow-purple-500/8 hover:border-gray-300/80 dark:hover:border-white/[0.12] transition-all duration-500"
-  >
-    <div className="relative overflow-hidden">
-      <img src={project.image} alt={project.title}
-        className="w-full h-48 object-cover transition-transform duration-600 group-hover:scale-105" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
-      <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-all duration-400">
-        {project.liveUrl && (
-          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/90 dark:bg-white/10 backdrop-blur-md border border-white/30 text-gray-800 dark:text-white text-xs font-semibold hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300 shadow-lg"
-            style={{ fontFamily: "'Sora', sans-serif" }}>
-            <ExternalLink size={13} aria-hidden="true" /> Live
-          </a>
-        )}
-        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-          className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/90 dark:bg-white/10 backdrop-blur-md border border-white/30 text-gray-800 dark:text-white text-xs font-semibold hover:bg-violet-600 hover:text-white hover:border-transparent transition-all duration-300 shadow-lg"
-          style={{ fontFamily: "'Sora', sans-serif" }}>
-          <Github size={13} aria-hidden="true" /> Code
-        </a>
-      </div>
-      <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 group-hover:translate-x-full pointer-events-none" />
-    </div>
+// ─────────────────────────────────────────────────────────────
+// Main Component
+// ─────────────────────────────────────────────────────────────
 
-    <div className="flex flex-col flex-1 p-5">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
-      <h3 className="relative text-sm md:text-base font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 leading-snug"
-        style={{ fontFamily: "'Sora', sans-serif" }}>
-        {project.title}
-      </h3>
-      <p className="relative text-xs text-gray-500 dark:text-gray-400 mb-4 leading-[1.75] line-clamp-3"
-        style={{ fontFamily: "'DM Sans', sans-serif" }}>
-        {project.description}
-      </p>
-      <div className="relative flex flex-wrap gap-1.5 mt-auto">
-        {project.tech.map((tech) => (
-          <span key={tech}
-            className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-500/20"
-            style={{ fontFamily: "'DM Sans', sans-serif" }}>
-            {tech}
-          </span>
-        ))}
-      </div>
-    </div>
-  </motion.div>
-);
-
-// ── Main Component ─────────────────────────────────────────────
 const Projects = () => {
-  const title = "Featured Projects";
   const [showAll, setShowAll] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
-  const featuredProjects = projects.filter((p) => p.featured);
-  const regularProjects = projects.filter((p) => !p.featured);
-  const visibleRegular = showAll ? regularProjects : regularProjects.slice(0, 3);
+  const featuredProjects = projects.filter((project) => project.featured);
+  const regularProjects = projects.filter((project) => !project.featured);
+
+  const visibleRegular = showAll
+    ? regularProjects
+    : regularProjects.slice(0, 3);
+
+  const activeProject = featuredProjects[activeIndex];
 
   const goTo = (index: number) => {
+    if (index === activeIndex) return;
+
     setDirection(index > activeIndex ? 1 : -1);
     setActiveIndex(index);
   };
-  const prev = () => goTo((activeIndex - 1 + featuredProjects.length) % featuredProjects.length);
-  const next = () => goTo((activeIndex + 1) % featuredProjects.length);
+
+  const prev = () => {
+    const nextIndex =
+      (activeIndex - 1 + featuredProjects.length) %
+      featuredProjects.length;
+
+    setDirection(-1);
+    setActiveIndex(nextIndex);
+  };
+
+  const next = () => {
+    const nextIndex = (activeIndex + 1) % featuredProjects.length;
+
+    setDirection(1);
+    setActiveIndex(nextIndex);
+  };
 
   const handleToggle = () => {
-    if (showAll) sectionRef.current?.scrollIntoView({ behavior: "smooth" });
-    setShowAll(!showAll);
+    if (showAll) {
+      sectionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+
+    setShowAll((current) => !current);
   };
 
   return (
-    <section id="projects" ref={sectionRef}
-      className="relative py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-[#050816] dark:via-[#0B1126] dark:to-[#050816] transition-colors duration-500">
-
-      {/* Ambient glows */}
+    <section
+      id="projects"
+      ref={sectionRef}
+      className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 py-24 transition-colors duration-500 dark:from-[#050816] dark:via-[#0B1126] dark:to-[#050816]"
+    >
+      {/* ───────────────────────────────────────────────────────
+          Ambient background
+      ─────────────────────────────────────────────────────── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-24 left-[-80px] h-[400px] w-[400px] rounded-full bg-blue-500/10 blur-[150px]" />
-        <motion.div animate={{ y: [0, 18, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="absolute right-[-80px] top-[100px] h-[360px] w-[360px] rounded-full bg-violet-500/10 blur-[150px]" />
-        <div className="absolute bottom-[-120px] left-1/2 -translate-x-1/2 h-[320px] w-[320px] rounded-full bg-pink-500/8 blur-[140px]" />
+        <motion.div
+          animate={{
+            y: [0, -20, 0],
+            x: [0, 10, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute -left-24 -top-24 h-[420px] w-[420px] rounded-full bg-blue-500/10 blur-[150px]"
+        />
+
+        <motion.div
+          animate={{
+            y: [0, 18, 0],
+            x: [0, -10, 0],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.5,
+          }}
+          className="absolute right-[-100px] top-[120px] h-[380px] w-[380px] rounded-full bg-violet-500/10 blur-[150px]"
+        />
+
+        <div className="absolute bottom-[-150px] left-1/2 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-pink-500/[0.06] blur-[150px]" />
+
+        {/* Fine grid texture */}
+        <div
+          className="absolute inset-0 opacity-[0.018] dark:opacity-[0.025]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
+        {/* ───────────────────────────────────────────────────────
+            Heading
+        ─────────────────────────────────────────────────────── */}
+        <motion.div
+          variants={typingContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mb-16 text-center"
+        >
+          {/* Portfolio badge */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: -10,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.5,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#A855F7]/40 bg-[#A855F7]/10 px-4 py-1.5 shadow-[0_0_15px_rgba(168,85,247,0.2)] backdrop-blur-md"
+          >
+            <FolderGit2
+              className="h-3.5 w-3.5 text-[#A855F7]"
+              aria-hidden="true"
+            />
 
-      {/* Heading Section */}
-<motion.div
-  variants={typingContainer}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
-  className="text-center mb-16"
->
-  {/* DISCOVERY Style - PORTFOLIO Badge */}
-  <motion.div
-    initial={{ opacity: 0, y: -10 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-    viewport={{ once: true }}
-    className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 border border-[#A855F7]/40 bg-[#A855F7]/10 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.2)]"
-  >
-    <FolderGit2 className="w-3.5 h-3.5 text-[#A855F7]" />
-    <span
-      className="text-xs uppercase tracking-[2.5px] font-bold text-white"
-      style={{ fontFamily: "'Sora', sans-serif" }}
-    >
-      PORTFOLIO
-    </span>
-  </motion.div>
+            <span
+              className="text-xs font-bold uppercase tracking-[2.5px] text-white"
+              style={{
+                fontFamily: "'Sora', sans-serif",
+              }}
+            >
+              Portfolio
+            </span>
+          </motion.div>
 
-  {/* Main Title with #A855F7 -> #F472FF Gradient */}
-  <h2
-    className="text-4xl md:text-5xl font-bold flex justify-center flex-wrap gap-x-3"
-    style={{ fontFamily: "'Sora', Montserrat, sans-serif", letterSpacing: "-0.02em" }}
-  >
-    <span className="text-gray-900 dark:text-white">Featured</span>
-    <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
-      Projects
-    </span>
-  </h2>
+          {/* Main heading */}
+          <motion.h2
+            variants={typingText}
+            className="flex flex-wrap justify-center gap-x-3 text-4xl font-bold tracking-[-0.025em] sm:text-5xl"
+            style={{
+              fontFamily: "'Sora', Montserrat, sans-serif",
+            }}
+          >
+            <span className="text-gray-900 dark:text-white">
+              Featured
+            </span>
 
-  {/* Bottom Multicolor Underline */}
-  <div className="flex items-center justify-center gap-2 mt-5">
-    <div className="h-px w-10 bg-gradient-to-r from-transparent to-blue-500/40" />
-    <motion.div
-      initial={{ width: 0 }}
-      whileInView={{ width: 80 }}
-      transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
-      viewport={{ once: true }}
-      className="h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-[#A855F7] to-[#F472FF]"
-    />
-    <div className="h-px w-10 bg-gradient-to-l from-transparent to-[#F472FF]/40" />
-  </div>
+            <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
+              Projects
+            </span>
+          </motion.h2>
 
-  {/* Description Subtext */}
-  <motion.p
-    initial={{ opacity: 0, y: 10 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, delay: 0.4 }}
-    viewport={{ once: true }}
-    className="mt-6 text-sm md:text-[0.95rem] text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-[1.8]"
-    style={{ fontFamily: "'DM Sans', sans-serif" }}
-  >
-    From AI-integrated backends to pixel-perfect frontends — each project
-    was built to solve a real problem and ship to production.
-  </motion.p>
-</motion.div>
+          {/* Underline */}
+          <div className="mt-5 flex items-center justify-center gap-2">
+            <div className="h-px w-10 bg-gradient-to-r from-transparent to-blue-500/40" />
 
-        {/* Hero Projects label */}
-        <div className="flex items-center gap-4 mb-6">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300/50 dark:via-white/10 to-transparent" />
-          <span className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[2.5px] text-gray-400 dark:text-gray-500 font-semibold whitespace-nowrap"
-            style={{ fontFamily: "'Sora', sans-serif" }}>
-            <Star size={11} className="text-yellow-400" fill="currentColor" aria-hidden="true" />
-            Hero Projects
+            <motion.div
+              initial={{
+                width: 0,
+              }}
+              whileInView={{
+                width: 80,
+              }}
+              transition={{
+                duration: 0.7,
+                ease: "easeOut",
+                delay: 0.3,
+              }}
+              viewport={{
+                once: true,
+              }}
+              className="h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-[#A855F7] to-[#F472FF]"
+            />
+
+            <div className="h-px w-10 bg-gradient-to-l from-transparent to-[#F472FF]/40" />
+          </div>
+
+          {/* Description */}
+          <motion.p
+            initial={{
+              opacity: 0,
+              y: 10,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.6,
+              delay: 0.4,
+            }}
+            viewport={{
+              once: true,
+            }}
+            className="mx-auto mt-6 max-w-2xl text-sm leading-[1.8] text-gray-500 md:text-[0.95rem] dark:text-gray-400"
+            style={{
+              fontFamily: "'DM Sans', sans-serif",
+            }}
+          >
+            From AI-integrated backends to pixel-perfect frontends — each
+            project was built to solve a real problem and ship to production.
+          </motion.p>
+        </motion.div>
+
+        {/* ───────────────────────────────────────────────────────
+            Hero Projects heading
+        ─────────────────────────────────────────────────────── */}
+        <div className="mb-6 flex items-center gap-4">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300/50 to-transparent dark:via-white/10" />
+
+          <span
+            className="inline-flex items-center gap-1.5 whitespace-nowrap text-[10px] font-bold uppercase tracking-[2.5px] text-gray-400 dark:text-gray-500"
+            style={{
+              fontFamily: "'Sora', sans-serif",
+            }}
+          >
+            <Sparkles
+              size={11}
+              className="text-yellow-400"
+              fill="currentColor"
+              aria-hidden="true"
+            />
+            Selected Work
           </span>
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300/50 dark:via-white/10 to-transparent" />
+
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300/50 to-transparent dark:via-white/10" />
         </div>
 
-        {/* ── Spotlight Carousel ── */}
+        {/* ───────────────────────────────────────────────────────
+            Featured Spotlight
+        ─────────────────────────────────────────────────────── */}
         <div className="mb-5">
           <div className="relative">
             <AnimatePresence mode="wait" custom={direction}>
               <SpotlightCard
-                key={activeIndex}
-                project={featuredProjects[activeIndex]}
+                key={activeProject.title}
+                project={activeProject}
                 direction={direction}
+                projectNumber={activeIndex + 1}
               />
             </AnimatePresence>
           </div>
 
-          {/* Navigation row */}
-          <div className="flex items-center justify-between mt-5">
-
-            {/* Prev button */}
+          {/* Carousel navigation */}
+          <div className="mt-5 flex items-center justify-between gap-3">
+            {/* Previous */}
             <motion.button
+              type="button"
               onClick={prev}
-              whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.93 }}
-              aria-label="Previous project"
-              className="w-10 h-10 rounded-xl flex items-center justify-center border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] backdrop-blur-sm text-gray-500 dark:text-gray-400 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300"
+              whileHover={{
+                scale: 1.06,
+              }}
+              whileTap={{
+                scale: 0.94,
+              }}
+              aria-label="View previous featured project"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-white/60 text-gray-500 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-transparent hover:bg-blue-600 hover:text-white dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400"
             >
               <ChevronLeft size={18} aria-hidden="true" />
             </motion.button>
 
-            {/* Thumbnail chips */}
-            <div className="flex items-center gap-3">
-              {featuredProjects.map((p, i) => (
-                <motion.button
-                  key={p.title}
-                  onClick={() => goTo(i)}
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  className={`relative flex items-center gap-2.5 px-4 py-2.5 rounded-xl border transition-all duration-300 overflow-hidden ${
-                    i === activeIndex
-                      ? "border-transparent text-white shadow-lg"
-                      : "border-gray-200 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] text-gray-500 dark:text-gray-400 hover:border-purple-300/40 dark:hover:border-white/20"
-                  }`}
-                  style={{ fontFamily: "'Sora', sans-serif" }}
-                >
-                  {i === activeIndex && (
-                    <motion.span
-                      layoutId="activeThumb"
-                      className={`absolute inset-0 bg-gradient-to-r ${p.badgeColor}`}
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
-                    />
-                  )}
-                  <span className="relative text-[11px] font-semibold whitespace-nowrap">
-                    {p.badge}
-                  </span>
-                </motion.button>
-              ))}
+            {/* Project selectors */}
+            <div className="flex items-center gap-2 overflow-x-auto px-1 scrollbar-none sm:gap-3">
+              {featuredProjects.map((project, index) => {
+                const isActive = index === activeIndex;
+
+                return (
+                  <motion.button
+                    type="button"
+                    key={project.title}
+                    onClick={() => goTo(index)}
+                    whileHover={{
+                      scale: 1.025,
+                    }}
+                    whileTap={{
+                      scale: 0.97,
+                    }}
+                    aria-label={`View ${project.title}`}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`relative flex shrink-0 items-center gap-2 overflow-hidden rounded-xl border px-3 py-2.5 transition-all duration-300 sm:px-4 ${
+                      isActive
+                        ? "border-transparent text-white shadow-lg"
+                        : "border-gray-200 bg-white/60 text-gray-500 hover:border-purple-300/40 dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400 dark:hover:border-white/20"
+                    }`}
+                    style={{
+                      fontFamily: "'Sora', sans-serif",
+                    }}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeProjectSelector"
+                        className={`absolute inset-0 bg-gradient-to-r ${project.badgeColor}`}
+                        transition={{
+                          type: "spring",
+                          bounce: 0.18,
+                          duration: 0.5,
+                        }}
+                      />
+                    )}
+
+                    <span
+                      className={`relative text-[9px] font-bold ${
+                        isActive ? "text-white/70" : "text-gray-400"
+                      }`}
+                    >
+                      0{index + 1}
+                    </span>
+
+                    <span className="relative hidden text-[10px] font-semibold whitespace-nowrap sm:block">
+                      {project.badge}
+                    </span>
+
+                    <span className="relative block h-1.5 w-1.5 rounded-full bg-current sm:hidden" />
+                  </motion.button>
+                );
+              })}
             </div>
 
-            {/* Next button */}
+            {/* Next */}
             <motion.button
+              type="button"
               onClick={next}
-              whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.93 }}
-              aria-label="Next project"
-              className="w-10 h-10 rounded-xl flex items-center justify-center border border-gray-200 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] backdrop-blur-sm text-gray-500 dark:text-gray-400 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all duration-300"
+              whileHover={{
+                scale: 1.06,
+              }}
+              whileTap={{
+                scale: 0.94,
+              }}
+              aria-label="View next featured project"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-white/60 text-gray-500 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-transparent hover:bg-blue-600 hover:text-white dark:border-white/10 dark:bg-white/[0.03] dark:text-gray-400"
             >
               <ChevronRight size={18} aria-hidden="true" />
             </motion.button>
           </div>
         </div>
 
-        {/* More projects label */}
-        <div className="flex items-center gap-4 mb-6 mt-10">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300/50 dark:via-white/10 to-transparent" />
-          <span className="text-xs uppercase tracking-[2.5px] text-gray-400 dark:text-gray-500 font-semibold whitespace-nowrap"
-            style={{ fontFamily: "'Sora', sans-serif" }}>
+        {/* ───────────────────────────────────────────────────────
             More Projects
-          </span>
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300/50 dark:via-white/10 to-transparent" />
+        ─────────────────────────────────────────────────────── */}
+        <div className="mb-6 mt-14 flex items-center gap-4">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300/50 to-transparent dark:via-white/10" />
+
+          <div className="inline-flex items-center gap-2 whitespace-nowrap">
+            <Layers3
+              size={11}
+              className="text-gray-400 dark:text-gray-500"
+              aria-hidden="true"
+            />
+
+            <span
+              className="text-[10px] font-bold uppercase tracking-[2.5px] text-gray-400 dark:text-gray-500"
+              style={{
+                fontFamily: "'Sora', sans-serif",
+              }}
+            >
+              More Projects
+            </span>
+          </div>
+
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300/50 to-transparent dark:via-white/10" />
         </div>
 
-        {/* Regular grid */}
-        <AnimatePresence>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {/* Project grid */}
+        <AnimatePresence mode="popLayout">
+          <motion.div
+            layout
+            className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7"
+          >
             {visibleRegular.map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} />
+              <ProjectCard
+                key={project.title}
+                project={project}
+                index={index}
+              />
             ))}
-          </div>
+          </motion.div>
         </AnimatePresence>
 
-        {/* Toggle Button */}
+        {/* ───────────────────────────────────────────────────────
+            Show all / Show less
+        ─────────────────────────────────────────────────────── */}
         {regularProjects.length > 3 && (
           <div className="mt-14 flex justify-center">
-            <motion.button onClick={handleToggle} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl border border-gray-300 dark:border-white/15 bg-white/80 dark:bg-white/5 backdrop-blur-sm px-7 py-4 text-gray-800 dark:text-white font-medium shadow-sm transition-all duration-500 hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.4)]"
-              style={{ fontFamily: "'Sora', sans-serif" }}>
-              <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <motion.button
+              type="button"
+              onClick={handleToggle}
+              whileHover={{
+                scale: 1.025,
+              }}
+              whileTap={{
+                scale: 0.975,
+              }}
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl border border-gray-300 bg-white/80 px-7 py-3.5 font-medium text-gray-800 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-transparent hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.35)] dark:border-white/15 dark:bg-white/[0.04] dark:text-white"
+              style={{
+                fontFamily: "'Sora', sans-serif",
+              }}
+            >
+              {/* Hover gradient */}
+              <span className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
               {showAll ? (
                 <>
-                  <ArrowUp className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" aria-hidden="true" />
-                  <span className="relative z-10 tracking-wide">Show Less</span>
+                  <ArrowUp
+                    className="relative z-10 h-4.5 w-4.5 transition-transform duration-300 group-hover:-translate-y-0.5"
+                    aria-hidden="true"
+                  />
+
+                  <span className="relative z-10 text-xs tracking-wide">
+                    Show Less
+                  </span>
                 </>
               ) : (
                 <>
-                  <ArrowRight className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
-                  <span className="relative z-10 tracking-wide">Show All Projects</span>
+                  <span className="relative z-10 text-xs tracking-wide">
+                    Explore All Projects
+                  </span>
+
+                  <ArrowRight
+                    className="relative z-10 h-4.5 w-4.5 transition-transform duration-300 group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
                 </>
               )}
             </motion.button>
