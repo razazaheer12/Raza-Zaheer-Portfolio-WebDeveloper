@@ -412,16 +412,15 @@ const About: React.FC = () => {
             </div>
 
             {/* =====================================================
-                DOWNLOAD RESUME
-                Project-Style Purple / White Button
+                DOWNLOAD RESUME BUTTON (Matched Explore All Projects Style)
                 ===================================================== */}
             <motion.a
               href="/Raza_Zaheer_Resume.pdf"
               download="Raza_Zaheer_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{ scale: 1.025 }}
+              whileTap={{ scale: 0.975 }}
               className="
                 group
                 relative
@@ -431,62 +430,38 @@ const About: React.FC = () => {
                 overflow-hidden
                 rounded-2xl
                 border
-                border-[#8B5CF6]/70
-                bg-[#11152C]/90
-                backdrop-blur-md
-                px-7 py-4
-                text-white
-                font-semibold
-                shadow-[0_0_20px_rgba(139,92,246,0.12)]
+                border-purple-900/70
+                bg-[#0b0a1d]/80
+                px-7 py-3.5
+                font-medium
+                text-gray-200
+                shadow-sm
+                backdrop-blur-sm
                 transition-all
                 duration-500
-                hover:border-[#C084FC]
-                hover:shadow-[0_10px_45px_rgba(168,85,247,0.35)]
+                hover:border-purple-500
+                hover:text-white
+                hover:shadow-[0_10px_50px_rgba(168,85,247,0.25)]
+                dark:border-purple-900/70
+                dark:bg-[#0b0a1d]/80
+                dark:text-gray-200
               "
             >
-              {/* Purple Gradient Hover Background */}
-              <span
-                className="
-                  absolute
-                  inset-0
-                  bg-gradient-to-r
-                  from-[#7C3AED]
-                  via-[#A855F7]
-                  to-[#EC4899]
-                  opacity-0
-                  group-hover:opacity-100
-                  transition-opacity
-                  duration-500
-                "
-              />
-
-              {/* Subtle Shine */}
-              <span
-                className="
-                  absolute
-                  inset-y-0
-                  left-[-100%]
-                  w-[45%]
-                  skew-x-[-20deg]
-                  bg-white/20
-                  group-hover:left-[120%]
-                  transition-all
-                  duration-700
-                "
-              />
+              {/* Solid Purple Overlay reveal on hover */}
+              <span className="absolute inset-0 rounded-2xl bg-purple-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               <Download
                 className="
                   relative
                   z-10
-                  w-5 h-5
+                  w-4.5 h-4.5
                   transition-transform
                   duration-300
-                  group-hover:translate-y-1
+                  group-hover:translate-y-0.5
                 "
               />
 
-              <span className="relative z-10 tracking-wide">
+              <span className="relative z-10 text-xs tracking-wide">
                 Download Resume
               </span>
             </motion.a>
