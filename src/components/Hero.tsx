@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Code2, Sparkles, Terminal, ArrowRight, Flame } from "lucide-react";
+import { Github, Linkedin, Mail, Code2, Terminal, ArrowRight, Flame, Sparkles } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
 
 // ────────────────────────────────────────────────────────────────
@@ -56,8 +56,8 @@ const CyclingTyping = ({ cursorColor }: { cursorColor: string }) => {
   const charIndexRef = useRef(0);
 
   useEffect(() => {
-    let timeoutId: ReturnType<typeof setTimeout>;
-    let intervalId: ReturnType<typeof setInterval>;
+    let timeoutId: ReturnType<setTimeout>;
+    let intervalId: ReturnType<setInterval>;
 
     const typeNext = () => {
       const current = roles[roleIndexRef.current];
@@ -175,44 +175,32 @@ const Hero = () => {
     { href: "mailto:razazaheer2002@gmail.com", icon: <Mail size={18} aria-hidden="true" />, label: "Email" },
   ];
 
-  // High-Impact Next-Gen Stats Config
+  // Modern Agency-Grade Neon Green Sleek Stats
   const stats = [
     {
       value: "05+",
-      label: "DEPLOYED APPS",
-      subLabel: "Production Grade",
-      icon: <Code2 size={18} />,
-      colorGrad: "from-cyan-400 via-teal-300 to-emerald-400",
-      glowShadow: "rgba(45,212,191,0.25)",
-      borderHover: "hover:border-cyan-500/50",
-      iconBg: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30",
+      label: "PROJECTS",
+      subLabel: "Production Live",
+      icon: <Code2 size={15} />,
     },
     {
       value: "02+",
-      label: "YEARS DEV",
-      subLabel: "Hands-on Experience",
-      icon: <Flame size={18} />,
-      colorGrad: "from-amber-300 via-orange-400 to-red-400",
-      glowShadow: "rgba(251,146,60,0.25)",
-      borderHover: "hover:border-amber-500/50",
-      iconBg: "bg-amber-500/10 text-amber-400 border-amber-500/30",
+      label: "YEARS EXP",
+      subLabel: "Full-Stack Dev",
+      icon: <Flame size={15} />,
     },
     {
       value: "10+",
       label: "TECH STACK",
-      subLabel: "Modern Frameworks",
-      icon: <Terminal size={18} />,
-      colorGrad: "from-purple-400 via-fuchsia-400 to-pink-400",
-      glowShadow: "rgba(192,132,252,0.25)",
-      borderHover: "hover:border-purple-500/50",
-      iconBg: "bg-purple-500/10 text-purple-400 border-purple-500/30",
+      subLabel: "Modern Tools",
+      icon: <Terminal size={15} />,
     },
   ];
 
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden transition-colors duration-500"
+      className="relative min-h-screen flex items-center overflow-hidden transition-colors duration-500 pb-20 lg:pb-28"
       style={{ background: theme.background }}
     >
       {/* Grid */}
@@ -236,8 +224,8 @@ const Hero = () => {
 
       <ParticlesBackground count={55} color={theme.particle} />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-28 lg:pt-32 pb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] lg:min-h-[80vh]">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-28 lg:pt-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] lg:min-h-[78vh]">
 
           {/* Left Side */}
           <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}>
@@ -279,14 +267,14 @@ const Hero = () => {
             {/* Tagline */}
             <motion.p
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: theme.tagline, lineHeight: 1.8, maxWidth: 420, marginBottom: 36, fontWeight: 400 }}
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: theme.tagline, lineHeight: 1.8, maxWidth: 420, marginBottom: 32, fontWeight: 400 }}
             >
               Where creativity meets code — crafting futuristic,<br />
               elegant, and seamlessly responsive digital experiences.
             </motion.p>
 
             {/* Purple Glowing Buttons */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-4 mb-10">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-4 mb-8">
               
               <motion.a
                 href="#projects"
@@ -313,7 +301,7 @@ const Hero = () => {
             </motion.div>
 
             {/* Social Icons */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-3">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-3 mb-8">
               <span className="mr-2 text-xs font-mono uppercase tracking-widest text-purple-300/50" style={{ fontFamily: "'Sora', sans-serif" }}>
                 Find me
               </span>
@@ -322,53 +310,42 @@ const Hero = () => {
               ))}
             </motion.div>
 
-            {/* NEXT-LEVEL GLASSMORPHISM CYBER STATS CARDS */}
+            {/* AGENCY-GRADE NEON GREEN COMPACT CARDS */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="grid grid-cols-3 gap-3 sm:gap-4 mt-10 mb-16 lg:mb-0 max-w-lg"
+              className="grid grid-cols-3 gap-2.5 sm:gap-3 max-w-md"
             >
               {stats.map((stat, i) => (
                 <motion.div
                   key={i}
-                  whileHover={{ y: -4, scale: 1.03 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-3.5 sm:p-4 backdrop-blur-md transition-all duration-300 ${stat.borderHover}`}
-                  style={{
-                    boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
-                  }}
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 22 }}
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-emerald-500/20 bg-emerald-950/10 p-2.5 sm:p-3 backdrop-blur-md shadow-[0_4px_20px_rgba(16,185,129,0.06)] transition-all duration-300 hover:border-emerald-400/50 hover:bg-emerald-950/20 hover:shadow-[0_0_25px_rgba(52,211,153,0.2)]"
                 >
-                  {/* Subtle Inner Glow on Hover */}
-                  <div
-                    className="pointer-events-none absolute -inset-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                    style={{
-                      background: `radial-gradient(circle, ${stat.glowShadow} 0%, transparent 70%)`,
-                    }}
-                  />
+                  {/* Subtle Neon Top Edge Accent */}
+                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                  {/* Header: Icon + Sparkle */}
-                  <div className="flex items-center justify-between mb-2">
-                    <div className={`flex h-8 w-8 items-center justify-center rounded-xl border ${stat.iconBg} shadow-inner`}>
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.3)]">
                       {stat.icon}
                     </div>
-                    <Sparkles size={12} className="text-white/20 transition-colors group-hover:text-white/60" />
+                    <Sparkles size={10} className="text-emerald-400/30 transition-colors group-hover:text-emerald-400" />
                   </div>
 
-                  {/* Value */}
-                  <div className="my-1">
+                  <div className="my-0.5">
                     <span
-                      className={`block text-2xl sm:text-3xl font-extrabold italic tracking-tight bg-gradient-to-r ${stat.colorGrad} bg-clip-text text-transparent`}
+                      className="block text-xl sm:text-2xl font-extrabold italic tracking-tight bg-gradient-to-r from-emerald-300 via-teal-300 to-lime-300 bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(52,211,153,0.4)]"
                       style={{ fontFamily: "'Sora', sans-serif" }}
                     >
                       {stat.value}
                     </span>
                   </div>
 
-                  {/* Labels */}
                   <div>
-                    <span className="block text-[10px] font-mono font-bold tracking-widest text-gray-300 uppercase">
+                    <span className="block text-[9px] font-mono font-bold tracking-wider text-emerald-200/90 uppercase">
                       {stat.label}
                     </span>
-                    <span className="block text-[9px] font-sans text-gray-500 font-medium">
+                    <span className="block text-[8px] font-sans text-gray-400 font-medium">
                       {stat.subLabel}
                     </span>
                   </div>
@@ -417,18 +394,18 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Separated Scroll Down Indicator (Placed Clearly at Bottom) */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
         transition={{ duration: 1, delay: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-20 pointer-events-auto"
       >
-        <span style={{ fontSize: 10, color: theme.scrollColor, fontFamily: "'Sora', sans-serif", letterSpacing: "2px", textTransform: "uppercase" }}>Scroll</span>
+        <span style={{ fontSize: 9, color: theme.scrollColor, fontFamily: "'Sora', sans-serif", letterSpacing: "2px", textTransform: "uppercase" }}>Scroll</span>
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, 6, 0] }}
           transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-          className="flex h-7 w-7 items-center justify-center rounded-full border border-purple-500/40 bg-purple-950/20 text-xs text-purple-300 backdrop-blur-sm shadow-[0_0_10px_rgba(168,85,247,0.2)]"
+          className="flex h-6 w-6 items-center justify-center rounded-full border border-purple-500/40 bg-purple-950/30 text-xs text-purple-300 backdrop-blur-sm shadow-[0_0_12px_rgba(168,85,247,0.25)]"
         >
           ↓
         </motion.div>
