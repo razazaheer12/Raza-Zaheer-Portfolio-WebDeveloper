@@ -294,7 +294,7 @@ const SpotlightCard = ({
       {/* Category badge */}
       <div className="absolute left-5 top-5 z-10">
         <span
-          className="inline-flex items-center gap-1.5 rounded-full border border-blue-400/40 bg-blue-600 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.8px] text-white shadow-[0_0_20px_rgba(59,130,246,0.20)]"
+          className="inline-flex items-center gap-1.5 rounded-full border border-purple-400/40 bg-purple-600 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.8px] text-white shadow-[0_0_20px_rgba(168,85,247,0.20)]"
           style={{
             fontFamily: "'Sora', sans-serif",
           }}
@@ -441,7 +441,7 @@ const SpotlightCard = ({
             {project.tech.slice(0, 7).map((tech) => (
               <span
                 key={tech}
-                className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 text-[10px] font-semibold text-gray-600 transition-colors duration-300 hover:border-blue-400 hover:text-blue-600 dark:border-white/[0.08] dark:bg-white/[0.035] dark:text-gray-400 dark:hover:border-blue-500/40 dark:hover:text-blue-400"
+                className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 text-[10px] font-semibold text-gray-600 transition-colors duration-300 hover:border-purple-400 hover:text-purple-600 dark:border-white/[0.08] dark:bg-white/[0.035] dark:text-gray-400 dark:hover:border-purple-500/40 dark:hover:text-purple-400"
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                 }}
@@ -472,7 +472,7 @@ const SpotlightCard = ({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`View live ${project.title} project`}
-            className="group/cta inline-flex items-center gap-2 rounded-xl border border-blue-500 bg-blue-600 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-blue-600/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl hover:shadow-blue-600/25"
+            className="group/cta inline-flex items-center gap-2 rounded-xl border border-purple-500 bg-purple-600 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-purple-600/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-purple-700 hover:shadow-xl hover:shadow-purple-600/25"
             style={{
               fontFamily: "'Sora', sans-serif",
             }}
@@ -497,7 +497,7 @@ const SpotlightCard = ({
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`View ${project.title} source code on GitHub`}
-          className="inline-flex items-center gap-2 rounded-xl border border-gray-800/70 bg-[#0b0a1d]/80 px-4 py-2.5 text-xs font-bold text-gray-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-500 hover:bg-blue-600 hover:text-white hover:shadow-lg hover:shadow-blue-600/15"
+          className="inline-flex items-center gap-2 rounded-xl border border-purple-900/70 bg-[#0b0a1d]/80 px-4 py-2.5 text-xs font-bold text-gray-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-500 hover:bg-purple-600 hover:text-white hover:shadow-lg hover:shadow-purple-600/15"
           style={{
             fontFamily: "'Sora', sans-serif",
           }}
@@ -546,7 +546,7 @@ const ProjectCard = ({
     whileHover={{
       y: -6,
     }}
-    className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/70 bg-white/75 shadow-sm backdrop-blur-xl transition-all duration-500 hover:border-gray-300/80 hover:shadow-xl hover:shadow-blue-500/[0.06] dark:border-white/[0.07] dark:bg-white/[0.03] dark:hover:border-blue-500/20 dark:hover:shadow-blue-500/[0.07]"
+    className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/70 bg-white/75 shadow-sm backdrop-blur-xl transition-all duration-500 hover:border-gray-300/80 hover:shadow-xl hover:shadow-purple-500/[0.06] dark:border-white/[0.07] dark:bg-white/[0.03] dark:hover:border-purple-500/20 dark:hover:shadow-purple-500/[0.07]"
   >
     {/* Image */}
     <div className="relative aspect-[16/10] overflow-hidden bg-[#050816]">
@@ -567,7 +567,7 @@ const ProjectCard = ({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`View live ${project.title}`}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-blue-300/60 bg-white/95 px-3.5 py-2 text-[11px] font-bold text-gray-800 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-blue-500 hover:bg-blue-600 hover:text-white dark:bg-black/50 dark:text-white dark:hover:bg-blue-600"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-purple-300/60 bg-white/95 px-3.5 py-2 text-[11px] font-bold text-gray-800 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-purple-500 hover:bg-purple-600 hover:text-white dark:bg-black/50 dark:text-white dark:hover:bg-purple-600"
             style={{
               fontFamily: "'Sora', sans-serif",
             }}
@@ -585,7 +585,7 @@ const ProjectCard = ({
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`View ${project.title} source code`}
-          className="inline-flex items-center gap-1.5 rounded-xl border border-gray-800/70 bg-[#0b0a1d]/90 px-3.5 py-2 text-[11px] font-bold text-gray-200 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-blue-500 hover:bg-blue-600 hover:text-white"
+          className="inline-flex items-center gap-1.5 rounded-xl border border-purple-900/70 bg-[#0b0a1d]/90 px-3.5 py-2 text-[11px] font-bold text-gray-200 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-purple-500 hover:bg-purple-600 hover:text-white"
           style={{
             fontFamily: "'Sora', sans-serif",
           }}
@@ -610,7 +610,7 @@ const ProjectCard = ({
       <div className="relative">
         <div className="mb-2 flex items-start justify-between gap-3">
           <h3
-            className="text-sm font-semibold leading-snug text-gray-900 transition-colors duration-300 group-hover:text-blue-600 sm:text-base dark:text-white dark:group-hover:text-blue-400"
+            className="text-sm font-semibold leading-snug text-gray-900 transition-colors duration-300 group-hover:text-purple-600 sm:text-base dark:text-white dark:group-hover:text-purple-400"
             style={{
               fontFamily: "'Sora', sans-serif",
             }}
@@ -620,7 +620,7 @@ const ProjectCard = ({
 
           <ArrowUp
             size={14}
-            className="mt-0.5 shrink-0 rotate-45 text-gray-300 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-500 dark:text-gray-600 dark:group-hover:text-blue-400"
+            className="mt-0.5 shrink-0 rotate-45 text-gray-300 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-purple-500 dark:text-gray-600 dark:group-hover:text-purple-400"
             aria-hidden="true"
           />
         </div>
@@ -643,7 +643,7 @@ const ProjectCard = ({
           {project.tech.slice(0, 5).map((tech) => (
             <span
               key={tech}
-              className="rounded-full border border-blue-200 bg-blue-50/70 px-2.5 py-1 text-[10px] font-semibold text-blue-600 transition-colors duration-300 group-hover:border-blue-300 dark:border-blue-500/15 dark:bg-blue-500/[0.07] dark:text-blue-400 dark:group-hover:border-blue-500/30"
+              className="rounded-full border border-purple-200 bg-purple-50/70 px-2.5 py-1 text-[10px] font-semibold text-purple-600 transition-colors duration-300 group-hover:border-purple-300 dark:border-purple-500/15 dark:bg-purple-500/[0.07] dark:text-purple-400 dark:group-hover:border-purple-500/30"
               style={{
                 fontFamily: "'DM Sans', sans-serif",
               }}
@@ -671,7 +671,7 @@ const ProjectCard = ({
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-[11px] font-bold text-blue-600 dark:text-blue-400"
+              className="inline-flex items-center gap-1.5 text-[11px] font-bold text-purple-600 dark:text-purple-400"
               style={{
                 fontFamily: "'Sora', sans-serif",
               }}
@@ -847,15 +847,15 @@ const Projects = () => {
             viewport={{
               once: true,
             }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 shadow-[0_0_15px_rgba(59,130,246,0.15)] backdrop-blur-md"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#A855F7]/40 bg-[#A855F7]/10 px-4 py-1.5 shadow-[0_0_15px_rgba(168,85,247,0.2)] backdrop-blur-md"
           >
             <FolderGit2
-              className="h-3.5 w-3.5 text-blue-500 dark:text-blue-400"
+              className="h-3.5 w-3.5 text-[#A855F7]"
               aria-hidden="true"
             />
 
             <span
-              className="text-xs font-bold uppercase tracking-[2.5px] text-blue-600 dark:text-blue-400"
+              className="text-xs font-bold uppercase tracking-[2.5px] text-white"
               style={{
                 fontFamily: "'Sora', sans-serif",
               }}
@@ -876,7 +876,7 @@ const Projects = () => {
               Featured
             </span>
 
-            <span className="bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400">
+            <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
               Projects
             </span>
           </motion.h2>
@@ -900,10 +900,10 @@ const Projects = () => {
               viewport={{
                 once: true,
               }}
-              className="h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500"
+              className="h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-[#A855F7] to-[#F472FF]"
             />
 
-            <div className="h-px w-10 bg-gradient-to-l from-transparent to-purple-500/40" />
+            <div className="h-px w-10 bg-gradient-to-l from-transparent to-[#F472FF]/40" />
           </div>
 
           {/* Description */}
@@ -995,7 +995,7 @@ const Projects = () => {
                 scale: 0.94,
               }}
               aria-label="View previous featured project"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-900/40 bg-[#0b0a1d]/80 text-blue-300 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-blue-500 hover:bg-blue-600 hover:text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.20)] dark:border-blue-900/40 dark:bg-[#0b0a1d]/80 dark:text-blue-300 dark:hover:border-blue-500 dark:hover:bg-blue-600 dark:hover:text-white"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-purple-900/70 bg-[#0b0a1d]/80 text-purple-300 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-purple-500 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.20)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-purple-300 dark:hover:border-purple-500 dark:hover:bg-purple-600 dark:hover:text-white"
             >
               <ChevronLeft
                 size={18}
@@ -1029,8 +1029,8 @@ const Projects = () => {
                       transition-all duration-300 sm:px-4
                       ${
                         isActive
-                          ? "border-blue-500 bg-blue-600 text-white shadow-[0_0_20px_rgba(59,130,246,0.22)]"
-                          : "border-blue-900/40 bg-[#0b0a1d]/80 text-gray-400 hover:border-blue-500 hover:bg-blue-600 hover:text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.20)] dark:border-blue-900/40 dark:bg-[#0b0a1d]/80 dark:text-gray-400 dark:hover:border-blue-500 dark:hover:bg-blue-600 dark:hover:text-white"
+                          ? "border-purple-500 bg-purple-600 text-white shadow-[0_0_20px_rgba(168,85,247,0.22)]"
+                          : "border-purple-900/70 bg-[#0b0a1d]/80 text-gray-400 hover:border-purple-500 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.20)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-gray-400 dark:hover:border-purple-500 dark:hover:bg-purple-600 dark:hover:text-white"
                       }
                     `}
                     style={{
@@ -1041,7 +1041,7 @@ const Projects = () => {
                       className={`relative text-[9px] font-bold ${
                         isActive
                           ? "text-white/80"
-                          : "text-blue-300 group-hover:text-white"
+                          : "text-purple-300 group-hover:text-white"
                       }`}
                     >
                       0{index + 1}
@@ -1068,7 +1068,7 @@ const Projects = () => {
                 scale: 0.94,
               }}
               aria-label="View next featured project"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-blue-900/40 bg-[#0b0a1d]/80 text-blue-300 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-blue-500 hover:bg-blue-600 hover:text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.20)] dark:border-blue-900/40 dark:bg-[#0b0a1d]/80 dark:text-blue-300 dark:hover:border-blue-500 dark:hover:bg-blue-600 dark:hover:text-white"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-purple-900/70 bg-[#0b0a1d]/80 text-purple-300 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-purple-500 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.20)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-purple-300 dark:hover:border-purple-500 dark:hover:bg-purple-600 dark:hover:text-white"
             >
               <ChevronRight
                 size={18}
@@ -1139,13 +1139,13 @@ const Projects = () => {
               whileTap={{
                 scale: 0.975,
               }}
-              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl border border-blue-900/40 bg-[#0b0a1d]/80 px-7 py-3.5 font-medium text-gray-200 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-blue-500 hover:text-white hover:shadow-[0_10px_50px_rgba(59,130,246,0.25)] dark:border-blue-900/40 dark:bg-[#0b0a1d]/80 dark:text-gray-200"
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl border border-purple-900/70 bg-[#0b0a1d]/80 px-7 py-3.5 font-medium text-gray-200 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-purple-500 hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.25)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-gray-200"
               style={{
                 fontFamily: "'Sora', sans-serif",
               }}
             >
               {/* Hover background */}
-              <span className="absolute inset-0 rounded-2xl bg-blue-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <span className="absolute inset-0 rounded-2xl bg-purple-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               {showAll ? (
                 <>
