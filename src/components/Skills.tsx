@@ -217,7 +217,7 @@ const Skills = () => {
                 size={13}
                 className="text-[#A78BFA]"
               />
-              TECH STACK
+              MY ARCHITECTURE
             </div>
           </motion.div>
 
