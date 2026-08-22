@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'redirect';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import toast, { Toaster } from 'react-hot-toast';
-import { Mail, MessageSquare, Send, User, Github, Linkedin, MapPin, CheckCircle2 } from 'lucide-react';
+import { Mail, MessageSquare, Send, User, Github, Linkedin, MapPin, CheckCircle2, MessageCircle } from 'lucide-react';
 import { useThemeStore } from '../store/themeStore';
 
 interface FormData {
@@ -11,34 +11,6 @@ interface FormData {
   email: string;
   message: string;
 }
-
-// ── Typing Animation ──────────────────────────────────────────
-const TypingAnimation = ({ text, className, delay = 0 }: { text: string; className: string; delay?: number }) => {
-  const [displayText, setDisplayText] = useState('');
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      let i = 0;
-      const typing = setInterval(() => {
-        if (i <= text.length) { setDisplayText(text.slice(0, i)); i++; }
-        else clearInterval(typing);
-      }, 80);
-      return () => clearInterval(typing);
-    }, delay);
-    return () => clearTimeout(timer);
-  }, [text, delay]);
-
-  return (
-    <span className={className}>
-      {displayText}
-      <motion.span
-        animate={{ opacity: [1, 0] }}
-        transition={{ repeat: Infinity, duration: 0.55 }}
-        className="text-[#8FA8FF]"
-      >|</motion.span>
-    </span>
-  );
-};
 
 // ── Info Card ─────────────────────────────────────────────────
 const InfoCard = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) => (
@@ -79,11 +51,6 @@ const Contact = () => {
     }
   };
 
-  const socialLinks = [
-    { href: 'https://github.com/razazaheer12', icon: <Github size={20} aria-hidden="true" />, label: 'GitHub', gradient: 'from-gray-700 to-gray-900 dark:from-gray-600 dark:to-gray-800', hoverShadow: 'hover:shadow-gray-500/30' },
-    { href: 'https://www.linkedin.com/in/raza-zaheer/', icon: <Linkedin size={20} aria-hidden="true" />, label: 'LinkedIn', gradient: 'from-blue-600 to-blue-700', hoverShadow: 'hover:shadow-blue-500/30' },
-  ];
-
   return (
     <section
       id="contact"
@@ -106,38 +73,104 @@ const Contact = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2
-            className="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-white via-[#D8B4FE] to-[#A855F7] bg-clip-text text-transparent mb-4"
-            style={{ fontFamily: "'Sora', Montserrat, sans-serif" }}
+        {/* =========================================================
+            SECTION HEADING (Matched with Skills/About Theme)
+            ========================================================= */}
+        <div className="mb-12 md:mb-16 flex flex-col items-center text-center justify-center">
+
+          {/* Premium Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mb-6 md:mb-7"
           >
-            <TypingAnimation text="Get In Touch" className="" />
-          </h2>
+            <div
+              className="
+                inline-flex items-center gap-2
+                rounded-full
+                border border-[#8B5CF6]/50
+                bg-[#0F1228]/80
+                px-4 py-1.5
+                text-[10px] md:text-xs
+                font-semibold
+                uppercase
+                tracking-[2.8px]
+                text-[#C4B5FD]
+                shadow-[0_0_20px_rgba(139,92,246,0.16)]
+                backdrop-blur-md
+                transition-all duration-300
+                hover:border-[#A855F7]/80
+                hover:text-white
+                hover:shadow-[0_0_25px_rgba(168,85,247,0.25)]
+              "
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              <MessageCircle
+                size={13}
+                className="text-[#A78BFA]"
+              />
+              LET'S CONNECT
+            </div>
+          </motion.div>
 
-          {/* Accent line */}
-          <div className="flex items-center justify-center gap-2 mt-4">
-            <div className="h-px w-10 bg-gradient-to-r from-transparent to-purple-500/40" />
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: 90 }}
-              transition={{ duration: 0.7, ease: 'easeOut', delay: 0.4 }}
-              viewport={{ once: true }}
-              className="h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-            />
-            <div className="h-px w-10 bg-gradient-to-l from-transparent to-pink-500/40" />
-          </div>
+          {/* Dual-Tone Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="
+              text-4xl md:text-5xl
+              font-extrabold
+              tracking-tight
+              text-white
+            "
+            style={{ fontFamily: "Montserrat, sans-serif" }}
+          >
+            Get In{" "}
+            <span
+              className="
+                bg-gradient-to-r
+                from-[#A78BFA]
+                via-[#C084FC]
+                to-[#EC4899]
+                bg-clip-text
+                text-transparent
+              "
+            >
+              Touch
+            </span>
+          </motion.h2>
 
+          {/* Glowing Accent Underline */}
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 88 }}
+            transition={{
+              duration: 0.7,
+              ease: "easeOut",
+              delay: 0.2,
+            }}
+            viewport={{ once: true }}
+            className="
+              h-[3px]
+              rounded-full
+              bg-gradient-to-r
+              from-[#3B82F6]
+              via-[#8B5CF6]
+              to-[#EC4899]
+              mt-4
+              mx-auto
+            "
+          />
+
+          {/* Subtitle Description */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
             className="max-w-2xl mx-auto mt-6 text-sm md:text-base text-gray-500 dark:text-gray-400 leading-[1.8]"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
@@ -145,7 +178,7 @@ const Contact = () => {
             Have a project in mind or want to discuss opportunities? I'm just a message away.
             Let's build something great together.
           </motion.p>
-        </motion.div>
+        </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
@@ -192,35 +225,35 @@ const Contact = () => {
               ))}
             </div>
 
-         {/* Social links */}
-<div>
-  <p className="text-xs uppercase tracking-[2px] text-gray-400 dark:text-gray-500 font-semibold mb-4"
-    style={{ fontFamily: "'Sora', sans-serif" }}>
-    Find me on
-  </p>
-  <div className="flex gap-3">
-    {[
-      { href: 'https://github.com/razazaheer12', icon: <Github size={20} aria-hidden="true" />, label: 'GitHub' },
-      { href: 'https://www.linkedin.com/in/raza-zaheer/', icon: <Linkedin size={20} aria-hidden="true" />, label: 'LinkedIn' },
-    ].map(({ href, icon, label }) => (
-      <motion.a
-        key={label}
-        href={href}
-        aria-label={label}
-        target="_blank"
-        rel="noopener noreferrer"
-        whileHover={{ y: -4, scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-white/[0.04] dark:bg-white/[0.04] border border-purple-500/30 text-gray-200 text-sm font-semibold shadow-sm hover:border-purple-500 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.35)] transition-all duration-300"
-        style={{ fontFamily: "'Sora', sans-serif" }}
-      >
-        <span className="text-purple-400">{icon}</span> {label}
-      </motion.a>
-    ))}
-  </div>
-</div>
+            {/* Social links */}
+            <div>
+              <p className="text-xs uppercase tracking-[2px] text-gray-400 dark:text-gray-500 font-semibold mb-4"
+                style={{ fontFamily: "'Sora', sans-serif" }}>
+                Find me on
+              </p>
+              <div className="flex gap-3">
+                {[
+                  { href: 'https://github.com/razazaheer12', icon: <Github size={20} aria-hidden="true" />, label: 'GitHub' },
+                  { href: 'https://www.linkedin.com/in/raza-zaheer/', icon: <Linkedin size={20} aria-hidden="true" />, label: 'LinkedIn' },
+                ].map(({ href, icon, label }) => (
+                  <motion.a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ y: -4, scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-white/[0.04] dark:bg-white/[0.04] border border-purple-500/30 text-gray-200 text-sm font-semibold shadow-sm hover:border-purple-500 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.35)] transition-all duration-300"
+                    style={{ fontFamily: "'Sora', sans-serif" }}
+                  >
+                    <span className="text-purple-400">{icon}</span> {label}
+                  </motion.a>
+                ))}
+              </div>
+            </div>
           
-     </motion.div>
+          </motion.div>
 
           {/* Right Column — Form */}
           <motion.div
