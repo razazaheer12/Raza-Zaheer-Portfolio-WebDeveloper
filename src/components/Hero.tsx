@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Box, GraduationCap, Cpu, ArrowRight } from "lucide-react";
+import { Github, Linkedin, Mail, Code2, Sparkles, Terminal, ArrowRight, Flame } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
 
 // ────────────────────────────────────────────────────────────────
@@ -137,7 +137,6 @@ const SocialIcon = ({ href, icon, label }: { href: string; icon: React.ReactNode
 const Hero = () => {
   const isDarkMode = useThemeStore((state) => state.isDarkMode);
 
-  // Restore original dark space background & blue mesh glows
   const theme = isDarkMode
     ? {
         background: "#050816",
@@ -152,8 +151,6 @@ const Hero = () => {
         prefix: "rgba(255,255,255,0.38)",
         tagline: "rgba(255,255,255,0.5)",
         cursor: "#60a5fa",
-        statValue: "#a78bfa",
-        statLabel: "rgba(255,255,255,0.4)",
         scrollColor: "#ffffff",
       }
     : {
@@ -169,8 +166,6 @@ const Hero = () => {
         prefix: "rgba(30,27,75,0.5)",
         tagline: "rgba(30,27,75,0.6)",
         cursor: "#3b82f6",
-        statValue: "#7c3aed",
-        statLabel: "rgba(30,27,75,0.45)",
         scrollColor: "#1e1b4b",
       };
 
@@ -180,10 +175,38 @@ const Hero = () => {
     { href: "mailto:razazaheer2002@gmail.com", icon: <Mail size={18} aria-hidden="true" />, label: "Email" },
   ];
 
+  // High-Impact Next-Gen Stats Config
   const stats = [
-    { value: "5+", label: "Projects Built", icon: <Box size={16} />, color: theme.statValue },
-    { value: "2+", label: "Years Learning", icon: <GraduationCap size={16} />, color: "#34d399" },
-    { value: "10+", label: "Technologies", icon: <Cpu size={16} />, color: theme.cursor },
+    {
+      value: "05+",
+      label: "DEPLOYED APPS",
+      subLabel: "Production Grade",
+      icon: <Code2 size={18} />,
+      colorGrad: "from-cyan-400 via-teal-300 to-emerald-400",
+      glowShadow: "rgba(45,212,191,0.25)",
+      borderHover: "hover:border-cyan-500/50",
+      iconBg: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30",
+    },
+    {
+      value: "02+",
+      label: "YEARS DEV",
+      subLabel: "Hands-on Experience",
+      icon: <Flame size={18} />,
+      colorGrad: "from-amber-300 via-orange-400 to-red-400",
+      glowShadow: "rgba(251,146,60,0.25)",
+      borderHover: "hover:border-amber-500/50",
+      iconBg: "bg-amber-500/10 text-amber-400 border-amber-500/30",
+    },
+    {
+      value: "10+",
+      label: "TECH STACK",
+      subLabel: "Modern Frameworks",
+      icon: <Terminal size={18} />,
+      colorGrad: "from-purple-400 via-fuchsia-400 to-pink-400",
+      glowShadow: "rgba(192,132,252,0.25)",
+      borderHover: "hover:border-purple-500/50",
+      iconBg: "bg-purple-500/10 text-purple-400 border-purple-500/30",
+    },
   ];
 
   return (
@@ -201,7 +224,7 @@ const Hero = () => {
         }}
       />
 
-      {/* Original Blue Ambient Glowing Balls */}
+      {/* Ambient Glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute rounded-full" style={{ width: 600, height: 600, top: -140, left: -100, background: `radial-gradient(circle, ${theme.glow1} 0%, transparent 70%)` }} />
         <div className="absolute rounded-full" style={{ width: 640, height: 640, top: -60, right: -160, background: `radial-gradient(circle, ${theme.glow2} 0%, transparent 70%)` }} />
@@ -265,7 +288,6 @@ const Hero = () => {
             {/* Purple Glowing Buttons */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-4 mb-10">
               
-              {/* Primary Purple Button */}
               <motion.a
                 href="#projects"
                 whileHover={{ scale: 1.025 }}
@@ -277,7 +299,6 @@ const Hero = () => {
                 <ArrowRight size={16} aria-hidden="true" className="relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
               </motion.a>
 
-              {/* Secondary Dark/Purple Glow Border Button */}
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.025 }}
@@ -301,22 +322,63 @@ const Hero = () => {
               ))}
             </motion.div>
 
-            {/* Stats */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-8 mt-10 mb-16 lg:mb-0">
+            {/* NEXT-LEVEL GLASSMORPHISM CYBER STATS CARDS */}
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="grid grid-cols-3 gap-3 sm:gap-4 mt-10 mb-16 lg:mb-0 max-w-lg"
+            >
               {stats.map((stat, i) => (
-                <div key={i} className="flex flex-col gap-1">
-                  <div className="flex items-center gap-2" style={{ color: stat.color }}>
-                    {stat.icon}
-                    <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 700, fontSize: 22, color: theme.statValue }}>{stat.value}</span>
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -4, scale: 1.03 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-3.5 sm:p-4 backdrop-blur-md transition-all duration-300 ${stat.borderHover}`}
+                  style={{
+                    boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+                  }}
+                >
+                  {/* Subtle Inner Glow on Hover */}
+                  <div
+                    className="pointer-events-none absolute -inset-full opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                    style={{
+                      background: `radial-gradient(circle, ${stat.glowShadow} 0%, transparent 70%)`,
+                    }}
+                  />
+
+                  {/* Header: Icon + Sparkle */}
+                  <div className="flex items-center justify-between mb-2">
+                    <div className={`flex h-8 w-8 items-center justify-center rounded-xl border ${stat.iconBg} shadow-inner`}>
+                      {stat.icon}
+                    </div>
+                    <Sparkles size={12} className="text-white/20 transition-colors group-hover:text-white/60" />
                   </div>
-                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: theme.statLabel, letterSpacing: "0.5px" }}>{stat.label}</div>
-                </div>
+
+                  {/* Value */}
+                  <div className="my-1">
+                    <span
+                      className={`block text-2xl sm:text-3xl font-extrabold italic tracking-tight bg-gradient-to-r ${stat.colorGrad} bg-clip-text text-transparent`}
+                      style={{ fontFamily: "'Sora', sans-serif" }}
+                    >
+                      {stat.value}
+                    </span>
+                  </div>
+
+                  {/* Labels */}
+                  <div>
+                    <span className="block text-[10px] font-mono font-bold tracking-widest text-gray-300 uppercase">
+                      {stat.label}
+                    </span>
+                    <span className="block text-[9px] font-sans text-gray-500 font-medium">
+                      {stat.subLabel}
+                    </span>
+                  </div>
+                </motion.div>
               ))}
             </motion.div>
 
           </motion.div>
 
-          {/* Right — Original Blue Floating Glow Orb */}
+          {/* Right — Blue Floating Orb */}
           <div className="hidden lg:flex justify-center lg:justify-end items-center relative h-full">
             <motion.div
               animate={{
@@ -355,7 +417,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
+      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
