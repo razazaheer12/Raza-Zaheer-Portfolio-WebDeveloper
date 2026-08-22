@@ -71,10 +71,10 @@ const Navbar: React.FC = () => {
         }}
       >
 
-        {/* Scroll Progress Bar */}
+        {/* ── Deep Purple Glowing Progress Bar ── */}
         <motion.div
           style={{ width: progressWidth }}
-          className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-purple-600 via-purple-500 to-pink-500 shadow-[0_0_12px_rgba(168,85,247,0.9)] z-50"
+          className="absolute top-0 left-0 h-[2.5px] bg-[#9333EA] shadow-[0_0_15px_rgba(168,85,247,1)] z-50"
         />
 
         <div className="max-w-7xl mx-auto flex items-center justify-between">
