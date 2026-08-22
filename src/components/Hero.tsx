@@ -4,9 +4,9 @@ import { Github, Linkedin, Mail, Box, GraduationCap, Cpu, ArrowRight } from "luc
 import { useThemeStore } from "../store/themeStore";
 
 // ────────────────────────────────────────────────────────────────
-// Clean Purple Accent Gradient for Role Text
+// Original Vibrant Blue-Purple Gradient for Role Text
 // ────────────────────────────────────────────────────────────────
-const mernGradient = "linear-gradient(90deg, #c084fc 0%, #a855f7 50%, #818cf8 100%)";
+const mernGradient = "linear-gradient(90deg, #a855f7 0%, #3b82f6 100%)";
 
 // ── Particles ─────────────────────────────────────────────────
 const ParticlesBackground = ({ count = 55, color }: { count?: number; color: string }) => {
@@ -137,24 +137,24 @@ const SocialIcon = ({ href, icon, label }: { href: string; icon: React.ReactNode
 const Hero = () => {
   const isDarkMode = useThemeStore((state) => state.isDarkMode);
 
+  // Restore original dark space background & blue mesh glows
   const theme = isDarkMode
     ? {
-        background: "#0b0a1d",
-        gridLine: "rgba(168,85,247,0.03)",
-        glow1: "rgba(147,51,234,0.15)",
-        glow2: "rgba(168,85,247,0.12)",
-        glow3: "rgba(99,102,241,0.08)",
-        ringBorder: "rgba(168,85,247,0.08)",
-        particle: "rgba(168,85,247,0.6)",
+        background: "#050816",
+        gridLine: "rgba(255,255,255,0.018)",
+        glow1: "rgba(59,130,246,0.12)",
+        glow2: "rgba(139,92,246,0.1)",
+        glow3: "rgba(236,72,153,0.07)",
+        ringBorder: "rgba(255,255,255,0.04)",
+        particle: "rgba(139,92,246,0.6)",
         nameA: "#ffffff",
         nameB: "#ffffff",
-        prefix: "rgba(255,255,255,0.45)",
-        tagline: "rgba(255,255,255,0.6)",
-        cursor: "#c084fc",
-        statValue: "#c084fc",
-        statLabel: "rgba(255,255,255,0.45)",
+        prefix: "rgba(255,255,255,0.38)",
+        tagline: "rgba(255,255,255,0.5)",
+        cursor: "#60a5fa",
+        statValue: "#a78bfa",
+        statLabel: "rgba(255,255,255,0.4)",
         scrollColor: "#ffffff",
-        scrollBorder: "rgba(168,85,247,0.4)",
       }
     : {
         background: "linear-gradient(135deg, #eff6ff 0%, #f5f3ff 50%, #fdf2f8 100%)",
@@ -168,11 +168,10 @@ const Hero = () => {
         nameB: "#1e1b4b",
         prefix: "rgba(30,27,75,0.5)",
         tagline: "rgba(30,27,75,0.6)",
-        cursor: "#9333ea",
+        cursor: "#3b82f6",
         statValue: "#7c3aed",
         statLabel: "rgba(30,27,75,0.45)",
         scrollColor: "#1e1b4b",
-        scrollBorder: "rgba(30,27,75,0.3)",
       };
 
   const socialLinks = [
@@ -182,9 +181,9 @@ const Hero = () => {
   ];
 
   const stats = [
-    { value: "5+", label: "Projects Built", icon: <Box size={16} />, color: "#c084fc" },
+    { value: "5+", label: "Projects Built", icon: <Box size={16} />, color: theme.statValue },
     { value: "2+", label: "Years Learning", icon: <GraduationCap size={16} />, color: "#34d399" },
-    { value: "10+", label: "Technologies", icon: <Cpu size={16} />, color: "#818cf8" },
+    { value: "10+", label: "Technologies", icon: <Cpu size={16} />, color: theme.cursor },
   ];
 
   return (
@@ -202,7 +201,7 @@ const Hero = () => {
         }}
       />
 
-      {/* Ambient glows */}
+      {/* Original Blue Ambient Glowing Balls */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute rounded-full" style={{ width: 600, height: 600, top: -140, left: -100, background: `radial-gradient(circle, ${theme.glow1} 0%, transparent 70%)` }} />
         <div className="absolute rounded-full" style={{ width: 640, height: 640, top: -60, right: -160, background: `radial-gradient(circle, ${theme.glow2} 0%, transparent 70%)` }} />
@@ -220,7 +219,7 @@ const Hero = () => {
           {/* Left Side */}
           <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}>
 
-            {/* Glowing Availability Badge */}
+            {/* Availability Badge */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
               className="inline-flex items-center gap-2 mb-6 rounded-full border border-purple-500/30 bg-purple-950/20 px-4 py-1.5 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.15)]"
@@ -263,10 +262,10 @@ const Hero = () => {
               elegant, and seamlessly responsive digital experiences.
             </motion.p>
 
-            {/* Uniform Buttons */}
+            {/* Purple Glowing Buttons */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-4 mb-10">
               
-              {/* Primary Glowing Button */}
+              {/* Primary Purple Button */}
               <motion.a
                 href="#projects"
                 whileHover={{ scale: 1.025 }}
@@ -278,7 +277,7 @@ const Hero = () => {
                 <ArrowRight size={16} aria-hidden="true" className="relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
               </motion.a>
 
-              {/* Secondary Glowing Border Button */}
+              {/* Secondary Dark/Purple Glow Border Button */}
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.025 }}
@@ -317,7 +316,7 @@ const Hero = () => {
 
           </motion.div>
 
-          {/* Right — Glowing Mesh Orb */}
+          {/* Right — Original Blue Floating Glow Orb */}
           <div className="hidden lg:flex justify-center lg:justify-end items-center relative h-full">
             <motion.div
               animate={{
