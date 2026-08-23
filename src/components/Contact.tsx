@@ -12,17 +12,17 @@ interface FormData {
   message: string;
 }
 
-// ── Info Card ─────────────────────────────────────────────────
+// ── Info Card (Aligned with Design Tokens) ───────────────────────────────────
 const InfoCard = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) => (
   <motion.div
     whileHover={{ y: -4, scale: 1.02 }}
-    className="flex items-center gap-4 p-4 rounded-2xl border border-gray-200/70 dark:border-white/[0.07] bg-white/60 dark:bg-white/[0.03] backdrop-blur-xl shadow-sm hover:shadow-lg hover:border-purple-300/40 dark:hover:border-white/[0.15] transition-all duration-300"
+    className="flex items-center gap-4 p-4 rounded-2xl border border-purple-900/50 dark:border-purple-900/50 bg-[#0b0a1d]/80 backdrop-blur-xl shadow-sm hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:border-purple-500 transition-all duration-300"
   >
-    <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-[#131C39]/80 border border-[#6B4EFF]/40 shadow-[0_0_12px_rgba(104,87,255,0.15)]">
+    <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-purple-950/40 border border-purple-500/30 shadow-[0_0_12px_rgba(168,85,247,0.15)]">
       {icon}
     </div>
     <div>
-      <p className="text-xs text-gray-400 dark:text-gray-500 font-medium uppercase tracking-[1.5px]" style={{ fontFamily: "'Sora', sans-serif" }}>{label}</p>
+      <p className="text-xs text-purple-300/60 font-medium uppercase tracking-[1.5px]" style={{ fontFamily: "'Sora', sans-serif" }}>{label}</p>
       <p className="text-sm font-semibold text-gray-800 dark:text-white mt-0.5" style={{ fontFamily: "'DM Sans', sans-serif" }}>{value}</p>
     </div>
   </motion.div>
@@ -54,29 +54,29 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-[#050816] dark:via-[#0B1126] dark:to-[#111827] relative overflow-hidden transition-colors duration-500"
+      className="py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:bg-[#050816] relative overflow-hidden transition-colors duration-500"
     >
       {/* Ambient glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
           animate={{ y: [0, -20, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -left-40 top-0 h-[380px] w-[380px] rounded-full bg-blue-500/10 blur-[150px]"
+          className="absolute -left-40 top-0 h-[380px] w-[380px] rounded-full bg-purple-600/10 blur-[150px]"
         />
         <motion.div
           animate={{ y: [0, 18, 0] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
           className="absolute right-[-100px] top-[80px] h-[360px] w-[360px] rounded-full bg-purple-500/10 blur-[150px]"
         />
-        <div className="absolute bottom-[-120px] left-1/2 -translate-x-1/2 h-[300px] w-[300px] rounded-full bg-pink-500/8 blur-[140px]" />
+        <div className="absolute bottom-[-120px] left-1/2 -translate-x-1/2 h-[300px] w-[300px] rounded-full bg-purple-900/15 blur-[140px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
-        {/* SECTION HEADING */}
+        {/* SECTION HEADING (With Synchronized Design Tokens) */}
         <div className="mb-12 md:mb-16 flex flex-col items-center text-center justify-center">
 
-          {/* Badge */}
+          {/* Target Badge Styling */}
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -88,32 +88,31 @@ const Contact = () => {
               className="
                 inline-flex items-center gap-2
                 rounded-full
-                border border-[#8B5CF6]/50
-                bg-[#0F1228]/80
+                border border-purple-500/30
+                bg-purple-950/20
                 px-4 py-1.5
                 text-[10px] md:text-xs
                 font-semibold
                 uppercase
                 tracking-[2.8px]
-                text-[#C4B5FD]
-                shadow-[0_0_20px_rgba(139,92,246,0.16)]
+                text-purple-200
+                shadow-[0_0_20px_rgba(168,85,247,0.15)]
                 backdrop-blur-md
                 transition-all duration-300
-                hover:border-[#A855F7]/80
-                hover:text-white
-                hover:shadow-[0_0_25px_rgba(168,85,247,0.25)]
+                hover:border-purple-500/60
+                hover:shadow-[0_0_25px_rgba(168,85,247,0.3)]
               "
               style={{ fontFamily: "Inter, sans-serif" }}
             >
               <MessageCircle
                 size={13}
-                className="text-[#A78BFA]"
+                className="text-purple-400"
               />
               LET'S CONNECT
             </div>
           </motion.div>
 
-          {/* Deep Purple Dual-Tone Heading */}
+          {/* Target Text Gradient Accent */}
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -131,9 +130,9 @@ const Contact = () => {
             <span
               className="
                 bg-gradient-to-r
-                from-[#8B5CF6]
-                via-[#A855F7]
-                to-[#D946EF]
+                from-[#c084fc]
+                via-[#a855f7]
+                to-[#9333ea]
                 bg-clip-text
                 text-transparent
               "
@@ -156,11 +155,12 @@ const Contact = () => {
               h-[3px]
               rounded-full
               bg-gradient-to-r
-              from-[#3B82F6]
-              via-[#8B5CF6]
-              to-[#EC4899]
+              from-[#c084fc]
+              via-[#a855f7]
+              to-[#9333ea]
               mt-4
               mx-auto
+              shadow-[0_0_12px_rgba(168,85,247,0.4)]
             "
           />
 
@@ -207,9 +207,9 @@ const Contact = () => {
             {/* Info Cards */}
             <div className="space-y-3">
               {[
-                { icon: <Mail size={18} className="text-[#8FA8FF]" />, label: 'Email', value: 'razazaheer2002@gmail.com' },
-                { icon: <MapPin size={18} className="text-[#8FA8FF]" />, label: 'Location', value: 'Karachi, Pakistan' },
-                { icon: <CheckCircle2 size={18} className="text-[#8FA8FF]" />, label: 'Status', value: 'Available for Work' },
+                { icon: <Mail size={18} className="text-purple-400" />, label: 'Email', value: 'razazaheer2002@gmail.com' },
+                { icon: <MapPin size={18} className="text-purple-400" />, label: 'Location', value: 'Karachi, Pakistan' },
+                { icon: <CheckCircle2 size={18} className="text-purple-400" />, label: 'Status', value: 'Available for Work' },
               ].map((item, i) => (
                 <motion.div
                   key={item.label}
@@ -242,7 +242,7 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     whileHover={{ y: -4, scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-white/[0.04] dark:bg-white/[0.04] border border-purple-500/30 text-gray-200 text-sm font-semibold shadow-sm hover:border-purple-500 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.35)] transition-all duration-300"
+                    className="flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-purple-950/20 border border-purple-500/30 text-purple-200 text-sm font-semibold shadow-sm hover:border-purple-500 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all duration-300 backdrop-blur-md"
                     style={{ fontFamily: "'Sora', sans-serif" }}
                   >
                     <span className="text-purple-400">{icon}</span> {label}
@@ -260,9 +260,10 @@ const Contact = () => {
             transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
           >
-            <div className="relative rounded-3xl border border-gray-200/70 dark:border-white/[0.07] bg-white/70 dark:bg-white/[0.03] backdrop-blur-xl shadow-xl p-6 sm:p-8 hover:border-purple-300/30 dark:hover:border-white/[0.12] transition-all duration-500">
+            {/* Main Card Container aligned with target token bg-[#0b0a1d]/80 */}
+            <div className="relative rounded-3xl border border-purple-900/50 bg-[#0b0a1d]/80 backdrop-blur-xl shadow-xl p-6 sm:p-8 hover:border-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all duration-500">
 
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-500/5 via-purple-500/5 to-purple-800/5 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
               <h3
                 className="relative text-xl font-bold text-gray-900 dark:text-white mb-6"
@@ -273,7 +274,7 @@ const Contact = () => {
 
               <form onSubmit={handleSubmit(onSubmit)} className="relative space-y-5">
 
-                {/* Name */}
+                {/* Name — Kept Pure Translucent Glass */}
                 <div>
                   <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-[1px]"
                     style={{ fontFamily: "'Sora', sans-serif" }}>
@@ -292,7 +293,7 @@ const Contact = () => {
                   {errors.name && <p className="mt-1.5 text-xs text-red-500">{errors.name.message}</p>}
                 </div>
 
-                {/* Email */}
+                {/* Email — Kept Pure Translucent Glass */}
                 <div>
                   <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-[1px]"
                     style={{ fontFamily: "'Sora', sans-serif" }}>
@@ -314,7 +315,7 @@ const Contact = () => {
                   {errors.email && <p className="mt-1.5 text-xs text-red-500">{errors.email.message}</p>}
                 </div>
 
-                {/* Message */}
+                {/* Message — Kept Pure Translucent Glass */}
                 <div>
                   <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-[1px]"
                     style={{ fontFamily: "'Sora', sans-serif" }}>
@@ -350,7 +351,7 @@ const Contact = () => {
                     disabled={isSubmitting}
                     whileHover={{ scale: 1.025 }}
                     whileTap={{ scale: 0.975 }}
-                    className="group relative w-full inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl border border-purple-900/70 bg-[#0b0a1d]/80 px-7 py-4 font-medium text-gray-200 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-purple-500 hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.25)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+                    className="group relative w-full inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl border border-purple-900/70 bg-[#0b0a1d] px-7 py-4 font-medium text-purple-200 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-purple-500 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] disabled:opacity-50 disabled:pointer-events-none"
                     style={{ fontFamily: "'Sora', sans-serif" }}
                   >
                     <span className="absolute inset-0 rounded-2xl bg-purple-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -377,7 +378,7 @@ const Contact = () => {
       <Toaster
         position="bottom-center"
         toastOptions={{
-          style: { background: isDarkMode ? '#0B1126' : '#fff', color: isDarkMode ? '#fff' : '#1f2937', border: isDarkMode ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.08)', borderRadius: '14px', fontFamily: "'Sora', sans-serif", fontSize: '14px' },
+          style: { background: isDarkMode ? '#0b0a1d' : '#fff', color: isDarkMode ? '#fff' : '#1f2937', border: isDarkMode ? '1px solid rgba(168,85,247,0.3)' : '1px solid rgba(0,0,0,0.08)', borderRadius: '14px', fontFamily: "'Sora', sans-serif", fontSize: '14px' },
         }}
       />
     </section>
