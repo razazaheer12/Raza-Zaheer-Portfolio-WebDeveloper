@@ -378,7 +378,7 @@ const Hero = () => {
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               style={{ fontFamily: "'Sora', sans-serif", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-2px", marginBottom: 14, fontSize: "clamp(52px, 8vw, 96px)" }}
             >
-              <span style={{ color: theme.nameA, display: "block" }}>Raza</span>
+              <span style={{ color: theme.nameA, display: "block" }}>Muhammad Raza</span>
               <span style={{ color: theme.nameB, display: "block" }}>Zaheer</span>
             </motion.h1>
 
@@ -463,10 +463,10 @@ const Hero = () => {
 
           </motion.div>
 
-          {/* Right — Interactive Code Card Deck */}
-          <div className="flex justify-center lg:justify-end items-center relative h-full pt-6 lg:pt-0">
-            <InteractiveCodeDeck />
-          </div>
+        {/* Right — Interactive Code Card Deck (Slightly lowered below badge) */}
+<div className="flex justify-center lg:justify-end items-start relative h-full mt-2 lg:mt-0">
+  <InteractiveCodeDeck />
+</div>
 
         </div>
       </div>
