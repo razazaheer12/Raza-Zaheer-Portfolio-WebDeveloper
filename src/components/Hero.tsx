@@ -140,10 +140,10 @@ const cardData = [
     codeLines: [
       { num: "01", text: "const frontend = {", color: "text-purple-300 font-semibold" },
       { num: "02", text: "  framework: 'React.js / Next.js',", color: "text-gray-300" },
-      { num: "03", text: "  language: ['TypeScript', 'JS'],", color: "text-purple-400" },
-      { num: "04", text: "  styling: ['Tailwind CSS', 'Framer'],", color: "text-gray-300" },
+      { num: "03", text: "  language: ['TypeScript', 'JavaScript'],", color: "text-purple-400" },
+      { num: "04", text: "  styling: ['CSS','Tailwind CSS','Bootstrap','Framer'],", color: "text-gray-300" },
       { num: "05", text: "  state: ['Zustand', 'Context'],", color: "text-gray-300" },
-      { num: "06", text: "  deploy: ['Vercel', 'Hugging Face']", color: "text-purple-300" },
+      { num: "06", text: "  deploy: ['Vercel', 'Netlify']", color: "text-purple-300" },
       { num: "07", text: "};", color: "text-purple-300 font-semibold" },
       { num: "08", text: "frontend.renderUI();", color: "text-purple-400 font-mono" },
     ],
@@ -156,8 +156,8 @@ const cardData = [
       { num: "01", text: "const backend = {", color: "text-purple-300 font-semibold" },
       { num: "02", text: "  runtime: 'Node.js',", color: "text-gray-300" },
       { num: "03", text: "  framework: ['Express', 'NestJS'],", color: "text-purple-400" },
-      { num: "04", text: "  apis: ['REST', 'WebSockets', 'SSE'],", color: "text-gray-300" },
-      { num: "05", text: "  auth: ['JWT', 'Role-Based RBAC'],", color: "text-gray-300" },
+      { num: "04", text: "  apis: ['REST APIs', 'WebSockets', 'Socket.io', 'SSE'],", color: "text-gray-300" },
+      { num: "05", text: "  auth: ['JWT Auth', 'Role-Based RBAC'],", color: "text-gray-300" },
       { num: "06", text: "  ai: ['LangChain', 'Pinecone Vector']", color: "text-purple-300" },
       { num: "07", text: "};", color: "text-purple-300 font-semibold" },
       { num: "08", text: "backend.listen(8080);", color: "text-purple-400 font-mono" },
@@ -169,25 +169,23 @@ const cardData = [
     title: "database",
     codeLines: [
       { num: "01", text: "const database = {", color: "text-purple-300 font-semibold" },
-      { num: "02", text: "  primary: ['PostgreSQL', 'MongoDB'],", color: "text-gray-300" },
+      { num: "02", text: "  primary: ['PostgreSQL', 'MongoDB', 'SQL' ],", color: "text-gray-300" },
       { num: "03", text: "  orm: ['Prisma ORM'],", color: "text-purple-400" },
       { num: "04", text: "  vectorDB: 'Pinecone Vector Store',", color: "text-gray-300" },
-      { num: "05", text: "  cloud: ['Supabase', 'Cloudinary'],", color: "text-gray-300" },
-      { num: "06", text: "  version: ['Git', 'Docker Containers']", color: "text-purple-300" },
+      { num: "05", text: "  cloud: ['MongoDB Atlas', 'Supabase', 'Cloudinary'],", color: "text-gray-300" },
+      { num: "06", text: "  version: ['Git', 'Github', ''Docker Containers']", color: "text-purple-300" },
       { num: "07", text: "};", color: "text-purple-300 font-semibold" },
       { num: "08", text: "database.connect();", color: "text-purple-400 font-mono" },
     ],
   },
 ];
 
+// ── Interactive Code Card Deck (Height & Alignment Updated) ─────────────────────────────
 const InteractiveCodeDeck = () => {
   const [cards, setCards] = useState([0, 1, 2]);
 
   const handleCardClick = (clickedIndex: number) => {
-    // If user clicks the front card, cycle to next; if back card, bring to front
-    if (clickedIndex === 0) {
-      setCards((prev) => [prev[1], prev[2], prev[0]]);
-    } else if (clickedIndex === 1) {
+    if (clickedIndex === 0 || clickedIndex === 1) {
       setCards((prev) => [prev[1], prev[2], prev[0]]);
     } else {
       setCards((prev) => [prev[2], prev[0], prev[1]]);
@@ -195,18 +193,17 @@ const InteractiveCodeDeck = () => {
   };
 
   return (
-    <div className="relative w-full max-w-[440px] h-[340px] flex items-center justify-center select-none cursor-pointer">
+    <div className="relative w-full max-w-[460px] h-[400px] flex items-center justify-center select-none cursor-pointer">
       {/* Background Deep Purple Glow */}
-      <div className="absolute inset-0 bg-purple-600/20 blur-3xl rounded-full pointer-events-none" />
+      <div className="absolute inset-0 bg-purple-600/25 blur-3xl rounded-full pointer-events-none" />
 
       {cards.map((cardId, index) => {
         const item = cardData[cardId];
         const isFront = index === 0;
 
-        // Position & Scale Offsets for 3D Deck Stacking
-        const translateY = index * 20;
-        const translateX = index * 16;
-        const scale = 1 - index * 0.05;
+        const translateY = index * 22;
+        const translateX = index * 18;
+        const scale = 1 - index * 0.045;
         const zIndex = 30 - index * 10;
         const opacity = isFront ? 1 : index === 1 ? 0.8 : 0.6;
 
@@ -225,30 +222,30 @@ const InteractiveCodeDeck = () => {
             }}
             transition={{ type: "spring", stiffness: 260, damping: 24 }}
             whileHover={isFront ? { y: translateY - 6, scale: scale + 0.02 } : { scale: scale + 0.03 }}
-            className={`absolute inset-0 w-full h-[320px] rounded-2xl border transition-colors duration-300 overflow-hidden shadow-2xl backdrop-blur-xl ${
+            className={`absolute inset-0 w-full h-[380px] rounded-2xl border transition-colors duration-300 overflow-hidden shadow-2xl backdrop-blur-xl ${
               isFront
-                ? "bg-[#0b0a1d]/90 border-purple-500/50 shadow-[0_0_35px_rgba(168,85,247,0.25)] hover:border-purple-400"
+                ? "bg-[#0b0a1d]/90 border-purple-500/50 shadow-[0_0_40px_rgba(168,85,247,0.3)] hover:border-purple-400"
                 : "bg-[#070614]/90 border-purple-900/40 hover:border-purple-600/40"
             }`}
           >
             {/* Window Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-purple-900/40 bg-purple-950/20">
-              <div className="flex items-center gap-1.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+            <div className="flex items-center justify-between px-5 py-3.5 border-b border-purple-900/40 bg-purple-950/20">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-rose-500/80" />
+                <div className="w-3 h-3 rounded-full bg-amber-500/80" />
+                <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-purple-400 animate-pulse" />
-                <span className="text-xs font-mono font-medium text-purple-200/90">{item.fileName}</span>
+              <div className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-purple-400 animate-pulse" />
+                <span className="text-xs font-mono font-medium text-purple-200/90 tracking-wide">{item.fileName}</span>
               </div>
             </div>
 
             {/* Window Code Content */}
-            <div className="p-4 font-mono text-[13px] leading-relaxed space-y-1.5 overflow-hidden">
+            <div className="p-5 font-mono text-sm leading-relaxed space-y-2 overflow-hidden">
               {item.codeLines.map((line, idx) => (
                 <div key={idx} className="flex items-center gap-4">
-                  <span className="text-purple-300/30 text-xs select-none w-4">{line.num}</span>
+                  <span className="text-purple-300/30 text-xs select-none w-5">{line.num}</span>
                   <span className={line.color}>{line.text}</span>
                 </div>
               ))}
@@ -256,9 +253,9 @@ const InteractiveCodeDeck = () => {
 
             {/* Card Hint Footer */}
             {isFront && (
-              <div className="absolute bottom-2.5 right-4 text-[10px] font-mono text-purple-300/40 tracking-wider uppercase flex items-center gap-1">
+              <div className="absolute bottom-3 right-5 text-[10px] font-mono text-purple-300/50 tracking-wider uppercase flex items-center gap-1.5">
                 <span>Click deck to switch</span>
-                <span className="text-purple-400">⚡</span>
+                <span className="text-purple-400 text-xs">⚡</span>
               </div>
             )}
           </motion.div>
@@ -463,10 +460,10 @@ const Hero = () => {
 
           </motion.div>
 
-          {/* Right — Interactive Code Card Deck */}
-          <div className="flex justify-center lg:justify-end items-center relative h-full pt-6 lg:pt-0">
-            <InteractiveCodeDeck />
-          </div>
+         {/* Right — Interactive Code Card Deck (Aligned Top with Title) */}
+<div className="flex justify-center lg:justify-end items-start relative h-full -mt-10 lg:-mt-16">
+  <InteractiveCodeDeck />
+</div>
 
         </div>
       </div>
