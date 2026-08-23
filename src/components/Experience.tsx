@@ -14,7 +14,7 @@ interface ExperienceItem {
   title: string;
   company: string;
   duration: string;
-  description: string;
+  bullets: string[];
   tech?: string[];
   icon: React.ReactNode;
 }
@@ -23,43 +23,62 @@ const timelineData: ExperienceItem[] = [
   {
     id: 1,
     type: 'experience',
-    title: 'Web Developer',
-    company: 'RZ Web Studio',
-    duration: '2024 – Present',
-    description:
-      'Leading the frontend team to build scalable modern web applications using the MERN Stack and Next.js.',
-    tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
+    title: 'Development Intern',
+    company: 'CodeAlpha (Remote)',
+    duration: 'Dec 2025 – Jan 2026',
+    bullets: [
+      'Developed and shipped frontend features in a collaborative team environment following structured code review processes.',
+      'Gained hands-on exposure to production-grade frontend workflows, Git/GitHub version control, and agile sprint collaboration.',
+    ],
+    tech: ['React.js', 'JavaScript', 'Tailwind CSS', 'Git', 'GitHub'],
     icon: <Briefcase size={18} />,
   },
   {
     id: 2,
     type: 'experience',
-    title: 'Front-End Web Developer',
-    company: 'Self Employed',
-    duration: '2023 – Present',
-    description:
-      'Built responsive websites with HTML, CSS, JS, React.js. Focused on UI/UX, accessibility, and performance. Delivered multiple freelance projects.',
-    tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
+    title: 'Web Developer',
+    company: 'RZ Web Studio',
+    duration: '2024 – Present',
+    bullets: [
+      'Leading the frontend team to build scalable modern web applications using the MERN Stack and Next.js.',
+      'Collaborating with cross-functional teams to architect high-performance digital products.',
+    ],
+    tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
     icon: <Briefcase size={18} />,
   },
   {
     id: 3,
-    type: 'education',
-    title: 'Bachelor of Science – BS, Computer Science',
-    company: 'IQRA University',
-    duration: '2021 – 2025',
-    description:
-      'Focused on Data Structures, Algorithms, Web Development, Database Systems, and Information Security.',
-    icon: <GraduationCap size={18} />,
+    type: 'experience',
+    title: 'Front-End Web Developer',
+    company: 'Self Employed (Freelance)',
+    duration: 'Jan 2023 – Present',
+    bullets: [
+      'Delivered 10+ client projects using React.js and Next.js with REST API integration.',
+      'Improved user engagement by 35% via responsive, mobile-first design and performance optimization.',
+    ],
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
+    icon: <Briefcase size={18} />,
   },
   {
     id: 4,
     type: 'education',
+    title: 'Bachelor of Science – BS, Computer Science',
+    company: 'IQRA University',
+    duration: '2021 – 2025',
+    bullets: [
+      'Focused on Data Structures, Algorithms, Web Development, Database Systems, and Information Security.',
+    ],
+    icon: <GraduationCap size={18} />,
+  },
+  {
+    id: 5,
+    type: 'education',
     title: 'Intermediate (Pre-Engineering)',
     company: 'PECHS Science College',
     duration: '2019 – 2021',
-    description:
+    bullets: [
       'Studied core subjects including Mathematics, Physics, and Chemistry. Built strong analytical and problem-solving skills.',
+    ],
     icon: <GraduationCap size={18} />,
   },
 ];
@@ -237,7 +256,7 @@ const Experience: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Card Element (Increased Width to 46%) */}
+                    {/* Card Element (46% Width) */}
                     <div className="w-full pl-16 md:pl-0 md:w-[46%]">
                       <motion.div
                         whileHover={{ y: -6, scale: 1.015 }}
@@ -265,10 +284,14 @@ const Experience: React.FC = () => {
                           {item.company}
                         </p>
 
-                        {/* Description */}
-                        <p className="mt-3 text-sm text-gray-300 leading-relaxed font-sans">
-                          {item.description}
-                        </p>
+                        {/* Bullet Points Description */}
+                        <ul className="mt-4 space-y-2 text-sm text-gray-300 leading-relaxed font-sans list-disc list-inside">
+                          {item.bullets.map((bullet, idx) => (
+                            <li key={idx} className="marker:text-purple-500">
+                              <span className="text-gray-300">{bullet}</span>
+                            </li>
+                          ))}
+                        </ul>
 
                         {/* Tech Stack Badges */}
                         {item.tech && (
