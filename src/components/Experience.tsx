@@ -1,10 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import {
-  Briefcase,
-  GraduationCap,
-  Sparkles,
-} from 'lucide-react';
+import { Briefcase, GraduationCap, Sparkles } from 'lucide-react';
 
 const purpleGradient = "linear-gradient(90deg, #c084fc 0%, #a855f7 50%, #9333ea 100%)";
 
@@ -113,7 +109,6 @@ const Experience: React.FC = () => {
         <div className="absolute right-[-150px] bottom-1/4 h-[450px] w-[450px] rounded-full bg-purple-600/15 blur-[160px]" />
       </div>
 
-      {/* Increased max-width for wider layout */}
       <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-8">
         
         <div className="mb-10 flex flex-col items-center text-center justify-center">
@@ -207,7 +202,6 @@ const Experience: React.FC = () => {
           </div>
         </div>
 
-        {/* Removed max-w-5xl, set to w-full to utilize the new 1400px space */}
         <div ref={containerRef} className="relative mx-auto w-full">
           <div className="absolute left-[27px] md:left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-purple-950/60" />
           
@@ -234,7 +228,6 @@ const Experience: React.FC = () => {
                       isEven ? 'md:justify-start' : 'md:justify-end'
                     }`}
                   >
-                    {/* Width adjusted to 32px to perfectly connect the exact gap */}
                     <motion.div
                       initial={{ scaleX: 0 }}
                       whileInView={{ scaleX: 1 }}
@@ -254,7 +247,6 @@ const Experience: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Calculated exact width (50% - 3.5rem) to maximize card size */}
                     <div className="w-full pl-16 md:pl-0 md:w-[calc(50%-3.5rem)]">
                       <motion.div
                         whileHover={{ y: -6, scale: 1.015 }}
