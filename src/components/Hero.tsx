@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
 
@@ -131,6 +131,143 @@ const SocialIcon = ({ href, icon, label }: { href: string; icon: React.ReactNode
   );
 };
 
+// ── Interactive Code Card Deck ─────────────────────────────
+const cardData = [
+  {
+    id: 0,
+    fileName: "frontend.tsx",
+    title: "frontend",
+    codeLines: [
+      { num: "01", text: "const frontend = {", color: "text-purple-300 font-semibold" },
+      { num: "02", text: "  framework: 'React.js / Next.js',", color: "text-gray-300" },
+      { num: "03", text: "  language: ['TypeScript', 'JS'],", color: "text-purple-400" },
+      { num: "04", text: "  styling: ['Tailwind CSS', 'Framer'],", color: "text-gray-300" },
+      { num: "05", text: "  state: ['Zustand', 'Context'],", color: "text-gray-300" },
+      { num: "06", text: "  deploy: ['Vercel', 'Hugging Face']", color: "text-purple-300" },
+      { num: "07", text: "};", color: "text-purple-300 font-semibold" },
+      { num: "08", text: "frontend.renderUI();", color: "text-purple-400 font-mono" },
+    ],
+  },
+  {
+    id: 1,
+    fileName: "backend.ts",
+    title: "backend",
+    codeLines: [
+      { num: "01", text: "const backend = {", color: "text-purple-300 font-semibold" },
+      { num: "02", text: "  runtime: 'Node.js',", color: "text-gray-300" },
+      { num: "03", text: "  framework: ['Express', 'NestJS'],", color: "text-purple-400" },
+      { num: "04", text: "  apis: ['REST', 'WebSockets', 'SSE'],", color: "text-gray-300" },
+      { num: "05", text: "  auth: ['JWT', 'Role-Based RBAC'],", color: "text-gray-300" },
+      { num: "06", text: "  ai: ['LangChain', 'Pinecone Vector']", color: "text-purple-300" },
+      { num: "07", text: "};", color: "text-purple-300 font-semibold" },
+      { num: "08", text: "backend.listen(8080);", color: "text-purple-400 font-mono" },
+    ],
+  },
+  {
+    id: 2,
+    fileName: "database.ts",
+    title: "database",
+    codeLines: [
+      { num: "01", text: "const database = {", color: "text-purple-300 font-semibold" },
+      { num: "02", text: "  primary: ['PostgreSQL', 'MongoDB'],", color: "text-gray-300" },
+      { num: "03", text: "  orm: ['Prisma ORM'],", color: "text-purple-400" },
+      { num: "04", text: "  vectorDB: 'Pinecone Vector Store',", color: "text-gray-300" },
+      { num: "05", text: "  cloud: ['Supabase', 'Cloudinary'],", color: "text-gray-300" },
+      { num: "06", text: "  version: ['Git', 'Docker Containers']", color: "text-purple-300" },
+      { num: "07", text: "};", color: "text-purple-300 font-semibold" },
+      { num: "08", text: "database.connect();", color: "text-purple-400 font-mono" },
+    ],
+  },
+];
+
+const InteractiveCodeDeck = () => {
+  const [cards, setCards] = useState([0, 1, 2]);
+
+  const handleCardClick = (clickedIndex: number) => {
+    // If user clicks the front card, cycle to next; if back card, bring to front
+    if (clickedIndex === 0) {
+      setCards((prev) => [prev[1], prev[2], prev[0]]);
+    } else if (clickedIndex === 1) {
+      setCards((prev) => [prev[1], prev[2], prev[0]]);
+    } else {
+      setCards((prev) => [prev[2], prev[0], prev[1]]);
+    }
+  };
+
+  return (
+    <div className="relative w-full max-w-[440px] h-[340px] flex items-center justify-center select-none cursor-pointer">
+      {/* Background Deep Purple Glow */}
+      <div className="absolute inset-0 bg-purple-600/20 blur-3xl rounded-full pointer-events-none" />
+
+      {cards.map((cardId, index) => {
+        const item = cardData[cardId];
+        const isFront = index === 0;
+
+        // Position & Scale Offsets for 3D Deck Stacking
+        const translateY = index * 20;
+        const translateX = index * 16;
+        const scale = 1 - index * 0.05;
+        const zIndex = 30 - index * 10;
+        const opacity = isFront ? 1 : index === 1 ? 0.8 : 0.6;
+
+        return (
+          <motion.div
+            key={item.id}
+            layout
+            onClick={() => handleCardClick(index)}
+            initial={false}
+            animate={{
+              x: translateX,
+              y: translateY,
+              scale: scale,
+              zIndex: zIndex,
+              opacity: opacity,
+            }}
+            transition={{ type: "spring", stiffness: 260, damping: 24 }}
+            whileHover={isFront ? { y: translateY - 6, scale: scale + 0.02 } : { scale: scale + 0.03 }}
+            className={`absolute inset-0 w-full h-[320px] rounded-2xl border transition-colors duration-300 overflow-hidden shadow-2xl backdrop-blur-xl ${
+              isFront
+                ? "bg-[#0b0a1d]/90 border-purple-500/50 shadow-[0_0_35px_rgba(168,85,247,0.25)] hover:border-purple-400"
+                : "bg-[#070614]/90 border-purple-900/40 hover:border-purple-600/40"
+            }`}
+          >
+            {/* Window Header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-purple-900/40 bg-purple-950/20">
+              <div className="flex items-center gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-purple-400 animate-pulse" />
+                <span className="text-xs font-mono font-medium text-purple-200/90">{item.fileName}</span>
+              </div>
+            </div>
+
+            {/* Window Code Content */}
+            <div className="p-4 font-mono text-[13px] leading-relaxed space-y-1.5 overflow-hidden">
+              {item.codeLines.map((line, idx) => (
+                <div key={idx} className="flex items-center gap-4">
+                  <span className="text-purple-300/30 text-xs select-none w-4">{line.num}</span>
+                  <span className={line.color}>{line.text}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Card Hint Footer */}
+            {isFront && (
+              <div className="absolute bottom-2.5 right-4 text-[10px] font-mono text-purple-300/40 tracking-wider uppercase flex items-center gap-1">
+                <span>Click deck to switch</span>
+                <span className="text-purple-400">⚡</span>
+              </div>
+            )}
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+};
+
 // ── Hero Component ────────────────────────────────────────────
 const Hero = () => {
   const isDarkMode = useThemeStore((state) => state.isDarkMode);
@@ -216,7 +353,7 @@ const Hero = () => {
       <ParticlesBackground count={55} color={theme.particle} />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-28 lg:pt-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] lg:min-h-[78vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[70vh] lg:min-h-[78vh]">
 
           {/* Left Column */}
           <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}>
@@ -326,20 +463,9 @@ const Hero = () => {
 
           </motion.div>
 
-          {/* Right — Ambient Glowing Orb */}
-          <div className="hidden lg:flex justify-center lg:justify-end items-center relative h-full">
-            <motion.div
-              animate={{ y: [0, -22, 0], scale: [1, 1.06, 1] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              style={{
-                width: 360,
-                height: 360,
-                borderRadius: "50%",
-                background: `radial-gradient(circle, ${theme.glow1} 0%, ${theme.glow2} 45%, transparent 75%)`,
-                filter: "blur(50px)",
-                opacity: 0.9,
-              }}
-            />
+          {/* Right — Interactive Code Card Deck */}
+          <div className="flex justify-center lg:justify-end items-center relative h-full pt-6 lg:pt-0">
+            <InteractiveCodeDeck />
           </div>
 
         </div>
