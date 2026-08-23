@@ -147,7 +147,7 @@ const Hero = () => {
         nameA: "#ffffff",
         nameB: "#ffffff",
         prefix: "rgba(255,255,255,0.38)",
-        tagline: "rgba(255,255,255,0.5)",
+        tagline: "rgba(255,255,255,0.65)",
         cursor: "#60a5fa",
         scrollColor: "#ffffff",
       }
@@ -162,7 +162,7 @@ const Hero = () => {
         nameA: "#7c3aed",
         nameB: "#1e1b4b",
         prefix: "rgba(30,27,75,0.5)",
-        tagline: "rgba(30,27,75,0.6)",
+        tagline: "rgba(30,27,75,0.75)",
         cursor: "#3b82f6",
         scrollColor: "#1e1b4b",
       };
@@ -256,13 +256,12 @@ const Hero = () => {
               <CyclingTyping cursorColor={theme.cursor} />
             </motion.div>
 
-            {/* Tagline */}
+            {/* High-Impact Professional Description */}
             <motion.p
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: theme.tagline, lineHeight: 1.8, maxWidth: 420, marginBottom: 32, fontWeight: 400 }}
+              style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: theme.tagline, lineHeight: 1.8, maxWidth: 460, marginBottom: 32, fontWeight: 400 }}
             >
-              Where creativity meets code — crafting futuristic,<br />
-              elegant, and seamlessly responsive digital experiences.
+              Architecting high-performance web applications with MERN, Next.js, and AI. Transforming complex ideas into scalable, sleek, and production-ready digital products.
             </motion.p>
 
             {/* Buttons */}
@@ -289,17 +288,20 @@ const Hero = () => {
               </motion.a>
             </motion.div>
 
-            {/* Social Icons */}
+            {/* Social Icons & Metallic "Find me" Label */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-3 mb-10">
-              <span className="mr-2 text-xs font-mono uppercase tracking-widest text-purple-300/50" style={{ fontFamily: "'Sora', sans-serif" }}>
-                Find me
+              <span
+                className="mr-2 text-xs font-mono font-bold uppercase tracking-widest bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent drop-shadow-[0_1px_4px_rgba(255,255,255,0.2)]"
+                style={{ fontFamily: "'Sora', sans-serif" }}
+              >
+                FIND ME
               </span>
               {socialLinks.map((item, i) => (
                 <SocialIcon key={i} href={item.href} icon={item.icon} label={item.label} />
               ))}
             </motion.div>
 
-            {/* MINIMAL BOX-LESS METALLIC GREY STATS */}
+            {/* Minimal Metallic Grey Stats */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               className="flex items-center gap-8 sm:gap-12"
