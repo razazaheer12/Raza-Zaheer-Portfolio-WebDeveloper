@@ -12,6 +12,8 @@ import {
   Compass,
 } from "lucide-react";
 
+const navbarPurpleGradient = "linear-gradient(90deg, #c084fc 0%, #a855f7 50%, #9333ea 100%)";
+
 const About: React.FC = () => {
   const cardVariants = {
     hidden: { opacity: 0, y: 16 },
@@ -24,28 +26,28 @@ const About: React.FC = () => {
 
   const infoCards = [
     {
-      icon: <User className="w-4 h-4 text-blue-600 dark:text-blue-400" />,
+      icon: <User className="w-4 h-4 text-purple-400" />,
       label: "Full Name",
       value: "Raza Zaheer",
-      valueClass: "text-gray-700 dark:text-gray-300",
+      valueClass: "text-gray-300",
     },
     {
-      icon: <Mail className="w-4 h-4 text-purple-600 dark:text-purple-400" />,
+      icon: <Mail className="w-4 h-4 text-purple-400" />,
       label: "Email",
       value: "razazaheer2002@gmail.com",
-      valueClass: "text-gray-700 dark:text-gray-300 break-all",
+      valueClass: "text-gray-300 break-all",
     },
     {
-      icon: <MapPin className="w-4 h-4 text-pink-600 dark:text-pink-400" />,
+      icon: <MapPin className="w-4 h-4 text-purple-400" />,
       label: "Location",
       value: "Karachi, Pakistan",
-      valueClass: "text-gray-700 dark:text-gray-300",
+      valueClass: "text-gray-300",
     },
     {
-      icon: <Briefcase className="w-4 h-4 text-green-600 dark:text-green-400" />,
+      icon: <Briefcase className="w-4 h-4 text-emerald-400" />,
       label: "Availability",
       value: "Available for Work",
-      valueClass: "text-green-600 dark:text-green-400 font-semibold",
+      valueClass: "text-emerald-400 font-semibold",
       pulse: true,
     },
   ];
@@ -59,38 +61,37 @@ const About: React.FC = () => {
   return (
     <section
       id="about"
-      className="relative overflow-hidden py-16 md:py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-[#050816] dark:via-[#0B1126] dark:to-[#111827]"
+      className="relative overflow-hidden py-16 md:py-24 transition-colors duration-500"
+      style={{ background: "#050816" }}
     >
-      {/* Background Glow Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-0 left-[-120px] h-[320px] w-[320px] rounded-full bg-blue-500/10 blur-[120px]"
-        />
-
-        <motion.div
-          animate={{ y: [0, 18, 0] }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.5,
+      {/* Ambient Glow Effects matching Hero */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 550,
+            height: 550,
+            top: -100,
+            left: -100,
+            background: "radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)",
           }}
-          className="absolute right-[-100px] top-[100px] h-[300px] w-[300px] rounded-full bg-purple-500/10 blur-[120px]"
         />
-
-        <div className="absolute bottom-[-120px] left-1/2 h-[280px] w-[280px] -translate-x-1/2 rounded-full bg-pink-500/10 blur-[120px]" />
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 600,
+            height: 600,
+            top: "20%",
+            right: -150,
+            background: "radial-gradient(circle, rgba(139,92,246,0.09) 0%, transparent 70%)",
+          }}
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-
-        {/* =========================================================
-            SECTION HEADING
-            ========================================================= */}
+        {/* SECTION HEADING */}
         <div className="mb-12 md:mb-16 flex flex-col items-center text-center justify-center">
-
-          {/* Premium Project-Style Badge */}
+          {/* Hero-matched Badge */}
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -99,105 +100,59 @@ const About: React.FC = () => {
             className="mb-6 md:mb-7"
           >
             <div
-              className="
-                inline-flex items-center gap-2
-                rounded-full
-                border border-[#8B5CF6]/50
-                bg-[#0F1228]/80
-                px-4 py-1.5
-                text-[10px] md:text-xs
-                font-semibold
-                uppercase
-                tracking-[2.8px]
-                text-[#C4B5FD]
-                shadow-[0_0_20px_rgba(139,92,246,0.16)]
-                backdrop-blur-md
-                transition-all duration-300
-                hover:border-[#A855F7]/80
-                hover:text-white
-                hover:shadow-[0_0_25px_rgba(168,85,247,0.25)]
-              "
-              style={{ fontFamily: "Inter, sans-serif" }}
+              className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-950/20 px-4 py-1.5 text-xs font-semibold tracking-wide text-purple-200 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.15)]"
+              style={{ fontFamily: "'Sora', sans-serif" }}
             >
-              <Compass
-                size={13}
-                className="text-[#A78BFA]"
-              />
-
+              <Compass size={13} className="text-purple-400" />
               DISCOVERY
             </div>
           </motion.div>
 
-          {/* Project-Style Heading */}
+          {/* Heading with Purple Accent */}
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="
-              text-4xl md:text-5xl
-              font-extrabold
-              tracking-tight
-              text-white
-            "
-            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="text-4xl md:text-5xl font-extrabold tracking-tight text-white"
+            style={{ fontFamily: "'Sora', sans-serif" }}
           >
             About{" "}
             <span
-              className="
-                bg-gradient-to-r
-                from-[#A78BFA]
-                via-[#C084FC]
-                to-[#EC4899]
-                bg-clip-text
-                text-transparent
-              "
+              style={{
+                background: navbarPurpleGradient,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
             >
               Me
             </span>
           </motion.h2>
 
-          {/* Project-Style Accent Underline */}
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: 88 }}
-            transition={{
-              duration: 0.7,
-              ease: "easeOut",
-              delay: 0.2,
-            }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true }}
-            className="
-              h-[3px]
-              rounded-full
-              bg-gradient-to-r
-              from-[#3B82F6]
-              via-[#8B5CF6]
-              to-[#EC4899]
-              mt-4
-              mx-auto
-            "
+            className="h-[3px] rounded-full bg-gradient-to-r from-purple-500 via-purple-400 to-indigo-500 mt-4 mx-auto"
           />
 
-          {/* Centered Description */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="max-w-2xl mt-6 text-sm md:text-base leading-7 text-gray-600 dark:text-[#A0A7C0] mx-auto text-center"
+            className="max-w-2xl mt-6 text-sm md:text-base leading-7 text-gray-400 mx-auto text-center"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             Passionate about crafting modern, visually engaging, and highly
             responsive digital experiences with clean code and elegant UI design.
           </motion.p>
         </div>
 
-        {/* =========================================================
-            MAIN CONTENT
-            ========================================================= */}
+        {/* MAIN CONTENT */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-
-          {/* Left Large Image */}
+          {/* Left Image Section */}
           <motion.div
             initial={{ opacity: 0, x: -70 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -205,81 +160,58 @@ const About: React.FC = () => {
             viewport={{ once: true }}
             className="relative flex justify-center"
           >
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-[90px]" />
+            <div className="absolute inset-0 rounded-3xl bg-purple-600/20 blur-[90px] pointer-events-none" />
 
             <motion.div
               whileHover={{ y: -6 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="relative group w-full max-w-[420px] lg:max-w-[460px]"
             >
-              <div className="relative overflow-hidden rounded-[26px] border border-white/30 dark:border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-2xl shadow-2xl">
+              <div className="relative overflow-hidden rounded-[26px] border border-purple-900/50 bg-[#0b0a1d]/80 backdrop-blur-xl shadow-2xl transition-colors hover:border-purple-500/50">
                 <img
                   src="/raza.png"
                   alt="Raza Zaheer"
                   className="w-full h-[520px] sm:h-[580px] lg:h-[620px] object-cover object-top rounded-[26px] transition duration-700 group-hover:scale-105"
                 />
-
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-purple-500/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Content */}
+          {/* Right Text Column */}
           <motion.div
             initial={{ opacity: 0, x: 70 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9 }}
             viewport={{ once: true }}
           >
-
-            {/* Matched Frontend Developer Badge */}
+            {/* Developer Badge */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="
-                inline-flex items-center gap-2
-                rounded-full
-                border border-[#8B5CF6]/50
-                bg-[#131C39]/80
-                px-4 py-1.5
-                text-xs
-                font-semibold
-                tracking-wide
-                text-[#C4B5FD]
-                shadow-[0_0_18px_rgba(139,92,246,0.16)]
-                backdrop-blur-md
-                mb-6
-                transition-all duration-300
-                hover:border-[#A855F7]/80
-                hover:text-white
-              "
-              style={{ fontFamily: "Inter, sans-serif" }}
+              className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-950/20 px-4 py-1.5 text-xs font-semibold tracking-wide text-purple-200 shadow-[0_0_15px_rgba(168,85,247,0.15)] backdrop-blur-md mb-6"
+              style={{ fontFamily: "'Sora', sans-serif" }}
             >
-              <Briefcase
-                size={14}
-                className="text-[#A78BFA]"
-              />
-
+              <Briefcase size={14} className="text-purple-400" />
               Frontend Developer · Exploring Full-Stack &amp; AI
             </motion.div>
 
-            {/* Main Title */}
             <h3
-              className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-5 leading-snug"
-              style={{ fontFamily: "Poppins, sans-serif" }}
+              className="text-2xl md:text-3xl font-bold text-white mb-5 leading-snug"
+              style={{ fontFamily: "'Sora', sans-serif" }}
             >
               Who I Am
             </h3>
 
-            <p className="text-sm md:text-base italic text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+            <p className="text-sm md:text-base italic text-gray-300 leading-relaxed mb-4" style={{ fontFamily: "'DM Sans', sans-serif" }}>
               I'm{" "}
-              <span className="font-semibold not-italic text-gray-900 dark:text-white">
+              <span className="font-semibold not-italic text-white">
                 Raza Zaheer
               </span>
               , a Computer Science graduate and{" "}
-              <span className="font-semibold not-italic text-gray-900 dark:text-white">
+              <span className="font-semibold not-italic text-white">
                 Front-End Developer
               </span>{" "}
               with 2+ years of freelance experience delivering production React.js and
@@ -290,19 +222,19 @@ const About: React.FC = () => {
               and LangChain for context-aware document retrieval.
             </p>
 
-            <p className="text-sm md:text-base italic text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+            <p className="text-sm md:text-base italic text-gray-300 leading-relaxed mb-6" style={{ fontFamily: "'DM Sans', sans-serif" }}>
               Beyond writing clean components, I enjoy the harder engineering problems —
               WebSocket reconnection handling, cross-origin auth across split production
               deployments, and REST API integration end-to-end. Across 10+ client
               projects, I've maintained{" "}
-              <span className="font-semibold not-italic text-gray-900 dark:text-white">
+              <span className="font-semibold not-italic text-white">
                 100% on-time delivery
               </span>{" "}
               while improving user engagement by up to 35% through better UX and
               performance.
             </p>
 
-            {/* Compact Stat Boxes with Purple Hover */}
+            {/* Stat Cards */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -318,34 +250,16 @@ const About: React.FC = () => {
                   transition={{ duration: 0.4, delay: 0.1 * i }}
                   viewport={{ once: true }}
                   whileHover={{ y: -3 }}
-                  className="
-                    group/stat
-                    rounded-xl
-                    border border-gray-200
-                    dark:border-white/10
-                    bg-white/70
-                    dark:bg-white/5
-                    backdrop-blur-xl
-                    px-2.5 py-3
-                    text-center
-                    shadow-sm
-                    hover:border-purple-500
-                    hover:bg-purple-50/50
-                    dark:hover:bg-purple-500/10
-                    transition-all duration-300
-                    cursor-default
-                  "
+                  className="group/stat rounded-xl border border-purple-900/50 bg-[#0b0a1d]/80 backdrop-blur-xl px-2.5 py-3 text-center shadow-sm hover:border-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)] transition-all duration-300 cursor-default"
                 >
-                  <stat.icon className="w-4 h-4 mx-auto mb-1 text-gray-400 dark:text-gray-400 group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-400 transition-colors duration-300" />
-
+                  <stat.icon className="w-4 h-4 mx-auto mb-1 text-purple-400 group-hover/stat:text-purple-300 transition-colors duration-300" />
                   <div
-                    className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-400 transition-colors duration-300"
-                    style={{ fontFamily: "Poppins, sans-serif" }}
+                    className="text-xl md:text-2xl font-bold text-white group-hover/stat:text-purple-300 transition-colors duration-300"
+                    style={{ fontFamily: "'Sora', sans-serif" }}
                   >
                     {stat.value}
                   </div>
-
-                  <div className="mt-1 text-[9px] md:text-[10px] font-medium tracking-wide uppercase leading-tight text-gray-500 dark:text-gray-400 group-hover/stat:text-purple-600 dark:group-hover/stat:text-purple-300 transition-colors duration-300">
+                  <div className="mt-1 text-[9px] md:text-[10px] font-mono font-bold tracking-wide uppercase leading-tight text-gray-400 group-hover/stat:text-purple-200 transition-colors duration-300">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -363,22 +277,7 @@ const About: React.FC = () => {
                   viewport={{ once: true }}
                   variants={cardVariants}
                   whileHover={{ y: -4, scale: 1.02 }}
-                  className="
-                    relative
-                    overflow-hidden
-                    rounded-xl
-                    border border-gray-200
-                    dark:border-white/10
-                    bg-white/70
-                    dark:bg-white/5
-                    backdrop-blur-xl
-                    p-4
-                    shadow-md
-                    hover:shadow-xl
-                    hover:border-purple-300/40
-                    dark:hover:border-purple-400/30
-                    transition-all duration-300
-                  "
+                  className="relative overflow-hidden rounded-xl border border-purple-900/50 bg-[#0b0a1d]/80 backdrop-blur-xl p-4 shadow-md hover:border-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] transition-all duration-300"
                 >
                   <div className="flex items-center gap-2 mb-1.5">
                     {card.pulse ? (
@@ -390,30 +289,25 @@ const About: React.FC = () => {
                             repeat: Infinity,
                             ease: "easeOut",
                           }}
-                          className="absolute inline-flex h-2 w-2 rounded-full bg-green-500"
+                          className="absolute inline-flex h-2 w-2 rounded-full bg-emerald-400"
                         />
-
                         {card.icon}
                       </span>
                     ) : (
                       card.icon
                     )}
-
-                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white">
+                    <h4 className="text-sm font-semibold text-white" style={{ fontFamily: "'Sora', sans-serif" }}>
                       {card.label}
                     </h4>
                   </div>
-
-                  <p className={`text-xs ${card.valueClass}`}>
+                  <p className={`text-xs ${card.valueClass}`} style={{ fontFamily: "'DM Sans', sans-serif" }}>
                     {card.value}
                   </p>
                 </motion.div>
               ))}
             </div>
 
-            {/* =====================================================
-                DOWNLOAD RESUME BUTTON (Matched Explore All Projects Style)
-                ===================================================== */}
+            {/* Download Button */}
             <motion.a
               href="/Raza_Zaheer_Resume.pdf"
               download="Raza_Zaheer_Resume.pdf"
@@ -421,49 +315,11 @@ const About: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.025 }}
               whileTap={{ scale: 0.975 }}
-              className="
-                group
-                relative
-                inline-flex
-                items-center
-                gap-3
-                overflow-hidden
-                rounded-2xl
-                border
-                border-purple-900/70
-                bg-[#0b0a1d]/80
-                px-7 py-3.5
-                font-medium
-                text-gray-200
-                shadow-sm
-                backdrop-blur-sm
-                transition-all
-                duration-500
-                hover:border-purple-500
-                hover:text-white
-                hover:shadow-[0_10px_50px_rgba(168,85,247,0.25)]
-                dark:border-purple-900/70
-                dark:bg-[#0b0a1d]/80
-                dark:text-gray-200
-              "
+              className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-purple-500/50 bg-purple-600 px-7 py-3 text-sm font-semibold text-white shadow-[0_0_30px_rgba(168,85,247,0.35)] backdrop-blur-sm transition-all duration-500 hover:bg-purple-500 hover:shadow-[0_10px_50px_rgba(168,85,247,0.5)]"
+              style={{ fontFamily: "'Sora', sans-serif", textDecoration: "none" }}
             >
-              {/* Solid Purple Overlay reveal on hover */}
-              <span className="absolute inset-0 rounded-2xl bg-purple-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-              <Download
-                className="
-                  relative
-                  z-10
-                  w-4.5 h-4.5
-                  transition-transform
-                  duration-300
-                  group-hover:translate-y-0.5
-                "
-              />
-
-              <span className="relative z-10 text-xs tracking-wide">
-                Download Resume
-              </span>
+              <Download className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" />
+              <span className="relative z-10 tracking-wide">Download Resume</span>
             </motion.a>
           </motion.div>
         </div>
