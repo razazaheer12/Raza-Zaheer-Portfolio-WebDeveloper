@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
 
-// Gradient for Role Text
-const mernGradient = "linear-gradient(90deg, #a855f7 0%, #3b82f6 100%)";
+// Deep Electric Purple Gradient matching Navbar accent aesthetics
+const navbarPurpleGradient = "linear-gradient(90deg, #c084fc 0%, #a855f7 50%, #9333ea 100%)";
 
 // ── Particles Background ────────────────────────────────────────────
 const ParticlesBackground = ({ count = 55, color }: { count?: number; color: string }) => {
@@ -46,7 +46,7 @@ const ParticlesBackground = ({ count = 55, color }: { count?: number; color: str
 };
 
 // ── Cycling Typing ────────────────────────────────────────────
-const roles = ["Full-Stack Developer", "MERN Stack Developer", "Computer Science Graduate"];
+const roles = ["Software Engineer", "Full-Stack Developer", "Computer Science Graduate"];
 
 const CyclingTyping = ({ cursorColor }: { cursorColor: string }) => {
   const [displayText, setDisplayText] = useState("");
@@ -98,7 +98,7 @@ const CyclingTyping = ({ cursorColor }: { cursorColor: string }) => {
         fontFamily: "'Sora', sans-serif",
         fontWeight: 700,
         fontSize: "clamp(18px, 2.4vw, 26px)",
-        background: mernGradient,
+        background: navbarPurpleGradient,
         WebkitBackgroundClip: "text",
         WebkitTextFillColor: "transparent",
         backgroundClip: "text",
@@ -108,7 +108,7 @@ const CyclingTyping = ({ cursorColor }: { cursorColor: string }) => {
       <motion.span
         animate={{ opacity: [1, 0] }}
         transition={{ repeat: Infinity, duration: 0.55 }}
-        style={{ display: "inline-block", width: 2, height: "0.9em", background: cursorColor, verticalAlign: "middle", marginLeft: 3, borderRadius: 1 }}
+        style={{ display: "inline-block", width: 2, height: "0.9em", background: cursorColor, verticalAlign: "middle", marginLeft: 4, borderRadius: 1 }}
       />
     </span>
   );
@@ -146,9 +146,9 @@ const Hero = () => {
         particle: "rgba(139,92,246,0.6)",
         nameA: "#ffffff",
         nameB: "#ffffff",
-        prefix: "rgba(255,255,255,0.38)",
+        prefix: "#ffffff",
         tagline: "rgba(255,255,255,0.65)",
-        cursor: "#60a5fa",
+        cursor: "#c084fc",
         scrollColor: "#ffffff",
       }
     : {
@@ -161,9 +161,9 @@ const Hero = () => {
         particle: "rgba(139,92,246,0.5)",
         nameA: "#7c3aed",
         nameB: "#1e1b4b",
-        prefix: "rgba(30,27,75,0.5)",
+        prefix: "#1e1b4b",
         tagline: "rgba(30,27,75,0.75)",
-        cursor: "#3b82f6",
+        cursor: "#a855f7",
         scrollColor: "#1e1b4b",
       };
 
@@ -173,7 +173,6 @@ const Hero = () => {
     { href: "mailto:razazaheer2002@gmail.com", icon: <Mail size={18} aria-hidden="true" />, label: "Email" },
   ];
 
-  // Box-less Sleek Metallic Grey Stats
   const stats = [
     {
       value: "05+",
@@ -198,7 +197,7 @@ const Hero = () => {
       className="relative min-h-screen flex items-center overflow-hidden transition-colors duration-500 pb-20 lg:pb-28"
       style={{ background: theme.background }}
     >
-      {/* Grid */}
+      {/* Grid Background */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -219,10 +218,10 @@ const Hero = () => {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-28 lg:pt-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[70vh] lg:min-h-[78vh]">
 
-          {/* Left Side */}
+          {/* Left Column */}
           <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.18, delayChildren: 0.2 } } }}>
 
-            {/* Availability Badge */}
+            {/* Status Badge */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
               className="inline-flex items-center gap-2 mb-6 rounded-full border border-purple-500/30 bg-purple-950/20 px-4 py-1.5 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.15)]"
@@ -246,25 +245,26 @@ const Hero = () => {
               <span style={{ color: theme.nameB, display: "block" }}>Zaheer</span>
             </motion.h1>
 
-            {/* Role */}
+            {/* Role Typing Component */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               className="flex items-center gap-3 mb-5"
               style={{ fontFamily: "'Sora', sans-serif" }}
             >
-              <span style={{ color: theme.prefix, fontSize: 18, fontWeight: 300 }}>I'm a</span>
+              <span style={{ color: theme.prefix, fontSize: 18, fontWeight: 600 }}>I'm a</span>
               <CyclingTyping cursorColor={theme.cursor} />
             </motion.div>
 
-            {/* High-Impact Professional Description */}
+            {/* Italicized Professional Description */}
             <motion.p
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+              className="italic"
               style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: theme.tagline, lineHeight: 1.8, maxWidth: 460, marginBottom: 32, fontWeight: 400 }}
             >
               Architecting high-performance web applications with MERN, Next.js, and AI. Transforming complex ideas into scalable, sleek, and production-ready digital products.
             </motion.p>
 
-            {/* Buttons */}
+            {/* Action Buttons */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-4 mb-8">
               <motion.a
                 href="#projects"
@@ -288,7 +288,7 @@ const Hero = () => {
               </motion.a>
             </motion.div>
 
-            {/* Social Icons & Metallic "Find me" Label */}
+            {/* Metallic "Find me" & Social Icons */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-3 mb-10">
               <span
                 className="mr-2 text-xs font-mono font-bold uppercase tracking-widest bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent drop-shadow-[0_1px_4px_rgba(255,255,255,0.2)]"
@@ -301,7 +301,7 @@ const Hero = () => {
               ))}
             </motion.div>
 
-            {/* Minimal Metallic Grey Stats */}
+            {/* Minimal Box-less Metallic Stats */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               className="flex items-center gap-8 sm:gap-12"
@@ -326,7 +326,7 @@ const Hero = () => {
 
           </motion.div>
 
-          {/* Right — Glowing Orb */}
+          {/* Right — Ambient Glowing Orb */}
           <div className="hidden lg:flex justify-center lg:justify-end items-center relative h-full">
             <motion.div
               animate={{ y: [0, -22, 0], scale: [1, 1.06, 1] }}
