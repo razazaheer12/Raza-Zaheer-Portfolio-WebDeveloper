@@ -12,18 +12,18 @@ interface FormData {
   message: string;
 }
 
-// ── Info Card (Aligned with Design Tokens) ───────────────────────────────────
+// ── Info Card (Aligned with Target Tokens) ───────────────────────────────────
 const InfoCard = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) => (
   <motion.div
     whileHover={{ y: -4, scale: 1.02 }}
-    className="flex items-center gap-4 p-4 rounded-2xl border border-purple-900/50 dark:border-purple-900/50 bg-[#0b0a1d]/80 backdrop-blur-xl shadow-sm hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:border-purple-500 transition-all duration-300"
+    className="flex items-center gap-4 p-4 rounded-2xl border border-purple-900/50 bg-[#0b0a1d]/80 backdrop-blur-xl shadow-sm hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:border-purple-500 transition-all duration-300"
   >
     <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 bg-purple-950/40 border border-purple-500/30 shadow-[0_0_12px_rgba(168,85,247,0.15)]">
       {icon}
     </div>
     <div>
       <p className="text-xs text-purple-300/60 font-medium uppercase tracking-[1.5px]" style={{ fontFamily: "'Sora', sans-serif" }}>{label}</p>
-      <p className="text-sm font-semibold text-gray-800 dark:text-white mt-0.5" style={{ fontFamily: "'DM Sans', sans-serif" }}>{value}</p>
+      <p className="text-sm font-semibold text-white mt-0.5" style={{ fontFamily: "'DM Sans', sans-serif" }}>{value}</p>
     </div>
   </motion.div>
 );
@@ -54,7 +54,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:bg-[#050816] relative overflow-hidden transition-colors duration-500"
+      className="py-24 bg-[#050816] relative overflow-hidden transition-colors duration-500"
     >
       {/* Ambient glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -73,10 +73,10 @@ const Contact = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
 
-        {/* SECTION HEADING (With Synchronized Design Tokens) */}
+        {/* SECTION HEADING */}
         <div className="mb-12 md:mb-16 flex flex-col items-center text-center justify-center">
 
-          {/* Target Badge Styling */}
+          {/* Badge Styling */}
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +112,7 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* Target Text Gradient Accent */}
+          {/* Text Gradient Accent */}
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +122,7 @@ const Contact = () => {
               text-4xl md:text-5xl
               font-extrabold
               tracking-tight
-              text-gray-900 dark:text-white
+              text-white
             "
             style={{ fontFamily: "Montserrat, sans-serif" }}
           >
@@ -170,7 +170,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="max-w-2xl mx-auto mt-6 text-sm md:text-base text-gray-500 dark:text-gray-400 italic leading-[1.8]"
+            className="max-w-2xl mx-auto mt-6 text-sm md:text-base text-gray-400 italic leading-[1.8]"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             Have a project in mind or want to discuss opportunities? I'm just a message away.
@@ -192,12 +192,12 @@ const Contact = () => {
             {/* Intro text */}
             <div>
               <h3
-                className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3"
+                className="text-2xl md:text-3xl font-bold text-white mb-3"
                 style={{ fontFamily: "'Sora', Poppins, sans-serif" }}
               >
                 Let's work together
               </h3>
-              <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 leading-[1.8]"
+              <p className="text-sm md:text-base text-gray-400 leading-[1.8]"
                 style={{ fontFamily: "'DM Sans', sans-serif" }}>
                 I'm currently open to freelance projects and full-time frontend roles.
                 Whether you have a quick question or a big idea — my inbox is always open.
@@ -225,7 +225,7 @@ const Contact = () => {
 
             {/* Social links */}
             <div>
-              <p className="text-xs uppercase tracking-[2px] text-gray-400 dark:text-gray-500 font-semibold mb-4"
+              <p className="text-xs uppercase tracking-[2px] text-gray-500 font-semibold mb-4"
                 style={{ fontFamily: "'Sora', sans-serif" }}>
                 Find me on
               </p>
@@ -260,13 +260,13 @@ const Contact = () => {
             transition={{ duration: 0.65, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
           >
-            {/* Main Card Container aligned with target token bg-[#0b0a1d]/80 */}
+            {/* Main Card Container with bg-[#0b0a1d]/80 */}
             <div className="relative rounded-3xl border border-purple-900/50 bg-[#0b0a1d]/80 backdrop-blur-xl shadow-xl p-6 sm:p-8 hover:border-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all duration-500">
 
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-500/5 via-purple-500/5 to-purple-800/5 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
               <h3
-                className="relative text-xl font-bold text-gray-900 dark:text-white mb-6"
+                className="relative text-xl font-bold text-white mb-6"
                 style={{ fontFamily: "'Sora', sans-serif" }}
               >
                 Send me a message
@@ -274,9 +274,9 @@ const Contact = () => {
 
               <form onSubmit={handleSubmit(onSubmit)} className="relative space-y-5">
 
-                {/* Name — Kept Pure Translucent Glass */}
+                {/* Name — Translucent Glass */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-[1px]"
+                  <label className="block text-xs font-semibold text-gray-400 mb-2 uppercase tracking-[1px]"
                     style={{ fontFamily: "'Sora', sans-serif" }}>
                     Name <span className="text-red-400">*</span>
                   </label>
@@ -286,16 +286,16 @@ const Contact = () => {
                       {...register('name', { required: 'Name is required' })}
                       type="text"
                       placeholder="Your name"
-                      className="pl-11 w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] p-3.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300"
+                      className="pl-11 w-full rounded-xl border border-white/10 bg-white/[0.04] p-3.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 hover:border-white/20 transition-all duration-300"
                       style={{ fontFamily: "'DM Sans', sans-serif" }}
                     />
                   </div>
                   {errors.name && <p className="mt-1.5 text-xs text-red-500">{errors.name.message}</p>}
                 </div>
 
-                {/* Email — Kept Pure Translucent Glass */}
+                {/* Email — Translucent Glass */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-[1px]"
+                  <label className="block text-xs font-semibold text-gray-400 mb-2 uppercase tracking-[1px]"
                     style={{ fontFamily: "'Sora', sans-serif" }}>
                     Email <span className="text-red-400">*</span>
                   </label>
@@ -308,16 +308,16 @@ const Contact = () => {
                       })}
                       type="email"
                       placeholder="your@email.com"
-                      className="pl-11 w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] p-3.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 hover:border-gray-300 dark:hover:border-white/20 transition-all duration-300"
+                      className="pl-11 w-full rounded-xl border border-white/10 bg-white/[0.04] p-3.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 hover:border-white/20 transition-all duration-300"
                       style={{ fontFamily: "'DM Sans', sans-serif" }}
                     />
                   </div>
                   {errors.email && <p className="mt-1.5 text-xs text-red-500">{errors.email.message}</p>}
                 </div>
 
-                {/* Message — Kept Pure Translucent Glass */}
+                {/* Message — Translucent Glass */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-600 dark:text-gray-400 mb-2 uppercase tracking-[1px]"
+                  <label className="block text-xs font-semibold text-gray-400 mb-2 uppercase tracking-[1px]"
                     style={{ fontFamily: "'Sora', sans-serif" }}>
                     Message <span className="text-red-400">*</span>
                   </label>
@@ -327,7 +327,7 @@ const Contact = () => {
                       {...register('message', { required: 'Message is required' })}
                       rows={5}
                       placeholder="Tell me about your project or opportunity..."
-                      className="pl-11 w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] p-3.5 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 hover:border-gray-300 dark:hover:border-white/20 resize-none transition-all duration-300"
+                      className="pl-11 w-full rounded-xl border border-white/10 bg-white/[0.04] p-3.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 hover:border-white/20 resize-none transition-all duration-300"
                       style={{ fontFamily: "'DM Sans', sans-serif" }}
                     />
                   </div>
@@ -339,7 +339,7 @@ const Contact = () => {
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="flex items-center justify-center gap-2 py-4 rounded-2xl bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 text-green-600 dark:text-green-400 font-semibold"
+                    className="flex items-center justify-center gap-2 py-4 rounded-2xl bg-green-500/10 border border-green-500/20 text-green-400 font-semibold"
                     style={{ fontFamily: "'Sora', sans-serif" }}
                   >
                     <CheckCircle2 size={20} />
@@ -378,7 +378,7 @@ const Contact = () => {
       <Toaster
         position="bottom-center"
         toastOptions={{
-          style: { background: isDarkMode ? '#0b0a1d' : '#fff', color: isDarkMode ? '#fff' : '#1f2937', border: isDarkMode ? '1px solid rgba(168,85,247,0.3)' : '1px solid rgba(0,0,0,0.08)', borderRadius: '14px', fontFamily: "'Sora', sans-serif", fontSize: '14px' },
+          style: { background: '#0b0a1d', color: '#fff', border: '1px solid rgba(168,85,247,0.3)', borderRadius: '14px', fontFamily: "'Sora', sans-serif", fontSize: '14px' },
         }}
       />
     </section>
