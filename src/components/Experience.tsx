@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import {
   Briefcase,
   GraduationCap,
   Sparkles,
 } from 'lucide-react';
 
-// Shared Deep Electric Purple Gradient
 const purpleGradient = "linear-gradient(90deg, #c084fc 0%, #a855f7 50%, #9333ea 100%)";
 
 interface ExperienceItem {
@@ -67,6 +66,14 @@ const timelineData: ExperienceItem[] = [
 
 const Experience: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'experience' | 'education'>('experience');
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Scroll-linked progress for center deep purple timeline line
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start 80%', 'end 70%'],
+  });
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
   const filteredData = timelineData.filter((item) => item.type === activeTab);
 
@@ -81,7 +88,7 @@ const Experience: React.FC = () => {
         <div className="absolute right-[-150px] bottom-1/4 h-[450px] w-[450px] rounded-full bg-purple-600/15 blur-[160px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-5xl px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
         
         {/* SECTION HEADING */}
         <div className="mb-10 flex flex-col items-center text-center justify-center">
@@ -180,11 +187,16 @@ const Experience: React.FC = () => {
           </div>
         </div>
 
-        {/* TIMELINE LIST */}
-        <div className="relative mx-auto max-w-3xl">
-          {/* Vertical Timeline Track Line */}
-          <div className="absolute left-[27px] md:left-1/2 top-4 h-[calc(100%-32px)] w-[2px] -translate-x-1/2 bg-purple-900/40" />
-          <div className="absolute left-[27px] md:left-1/2 top-4 h-full w-[2px] -translate-x-1/2 bg-gradient-to-b from-purple-500 via-purple-600 to-transparent shadow-[0_0_10px_rgba(168,85,247,0.5)]" />
+        {/* TIMELINE CONTAINER */}
+        <div ref={containerRef} className="relative mx-auto max-w-5xl">
+          {/* Static Background Track Line */}
+          <div className="absolute left-[27px] md:left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-purple-950/60" />
+          
+          {/* Animated Glowing Fill Line on Scroll */}
+          <motion.div
+            style={{ height: lineHeight }}
+            className="absolute left-[27px] md:left-1/2 top-0 w-[3px] -translate-x-1/2 rounded-full bg-gradient-to-b from-purple-400 via-purple-600 to-fuchsia-500 shadow-[0_0_15px_rgba(168,85,247,0.8)] z-10"
+          />
 
           <AnimatePresence mode="wait">
             <motion.div
@@ -193,72 +205,89 @@ const Experience: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.35 }}
-              className="space-y-10"
+              className="space-y-12 relative z-20"
             >
-              {filteredData.map((item, index) => (
-                <div
-                  key={item.id}
-                  className={`relative flex flex-col md:flex-row items-start ${
-                    index % 2 === 0 ? 'md:flex-row-reverse' : ''
-                  }`}
-                >
-                  {/* Timeline Center Node Icon */}
-                  <div className="absolute left-[27px] md:left-1/2 z-20 flex h-11 w-11 -translate-x-1/2 items-center justify-center rounded-full border border-purple-500/50 bg-[#0b0a1d] text-purple-300 shadow-[0_0_20px_rgba(168,85,247,0.4)]">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-950/80 text-purple-300">
-                      {item.icon}
+              {filteredData.map((item, index) => {
+                const isEven = index % 2 === 0;
+                return (
+                  <div
+                    key={item.id}
+                    className={`relative flex flex-col md:flex-row items-center ${
+                      isEven ? 'md:justify-start' : 'md:justify-end'
+                    }`}
+                  >
+                    {/* Horizontal Connector Line (Desktop) */}
+                    <motion.div
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      transition={{ duration: 0.4, delay: 0.2 }}
+                      viewport={{ once: true }}
+                      style={{ transformOrigin: isEven ? 'left' : 'right' }}
+                      className={`absolute top-1/2 hidden h-[2px] w-[50px] -translate-y-1/2 bg-gradient-to-r from-purple-500 to-purple-800 md:block ${
+                        isEven
+                          ? 'left-[calc(50%+24px)]'
+                          : 'right-[calc(50%+24px)]'
+                      }`}
+                    />
+
+                    {/* Timeline Center Node Icon */}
+                    <div className="absolute left-[27px] md:left-1/2 top-1/2 z-30 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-purple-500/60 bg-[#0b0a1d] text-purple-300 shadow-[0_0_25px_rgba(168,85,247,0.5)]">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-purple-950/90 text-purple-300">
+                        {item.icon}
+                      </div>
+                    </div>
+
+                    {/* Card Element (Increased Width to 46%) */}
+                    <div className="w-full pl-16 md:pl-0 md:w-[46%]">
+                      <motion.div
+                        whileHover={{ y: -6, scale: 1.015 }}
+                        transition={{ duration: 0.3 }}
+                        className="group relative overflow-hidden rounded-2xl border border-purple-900/40 bg-[#0b0a1d]/95 p-7 shadow-2xl backdrop-blur-xl transition-colors duration-300 hover:border-purple-500/60 hover:shadow-[0_0_35px_rgba(168,85,247,0.25)]"
+                      >
+                        {/* Top Ambient Glow Line on Hover */}
+                        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                        {/* Duration Tag */}
+                        <span className="inline-block rounded-md border border-purple-500/30 bg-purple-950/50 px-3.5 py-1 text-xs font-mono font-medium text-purple-300 mb-3.5">
+                          {item.duration}
+                        </span>
+
+                        {/* Title */}
+                        <h3
+                          className="text-xl font-bold text-white transition-colors duration-300 group-hover:text-purple-300 leading-snug"
+                          style={{ fontFamily: "'Sora', sans-serif" }}
+                        >
+                          {item.title}
+                        </h3>
+
+                        {/* Subtitle / Company */}
+                        <p className="text-sm font-semibold text-purple-400 mt-1">
+                          {item.company}
+                        </p>
+
+                        {/* Description */}
+                        <p className="mt-3 text-sm text-gray-300 leading-relaxed font-sans">
+                          {item.description}
+                        </p>
+
+                        {/* Tech Stack Badges */}
+                        {item.tech && (
+                          <div className="mt-5 flex flex-wrap gap-2">
+                            {item.tech.map((tech) => (
+                              <span
+                                key={tech}
+                                className="rounded-md border border-purple-800/40 bg-purple-950/40 px-3 py-1 text-xs font-mono text-purple-200/90"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </motion.div>
                     </div>
                   </div>
-
-                  {/* Card Element */}
-                  <div className={`w-full pl-16 md:pl-0 md:w-[44%] ${index % 2 === 0 ? 'md:text-left' : 'md:text-left'}`}>
-                    <motion.div
-                      whileHover={{ y: -5, scale: 1.01 }}
-                      transition={{ duration: 0.3 }}
-                      className="group relative overflow-hidden rounded-2xl border border-purple-900/40 bg-[#0b0a1d]/90 p-6 shadow-xl backdrop-blur-xl transition-colors duration-300 hover:border-purple-500/50 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]"
-                    >
-                      {/* Top Accent Strip */}
-                      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                      {/* Duration Tag */}
-                      <span className="inline-block rounded-md border border-purple-500/30 bg-purple-950/40 px-3 py-1 text-xs font-mono font-medium text-purple-300 mb-3">
-                        {item.duration}
-                      </span>
-
-                      {/* Title */}
-                      <h3
-                        className="text-lg font-bold text-white transition-colors duration-300 group-hover:text-purple-300"
-                        style={{ fontFamily: "'Sora', sans-serif" }}
-                      >
-                        {item.title}
-                      </h3>
-
-                      {/* Subtitle / Company */}
-                      <p className="text-sm font-semibold text-purple-400 mt-1">
-                        {item.company}
-                      </p>
-
-                      {/* Description */}
-                      <p className="mt-3 text-sm text-gray-300 leading-relaxed font-sans">
-                        {item.description}
-                      </p>
-
-                      {/* Tech Stack Badges */}
-                      {item.tech && (
-                        <div className="mt-4 flex flex-wrap gap-1.5">
-                          {item.tech.map((tech) => (
-                            <span
-                              key={tech}
-                              className="rounded-md border border-purple-800/40 bg-purple-950/30 px-2.5 py-1 text-xs font-mono text-purple-200/80"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </motion.div>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </motion.div>
           </AnimatePresence>
         </div>
