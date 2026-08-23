@@ -41,11 +41,13 @@ const timelineData: ExperienceItem[] = [
     duration: '2024 – Present',
     bullets: [     
       'Designed and developed fully responsive websites using HTML, CSS, JavaScript, and React.js.',
-      'Leading the frontend team to build scalable modern web applications using the MERN Stack and Next.js.',
+      'Built user-friendly UI components with a strong focus on accessibility, performance, and cross-browser compatibility.',
       'Collaborated with clients to understand requirements and deliver tailored solutions on time.',
       'Successfully delivered multiple freelance projects including portfolio sites, landing pages, and web apps.',
+      'Improved user engagement by 35% via responsive, mobile-first design and performance optimization.'
+      'Integrated Git and GitHub for version control and team collaboration.',
     ],
-    tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'Tailwind CSS', 'Bootstrap', 'React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
     icon: <Briefcase size={18} />,
   },
   {
@@ -55,7 +57,9 @@ const timelineData: ExperienceItem[] = [
     company: 'Self Employed (Freelance)',
     duration: 'Jan 2023 – Present',
     bullets: [
-      'Developed and maintained full websites for clients using both custom code and CMS platforms like WordPress',
+      'Developed and maintained websites for clients using both custom code and CMS platforms like WordPress',
+      'Customized themes, built responsive layouts, and ensured cross-device compatibility.',
+      'Optimized websites for SEO, performance, and user experience, resulting in improved engagement and client satisfaction.',
       'Delivered 10+ client projects using React.js and Next.js with REST API integration.',
       'Improved user engagement by 35% via responsive, mobile-first design and performance optimization.',
       'Maintained 100% on-time delivery using Git/GitHub for version control and collaboration',
