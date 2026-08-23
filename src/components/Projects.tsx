@@ -209,476 +209,196 @@ const projects: Project[] = [
 // ─────────────────────────────────────────────────────────────
 
 const typingContainer = {
-  hidden: {
-    opacity: 0,
-  },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-    },
+    transition: { staggerChildren: 0.05 },
   },
 };
 
 const typingText = {
-  hidden: {
-    opacity: 0,
-    y: "0.25em",
-  },
+  hidden: { opacity: 0, y: "0.25em" },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut",
-    },
+    transition: { duration: 0.4, ease: "easeOut" },
   },
 };
 
 // ─────────────────────────────────────────────────────────────
-// Featured Spotlight Card
+// Featured Spotlight Card (Optimized with Memo)
 // ─────────────────────────────────────────────────────────────
 
-const SpotlightCard = ({
-  project,
-  direction,
-  projectNumber,
-}: {
-  project: Project;
-  direction: number;
-  projectNumber: number;
-}) => (
-  <motion.div
-    key={project.title}
-    custom={direction}
-    initial={{
-      opacity: 0,
-      x: direction > 0 ? 70 : -70,
-      scale: 0.985,
-    }}
-    animate={{
-      opacity: 1,
-      x: 0,
-      scale: 1,
-    }}
-    exit={{
-      opacity: 0,
-      x: direction > 0 ? -70 : 70,
-      scale: 0.985,
-    }}
-    transition={{
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
-    }}
-    className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-gray-200/70 bg-white/75 shadow-xl shadow-gray-900/[0.03] backdrop-blur-xl transition-all duration-500 dark:border-white/[0.08] dark:bg-white/[0.035] dark:shadow-black/20 lg:flex-row"
-  >
-    {/* ───────────────────────────────────────────────────────
-        Featured Image
-    ─────────────────────────────────────────────────────── */}
-    <div className="relative h-64 shrink-0 overflow-hidden bg-[#050816] sm:h-80 lg:h-auto lg:min-h-[390px] lg:w-[55%]">
-      <img
-        src={project.image}
-        alt={`${project.title} project preview`}
-        className="h-full w-full object-contain object-center transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
-      />
+const SpotlightCard = React.memo(
+  ({
+    project,
+    direction,
+    projectNumber,
+  }: {
+    project: Project;
+    direction: number;
+    projectNumber: number;
+  }) => (
+    <motion.div
+      key={project.title}
+      custom={direction}
+      initial={{ opacity: 0, x: direction > 0 ? 70 : -70, scale: 0.985 }}
+      animate={{ opacity: 1, x: 0, scale: 1 }}
+      exit={{ opacity: 0, x: direction > 0 ? -70 : 70, scale: 0.985 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-gray-200/70 bg-white/75 shadow-xl shadow-gray-900/[0.03] backdrop-blur-xl transition-all duration-500 dark:border-white/[0.08] dark:bg-white/[0.035] dark:shadow-black/20 lg:flex-row"
+    >
+      <div className="relative h-64 shrink-0 overflow-hidden bg-[#050816] sm:h-80 lg:h-auto lg:min-h-[390px] lg:w-[55%]">
+        <img
+          src={project.image}
+          alt={`${project.title} preview`}
+          className="h-full w-full object-contain object-center transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-70" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/25" />
+        <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.10] to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
 
-      {/* Dark image overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-70" />
-
-      {/* Side gradient */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/25" />
-
-      {/* Image shine */}
-      <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.10] to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
-
-      {/* Category badge */}
-      <div className="absolute left-5 top-5 z-10">
-        <span
-          className="inline-flex items-center gap-1.5 rounded-full border border-purple-400/40 bg-purple-600 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.8px] text-white shadow-[0_0_20px_rgba(168,85,247,0.20)]"
-          style={{
-            fontFamily: "'Sora', sans-serif",
-          }}
-        >
-          <Star
-            size={10}
-            fill="currentColor"
-            aria-hidden="true"
-          />
-          {project.badge}
-        </span>
-      </div>
-
-      {/* Project number */}
-      <div className="absolute bottom-5 left-5 z-10">
-        <span
-          className="text-[11px] font-semibold uppercase tracking-[2px] text-white/65"
-          style={{
-            fontFamily: "'Sora', sans-serif",
-          }}
-        >
-          Project {String(projectNumber).padStart(2, "0")}
-        </span>
-      </div>
-    </div>
-
-    {/* ───────────────────────────────────────────────────────
-        Featured Content
-    ─────────────────────────────────────────────────────── */}
-    <div className="relative flex flex-1 flex-col justify-between p-6 sm:p-7 lg:p-8 xl:p-9">
-      {/* Ambient hover */}
-      <div className="pointer-events-none absolute inset-0 rounded-r-[1.75rem] bg-gradient-to-br from-blue-500/[0.04] via-purple-500/[0.05] to-pink-500/[0.04] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-      <div className="relative z-10">
-        {/* Top metadata */}
-        <div className="mb-5 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span
-              className="text-[10px] font-bold uppercase tracking-[1.8px] text-blue-600 dark:text-blue-400"
-              style={{
-                fontFamily: "'Sora', sans-serif",
-              }}
-            >
-              {project.projectType}
-            </span>
-
-            <span className="h-1 w-1 rounded-full bg-gray-300 dark:bg-white/20" />
-
-            <span
-              className="text-[10px] font-medium uppercase tracking-[1.2px] text-gray-400 dark:text-gray-500"
-              style={{
-                fontFamily: "'Sora', sans-serif",
-              }}
-            >
-              Featured
-            </span>
-          </div>
-
+        <div className="absolute left-5 top-5 z-10">
           <span
-            className="hidden text-[11px] font-medium text-gray-400 dark:text-gray-500 sm:block"
-            style={{
-              fontFamily: "'Sora', sans-serif",
-            }}
+            className="inline-flex items-center gap-1.5 rounded-full border border-purple-400/40 bg-purple-600 px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.8px] text-white shadow-[0_0_20px_rgba(168,85,247,0.30)]"
+            style={{ fontFamily: "'Sora', sans-serif" }}
           >
-            {String(projectNumber).padStart(2, "0")} / 03
+            <Star size={10} fill="currentColor" aria-hidden="true" />
+            {project.badge}
           </span>
         </div>
 
-        {/* Title */}
-        <div className="mb-4">
-          <h3
-            className="max-w-2xl text-2xl font-bold leading-tight tracking-[-0.025em] text-gray-950 transition-colors duration-300 group-hover:text-blue-600 sm:text-3xl dark:text-white dark:group-hover:text-blue-400"
-            style={{
-              fontFamily: "'Sora', sans-serif",
-            }}
+        <div className="absolute bottom-5 left-5 z-10">
+          <span
+            className="text-[11px] font-semibold uppercase tracking-[2px] text-white/65"
+            style={{ fontFamily: "'Sora', sans-serif" }}
           >
-            {project.title}
-          </h3>
+            Project {String(projectNumber).padStart(2, "0")}
+          </span>
+        </div>
+      </div>
+
+      <div className="relative flex flex-1 flex-col justify-between p-6 sm:p-7 lg:p-8 xl:p-9">
+        <div className="pointer-events-none absolute inset-0 rounded-r-[1.75rem] bg-gradient-to-br from-blue-500/[0.04] via-purple-500/[0.05] to-pink-500/[0.04] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+        <div className="relative z-10">
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <span
+                className="text-[10px] font-bold uppercase tracking-[1.8px] text-blue-600 dark:text-blue-400"
+                style={{ fontFamily: "'Sora', sans-serif" }}
+              >
+                {project.projectType}
+              </span>
+              <span className="h-1 w-1 rounded-full bg-gray-300 dark:bg-white/20" />
+              <span
+                className="text-[10px] font-medium uppercase tracking-[1.2px] text-gray-400 dark:text-gray-500"
+                style={{ fontFamily: "'Sora', sans-serif" }}
+              >
+                Featured
+              </span>
+            </div>
+
+            <span
+              className="hidden text-[11px] font-medium text-gray-400 dark:text-gray-500 sm:block"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
+              {String(projectNumber).padStart(2, "0")} / 03
+            </span>
+          </div>
+
+          <div className="mb-4">
+            <h3
+              className="max-w-2xl text-2xl font-bold leading-tight tracking-[-0.025em] text-gray-950 transition-colors duration-300 group-hover:text-blue-600 sm:text-3xl dark:text-white dark:group-hover:text-blue-400"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
+              {project.title}
+            </h3>
+            <p
+              className="mt-2 text-xs font-medium text-gray-400 dark:text-gray-500"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
+            >
+              {project.focus}
+            </p>
+          </div>
 
           <p
-            className="mt-2 text-xs font-medium text-gray-400 dark:text-gray-500"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-            }}
+            className="max-w-xl text-sm leading-[1.8] text-gray-500 dark:text-gray-400"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
-            {project.focus}
+            {project.description}
           </p>
-        </div>
 
-        {/* Description */}
-        <p
-          className="max-w-xl text-sm leading-[1.8] text-gray-500 dark:text-gray-400"
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-          }}
-        >
-          {project.description}
-        </p>
-
-        {/* Highlights */}
-        {project.highlights && project.highlights.length > 0 && (
-          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
-            {project.highlights.map((highlight) => (
-              <div
-                key={highlight}
-                className="flex items-center gap-2"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                }}
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
-
-                <span className="text-[11px] font-medium text-gray-600 dark:text-gray-300">
-                  {highlight}
-                </span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Divider */}
-        <div className="my-6 h-px w-full bg-gray-200/80 dark:bg-white/[0.07]" />
-
-        {/* Built with */}
-        <div>
-          <div className="mb-2.5 flex items-center gap-2">
-            <Code2
-              size={13}
-              className="text-gray-400 dark:text-gray-500"
-              aria-hidden="true"
-            />
-
-            <span
-              className="text-[10px] font-bold uppercase tracking-[1.8px] text-gray-400 dark:text-gray-500"
-              style={{
-                fontFamily: "'Sora', sans-serif",
-              }}
-            >
-              Built with
-            </span>
-          </div>
-
-          <div className="flex flex-wrap gap-1.5">
-            {project.tech.slice(0, 7).map((tech) => (
-              <span
-                key={tech}
-                className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 text-[10px] font-semibold text-gray-600 transition-colors duration-300 hover:border-purple-400 hover:text-purple-600 dark:border-white/[0.08] dark:bg-white/[0.035] dark:text-gray-400 dark:hover:border-purple-500/40 dark:hover:text-purple-400"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                }}
-              >
-                {tech}
-              </span>
-            ))}
-
-            {project.tech.length > 7 && (
-              <span
-                className="rounded-full border border-dashed border-gray-200 bg-gray-50 px-2.5 py-1 text-[10px] font-semibold text-gray-400 dark:border-white/[0.08] dark:bg-white/[0.035] dark:text-gray-500"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                }}
-              >
-                +{project.tech.length - 7} more
-              </span>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* CTA */}
-      <div className="relative z-10 mt-7 flex flex-wrap items-center gap-2.5">
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`View live ${project.title} project`}
-            className="group/cta inline-flex items-center gap-2 rounded-xl border border-purple-500 bg-purple-600 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-purple-600/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-purple-700 hover:shadow-xl hover:shadow-purple-600/25"
-            style={{
-              fontFamily: "'Sora', sans-serif",
-            }}
-          >
-            <ExternalLink
-              size={13}
-              aria-hidden="true"
-            />
-
-            View Live
-
-            <ArrowRight
-              size={13}
-              className="transition-transform duration-300 group-hover/cta:translate-x-0.5"
-              aria-hidden="true"
-            />
-          </a>
-        )}
-
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`View ${project.title} source code on GitHub`}
-          className="inline-flex items-center gap-2 rounded-xl border border-purple-900/70 bg-[#0b0a1d]/80 px-4 py-2.5 text-xs font-bold text-gray-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-500 hover:bg-purple-600 hover:text-white hover:shadow-lg hover:shadow-purple-600/15"
-          style={{
-            fontFamily: "'Sora', sans-serif",
-          }}
-        >
-          <Github
-            size={13}
-            aria-hidden="true"
-          />
-
-          View Code
-        </a>
-      </div>
-    </div>
-  </motion.div>
-);
-
-// ─────────────────────────────────────────────────────────────
-// Regular Project Card
-// ─────────────────────────────────────────────────────────────
-
-const ProjectCard = ({
-  project,
-  index,
-}: {
-  project: Project;
-  index: number;
-}) => (
-  <motion.article
-    initial={{
-      opacity: 0,
-      y: 30,
-    }}
-    whileInView={{
-      opacity: 1,
-      y: 0,
-    }}
-    transition={{
-      duration: 0.5,
-      delay: (index % 3) * 0.08,
-      ease: [0.22, 1, 0.36, 1],
-    }}
-    viewport={{
-      once: true,
-      margin: "-50px",
-    }}
-    whileHover={{
-      y: -6,
-    }}
-    className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/70 bg-white/75 shadow-sm backdrop-blur-xl transition-all duration-500 hover:border-gray-300/80 hover:shadow-xl hover:shadow-purple-500/[0.06] dark:border-white/[0.07] dark:bg-white/[0.03] dark:hover:border-purple-500/20 dark:hover:shadow-purple-500/[0.07]"
-  >
-    {/* Image */}
-    <div className="relative aspect-[16/10] overflow-hidden bg-[#050816]">
-      <img
-        src={project.image}
-        alt={`${project.title} project preview`}
-        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.045]"
-      />
-
-      {/* Image overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent opacity-0 transition-opacity duration-400 group-hover:opacity-100" />
-
-      {/* Image actions */}
-      <div className="absolute inset-x-0 bottom-0 flex translate-y-3 items-center justify-center gap-2.5 px-4 pb-4 opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100">
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`View live ${project.title}`}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-purple-300/60 bg-white/95 px-3.5 py-2 text-[11px] font-bold text-gray-800 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-purple-500 hover:bg-purple-600 hover:text-white dark:bg-black/50 dark:text-white dark:hover:bg-purple-600"
-            style={{
-              fontFamily: "'Sora', sans-serif",
-            }}
-          >
-            <ExternalLink
-              size={12}
-              aria-hidden="true"
-            />
-            Live
-          </a>
-        )}
-
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`View ${project.title} source code`}
-          className="inline-flex items-center gap-1.5 rounded-xl border border-purple-900/70 bg-[#0b0a1d]/90 px-3.5 py-2 text-[11px] font-bold text-gray-200 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-purple-500 hover:bg-purple-600 hover:text-white"
-          style={{
-            fontFamily: "'Sora', sans-serif",
-          }}
-        >
-          <Github
-            size={12}
-            aria-hidden="true"
-          />
-          Code
-        </a>
-      </div>
-
-      {/* Image shine */}
-      <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.1] to-transparent transition-transform duration-800 group-hover:translate-x-full" />
-    </div>
-
-    {/* Content */}
-    <div className="relative flex flex-1 flex-col p-5">
-      {/* Ambient hover layer */}
-      <div className="pointer-events-none absolute inset-0 rounded-b-2xl bg-gradient-to-br from-blue-500/[0.035] via-purple-500/[0.04] to-pink-500/[0.035] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-      <div className="relative">
-        <div className="mb-2 flex items-start justify-between gap-3">
-          <h3
-            className="text-sm font-semibold leading-snug text-gray-900 transition-colors duration-300 group-hover:text-purple-600 sm:text-base dark:text-white dark:group-hover:text-purple-400"
-            style={{
-              fontFamily: "'Sora', sans-serif",
-            }}
-          >
-            {project.title}
-          </h3>
-
-          <ArrowUp
-            size={14}
-            className="mt-0.5 shrink-0 rotate-45 text-gray-300 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-purple-500 dark:text-gray-600 dark:group-hover:text-purple-400"
-            aria-hidden="true"
-          />
-        </div>
-
-        <p
-          className="mb-5 line-clamp-3 text-xs leading-[1.75] text-gray-500 dark:text-gray-400"
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-          }}
-        >
-          {project.description}
-        </p>
-      </div>
-
-      {/* Bottom */}
-      <div className="relative mt-auto">
-        <div className="mb-4 h-px w-full bg-gray-200/70 dark:bg-white/[0.06]" />
-
-        <div className="flex flex-wrap gap-1.5">
-          {project.tech.slice(0, 5).map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full border border-purple-200 bg-purple-50/70 px-2.5 py-1 text-[10px] font-semibold text-purple-600 transition-colors duration-300 group-hover:border-purple-300 dark:border-purple-500/15 dark:bg-purple-500/[0.07] dark:text-purple-400 dark:group-hover:border-purple-500/30"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-              }}
-            >
-              {tech}
-            </span>
-          ))}
-
-          {project.tech.length > 5 && (
-            <span
-              className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 text-[10px] font-semibold text-gray-400 dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-gray-500"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-              }}
-            >
-              +{project.tech.length - 5}
-            </span>
+          {project.highlights && project.highlights.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
+              {project.highlights.map((highlight) => (
+                <div
+                  key={highlight}
+                  className="flex items-center gap-2"
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
+                  <span className="text-[11px] font-medium text-gray-600 dark:text-gray-300">
+                    {highlight}
+                  </span>
+                </div>
+              ))}
+            </div>
           )}
+
+          <div className="my-6 h-px w-full bg-gray-200/80 dark:bg-white/[0.07]" />
+
+          <div>
+            <div className="mb-2.5 flex items-center gap-2">
+              <Code2
+                size={13}
+                className="text-gray-400 dark:text-gray-500"
+                aria-hidden="true"
+              />
+              <span
+                className="text-[10px] font-bold uppercase tracking-[1.8px] text-gray-400 dark:text-gray-500"
+                style={{ fontFamily: "'Sora', sans-serif" }}
+              >
+                Built with
+              </span>
+            </div>
+
+            <div className="flex flex-wrap gap-1.5">
+              {project.tech.slice(0, 7).map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full border border-purple-500/15 bg-purple-500/10 px-2.5 py-1 text-[10px] font-semibold text-purple-600 dark:text-purple-300"
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                >
+                  {tech}
+                </span>
+              ))}
+              {project.tech.length > 7 && (
+                <span
+                  className="rounded-full border border-dashed border-gray-200 bg-gray-50 px-2.5 py-1 text-[10px] font-semibold text-gray-400 dark:border-white/[0.08] dark:bg-white/[0.035] dark:text-gray-500"
+                  style={{ fontFamily: "'DM Sans', sans-serif" }}
+                >
+                  +{project.tech.length - 7} more
+                </span>
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* Mobile actions */}
-        <div className="mt-4 flex items-center gap-4 sm:hidden">
+        <div className="relative z-10 mt-7 flex flex-wrap items-center gap-2.5">
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-[11px] font-bold text-purple-600 dark:text-purple-400"
-              style={{
-                fontFamily: "'Sora', sans-serif",
-              }}
+              className="group/cta inline-flex items-center gap-2 rounded-xl border border-purple-500 bg-purple-600 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-purple-600/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-purple-700 hover:shadow-xl hover:shadow-purple-600/25"
+              style={{ fontFamily: "'Sora', sans-serif" }}
             >
-              Live
-              <ExternalLink
-                size={11}
+              <ExternalLink size={13} aria-hidden="true" />
+              View Live
+              <ArrowRight
+                size={13}
+                className="transition-transform duration-300 group-hover/cta:translate-x-0.5"
                 aria-hidden="true"
               />
             </a>
@@ -688,22 +408,132 @@ const ProjectCard = ({
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-[11px] font-bold text-gray-500 dark:text-gray-400"
-            style={{
-              fontFamily: "'Sora', sans-serif",
-            }}
+            className="inline-flex items-center gap-2 rounded-xl border border-purple-900/70 bg-[#0b0a1d]/80 px-4 py-2.5 text-xs font-bold text-gray-300 transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-500 hover:bg-purple-600 hover:text-white hover:shadow-lg hover:shadow-purple-600/15"
+            style={{ fontFamily: "'Sora', sans-serif" }}
           >
-            Code
-            <Github
-              size={11}
-              aria-hidden="true"
-            />
+            <Github size={13} aria-hidden="true" />
+            View Code
           </a>
         </div>
       </div>
-    </div>
-  </motion.article>
+    </motion.div>
+  )
 );
+
+SpotlightCard.displayName = "SpotlightCard";
+
+// ─────────────────────────────────────────────────────────────
+// Regular Project Card (Optimized with Memo)
+// ─────────────────────────────────────────────────────────────
+
+const ProjectCard = React.memo(
+  ({ project, index }: { project: Project; index: number }) => (
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.5,
+        delay: (index % 3) * 0.08,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      viewport={{ once: true, margin: "-50px" }}
+      whileHover={{ y: -6 }}
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/70 bg-white/75 shadow-sm backdrop-blur-xl transition-all duration-500 hover:border-purple-500/30 hover:shadow-xl hover:shadow-purple-500/[0.08] dark:border-white/[0.07] dark:bg-white/[0.03] dark:hover:border-purple-500/30 dark:hover:shadow-purple-500/[0.09]"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden bg-[#050816]">
+        <img
+          src={project.image}
+          alt={`${project.title} preview`}
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.045]"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-transparent opacity-0 transition-opacity duration-400 group-hover:opacity-100" />
+
+        <div className="absolute inset-x-0 bottom-0 flex translate-y-3 items-center justify-center gap-2.5 px-4 pb-4 opacity-0 transition-all duration-400 group-hover:translate-y-0 group-hover:opacity-100">
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-purple-300/60 bg-white/95 px-3.5 py-2 text-[11px] font-bold text-gray-800 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-purple-500 hover:bg-purple-600 hover:text-white dark:bg-black/50 dark:text-white dark:hover:bg-purple-600"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
+              <ExternalLink size={12} aria-hidden="true" />
+              Live
+            </a>
+          )}
+
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-purple-900/70 bg-[#0b0a1d]/90 px-3.5 py-2 text-[11px] font-bold text-gray-200 shadow-lg backdrop-blur-md transition-all duration-300 hover:border-purple-500 hover:bg-purple-600 hover:text-white"
+            style={{ fontFamily: "'Sora', sans-serif" }}
+          >
+            <Github size={12} aria-hidden="true" />
+            Code
+          </a>
+        </div>
+
+        <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.1] to-transparent transition-transform duration-800 group-hover:translate-x-full" />
+      </div>
+
+      <div className="relative flex flex-1 flex-col p-5">
+        <div className="pointer-events-none absolute inset-0 rounded-b-2xl bg-gradient-to-br from-blue-500/[0.035] via-purple-500/[0.04] to-pink-500/[0.035] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+        <div className="relative">
+          <div className="mb-2 flex items-start justify-between gap-3">
+            <h3
+              className="text-sm font-semibold leading-snug text-gray-900 transition-colors duration-300 group-hover:text-purple-600 sm:text-base dark:text-white dark:group-hover:text-purple-400"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
+              {project.title}
+            </h3>
+
+            <ArrowUp
+              size={14}
+              className="mt-0.5 shrink-0 rotate-45 text-gray-300 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-purple-500 dark:text-gray-600 dark:group-hover:text-purple-400"
+              aria-hidden="true"
+            />
+          </div>
+
+          <p
+            className="mb-5 line-clamp-3 text-xs leading-[1.75] text-gray-500 dark:text-gray-400"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
+            {project.description}
+          </p>
+        </div>
+
+        <div className="relative mt-auto">
+          <div className="mb-4 h-px w-full bg-gray-200/70 dark:bg-white/[0.06]" />
+
+          <div className="flex flex-wrap gap-1.5">
+            {project.tech.slice(0, 5).map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-purple-500/15 bg-purple-500/10 px-2.5 py-1 text-[10px] font-semibold text-purple-600 dark:text-purple-300"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                {tech}
+              </span>
+            ))}
+
+            {project.tech.length > 5 && (
+              <span
+                className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-1 text-[10px] font-semibold text-gray-400 dark:border-white/[0.07] dark:bg-white/[0.025] dark:text-gray-500"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                +{project.tech.length - 5}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.article>
+  )
+);
+
+ProjectCard.displayName = "ProjectCard";
 
 // ─────────────────────────────────────────────────────────────
 // Main Projects Component
@@ -716,41 +546,30 @@ const Projects = () => {
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
-  const featuredProjects = projects.filter(
-    (project) => project.featured
-  );
-
-  const regularProjects = projects.filter(
-    (project) => !project.featured
-  );
+  const featuredProjects = projects.filter((p) => p.featured);
+  const regularProjects = projects.filter((p) => !p.featured);
 
   const visibleRegularProjects = showAll
     ? regularProjects
     : regularProjects.slice(0, 3);
 
-  const activeProject =
-    featuredProjects[activeIndex] ?? featuredProjects[0];
+  const activeProject = featuredProjects[activeIndex] ?? featuredProjects[0];
 
   const goTo = (index: number) => {
     if (index === activeIndex) return;
-
     setDirection(index > activeIndex ? 1 : -1);
     setActiveIndex(index);
   };
 
   const previousProject = () => {
     const nextIndex =
-      (activeIndex - 1 + featuredProjects.length) %
-      featuredProjects.length;
-
+      (activeIndex - 1 + featuredProjects.length) % featuredProjects.length;
     setDirection(-1);
     setActiveIndex(nextIndex);
   };
 
   const nextProject = () => {
-    const nextIndex =
-      (activeIndex + 1) % featuredProjects.length;
-
+    const nextIndex = (activeIndex + 1) % featuredProjects.length;
     setDirection(1);
     setActiveIndex(nextIndex);
   };
@@ -762,7 +581,6 @@ const Projects = () => {
         block: "start",
       });
     }
-
     setShowAll((current) => !current);
   };
 
@@ -772,29 +590,15 @@ const Projects = () => {
       ref={sectionRef}
       className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 py-24 transition-colors duration-500 dark:from-[#050816] dark:via-[#0B1126] dark:to-[#050816]"
     >
-      {/* ───────────────────────────────────────────────────────
-          Ambient Background
-      ─────────────────────────────────────────────────────── */}
-
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
-          animate={{
-            y: [0, -20, 0],
-            x: [0, 10, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           className="absolute -left-24 -top-24 h-[420px] w-[420px] rounded-full bg-blue-500/10 blur-[150px]"
         />
 
         <motion.div
-          animate={{
-            y: [0, 18, 0],
-            x: [0, -10, 0],
-          }}
+          animate={{ y: [0, 18, 0], x: [0, -10, 0] }}
           transition={{
             duration: 9,
             repeat: Infinity,
@@ -806,7 +610,6 @@ const Projects = () => {
 
         <div className="absolute bottom-[-150px] left-1/2 h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-pink-500/[0.06] blur-[150px]" />
 
-        {/* Grid texture */}
         <div
           className="absolute inset-0 opacity-[0.018] dark:opacity-[0.025]"
           style={{
@@ -818,156 +621,79 @@ const Projects = () => {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
-        {/* ───────────────────────────────────────────────────────
-            Section Heading
-        ─────────────────────────────────────────────────────── */}
-
         <motion.div
           variants={typingContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{
-            once: true,
-          }}
+          viewport={{ once: true }}
           className="mb-16 text-center"
         >
-          {/* Badge */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: -10,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.5,
-            }}
-            viewport={{
-              once: true,
-            }}
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#A855F7]/40 bg-[#A855F7]/10 px-4 py-1.5 shadow-[0_0_15px_rgba(168,85,247,0.2)] backdrop-blur-md"
           >
-            <FolderGit2
-              className="h-3.5 w-3.5 text-[#A855F7]"
-              aria-hidden="true"
-            />
-
+            <FolderGit2 className="h-3.5 w-3.5 text-[#A855F7]" aria-hidden="true" />
             <span
               className="text-xs font-bold uppercase tracking-[2.5px] text-white"
-              style={{
-                fontFamily: "'Sora', sans-serif",
-              }}
+              style={{ fontFamily: "'Sora', sans-serif" }}
             >
               Portfolio
             </span>
           </motion.div>
 
-          {/* Heading */}
           <motion.h2
             variants={typingText}
             className="flex flex-wrap justify-center gap-x-3 text-4xl font-bold tracking-[-0.025em] sm:text-5xl"
-            style={{
-              fontFamily: "'Sora', Montserrat, sans-serif",
-            }}
+            style={{ fontFamily: "'Sora', Montserrat, sans-serif" }}
           >
-            <span className="text-gray-900 dark:text-white">
-              Featured
-            </span>
-
+            <span className="text-gray-900 dark:text-white">Featured</span>
             <span className="bg-gradient-to-r from-[#A855F7] to-[#F472FF] bg-clip-text text-transparent">
               Projects
             </span>
           </motion.h2>
 
-          {/* Underline */}
           <div className="mt-5 flex items-center justify-center gap-2">
             <div className="h-px w-10 bg-gradient-to-r from-transparent to-blue-500/40" />
-
             <motion.div
-              initial={{
-                width: 0,
-              }}
-              whileInView={{
-                width: 80,
-              }}
-              transition={{
-                duration: 0.7,
-                ease: "easeOut",
-                delay: 0.3,
-              }}
-              viewport={{
-                once: true,
-              }}
+              initial={{ width: 0 }}
+              whileInView={{ width: 80 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
+              viewport={{ once: true }}
               className="h-[3px] rounded-full bg-gradient-to-r from-blue-500 via-[#A855F7] to-[#F472FF]"
             />
-
             <div className="h-px w-10 bg-gradient-to-l from-transparent to-[#F472FF]/40" />
           </div>
 
-          {/* Description */}
           <motion.p
-            initial={{
-              opacity: 0,
-              y: 10,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.6,
-              delay: 0.4,
-            }}
-            viewport={{
-              once: true,
-            }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true }}
             className="mx-auto mt-6 max-w-2xl text-sm leading-[1.8] text-gray-500 md:text-[0.95rem] dark:text-gray-400"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-            }}
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
-            From AI-integrated backends to pixel-perfect frontends — each
-            project was built to solve a real problem and ship to production.
+            From AI-integrated backends to pixel-perfect frontends — each project was built to solve a real problem and ship to production.
           </motion.p>
         </motion.div>
 
-        {/* ───────────────────────────────────────────────────────
-            Selected Work Label
-        ─────────────────────────────────────────────────────── */}
-
         <div className="mb-6 flex items-center gap-4">
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300/50 to-transparent dark:via-white/10" />
-
           <span
             className="inline-flex items-center gap-1.5 whitespace-nowrap text-[10px] font-bold uppercase tracking-[2.5px] text-gray-400 dark:text-gray-500"
-            style={{
-              fontFamily: "'Sora', sans-serif",
-            }}
+            style={{ fontFamily: "'Sora', sans-serif" }}
           >
-            <Sparkles
-              size={11}
-              className="text-yellow-400"
-              fill="currentColor"
-              aria-hidden="true"
-            />
+            <Sparkles size={11} className="text-yellow-400" fill="currentColor" aria-hidden="true" />
             Selected Work
           </span>
-
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300/50 to-transparent dark:via-white/10" />
         </div>
 
-        {/* ───────────────────────────────────────────────────────
-            Featured Project
-        ─────────────────────────────────────────────────────── */}
-
         <div className="mb-5">
           <div className="relative">
-            <AnimatePresence
-              mode="wait"
-              custom={direction}
-            >
+            <AnimatePresence mode="wait" custom={direction}>
               {activeProject && (
                 <SpotlightCard
                   key={activeProject.title}
@@ -979,50 +705,30 @@ const Projects = () => {
             </AnimatePresence>
           </div>
 
-          {/* ───────────────────────────────────────────────────
-              Featured Project Navigation
-          ─────────────────────────────────────────────────── */}
-
           <div className="mt-5 flex items-center justify-between gap-3">
-            {/* Previous */}
             <motion.button
               type="button"
               onClick={previousProject}
-              whileHover={{
-                scale: 1.06,
-              }}
-              whileTap={{
-                scale: 0.94,
-              }}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.94 }}
               aria-label="View previous featured project"
               className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-purple-900/70 bg-[#0b0a1d]/80 text-purple-300 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-purple-500 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.20)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-purple-300 dark:hover:border-purple-500 dark:hover:bg-purple-600 dark:hover:text-white"
             >
-              <ChevronLeft
-                size={18}
-                aria-hidden="true"
-              />
+              <ChevronLeft size={18} aria-hidden="true" />
             </motion.button>
 
-            {/* Project Category Selectors */}
             <div className="scrollbar-none flex items-center gap-2 overflow-x-auto px-1 sm:gap-3">
               {featuredProjects.map((project, index) => {
                 const isActive = index === activeIndex;
-
                 return (
                   <motion.button
                     type="button"
                     key={project.title}
                     onClick={() => goTo(index)}
-                    whileHover={{
-                      scale: 1.025,
-                    }}
-                    whileTap={{
-                      scale: 0.97,
-                    }}
+                    whileHover={{ scale: 1.025 }}
+                    whileTap={{ scale: 0.97 }}
                     aria-label={`View ${project.title}`}
-                    aria-current={
-                      isActive ? "true" : undefined
-                    }
+                    aria-current={isActive ? "true" : undefined}
                     className={`
                       group relative flex shrink-0 items-center gap-2
                       overflow-hidden rounded-xl border px-3 py-2.5
@@ -1033,9 +739,7 @@ const Projects = () => {
                           : "border-purple-900/70 bg-[#0b0a1d]/80 text-gray-400 hover:border-purple-500 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.20)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-gray-400 dark:hover:border-purple-500 dark:hover:bg-purple-600 dark:hover:text-white"
                       }
                     `}
-                    style={{
-                      fontFamily: "'Sora', sans-serif",
-                    }}
+                    style={{ fontFamily: "'Sora', sans-serif" }}
                   >
                     <span
                       className={`relative text-[9px] font-bold ${
@@ -1046,68 +750,41 @@ const Projects = () => {
                     >
                       0{index + 1}
                     </span>
-
                     <span className="relative hidden whitespace-nowrap text-[10px] font-semibold sm:block">
                       {project.badge}
                     </span>
-
                     <span className="relative block h-1.5 w-1.5 rounded-full bg-current sm:hidden" />
                   </motion.button>
                 );
               })}
             </div>
 
-            {/* Next */}
             <motion.button
               type="button"
               onClick={nextProject}
-              whileHover={{
-                scale: 1.06,
-              }}
-              whileTap={{
-                scale: 0.94,
-              }}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.94 }}
               aria-label="View next featured project"
               className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-purple-900/70 bg-[#0b0a1d]/80 text-purple-300 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-purple-500 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.20)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-purple-300 dark:hover:border-purple-500 dark:hover:bg-purple-600 dark:hover:text-white"
             >
-              <ChevronRight
-                size={18}
-                aria-hidden="true"
-              />
+              <ChevronRight size={18} aria-hidden="true" />
             </motion.button>
           </div>
         </div>
 
-        {/* ───────────────────────────────────────────────────────
-            More Projects
-        ─────────────────────────────────────────────────────── */}
-
         <div className="mb-6 mt-14 flex items-center gap-4">
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300/50 to-transparent dark:via-white/10" />
-
           <div className="inline-flex items-center gap-2 whitespace-nowrap">
-            <Layers3
-              size={11}
-              className="text-gray-400 dark:text-gray-500"
-              aria-hidden="true"
-            />
-
+            <Layers3 size={11} className="text-gray-400 dark:text-gray-500" aria-hidden="true" />
             <span
               className="text-[10px] font-bold uppercase tracking-[2.5px] text-gray-400 dark:text-gray-500"
-              style={{
-                fontFamily: "'Sora', sans-serif",
-              }}
+              style={{ fontFamily: "'Sora', sans-serif" }}
             >
               More Projects
             </span>
           </div>
-
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300/50 to-transparent dark:via-white/10" />
         </div>
-
-        {/* ───────────────────────────────────────────────────────
-            Regular Project Grid
-        ─────────────────────────────────────────────────────── */}
 
         <AnimatePresence mode="popLayout">
           <motion.div
@@ -1124,50 +801,27 @@ const Projects = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* ───────────────────────────────────────────────────────
-            Show All / Show Less
-        ─────────────────────────────────────────────────────── */}
-
         {regularProjects.length > 3 && (
           <div className="mt-14 flex justify-center">
             <motion.button
               type="button"
               onClick={handleShowAllToggle}
-              whileHover={{
-                scale: 1.025,
-              }}
-              whileTap={{
-                scale: 0.975,
-              }}
+              whileHover={{ scale: 1.025 }}
+              whileTap={{ scale: 0.975 }}
               className="group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl border border-purple-900/70 bg-[#0b0a1d]/80 px-7 py-3.5 font-medium text-gray-200 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-purple-500 hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.25)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-gray-200"
-              style={{
-                fontFamily: "'Sora', sans-serif",
-              }}
+              style={{ fontFamily: "'Sora', sans-serif" }}
             >
-              {/* Hover background */}
               <span className="absolute inset-0 rounded-2xl bg-purple-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
               {showAll ? (
                 <>
-                  <ArrowUp
-                    className="relative z-10 h-4.5 w-4.5 transition-transform duration-300 group-hover:-translate-y-0.5"
-                    aria-hidden="true"
-                  />
-
-                  <span className="relative z-10 text-xs tracking-wide">
-                    Show Less
-                  </span>
+                  <ArrowUp className="relative z-10 h-4.5 w-4.5 transition-transform duration-300 group-hover:-translate-y-0.5" aria-hidden="true" />
+                  <span className="relative z-10 text-xs tracking-wide">Show Less</span>
                 </>
               ) : (
                 <>
-                  <span className="relative z-10 text-xs tracking-wide">
-                    Explore All Projects
-                  </span>
-
-                  <ArrowRight
-                    className="relative z-10 h-4.5 w-4.5 transition-transform duration-300 group-hover:translate-x-1"
-                    aria-hidden="true"
-                  />
+                  <span className="relative z-10 text-xs tracking-wide">Explore All Projects</span>
+                  <ArrowRight className="relative z-10 h-4.5 w-4.5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
                 </>
               )}
             </motion.button>
