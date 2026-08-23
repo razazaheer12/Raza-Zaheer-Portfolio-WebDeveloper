@@ -95,7 +95,6 @@ const Experience: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'experience' | 'education'>('experience');
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Scroll-linked progress for center deep purple timeline line
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start 80%', 'end 70%'],
@@ -109,18 +108,15 @@ const Experience: React.FC = () => {
       id="experience"
       className="relative overflow-hidden py-24 bg-[#050816] text-white transition-colors duration-500"
     >
-      {/* Background Deep Purple Ambient Glows */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute left-[-150px] top-1/4 h-[450px] w-[450px] rounded-full bg-purple-900/15 blur-[160px]" />
         <div className="absolute right-[-150px] bottom-1/4 h-[450px] w-[450px] rounded-full bg-purple-600/15 blur-[160px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6">
+      {/* Increased max-width for wider layout */}
+      <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-8">
         
-        {/* SECTION HEADING */}
         <div className="mb-10 flex flex-col items-center text-center justify-center">
-          
-          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -134,7 +130,6 @@ const Experience: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Heading */}
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -155,7 +150,6 @@ const Experience: React.FC = () => {
             </span>
           </motion.h2>
 
-          {/* Glowing Accent Underline */}
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: 80 }}
@@ -175,7 +169,6 @@ const Experience: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* INTERACTIVE TAB SWITCHER */}
         <div className="flex justify-center mb-16">
           <div className="flex items-center p-1.5 rounded-2xl border border-purple-900/50 bg-[#0b0a1d]/90 backdrop-blur-xl shadow-[0_0_30px_rgba(168,85,247,0.15)]">
             <button
@@ -214,12 +207,10 @@ const Experience: React.FC = () => {
           </div>
         </div>
 
-        {/* TIMELINE CONTAINER */}
-        <div ref={containerRef} className="relative mx-auto max-w-5xl">
-          {/* Static Background Track Line */}
+        {/* Removed max-w-5xl, set to w-full to utilize the new 1400px space */}
+        <div ref={containerRef} className="relative mx-auto w-full">
           <div className="absolute left-[27px] md:left-1/2 top-0 h-full w-[2px] -translate-x-1/2 bg-purple-950/60" />
           
-          {/* Animated Glowing Fill Line on Scroll */}
           <motion.div
             style={{ height: lineHeight }}
             className="absolute left-[27px] md:left-1/2 top-0 w-[3px] -translate-x-1/2 rounded-full bg-gradient-to-b from-purple-400 via-purple-600 to-fuchsia-500 shadow-[0_0_15px_rgba(168,85,247,0.8)] z-10"
@@ -243,57 +234,51 @@ const Experience: React.FC = () => {
                       isEven ? 'md:justify-start' : 'md:justify-end'
                     }`}
                   >
-                    {/* Horizontal Connector Line (Desktop) */}
+                    {/* Width adjusted to 32px to perfectly connect the exact gap */}
                     <motion.div
                       initial={{ scaleX: 0 }}
                       whileInView={{ scaleX: 1 }}
                       transition={{ duration: 0.4, delay: 0.2 }}
                       viewport={{ once: true }}
                       style={{ transformOrigin: isEven ? 'left' : 'right' }}
-                      className={`absolute top-1/2 hidden h-[2px] w-[50px] -translate-y-1/2 bg-gradient-to-r from-purple-500 to-purple-800 md:block ${
+                      className={`absolute top-1/2 hidden h-[2px] w-[32px] -translate-y-1/2 bg-gradient-to-r from-purple-500 to-purple-800 md:block ${
                         isEven
                           ? 'left-[calc(50%+24px)]'
                           : 'right-[calc(50%+24px)]'
                       }`}
                     />
 
-                    {/* Timeline Center Node Icon */}
                     <div className="absolute left-[27px] md:left-1/2 top-1/2 z-30 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-purple-500/60 bg-[#0b0a1d] text-purple-300 shadow-[0_0_25px_rgba(168,85,247,0.5)]">
                       <div className="flex h-9 w-9 items-center justify-center rounded-full bg-purple-950/90 text-purple-300">
                         {item.icon}
                       </div>
                     </div>
 
-                    {/* Card Element (46% Width) */}
-                    <div className="w-full pl-16 md:pl-0 md:w-[46%]">
+                    {/* Calculated exact width (50% - 3.5rem) to maximize card size */}
+                    <div className="w-full pl-16 md:pl-0 md:w-[calc(50%-3.5rem)]">
                       <motion.div
                         whileHover={{ y: -6, scale: 1.015 }}
                         transition={{ duration: 0.3 }}
-                        className="group relative overflow-hidden rounded-2xl border border-purple-900/40 bg-[#0b0a1d]/95 p-7 shadow-2xl backdrop-blur-xl transition-colors duration-300 hover:border-purple-500/60 hover:shadow-[0_0_35px_rgba(168,85,247,0.25)]"
+                        className="group relative overflow-hidden rounded-2xl border border-purple-900/40 bg-[#0b0a1d]/95 p-8 shadow-2xl backdrop-blur-xl transition-colors duration-300 hover:border-purple-500/60 hover:shadow-[0_0_35px_rgba(168,85,247,0.25)]"
                       >
-                        {/* Top Ambient Glow Line on Hover */}
                         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                        {/* Duration Tag */}
-                        <span className="inline-block rounded-md border border-purple-500/30 bg-purple-950/50 px-3.5 py-1 text-xs font-mono font-medium text-purple-300 mb-3.5">
+                        <span className="inline-block rounded-md border border-purple-500/30 bg-purple-950/50 px-3.5 py-1 text-xs font-mono font-medium text-purple-300 mb-4">
                           {item.duration}
                         </span>
 
-                        {/* Title */}
                         <h3
-                          className="text-xl font-bold text-white transition-colors duration-300 group-hover:text-purple-300 leading-snug"
+                          className="text-2xl font-bold text-white transition-colors duration-300 group-hover:text-purple-300 leading-snug"
                           style={{ fontFamily: "'Sora', sans-serif" }}
                         >
                           {item.title}
                         </h3>
 
-                        {/* Subtitle / Company */}
-                        <p className="text-sm font-semibold text-purple-400 mt-1">
+                        <p className="text-base font-semibold text-purple-400 mt-1.5">
                           {item.company}
                         </p>
 
-                        {/* Bullet Points Description */}
-                        <ul className="mt-4 space-y-2 text-sm text-gray-300 leading-relaxed font-sans list-disc list-inside">
+                        <ul className="mt-5 space-y-2.5 text-sm md:text-base text-gray-300 leading-relaxed font-sans list-disc list-inside">
                           {item.bullets.map((bullet, idx) => (
                             <li key={idx} className="marker:text-purple-500">
                               <span className="text-gray-300">{bullet}</span>
@@ -301,13 +286,12 @@ const Experience: React.FC = () => {
                           ))}
                         </ul>
 
-                        {/* Tech Stack Badges */}
                         {item.tech && (
-                          <div className="mt-5 flex flex-wrap gap-2">
+                          <div className="mt-7 flex flex-wrap gap-2.5">
                             {item.tech.map((tech) => (
                               <span
                                 key={tech}
-                                className="rounded-md border border-purple-800/40 bg-purple-950/40 px-3 py-1 text-xs font-mono text-purple-200/90"
+                                className="rounded-md border border-purple-800/40 bg-purple-950/40 px-3.5 py-1.5 text-xs font-mono text-purple-200/90"
                               >
                                 {tech}
                               </span>
