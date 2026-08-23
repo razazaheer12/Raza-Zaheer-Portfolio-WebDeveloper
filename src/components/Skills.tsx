@@ -25,39 +25,41 @@ import {
 } from "react-icons/si";
 import { VscCode } from "react-icons/vsc";
 
-// ─── Skills Data (resume-complete) ────────────────────────────
+const navbarPurpleGradient = "linear-gradient(90deg, #c084fc 0%, #a855f7 50%, #9333ea 100%)";
+
+// ─── Skills Data ──────────────────────────────────────────────
 const allSkills = {
   Frontend: [
-    { name: "HTML5",        icon: <SiHtml5 />,       color: "text-orange-500", glow: "group-hover:shadow-orange-500/25", ring: "group-hover:ring-orange-500/20" },
-    { name: "CSS3",         icon: <SiCss3 />,        color: "text-blue-500",   glow: "group-hover:shadow-blue-500/25",   ring: "group-hover:ring-blue-500/20" },
-    { name: "JavaScript",   icon: <SiJavascript />,  color: "text-yellow-400", glow: "group-hover:shadow-yellow-400/25", ring: "group-hover:ring-yellow-400/20" },
-    { name: "TypeScript",   icon: <SiTypescript />,  color: "text-blue-600",   glow: "group-hover:shadow-blue-600/25",   ring: "group-hover:ring-blue-600/20" },
-    { name: "React.js",     icon: <SiReact />,       color: "text-sky-400",    glow: "group-hover:shadow-sky-400/25",    ring: "group-hover:ring-sky-400/20" },
-    { name: "Next.js",      icon: <SiNextdotjs />,   color: "text-gray-800 dark:text-white", glow: "group-hover:shadow-gray-400/25", ring: "group-hover:ring-gray-400/20" },
-    { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "text-cyan-400",   glow: "group-hover:shadow-cyan-400/25",   ring: "group-hover:ring-cyan-400/20" },
-    { name: "Figma",        icon: <SiFigma />,       color: "text-pink-500",   glow: "group-hover:shadow-pink-500/25",   ring: "group-hover:ring-pink-500/20" },
+    { name: "HTML5",        icon: <SiHtml5 />,       color: "text-orange-500" },
+    { name: "CSS3",         icon: <SiCss3 />,        color: "text-blue-500" },
+    { name: "JavaScript",   icon: <SiJavascript />,  color: "text-yellow-400" },
+    { name: "TypeScript",   icon: <SiTypescript />,  color: "text-blue-600" },
+    { name: "React.js",     icon: <SiReact />,       color: "text-sky-400" },
+    { name: "Next.js",      icon: <SiNextdotjs />,   color: "text-white" },
+    { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "text-cyan-400" },
+    { name: "Figma",        icon: <SiFigma />,       color: "text-pink-500" },
   ],
   "Backend & DB": [
-    { name: "Node.js",    icon: <SiNodedotjs />,  color: "text-green-500",  glow: "group-hover:shadow-green-500/25",  ring: "group-hover:ring-green-500/20" },
-    { name: "Express.js", icon: <SiExpress />,    color: "text-gray-700 dark:text-gray-300", glow: "group-hover:shadow-gray-400/25", ring: "group-hover:ring-gray-400/20" },
-    { name: "NestJS",     icon: <SiNestjs />,     color: "text-red-500",    glow: "group-hover:shadow-red-500/25",    ring: "group-hover:ring-red-500/20" },
-    { name: "MongoDB",    icon: <SiMongodb />,    color: "text-green-600",  glow: "group-hover:shadow-green-600/25",  ring: "group-hover:ring-green-600/20" },
-    { name: "PostgreSQL", icon: <SiPostgresql />, color: "text-sky-600",    glow: "group-hover:shadow-sky-600/25",    ring: "group-hover:ring-sky-600/20" },
-    { name: "Docker",     icon: <SiDocker />,     color: "text-blue-400",   glow: "group-hover:shadow-blue-400/25",   ring: "group-hover:ring-blue-400/20" },
+    { name: "Node.js",    icon: <SiNodedotjs />,  color: "text-green-500" },
+    { name: "Express.js", icon: <SiExpress />,    color: "text-gray-300" },
+    { name: "NestJS",     icon: <SiNestjs />,     color: "text-red-500" },
+    { name: "MongoDB",    icon: <SiMongodb />,    color: "text-green-600" },
+    { name: "PostgreSQL", icon: <SiPostgresql />, color: "text-sky-600" },
+    { name: "Docker",     icon: <SiDocker />,     color: "text-blue-400" },
   ],
   "Real-Time & AI": [
-    { name: "Socket.io", icon: <SiSocketdotio />, color: "text-gray-700 dark:text-white", glow: "group-hover:shadow-gray-400/25", ring: "group-hover:ring-gray-400/20" },
-    { name: "LangChain", icon: <SiOpenai />,      color: "text-green-400",                glow: "group-hover:shadow-green-400/25", ring: "group-hover:ring-green-400/20" },
-    { name: "Pinecone",  icon: <SiOpenai />,      color: "text-teal-400",                 glow: "group-hover:shadow-teal-400/25",  ring: "group-hover:ring-teal-400/20" },
-    { name: "JWT Auth",  icon: <ShieldCheck className="w-full h-full" />, color: "text-yellow-500", glow: "group-hover:shadow-yellow-500/25", ring: "group-hover:ring-yellow-500/20" },
-    { name: "RAG Pipelines",  icon: <Database className="w-full h-full" />,    color: "text-purple-400", glow: "group-hover:shadow-purple-400/25", ring: "group-hover:ring-purple-400/20" },
+    { name: "Socket.io", icon: <SiSocketdotio />, color: "text-white" },
+    { name: "LangChain", icon: <SiOpenai />,      color: "text-green-400" },
+    { name: "Pinecone",  icon: <SiOpenai />,      color: "text-teal-400" },
+    { name: "JWT Auth",  icon: <ShieldCheck className="w-full h-full" />, color: "text-yellow-500" },
+    { name: "RAG Pipelines", icon: <Database className="w-full h-full" />, color: "text-purple-400" },
   ],
   Tools: [
-    { name: "Git",     icon: <SiGit />,    color: "text-orange-600",               glow: "group-hover:shadow-orange-600/25", ring: "group-hover:ring-orange-600/20" },
-    { name: "GitHub",  icon: <SiGithub />, color: "text-gray-800 dark:text-white", glow: "group-hover:shadow-gray-400/25",   ring: "group-hover:ring-gray-400/20" },
-    { name: "VS Code", icon: <VscCode />,  color: "text-blue-500",                 glow: "group-hover:shadow-blue-500/25",   ring: "group-hover:ring-blue-500/20" },
-    { name: "Vercel",  icon: <SiVercel />, color: "text-gray-800 dark:text-white", glow: "group-hover:shadow-gray-400/25",   ring: "group-hover:ring-gray-400/20" },
-    { name: "Netlify", icon: <SiNetlify />,color: "text-teal-500",                 glow: "group-hover:shadow-teal-500/25",   ring: "group-hover:ring-teal-500/20" },
+    { name: "Git",     icon: <SiGit />,    color: "text-orange-600" },
+    { name: "GitHub",  icon: <SiGithub />, color: "text-white" },
+    { name: "VS Code", icon: <VscCode />,  color: "text-blue-500" },
+    { name: "Vercel",  icon: <SiVercel />, color: "text-white" },
+    { name: "Netlify", icon: <SiNetlify />,color: "text-teal-500" },
   ],
 };
 
@@ -74,30 +76,15 @@ const SkillCard = ({ skill, index }: { skill: (typeof allFlat)[0]; index: number
     transition={{ duration: 0.35, delay: 0.05 * index }}
     viewport={{ once: true }}
     whileHover={{ y: -5, scale: 1.04 }}
-    className={`
-      group relative flex flex-col items-center justify-center gap-3
-      px-5 py-6
-      rounded-2xl cursor-default select-none
-      border border-gray-200/70 dark:border-white/[0.07]
-      bg-white/60 dark:bg-white/[0.03]
-      backdrop-blur-xl shadow-sm
-      ring-1 ring-transparent ${skill.ring}
-      hover:border-gray-300/80 dark:hover:border-white/[0.15]
-      hover:bg-white/90 dark:hover:bg-white/[0.07]
-      hover:shadow-xl ${skill.glow}
-      transition-all duration-300 ease-out
-    `}
+    className="group relative flex flex-col items-center justify-center gap-3 px-5 py-6 rounded-2xl cursor-default select-none border border-purple-900/50 bg-[#0b0a1d]/80 backdrop-blur-xl shadow-sm hover:border-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.25)] transition-all duration-300 ease-out"
   >
-    {/* Hover gradient wash */}
-    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
     <div className={`relative text-[2.4rem] md:text-[2.8rem] ${skill.color} transition-transform duration-300 group-hover:scale-110`}>
       {skill.icon}
     </div>
 
     <p
-      className="relative text-[11px] md:text-xs font-semibold tracking-wide text-gray-500 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-100 transition-colors duration-300 uppercase text-center"
-      style={{ fontFamily: "'Sora', 'DM Sans', sans-serif" }}
+      className="relative text-[11px] md:text-xs font-semibold tracking-wide text-gray-300 group-hover:text-white transition-colors duration-300 uppercase text-center"
+      style={{ fontFamily: "'Sora', sans-serif" }}
     >
       {skill.name}
     </p>
@@ -122,27 +109,14 @@ const MarqueeRow = ({ items, reverse = false, duration = 28 }: {
         {doubled.map((skill, i) => (
           <div
             key={`${reverse ? "r" : "f"}-${i}`}
-            className={`
-              group relative flex flex-col items-center justify-center gap-3
-              min-w-[130px] md:min-w-[150px] px-5 py-5
-              rounded-2xl cursor-default select-none
-              border border-gray-200/70 dark:border-white/[0.07]
-              bg-white/60 dark:bg-white/[0.03]
-              backdrop-blur-xl shadow-sm
-              ring-1 ring-transparent ${skill.ring}
-              hover:border-gray-300/80 dark:hover:border-white/[0.12]
-              hover:bg-white/90 dark:hover:bg-white/[0.06]
-              hover:shadow-xl ${skill.glow}
-              hover:-translate-y-1.5
-              transition-all duration-300 ease-out
-            `}
+            className="group relative flex flex-col items-center justify-center gap-3 min-w-[130px] md:min-w-[150px] px-5 py-5 rounded-2xl cursor-default select-none border border-purple-900/50 bg-[#0b0a1d]/80 backdrop-blur-xl shadow-sm hover:border-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)] hover:-translate-y-1.5 transition-all duration-300 ease-out"
           >
             <div className={`text-[2.2rem] md:text-[2.6rem] ${skill.color} transition-transform duration-300 group-hover:scale-110`}>
               {skill.icon}
             </div>
             <p
-              className="text-[11px] md:text-xs font-semibold tracking-wide text-gray-500 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300 uppercase"
-              style={{ fontFamily: "'Sora', 'DM Sans', sans-serif" }}
+              className="text-[11px] md:text-xs font-semibold tracking-wide text-gray-300 group-hover:text-white transition-colors duration-300 uppercase"
+              style={{ fontFamily: "'Sora', sans-serif" }}
             >
               {skill.name}
             </p>
@@ -160,31 +134,37 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-[#050816] dark:via-[#0B1126] dark:to-[#050816] transition-colors duration-500"
+      className="relative overflow-hidden py-24 transition-colors duration-500"
+      style={{ background: "#050816" }}
     >
       {/* Ambient Glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{ y: [0, -20, 0] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -left-40 top-0 h-[380px] w-[380px] rounded-full bg-blue-600/10 blur-[150px]"
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 500,
+            height: 500,
+            top: 0,
+            left: -100,
+            background: "radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)",
+          }}
         />
-        <motion.div
-          animate={{ y: [0, 18, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="absolute right-[-120px] top-10 h-[420px] w-[420px] rounded-full bg-purple-600/10 blur-[160px]"
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 550,
+            height: 550,
+            top: "30%",
+            right: -100,
+            background: "radial-gradient(circle, rgba(139,92,246,0.09) 0%, transparent 70%)",
+          }}
         />
-        <div className="absolute bottom-[-180px] left-1/2 -translate-x-1/2 h-[360px] w-[360px] rounded-full bg-fuchsia-500/8 blur-[150px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-
-        {/* =========================================================
-            SECTION HEADING (Matched with About Page Theme)
-            ========================================================= */}
+        {/* SECTION HEADING */}
         <div className="mb-12 md:mb-16 flex flex-col items-center text-center justify-center">
-
-          {/* Premium Badge */}
+          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -193,99 +173,56 @@ const Skills = () => {
             className="mb-6 md:mb-7"
           >
             <div
-              className="
-                inline-flex items-center gap-2
-                rounded-full
-                border border-[#8B5CF6]/50
-                bg-[#0F1228]/80
-                px-4 py-1.5
-                text-[10px] md:text-xs
-                font-semibold
-                uppercase
-                tracking-[2.8px]
-                text-[#C4B5FD]
-                shadow-[0_0_20px_rgba(139,92,246,0.16)]
-                backdrop-blur-md
-                transition-all duration-300
-                hover:border-[#A855F7]/80
-                hover:text-white
-                hover:shadow-[0_0_25px_rgba(168,85,247,0.25)]
-              "
-              style={{ fontFamily: "Inter, sans-serif" }}
+              className="inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-950/20 px-4 py-1.5 text-xs font-semibold tracking-wide text-purple-200 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.15)]"
+              style={{ fontFamily: "'Sora', sans-serif" }}
             >
-              <Compass
-                size={13}
-                className="text-[#A78BFA]"
-              />
+              <Compass size={13} className="text-purple-400" />
               MY ARCHITECTURE
             </div>
           </motion.div>
 
-          {/* Project-Style Heading */}
+          {/* Title */}
           <motion.h2
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="
-              text-4xl md:text-5xl
-              font-extrabold
-              tracking-tight
-              text-white
-            "
-            style={{ fontFamily: "Montserrat, sans-serif" }}
+            className="text-4xl md:text-5xl font-extrabold tracking-tight text-white"
+            style={{ fontFamily: "'Sora', sans-serif" }}
           >
             Tech{" "}
             <span
-              className="
-                bg-gradient-to-r
-                from-[#A78BFA]
-                via-[#C084FC]
-                to-[#EC4899]
-                bg-clip-text
-                text-transparent
-              "
+              style={{
+                background: navbarPurpleGradient,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
             >
               Stack
             </span>
           </motion.h2>
 
-          {/* Glowing Accent Underline */}
           <motion.div
             initial={{ width: 0 }}
             whileInView={{ width: 88 }}
-            transition={{
-              duration: 0.7,
-              ease: "easeOut",
-              delay: 0.2,
-            }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true }}
-            className="
-              h-[3px]
-              rounded-full
-              bg-gradient-to-r
-              from-[#3B82F6]
-              via-[#8B5CF6]
-              to-[#EC4899]
-              mt-4
-              mx-auto
-            "
+            className="h-[3px] rounded-full bg-gradient-to-r from-purple-500 via-purple-400 to-indigo-500 mt-4 mx-auto"
           />
 
-          {/* Subtitle Description */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-center text-sm md:text-base text-gray-600 dark:text-[#A0A7C0] max-w-xl mx-auto mt-6 leading-[1.8]"
+            className="text-center text-sm md:text-base text-gray-400 max-w-xl mx-auto mt-6 leading-[1.8]"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
             The languages, frameworks, tools, and architecture I leverage to build high-performance products.
           </motion.p>
         </div>
 
-        {/* Dark Glassmorphic Category Buttons */}
+        {/* Category Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -301,22 +238,20 @@ const Skills = () => {
                 onClick={() => setActiveCategory(cat)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`relative px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 backdrop-blur-md overflow-hidden ${
+                className={`relative px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 backdrop-blur-md overflow-hidden ${
                   isActive
-                    ? "bg-purple-900/40 text-white border border-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.4)]"
-                    : "bg-white/[0.04] text-purple-200/80 border border-purple-500/30 hover:border-purple-500 hover:text-white hover:shadow-[0_0_15px_rgba(168,85,247,0.3)]"
+                    ? "bg-purple-600 text-white border border-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+                    : "bg-[#0b0a1d]/80 text-gray-300 border border-purple-900/50 hover:border-purple-500 hover:text-white hover:shadow-[0_0_15px_rgba(168,85,247,0.25)]"
                 }`}
                 style={{ fontFamily: "'Sora', sans-serif" }}
               >
-                {/* Internal subtle gradient highlight on hover */}
-                <span className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-fuchsia-500/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
                 <span className="relative z-10 tracking-wide">{cat}</span>
               </motion.button>
             );
           })}
         </motion.div>
 
-        {/* Category Grid — AnimatePresence for smooth tab switching */}
+        {/* Category Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
@@ -334,14 +269,14 @@ const Skills = () => {
 
         {/* Divider */}
         <div className="flex items-center gap-4 mb-10">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300/50 dark:via-white/10 to-transparent" />
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-900/50 to-transparent" />
           <span
-            className="text-xs uppercase tracking-[3px] text-gray-400 dark:text-gray-500 font-semibold whitespace-nowrap"
+            className="text-xs uppercase tracking-[3px] text-purple-300/60 font-semibold whitespace-nowrap"
             style={{ fontFamily: "'Sora', sans-serif" }}
           >
             All Technologies
           </span>
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300/50 dark:via-white/10 to-transparent" />
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-900/50 to-transparent" />
         </div>
 
         {/* Marquee */}
@@ -359,7 +294,6 @@ const Skills = () => {
           <MarqueeRow items={row1} reverse={false} duration={34} />
           <MarqueeRow items={[...row2].reverse()} reverse={true} duration={28} />
         </motion.div>
-
       </div>
     </section>
   );
