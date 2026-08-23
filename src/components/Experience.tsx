@@ -39,12 +39,12 @@ const timelineData: ExperienceItem[] = [
     title: 'Web Developer',
     company: 'RZ Web Studio',
     duration: '2024 – Present',
-    bullets: [     
+    bullets: [
       'Designed and developed fully responsive websites using HTML, CSS, JavaScript, and React.js.',
       'Built user-friendly UI components with a strong focus on accessibility, performance, and cross-browser compatibility.',
       'Collaborated with clients to understand requirements and deliver tailored solutions on time.',
       'Successfully delivered multiple freelance projects including portfolio sites, landing pages, and web apps.',
-      'Improved user engagement by 35% via responsive, mobile-first design and performance optimization.'
+      'Improved user engagement by 35% via responsive, mobile-first design and performance optimization.',
       'Integrated Git and GitHub for version control and team collaboration.',
     ],
     tech: ['HTML5', 'CSS3', 'JavaScript', 'Tailwind CSS', 'Bootstrap', 'React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
@@ -64,9 +64,10 @@ const timelineData: ExperienceItem[] = [
       'Improved user engagement by 35% via responsive, mobile-first design and performance optimization.',
       'Maintained 100% on-time delivery using Git/GitHub for version control and collaboration',
     ],
-    tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Next.js', 'Node.js', 'Tailwind CSS', 'Bootstrap'], 
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Next.js', 'Node.js', 'Tailwind CSS', 'Bootstrap'],
     icon: <Briefcase size={18} />,
   },
+];
   {
     id: 4,
     type: 'education',
