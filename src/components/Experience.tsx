@@ -64,7 +64,7 @@ const timelineData: ExperienceItem[] = [
       'Improved user engagement by 35% via responsive, mobile-first design and performance optimization.',
       'Maintained 100% on-time delivery using Git/GitHub for version control and collaboration',
     ],
-    tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Next.js', 'Node.js', 'Tailwind CSS', 'Bootstrap'],
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Next.js', 'Node.js', 'Tailwind CSS', 'Bootstrap'], 
     icon: <Briefcase size={18} />,
   },
   {
