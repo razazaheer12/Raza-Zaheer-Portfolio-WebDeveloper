@@ -1,14 +1,12 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Code2, Terminal, ArrowRight, Flame, Sparkles } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
 
-// ────────────────────────────────────────────────────────────────
-// Original Vibrant Blue-Purple Gradient for Role Text
-// ────────────────────────────────────────────────────────────────
+// Gradient for Role Text
 const mernGradient = "linear-gradient(90deg, #a855f7 0%, #3b82f6 100%)";
 
-// ── Particles ─────────────────────────────────────────────────
+// ── Particles Background ────────────────────────────────────────────
 const ParticlesBackground = ({ count = 55, color }: { count?: number; color: string }) => {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
 
@@ -175,25 +173,22 @@ const Hero = () => {
     { href: "mailto:razazaheer2002@gmail.com", icon: <Mail size={18} aria-hidden="true" />, label: "Email" },
   ];
 
-  // Modern Agency-Grade Neon Green Sleek Stats
+  // Box-less Sleek Metallic Grey Stats
   const stats = [
     {
       value: "05+",
       label: "PROJECTS",
       subLabel: "Production Live",
-      icon: <Code2 size={15} />,
     },
     {
       value: "02+",
       label: "YEARS EXP",
       subLabel: "Full-Stack Dev",
-      icon: <Flame size={15} />,
     },
     {
       value: "10+",
       label: "TECH STACK",
       subLabel: "Modern Tools",
-      icon: <Terminal size={15} />,
     },
   ];
 
@@ -217,9 +212,6 @@ const Hero = () => {
         <div className="absolute rounded-full" style={{ width: 600, height: 600, top: -140, left: -100, background: `radial-gradient(circle, ${theme.glow1} 0%, transparent 70%)` }} />
         <div className="absolute rounded-full" style={{ width: 640, height: 640, top: -60, right: -160, background: `radial-gradient(circle, ${theme.glow2} 0%, transparent 70%)` }} />
         <div className="absolute rounded-full" style={{ width: 500, height: 500, bottom: -120, left: "35%", background: `radial-gradient(circle, ${theme.glow3} 0%, transparent 70%)` }} />
-        {[600, 400].map((s, i) => (
-          <div key={i} className="absolute rounded-full pointer-events-none" style={{ width: s, height: s, top: -s / 3, right: -s / 3, border: `0.5px solid ${theme.ringBorder}` }} />
-        ))}
       </div>
 
       <ParticlesBackground count={55} color={theme.particle} />
@@ -273,9 +265,8 @@ const Hero = () => {
               elegant, and seamlessly responsive digital experiences.
             </motion.p>
 
-            {/* Purple Glowing Buttons */}
+            {/* Buttons */}
             <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-4 mb-8">
-              
               <motion.a
                 href="#projects"
                 whileHover={{ scale: 1.025 }}
@@ -294,14 +285,12 @@ const Hero = () => {
                 className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-purple-900/70 bg-[#0b0a1d]/80 px-7 py-3 text-sm font-medium text-gray-200 shadow-sm backdrop-blur-sm transition-all duration-500 hover:border-purple-500 hover:text-white hover:shadow-[0_10px_50px_rgba(168,85,247,0.25)] dark:border-purple-900/70 dark:bg-[#0b0a1d]/80 dark:text-gray-200"
                 style={{ fontFamily: "'Sora', sans-serif", textDecoration: "none" }}
               >
-                <span className="absolute inset-0 rounded-full bg-purple-600 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <span className="relative z-10 tracking-wide">Contact Me</span>
               </motion.a>
-
             </motion.div>
 
             {/* Social Icons */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-3 mb-8">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-3 mb-10">
               <span className="mr-2 text-xs font-mono uppercase tracking-widest text-purple-300/50" style={{ fontFamily: "'Sora', sans-serif" }}>
                 Find me
               </span>
@@ -310,58 +299,35 @@ const Hero = () => {
               ))}
             </motion.div>
 
-            {/* AGENCY-GRADE NEON GREEN COMPACT CARDS */}
+            {/* MINIMAL BOX-LESS METALLIC GREY STATS */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="grid grid-cols-3 gap-2.5 sm:gap-3 max-w-md"
+              className="flex items-center gap-8 sm:gap-12"
             >
               {stats.map((stat, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -3, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-emerald-500/20 bg-emerald-950/10 p-2.5 sm:p-3 backdrop-blur-md shadow-[0_4px_20px_rgba(16,185,129,0.06)] transition-all duration-300 hover:border-emerald-400/50 hover:bg-emerald-950/20 hover:shadow-[0_0_25px_rgba(52,211,153,0.2)]"
-                >
-                  {/* Subtle Neon Top Edge Accent */}
-                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                  <div className="flex items-center justify-between mb-1">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.3)]">
-                      {stat.icon}
-                    </div>
-                    <Sparkles size={10} className="text-emerald-400/30 transition-colors group-hover:text-emerald-400" />
-                  </div>
-
-                  <div className="my-0.5">
-                    <span
-                      className="block text-xl sm:text-2xl font-extrabold italic tracking-tight bg-gradient-to-r from-emerald-300 via-teal-300 to-lime-300 bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(52,211,153,0.4)]"
-                      style={{ fontFamily: "'Sora', sans-serif" }}
-                    >
-                      {stat.value}
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="block text-[9px] font-mono font-bold tracking-wider text-emerald-200/90 uppercase">
-                      {stat.label}
-                    </span>
-                    <span className="block text-[8px] font-sans text-gray-400 font-medium">
-                      {stat.subLabel}
-                    </span>
-                  </div>
-                </motion.div>
+                <div key={i} className="flex flex-col">
+                  <span
+                    className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-br from-white via-gray-200 to-gray-500 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)]"
+                    style={{ fontFamily: "'Sora', sans-serif" }}
+                  >
+                    {stat.value}
+                  </span>
+                  <span className="mt-1 text-[11px] font-mono font-bold tracking-wider text-gray-300 uppercase">
+                    {stat.label}
+                  </span>
+                  <span className="text-[10px] font-sans text-gray-400/80 font-medium">
+                    {stat.subLabel}
+                  </span>
+                </div>
               ))}
             </motion.div>
 
           </motion.div>
 
-          {/* Right — Blue Floating Orb */}
+          {/* Right — Glowing Orb */}
           <div className="hidden lg:flex justify-center lg:justify-end items-center relative h-full">
             <motion.div
-              animate={{
-                y: [0, -22, 0],
-                scale: [1, 1.06, 1],
-              }}
+              animate={{ y: [0, -22, 0], scale: [1, 1.06, 1] }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               style={{
                 width: 360,
@@ -372,29 +338,12 @@ const Hero = () => {
                 opacity: 0.9,
               }}
             />
-            <motion.div
-              animate={{
-                y: [0, 16, 0],
-                opacity: [0.5, 0.8, 0.5],
-              }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-              style={{
-                position: "absolute",
-                width: 180,
-                height: 180,
-                borderRadius: "50%",
-                background: `radial-gradient(circle, ${theme.glow2} 0%, transparent 70%)`,
-                filter: "blur(40px)",
-                top: "30%",
-                right: "18%",
-              }}
-            />
           </div>
 
         </div>
       </div>
 
-      {/* Separated Scroll Down Indicator (Placed Clearly at Bottom) */}
+      {/* Scroll Down Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.7 }}
