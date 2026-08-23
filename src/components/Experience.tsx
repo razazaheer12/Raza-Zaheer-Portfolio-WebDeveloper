@@ -30,7 +30,7 @@ const timelineData: ExperienceItem[] = [
       'Developed and shipped frontend features in a collaborative team environment following structured code review processes.',
       'Gained hands-on exposure to production-grade frontend workflows, Git/GitHub version control, and agile sprint collaboration.',
     ],
-    tech: ['React.js', 'JavaScript', 'Tailwind CSS', 'Git', 'GitHub'],
+    tech: ['HTML', 'CSS', 'JavaScript', 'React', 'Tailwind CSS', 'Git', 'GitHub'],
     icon: <Briefcase size={18} />,
   },
   {
@@ -39,9 +39,11 @@ const timelineData: ExperienceItem[] = [
     title: 'Web Developer',
     company: 'RZ Web Studio',
     duration: '2024 – Present',
-    bullets: [
+    bullets: [     
+      'Designed and developed fully responsive websites using HTML, CSS, JavaScript, and React.js.',
       'Leading the frontend team to build scalable modern web applications using the MERN Stack and Next.js.',
-      'Collaborating with cross-functional teams to architect high-performance digital products.',
+      'Collaborated with clients to understand requirements and deliver tailored solutions on time.',
+      'Successfully delivered multiple freelance projects including portfolio sites, landing pages, and web apps.',
     ],
     tech: ['React.js', 'Node.js', 'MongoDB', 'Express.js', 'Next.js'],
     icon: <Briefcase size={18} />,
@@ -53,10 +55,12 @@ const timelineData: ExperienceItem[] = [
     company: 'Self Employed (Freelance)',
     duration: 'Jan 2023 – Present',
     bullets: [
+      'Developed and maintained full websites for clients using both custom code and CMS platforms like WordPress',
       'Delivered 10+ client projects using React.js and Next.js with REST API integration.',
       'Improved user engagement by 35% via responsive, mobile-first design and performance optimization.',
+      'Maintained 100% on-time delivery using Git/GitHub for version control and collaboration',
     ],
-    tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Tailwind CSS'],
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Next.js', 'Node.js', 'Tailwind CSS', 'Bootstrap'],
     icon: <Briefcase size={18} />,
   },
   {
