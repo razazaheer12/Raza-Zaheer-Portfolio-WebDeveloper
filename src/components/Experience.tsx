@@ -57,17 +57,16 @@ const timelineData: ExperienceItem[] = [
     company: 'Self Employed (Freelance)',
     duration: 'Jan 2023 – Present',
     bullets: [
-      'Developed and maintained websites for clients using both custom code and CMS platforms like WordPress',
+      'Developed and maintained websites for clients using both custom code and CMS platforms like WordPress.',
       'Customized themes, built responsive layouts, and ensured cross-device compatibility.',
       'Optimized websites for SEO, performance, and user experience, resulting in improved engagement and client satisfaction.',
       'Delivered 10+ client projects using React.js and Next.js with REST API integration.',
       'Improved user engagement by 35% via responsive, mobile-first design and performance optimization.',
-      'Maintained 100% on-time delivery using Git/GitHub for version control and collaboration',
+      'Maintained 100% on-time delivery using Git/GitHub for version control and collaboration.',
     ],
     tech: ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Next.js', 'Node.js', 'Tailwind CSS', 'Bootstrap'],
     icon: <Briefcase size={18} />,
   },
-];
   {
     id: 4,
     type: 'education',
