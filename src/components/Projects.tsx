@@ -56,8 +56,7 @@ const projects: Project[] = [
     title: "Real-Time Analytics Dashboard",
     description:
       "A production-grade, RBAC analytics dashboard that streams live business metrics via WebSockets. Features role-scoped data visualization (Admin/Analyst/Viewer), dynamic filtering, and admin-only CSV/PDF export — built with a fully type-safe TypeScript stack.",
-    image:
-      "https://github.com/user-attachments/assets/27b90ee2-7411-4750-b63b-0c150d486f8e",
+    image: "/projects/Real-Time Analytics Dashboard.webp",
     tech: [
       "Next.js 16",
       "NestJS",
@@ -101,8 +100,7 @@ const projects: Project[] = [
     title: "PDF RAG Chatbot",
     description:
       "An intelligent chatbot that lets you upload any PDF and have a real conversation with it — powered by RAG (Retrieval-Augmented Generation), Pinecone Vector DB, and Google Gemma AI.",
-    image:
-      "https://i.ibb.co/pB4tTTp5/Gemini-Generated-Image-e637dde637dde637.png",
+    image: "/projects/pdf-rag.webp",
     tech: [
       "Next.JS",
       "TypeScript",
@@ -143,8 +141,7 @@ const projects: Project[] = [
     title: "Real-Time Chat App",
     description:
       "Production-ready messaging platform with topic-based chat rooms, private DMs, real-time online presence, and profile customization. Built with MERN stack and Socket.io for instant bidirectional communication.",
-    image:
-      "https://i.ibb.co/sJ5V7yL8/Gemini-Generated-Image-sk1pkdsk1pkdsk1p.png",
+    image: "/projects/realtime-chat.webp",
     tech: [
       "React",
       "Node.js",
@@ -186,8 +183,7 @@ const projects: Project[] = [
     title: "Quizlett - MCQ Platform",
     description:
       "Modern interactive quiz app with Math, Programming, and General Knowledge sections. Features instant feedback, progress tracking, achievements, and dark/light theme.",
-    image:
-      "https://i.ibb.co/hRH5F9Zk/Gemini-Generated-Image-odfpbtodfpbtodfp.png",
+    image: "/projects/quizlett.webp",
     tech: ["Next.JS", "TypeScript", "Tailwind CSS", "Shadcn-ui"],
     liveUrl: "https://advanced-mcq-quiz.vercel.app/",
     githubUrl:
@@ -197,8 +193,7 @@ const projects: Project[] = [
     title: "WeatherFlow NextGen",
     description:
       "Cutting-edge weather application with real-time insights, interactive forecasts, and seamless offline capabilities built with modern web technologies.",
-    image:
-      "https://i.ibb.co/VWGvfcth/Gemini-Generated-Image-7i62xc7i62xc7i62.png",
+    image: "/projects/weatherflow.webp",
     tech: [
       "Next.js",
       "TypeScript",
@@ -214,8 +209,7 @@ const projects: Project[] = [
     title: "Sun & Moon Tracker",
     description:
       "High-precision interactive app visualizing real-time positions of the sun and moon with timezone-aware world time windows.",
-    image:
-      "https://i.ibb.co/ym34jL7c/Screenshot-2026-05-06-234111.png",
+    image: "/projects/sun-moon.webp",
     tech: ["React.js", "TypeScript", "Tailwind CSS", "Vite", "Date-fns"],
     liveUrl: "https://sun-moon-tracker-a27p.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Sun_Moon-Tracker",
@@ -224,8 +218,7 @@ const projects: Project[] = [
     title: "MyPDF - Free PDF Toolkit",
     description:
       "Fast and secure PDF-to-Word converter with drag-and-drop uploads, real-time progress tracking, and download history management.",
-    image:
-      "https://i.ibb.co/hJ6ZgTz4/Screenshot-2025-09-24-041724.png",
+    image: "/projects/mypdf.webp",
     tech: ["Next.js", "TypeScript", "Tailwind CSS"],
     liveUrl: "https://mypdf-converter.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/MyPDF_converter",
@@ -234,7 +227,7 @@ const projects: Project[] = [
     title: "Recipe Finder",
     description:
       "Feature-rich app to discover recipes worldwide. Search meals, view detailed instructions, check ingredients, and watch cooking videos.",
-    image: "https://i.ibb.co/W4JDQ78s/Screenshot-2026-05-06-030926.png",
+    image: "/projects/recipe-finder.webp",
     tech: ["HTML5", "CSS3", "JavaScript ES6", "TheMealDB API"],
     liveUrl: "https://recipe-finder-12.netlify.app/",
     githubUrl: "https://github.com/razazaheer12/Recipe-Finder",
@@ -243,8 +236,7 @@ const projects: Project[] = [
     title: "Cocktail Explorer",
     description:
       "Premium Express + EJS web app using TheCocktailDB API to search and display cocktail recipes with ingredients and instructions.",
-    image:
-      "https://i.ibb.co/YBKRpzCY/Screenshot-2026-05-19-041257.png",
+    image: "/projects/cocktail.webp",
     tech: ["Node.js", "Express.js", "EJS", "AXIOS", "TheCocktailDB API"],
     liveUrl: "https://cocktail-explorer-psi.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Cocktail-Explorer",
@@ -253,8 +245,7 @@ const projects: Project[] = [
     title: "Neural Canvas - AI Art Studio",
     description:
       "AI-powered art style studio that transforms photos into stunning masterpieces using sophisticated AI-inspired filters and real-time adjustments.",
-    image:
-      "https://i.ibb.co/QhzDFNC/Screenshot-2026-05-07-000415.png",
+    image: "/projects/neural-canvas.webp",
     tech: ["JavaScript", "CSS3", "HTML5"],
     liveUrl: "https://canvas-photoeditor-ai.netlify.app/",
     githubUrl:
@@ -264,8 +255,7 @@ const projects: Project[] = [
     title: "Modern Snake Game",
     description:
       "Classic Snake Game reimagined with pause/resume, speed boosts, sound effects, and a clean modern UI. Built with vanilla JS.",
-    image:
-      "https://i.ibb.co/PZ4hSbHB/Screenshot-2025-09-19-012154.png",
+    image: "/projects/snake-game.webp",
     tech: ["HTML5", "CSS3", "JavaScript ES6"],
     liveUrl: "https://snake-game0999.netlify.app/",
     githubUrl: "https://github.com/razazaheer12/Snake-game",
@@ -531,11 +521,15 @@ const SpotlightCard = React.memo(
       className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-purple-900/50 bg-[#0b0a1d]/80 shadow-2xl shadow-black/20 backdrop-blur-xl transition-all duration-500 hover:border-purple-500/50 hover:shadow-[0_0_35px_rgba(168,85,247,0.10)] lg:flex-row"
     >
       <div className="relative h-64 shrink-0 overflow-hidden bg-[#050816] sm:h-80 lg:h-auto lg:min-h-[390px] lg:w-[55%]">
-        <img
-          src={project.image}
-          alt={`${project.title} preview`}
-          className="h-full w-full object-contain object-center transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
-        />
+<img
+  src={project.image}
+  alt={project.title}
+  width="600"
+  height="340"
+  loading="lazy"
+  decoding="async"
+  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+/>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-70" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/25" />
         <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.10] to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
