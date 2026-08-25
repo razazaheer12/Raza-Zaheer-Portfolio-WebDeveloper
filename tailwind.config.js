@@ -20,7 +20,8 @@ export default {
         muted: '#6B7280',
       },
       animation: {
-        'marquee': 'marquee 20s linear infinite',
+        'marquee': 'marquee 45s linear infinite',
+        'marquee-reverse': 'marquee-reverse 45s linear infinite',
         'typing': 'typing 3.5s steps(40, end)',
         'cursor-blink': 'cursor-blink 1s infinite',
         'fade-in-up': 'fade-in-up 0.6s ease-out',
@@ -33,7 +34,11 @@ export default {
       keyframes: {
         'marquee': {
           '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        'marquee-reverse': {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0%)' },
         },
         'typing': {
           'from': { width: '0' },
