@@ -528,7 +528,7 @@ const SpotlightCard = React.memo(
   height="340"
   loading="lazy"
   decoding="async"
-  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+  className="w-full h-full object-contain object-center p-2 transition-transform duration-700 ease-out group-hover:scale-105"
 />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-70" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/25" />
