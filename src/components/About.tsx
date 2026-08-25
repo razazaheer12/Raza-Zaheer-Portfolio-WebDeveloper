@@ -148,6 +148,11 @@ const About: React.FC = () => {
   Passionate about crafting modern, visually engaging, and highly
   responsive digital experiences with clean code and elegant UI design.
 </motion.p>
+</div>
+      </div>
+    </section>
+  );
+};      
 
         {/* MAIN CONTENT */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
