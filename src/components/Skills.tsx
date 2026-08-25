@@ -92,37 +92,48 @@ const SkillCard = ({ skill, index }: { skill: (typeof allFlat)[0]; index: number
 );
 
 // ─── Marquee Row ──────────────────────────────────────────────
-const MarqueeRow = ({ items, reverse = false, duration = 28 }: {
+// ─── Marquee Row ──────────────────────────────────────────────
+const MarqueeRow = ({
+  items,
+  reverse = false,
+  duration = 45,
+}: {
   items: (typeof allFlat)[0][];
   reverse?: boolean;
   duration?: number;
 }) => {
   const doubled = [...items, ...items, ...items, ...items];
+
   return (
-    <div className="flex gap-4 md:gap-5 whitespace-nowrap">
-      <motion.div
-        className="flex gap-4 md:gap-5"
-        animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
-        transition={{ repeat: Infinity, duration, ease: "linear" }}
-        style={{ willChange: "transform" }}
+    <div className="group/marquee relative flex overflow-hidden whitespace-nowrap select-none py-2">
+      <div
+        className={`flex shrink-0 items-center gap-4 md:gap-5 group-hover/marquee:[animation-play-state:paused] ${
+          reverse ? "animate-marquee-reverse" : "animate-marquee"
+        }`}
+        style={{
+          animationDuration: `${duration}s`,
+          willChange: "transform",
+        }}
       >
         {doubled.map((skill, i) => (
           <div
             key={`${reverse ? "r" : "f"}-${i}`}
-            className="group relative flex flex-col items-center justify-center gap-3 min-w-[130px] md:min-w-[150px] px-5 py-5 rounded-2xl cursor-default select-none border border-purple-900/50 bg-[#0b0a1d]/80 backdrop-blur-xl shadow-sm hover:border-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)] hover:-translate-y-1.5 transition-all duration-300 ease-out"
+            className="group relative flex min-w-[130px] flex-col items-center justify-center gap-3 rounded-2xl border border-purple-900/50 bg-[#0b0a1d]/80 px-5 py-5 shadow-sm backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)] md:min-w-[150px]"
           >
-            <div className={`text-[2.2rem] md:text-[2.6rem] ${skill.color} transition-transform duration-300 group-hover:scale-110`}>
+            <div
+              className={`text-[2.2rem] md:text-[2.6rem] ${skill.color} transition-transform duration-300 group-hover:scale-110`}
+            >
               {skill.icon}
             </div>
             <p
-              className="text-[11px] md:text-xs font-semibold tracking-wide text-gray-300 group-hover:text-white transition-colors duration-300 uppercase"
+              className="text-[11px] font-semibold uppercase tracking-wide text-gray-300 transition-colors duration-300 group-hover:text-white md:text-xs"
               style={{ fontFamily: "'Sora', sans-serif" }}
             >
               {skill.name}
             </p>
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -210,16 +221,16 @@ const Skills = () => {
             className="h-[3px] rounded-full bg-gradient-to-r from-purple-500 via-purple-400 to-indigo-500 mt-4 mx-auto"
           />
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="text-center text-sm md:text-base text-gray-400 max-w-xl mx-auto mt-6 leading-[1.8]"
-            style={{ fontFamily: "'DM Sans', sans-serif" }}
-          >
-            The languages, frameworks, tools, and architecture I leverage to build high-performance products.
-          </motion.p>
+         <motion.p
+  initial={{ opacity: 0, y: 10 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.3 }}
+  viewport={{ once: true }}
+  className="mx-auto mt-6 max-w-xl text-center text-sm italic leading-[1.8] text-gray-400 md:text-base"
+  style={{ fontFamily: "'DM Sans', sans-serif" }}
+>
+  The languages, frameworks, tools, and architecture I leverage to build high-performance products.
+</motion.p>
         </div>
 
         {/* Category Buttons */}
@@ -279,21 +290,23 @@ const Skills = () => {
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-900/50 to-transparent" />
         </div>
 
-        {/* Marquee */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="relative w-full overflow-hidden space-y-4"
-          style={{
-            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
-            maskImage: "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
-          }}
-        >
-          <MarqueeRow items={row1} reverse={false} duration={34} />
-          <MarqueeRow items={[...row2].reverse()} reverse={true} duration={28} />
-        </motion.div>
+{/* Marquee */}
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.7 }}
+  viewport={{ once: true }}
+  className="relative w-full overflow-hidden space-y-4"
+  style={{
+    WebkitMaskImage:
+      "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+    maskImage:
+      "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+  }}
+>
+  <MarqueeRow items={row1} reverse={false} duration={48} />
+  <MarqueeRow items={[...row2].reverse()} reverse={true} duration={52} />
+</motion.div>
       </div>
     </section>
   );
