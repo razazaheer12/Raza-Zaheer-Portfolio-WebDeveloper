@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUp,
+  BookOpen,
+  CheckCircle2,
   ChevronLeft,
   ChevronRight,
   Code2,
@@ -12,13 +14,22 @@ import {
   Layers3,
   Sparkles,
   Star,
+  Wrench,
+  X,
+  Zap,
 } from "lucide-react";
-
-const navbarPurpleGradient = "linear-gradient(90deg, #c084fc 0%, #a855f7 50%, #9333ea 100%)";
 
 // ─────────────────────────────────────────────────────────────
 // Types
 // ─────────────────────────────────────────────────────────────
+
+type CaseStudyContent = {
+  problem: string;
+  architecture: string;
+  challenges: string[];
+  solution: string;
+  impact: string[];
+};
 
 type Project = {
   title: string;
@@ -33,10 +44,11 @@ type Project = {
   projectType?: string;
   focus?: string;
   highlights?: string[];
+  caseStudy?: CaseStudyContent;
 };
 
 // ─────────────────────────────────────────────────────────────
-// Projects Data
+// Projects Data (Updated with Real Context from READMEs)
 // ─────────────────────────────────────────────────────────────
 
 const projects: Project[] = [
@@ -66,6 +78,24 @@ const projects: Project[] = [
     projectType: "Production Dashboard",
     focus: "Real-time analytics & RBAC",
     highlights: ["Live metrics", "Role-based access", "Data export"],
+    caseStudy: {
+      problem:
+        "Businesses struggle to monitor live operational telemetry securely without risking data leakage across organizational tiers or causing high latency overhead via polling.",
+      architecture:
+        "Built with Next.js 16 App Router on the frontend and NestJS with Prisma ORM on the backend. Socket.io manages bidirectional WebSockets while Supabase (PostgreSQL) handles persistence. State is unified via Zustand.",
+      challenges: [
+        "Enforcing strict JWT-based room authorization inside WebSocket gateways for dynamic RBAC roles (Admin/Analyst/Viewer).",
+        "Preventing chart re-render cascades during 4-second real-time live metric broadcasts.",
+        "Generating server-side PDF and CSV reports on-the-fly using pdfkit and json2csv without blocking the event loop.",
+      ],
+      solution:
+        "Engineered an event-driven architecture using Socket.io namespaces and JWT authorization guards, paired with Zustand filter stores and Recharts for seamless dynamic visualizations.",
+      impact: [
+        "Achieved 100% data scope isolation across Admin, Analyst, and Viewer roles.",
+        "Sub-100ms real-time metric updates without page reloads or polling overhead.",
+        "Zero UI thread blockage during server-side report generation.",
+      ],
+    },
   },
   {
     title: "PDF RAG Chatbot",
@@ -90,6 +120,24 @@ const projects: Project[] = [
     projectType: "AI Application",
     focus: "Document intelligence & RAG",
     highlights: ["PDF conversations", "Vector search", "LLM integration"],
+    caseStudy: {
+      problem:
+        "Extracting actionable insights from bulky technical PDFs often leads to manual effort or inaccurate hallucinated outputs from standalone LLMs.",
+      architecture:
+        "NestJS backend parses PDFs via pdf-parse, generates 1024-dim embeddings via multilingual-e5-large, and stores them in isolated Pinecone namespaces. Next.js 14 frontend renders real-time responses streamed via Server-Sent Events (SSE).",
+      challenges: [
+        "Optimizing document chunking (1000 tokens / 200 overlap) to preserve contextual boundaries without exceeding context windows.",
+        "Filtering similarity search vectors with a strict score threshold (>0.4 top-4 chunks) to prevent hallucinated out-of-scope answers.",
+        "Managing real-time token streaming directly through NestJS to Next.js using Server-Sent Events (SSE).",
+      ],
+      solution:
+        "Designed a custom RAG pipeline integrated with OpenRouter API for dynamic runtime switching between LLM models (Gemma, Nemotron, GPT-OSS).",
+      impact: [
+        "Instant document querying across 20MB+ PDFs in seconds.",
+        "Sub-50ms vector similarity lookup speed using Pinecone indices.",
+        "100% rejection of out-of-scope queries unrelated to the uploaded document context.",
+      ],
+    },
   },
   {
     title: "Real-Time Chat App",
@@ -115,6 +163,24 @@ const projects: Project[] = [
     projectType: "Full-Stack Application",
     focus: "Real-time communication",
     highlights: ["Live messaging", "Private DMs", "Online presence"],
+    caseStudy: {
+      problem:
+        "Modern messaging applications require instant multi-tab sync, presence detection, and low-latency audio/badge alerts without compromising data security or persistent history.",
+      architecture:
+        "MERN Stack architecture powered by Node.js/Express and MongoDB Atlas. Socket.io drives room broadcasting and DMs, containerized via Docker on Hugging Face Spaces with a Vercel-hosted React frontend.",
+      challenges: [
+        "Handling socket connection lifecycles across client reloads and background tabs without dropping message packets.",
+        "Synchronizing global application state, unread counters, and typing indicators seamlessly using Zustand.",
+        "Managing cloud image uploads efficiently via Cloudinary integration for chat media and user profiles.",
+      ],
+      solution:
+        "Implemented socket connection guards with Zustand state hydration, instant JWT handshakes, and event-driven room channel handlers.",
+      impact: [
+        "WhatsApp Web-level messaging speed with instant synchronization across multiple browser tabs.",
+        "Reliable presence tracking and zero message loss during socket reconnections.",
+        "Containerized, zero-downtime backend deployment pipeline.",
+      ],
+    },
   },
   {
     title: "Quizlett - MCQ Platform",
@@ -228,7 +294,217 @@ const typingText = {
 };
 
 // ─────────────────────────────────────────────────────────────
-// Featured Spotlight Card (Optimized with Memo)
+// Case Study Modal Component
+// ─────────────────────────────────────────────────────────────
+
+const CaseStudyModal = React.memo(
+  ({
+    project,
+    onClose,
+  }: {
+    project: Project;
+    onClose: () => void;
+  }) => {
+    if (!project.caseStudy) return null;
+    const { problem, architecture, challenges, solution, impact } =
+      project.caseStudy;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md sm:p-6"
+      >
+        <motion.div
+          initial={{ scale: 0.94, opacity: 0, y: 20 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.94, opacity: 0, y: 20 }}
+          transition={{ type: "spring", duration: 0.5, bounce: 0.1 }}
+          onClick={(e) => e.stopPropagation()}
+          className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-[1.75rem] border border-purple-500/40 bg-[#0b0a1d] shadow-[0_0_50px_rgba(168,85,247,0.20)]"
+        >
+          {/* Header */}
+          <div className="relative flex items-center justify-between border-b border-purple-900/50 p-6 sm:px-8">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-purple-500/30 bg-purple-950/30 text-purple-300">
+                <BookOpen size={20} />
+              </div>
+              <div>
+                <span
+                  className="text-[10px] font-bold uppercase tracking-[2px] text-purple-400"
+                  style={{ fontFamily: "'Sora', sans-serif" }}
+                >
+                  Engineering Case Study
+                </span>
+                <h3
+                  className="text-lg font-bold text-white sm:text-xl"
+                  style={{ fontFamily: "'Sora', sans-serif" }}
+                >
+                  {project.title}
+                </h3>
+              </div>
+            </div>
+
+            <button
+              onClick={onClose}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-purple-500/30 bg-purple-950/40 text-gray-300 transition-colors hover:bg-purple-600 hover:text-white"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          {/* Modal Body */}
+          <div className="custom-scrollbar space-y-7 overflow-y-auto p-6 sm:p-8">
+            {/* 01. Problem */}
+            <div>
+              <div className="mb-2 flex items-center gap-2">
+                <span className="text-xs font-bold text-purple-400">01.</span>
+                <h4
+                  className="text-sm font-bold uppercase tracking-[1.5px] text-white"
+                  style={{ fontFamily: "'Sora', sans-serif" }}
+                >
+                  The Problem
+                </h4>
+              </div>
+              <p
+                className="text-xs leading-[1.8] text-gray-300 sm:text-sm"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                {problem}
+              </p>
+            </div>
+
+            {/* 02. Architecture */}
+            <div>
+              <div className="mb-2 flex items-center gap-2">
+                <span className="text-xs font-bold text-purple-400">02.</span>
+                <h4
+                  className="text-sm font-bold uppercase tracking-[1.5px] text-white"
+                  style={{ fontFamily: "'Sora', sans-serif" }}
+                >
+                  Tech Architecture
+                </h4>
+              </div>
+              <p
+                className="text-xs leading-[1.8] text-gray-300 sm:text-sm"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                {architecture}
+              </p>
+            </div>
+
+            {/* 03. Key Engineering Challenges */}
+            <div>
+              <div className="mb-3 flex items-center gap-2">
+                <span className="text-xs font-bold text-purple-400">03.</span>
+                <h4
+                  className="text-sm font-bold uppercase tracking-[1.5px] text-white"
+                  style={{ fontFamily: "'Sora', sans-serif" }}
+                >
+                  Key Engineering Challenges
+                </h4>
+              </div>
+              <div className="space-y-2">
+                {challenges.map((challenge, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-start gap-2.5 rounded-xl border border-purple-900/40 bg-purple-950/20 p-3"
+                  >
+                    <Wrench
+                      size={15}
+                      className="mt-0.5 shrink-0 text-purple-400"
+                    />
+                    <span
+                      className="text-xs text-gray-300"
+                      style={{ fontFamily: "'DM Sans', sans-serif" }}
+                    >
+                      {challenge}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 04. Live Solution & System Implementation */}
+            <div>
+              <div className="mb-2 flex items-center gap-2">
+                <span className="text-xs font-bold text-purple-400">04.</span>
+                <h4
+                  className="text-sm font-bold uppercase tracking-[1.5px] text-white"
+                  style={{ fontFamily: "'Sora', sans-serif" }}
+                >
+                  Live Solution & System Implementation
+                </h4>
+              </div>
+              <p
+                className="text-xs leading-[1.8] text-gray-300 sm:text-sm"
+                style={{ fontFamily: "'DM Sans', sans-serif" }}
+              >
+                {solution}
+              </p>
+            </div>
+
+            {/* 05. Impact & Performance Metrics */}
+            <div>
+              <div className="mb-3 flex items-center gap-2">
+                <span className="text-xs font-bold text-purple-400">05.</span>
+                <h4
+                  className="text-sm font-bold uppercase tracking-[1.5px] text-white"
+                  style={{ fontFamily: "'Sora', sans-serif" }}
+                >
+                  Impact & Performance Metrics
+                </h4>
+              </div>
+              <div className="space-y-2">
+                {impact.map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2.5">
+                    <CheckCircle2
+                      size={16}
+                      className="shrink-0 text-emerald-400"
+                    />
+                    <span
+                      className="text-xs font-medium text-gray-200"
+                      style={{ fontFamily: "'DM Sans', sans-serif" }}
+                    >
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="flex items-center justify-between border-t border-purple-900/50 p-4 px-6 bg-[#080716]">
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-xs font-bold text-purple-300 hover:text-white"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
+              <Github size={14} /> Repository Context
+            </a>
+            <button
+              onClick={onClose}
+              className="rounded-full bg-purple-600 px-5 py-2 text-xs font-bold text-white hover:bg-purple-500"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
+              Close Study
+            </button>
+          </div>
+        </motion.div>
+      </motion.div>
+    );
+  }
+);
+
+CaseStudyModal.displayName = "CaseStudyModal";
+
+// ─────────────────────────────────────────────────────────────
+// Featured Spotlight Card
 // ─────────────────────────────────────────────────────────────
 
 const SpotlightCard = React.memo(
@@ -236,10 +512,12 @@ const SpotlightCard = React.memo(
     project,
     direction,
     projectNumber,
+    onOpenCaseStudy,
   }: {
     project: Project;
     direction: number;
     projectNumber: number;
+    onOpenCaseStudy: (project: Project) => void;
   }) => (
     <motion.div
       key={project.title}
@@ -388,6 +666,18 @@ const SpotlightCard = React.memo(
         </div>
 
         <div className="relative z-10 mt-7 flex flex-wrap items-center gap-2.5">
+          {/* Case Study Button Trigger */}
+          {project.caseStudy && (
+            <button
+              onClick={() => onOpenCaseStudy(project)}
+              className="inline-flex items-center gap-2 rounded-full border border-purple-500/50 bg-purple-950/40 px-4 py-2.5 text-xs font-bold text-purple-200 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-purple-400 hover:bg-purple-600 hover:text-white hover:shadow-[0_10px_35px_rgba(168,85,247,0.35)]"
+              style={{ fontFamily: "'Sora', sans-serif" }}
+            >
+              <BookOpen size={13} aria-hidden="true" />
+              Read Case Study
+            </button>
+          )}
+
           {project.liveUrl && (
             <a
               href={project.liveUrl}
@@ -425,7 +715,7 @@ const SpotlightCard = React.memo(
 SpotlightCard.displayName = "SpotlightCard";
 
 // ─────────────────────────────────────────────────────────────
-// Regular Project Card (Optimized with Memo)
+// Regular Project Card
 // ─────────────────────────────────────────────────────────────
 
 const ProjectCard = React.memo(
@@ -545,6 +835,9 @@ const Projects = () => {
   const [showAll, setShowAll] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState<Project | null>(
+    null
+  );
 
   const sectionRef = useRef<HTMLDivElement | null>(null);
 
@@ -590,12 +883,44 @@ const Projects = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative overflow-hidden py-24 transition-colors duration-500" style={{ background: "#050816" }}
+      className="relative overflow-hidden py-24 transition-colors duration-500"
+      style={{ background: "#050816" }}
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute rounded-full" style={{ width: 550, height: 550, top: -100, left: -100, background: "radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)" }} />
-        <div className="absolute rounded-full" style={{ width: 600, height: 600, top: "20%", right: -150, background: "radial-gradient(circle, rgba(139,92,246,0.09) 0%, transparent 70%)" }} />
-        <div className="absolute rounded-full" style={{ width: 520, height: 520, bottom: -220, left: "50%", transform: "translateX(-50%)", background: "radial-gradient(circle, rgba(236,72,153,0.055) 0%, transparent 70%)" }} />
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 550,
+            height: 550,
+            top: -100,
+            left: -100,
+            background:
+              "radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 600,
+            height: 600,
+            top: "20%",
+            right: -150,
+            background:
+              "radial-gradient(circle, rgba(139,92,246,0.09) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute rounded-full"
+          style={{
+            width: 520,
+            height: 520,
+            bottom: -220,
+            left: "50%",
+            transform: "translateX(-50%)",
+            background:
+              "radial-gradient(circle, rgba(236,72,153,0.055) 0%, transparent 70%)",
+          }}
+        />
 
         <div
           className="absolute inset-0 opacity-[0.018] dark:opacity-[0.025]"
@@ -687,6 +1012,7 @@ const Projects = () => {
                   project={activeProject}
                   direction={direction}
                   projectNumber={activeIndex + 1}
+                  onOpenCaseStudy={(proj) => setSelectedCaseStudy(proj)}
                 />
               )}
             </AnimatePresence>
@@ -699,7 +1025,7 @@ const Projects = () => {
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.94 }}
               aria-label="View previous featured project"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border border-purple-500/50 bg-[#0b0a1d]/80 text-purple-300 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-purple-400 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.25)]"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-purple-500/50 bg-[#0b0a1d]/80 text-purple-300 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-purple-400 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.25)]"
             >
               <ChevronLeft size={18} aria-hidden="true" />
             </motion.button>
@@ -752,7 +1078,7 @@ const Projects = () => {
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.94 }}
               aria-label="View next featured project"
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border border-purple-500/50 bg-[#0b0a1d]/80 text-purple-300 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-purple-400 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.25)]"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-purple-500/50 bg-[#0b0a1d]/80 text-purple-300 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-purple-400 hover:bg-purple-600 hover:text-white hover:shadow-[0_0_20px_rgba(168,85,247,0.25)]"
             >
               <ChevronRight size={18} aria-hidden="true" />
             </motion.button>
@@ -815,6 +1141,16 @@ const Projects = () => {
           </div>
         )}
       </div>
+
+      {/* Render Case Study Modal */}
+      <AnimatePresence>
+        {selectedCaseStudy && (
+          <CaseStudyModal
+            project={selectedCaseStudy}
+            onClose={() => setSelectedCaseStudy(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };
