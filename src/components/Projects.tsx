@@ -981,7 +981,7 @@ const Projects = () => {
             <div className="h-px w-10 bg-gradient-to-l from-transparent to-[#F472FF]/40" />
           </div>
 
-          <motion.p
+<motion.p
   initial={{ opacity: 0, y: 10 }}
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.6, delay: 0.4 }}
@@ -989,7 +989,7 @@ const Projects = () => {
   className="mx-auto mt-6 max-w-2xl text-sm italic leading-[1.8] text-gray-500 md:text-[0.95rem] dark:text-gray-400"
   style={{ fontFamily: "'DM Sans', sans-serif" }}
 >
-  From AI-integrated backends to pixel-perfect frontends — each project was built to solve a real problem and ship to production.
+  Architecting end to end systems with intelligent backends and precision driven user interfaces, designed for reliability, performance, and real world scale.
 </motion.p>
         </motion.div>
 
