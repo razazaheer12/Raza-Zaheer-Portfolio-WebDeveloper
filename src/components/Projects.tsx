@@ -315,7 +315,8 @@ const CaseStudyModal = React.memo(
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-md sm:p-6"
+        /* Fixed z-index to z-[9999] and added top padding (pt-20) to prevent top navbar collision */
+        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 p-4 pt-20 backdrop-blur-md sm:p-6 sm:pt-24"
       >
         <motion.div
           initial={{ scale: 0.94, opacity: 0, y: 20 }}
@@ -323,10 +324,11 @@ const CaseStudyModal = React.memo(
           exit={{ scale: 0.94, opacity: 0, y: 20 }}
           transition={{ type: "spring", duration: 0.5, bounce: 0.1 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-[1.75rem] border border-purple-500/40 bg-[#0b0a1d] shadow-[0_0_50px_rgba(168,85,247,0.20)]"
+          /* Adjusted max-height to max-h-[82vh] so it fits perfectly between header and footer */
+          className="relative flex max-h-[82vh] w-full max-w-3xl flex-col overflow-hidden rounded-[1.75rem] border border-purple-500/40 bg-[#0b0a1d] shadow-[0_0_50px_rgba(168,85,247,0.20)]"
         >
           {/* Header */}
-          <div className="relative flex items-center justify-between border-b border-purple-900/50 p-6 sm:px-8">
+          <div className="relative flex items-center justify-between border-b border-purple-900/50 p-5 sm:px-8">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-purple-500/30 bg-purple-950/30 text-purple-300">
                 <BookOpen size={20} />
@@ -980,15 +982,15 @@ const Projects = () => {
           </div>
 
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="mx-auto mt-6 max-w-2xl text-sm leading-[1.8] text-gray-500 md:text-[0.95rem] dark:text-gray-400"
-            style={{ fontFamily: "'DM Sans', sans-serif" }}
-          >
-            From AI-integrated backends to pixel-perfect frontends — each project was built to solve a real problem and ship to production.
-          </motion.p>
+  initial={{ opacity: 0, y: 10 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.4 }}
+  viewport={{ once: true }}
+  className="mx-auto mt-6 max-w-2xl text-sm italic leading-[1.8] text-gray-500 md:text-[0.95rem] dark:text-gray-400"
+  style={{ fontFamily: "'DM Sans', sans-serif" }}
+>
+  From AI-integrated backends to pixel-perfect frontends — each project was built to solve a real problem and ship to production.
+</motion.p>
         </motion.div>
 
         <div className="mb-6 flex items-center gap-4">
