@@ -169,8 +169,11 @@ const About: React.FC = () => {
             >
               <div className="relative overflow-hidden rounded-[26px] border border-purple-900/50 bg-[#0b0a1d]/80 backdrop-blur-xl shadow-2xl transition-colors hover:border-purple-500/50">
                 <img
-                  src="/raza.png"
-                  alt="Raza Zaheer"
+                src="/raza.webp"
+                alt="Raza Zaheer"
+                width="400"
+                height="400"
+                decoding="async"
                   className="w-full h-[520px] sm:h-[580px] lg:h-[620px] object-cover object-top rounded-[26px] transition duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-purple-500/10 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
