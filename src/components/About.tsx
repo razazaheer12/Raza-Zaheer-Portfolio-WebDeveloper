@@ -137,18 +137,17 @@ const About: React.FC = () => {
             className="h-[3px] rounded-full bg-gradient-to-r from-purple-500 via-purple-400 to-indigo-500 mt-4 mx-auto"
           />
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="max-w-2xl mt-6 text-sm md:text-base leading-7 text-gray-400 mx-auto text-center"
-            style={{ fontFamily: "'DM Sans', sans-serif" }}
-          >
-            Passionate about crafting modern, visually engaging, and highly
-            responsive digital experiences with clean code and elegant UI design.
-          </motion.p>
-        </div>
+<motion.p
+  initial={{ opacity: 0, y: 10 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.3 }}
+  viewport={{ once: true }}
+  className="max-w-2xl mt-6 text-sm md:text-base leading-7 text-gray-400 mx-auto text-center italic"
+  style={{ fontFamily: "'DM Sans', sans-serif" }}
+>
+  Passionate about crafting modern, visually engaging, and highly
+  responsive digital experiences with clean code and elegant UI design.
+</motion.p>
 
         {/* MAIN CONTENT */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
