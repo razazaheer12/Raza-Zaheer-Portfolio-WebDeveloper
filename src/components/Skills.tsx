@@ -51,8 +51,8 @@ const allSkills = {
     { name: "Socket.io", icon: <SiSocketdotio />, color: "text-white" },
     { name: "LangChain", icon: <SiOpenai />,      color: "text-green-400" },
     { name: "Pinecone",  icon: <SiOpenai />,      color: "text-teal-400" },
-    { name: "JWT Auth",  icon: <ShieldCheck className="w-full h-full" />, color: "text-yellow-500" },
-    { name: "RAG Pipelines", icon: <Database className="w-full h-full" />, color: "text-purple-400" },
+    { name: "JWT Auth",  icon: <ShieldCheck className="w-9 h-9 md:w-10 md:h-10 shrink-0" />, color: "text-yellow-500" },
+    { name: "RAG Pipelines", icon: <Database className="w-9 h-9 md:w-10 md:h-10 shrink-0" />, color: "text-purple-400" },
   ],
   Tools: [
     { name: "Git",     icon: <SiGit />,    color: "text-orange-600" },
@@ -92,7 +92,6 @@ const SkillCard = ({ skill, index }: { skill: (typeof allFlat)[0]; index: number
 );
 
 // ─── Marquee Row ──────────────────────────────────────────────
-// ─── Marquee Row ──────────────────────────────────────────────
 const MarqueeRow = ({
   items,
   reverse = false,
@@ -102,7 +101,8 @@ const MarqueeRow = ({
   reverse?: boolean;
   duration?: number;
 }) => {
-  const doubled = [...items, ...items, ...items, ...items];
+  // Multiply 6x to ensure seamless seamless loop without any blank spot flicker
+  const doubled = [...items, ...items, ...items, ...items, ...items, ...items];
 
   return (
     <div className="group/marquee relative flex overflow-hidden whitespace-nowrap select-none py-2">
@@ -118,15 +118,15 @@ const MarqueeRow = ({
         {doubled.map((skill, i) => (
           <div
             key={`${reverse ? "r" : "f"}-${i}`}
-            className="group relative flex min-w-[130px] flex-col items-center justify-center gap-3 rounded-2xl border border-purple-900/50 bg-[#0b0a1d]/80 px-5 py-5 shadow-sm backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)] md:min-w-[150px]"
+            className="group relative flex h-[105px] md:h-[120px] min-w-[130px] md:min-w-[150px] flex-col items-center justify-center gap-2.5 rounded-2xl border border-purple-900/50 bg-[#0b0a1d]/80 px-5 py-4 shadow-sm backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-purple-500 hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]"
           >
             <div
-              className={`text-[2.2rem] md:text-[2.6rem] ${skill.color} transition-transform duration-300 group-hover:scale-110`}
+              className={`flex h-10 w-10 items-center justify-center text-[2.2rem] md:text-[2.6rem] ${skill.color} transition-transform duration-300 group-hover:scale-110`}
             >
               {skill.icon}
             </div>
             <p
-              className="text-[11px] font-semibold uppercase tracking-wide text-gray-300 transition-colors duration-300 group-hover:text-white md:text-xs"
+              className="text-[11px] font-semibold uppercase tracking-wide text-gray-300 transition-colors duration-300 group-hover:text-white md:text-xs text-center"
               style={{ fontFamily: "'Sora', sans-serif" }}
             >
               {skill.name}
