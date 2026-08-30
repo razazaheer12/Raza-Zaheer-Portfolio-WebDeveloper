@@ -195,7 +195,7 @@ const About: React.FC = () => {
               style={{ fontFamily: "'Sora', sans-serif" }}
             >
               <Briefcase size={14} className="text-purple-400" />
-              Software Engineer · Full-Stack Developer amp; 
+              Software Engineer · Full-Stack Developer 
             </motion.div>
 
             <h3
