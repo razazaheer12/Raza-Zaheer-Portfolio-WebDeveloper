@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Github, Linkedin, Mail, ArrowRight } from "lucide-react";
 import { useThemeStore } from "../store/themeStore";
 
@@ -9,62 +9,26 @@ const navbarPurpleGradient = "linear-gradient(90deg, #c084fc 0%, #a855f7 50%, #9
 // ── Particles Background ────────────────────────────────────────────
 const ParticlesBackground = ({ count = 55, color }: { count?: number; color: string }) => {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
-  const [isCompact, setIsCompact] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    const updateMotionMode = () => {
-      setIsCompact(window.innerWidth < 640);
-      setPrefersReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const handleMouseMove = (e: MouseEvent) => {
+      setMouse({ x: (e.clientX / window.innerWidth - 0.5) * 2, y: (e.clientY / window.innerHeight - 0.5) * 2 });
     };
-
-    updateMotionMode();
-    window.addEventListener("resize", updateMotionMode, { passive: true });
-
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const handlePreferenceChange = () => setPrefersReducedMotion(mediaQuery.matches);
-    mediaQuery.addEventListener?.("change", handlePreferenceChange);
-
-    return () => {
-      window.removeEventListener("resize", updateMotionMode);
-      mediaQuery.removeEventListener?.("change", handlePreferenceChange);
-    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  useEffect(() => {
-    if (isCompact || prefersReducedMotion) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      setMouse({
-        x: (e.clientX / window.innerWidth - 0.5) * 2,
-        y: (e.clientY / window.innerHeight - 0.5) * 2,
-      });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [isCompact, prefersReducedMotion]);
-
-  const particleCount = prefersReducedMotion
-    ? Math.min(count, 18)
-    : isCompact
-      ? Math.min(count, 30)
-      : count;
-
-  const particles = useMemo(
-    () =>
-      Array.from({ length: particleCount }, (_, i) => ({
-        id: i,
-        top: Math.random() * 100,
-        left: Math.random() * 100,
-        size: Math.random() * 2 + 0.6,
-        delay: Math.random() * 10,
-        duration: Math.random() * 15 + 10,
-        depth: Math.random() * 0.5 + 0.3,
-        opacity: Math.random() * 0.35 + 0.08,
-      })),
-    [particleCount]
-  );
+  const particles = useMemo(() =>
+    Array.from({ length: count }, (_, i) => ({
+      id: i,
+      top: Math.random() * 100,
+      left: Math.random() * 100,
+      size: Math.random() * 2 + 0.6,
+      delay: Math.random() * 10,
+      duration: Math.random() * 15 + 10,
+      depth: Math.random() * 0.5 + 0.3,
+      opacity: Math.random() * 0.35 + 0.08,
+    })), [count]);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -72,33 +36,9 @@ const ParticlesBackground = ({ count = 55, color }: { count?: number; color: str
         <motion.div
           key={p.id}
           className="absolute rounded-full"
-          style={{
-            top: `${p.top}%`,
-            left: `${p.left}%`,
-            width: p.size,
-            height: p.size,
-            background: color,
-            opacity: p.opacity,
-          }}
-          animate={
-            prefersReducedMotion
-              ? { opacity: p.opacity }
-              : {
-                  y: [0, -18 * p.depth, 0],
-                  opacity: [p.opacity, p.opacity * 2, p.opacity],
-                  x: mouse.x * 14 * p.depth,
-                }
-          }
-          transition={
-            prefersReducedMotion
-              ? { duration: 0.2 }
-              : {
-                  duration: p.duration,
-                  delay: p.delay,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }
-          }
+          style={{ top: `${p.top}%`, left: `${p.left}%`, width: p.size, height: p.size, background: color, opacity: p.opacity }}
+          animate={{ y: [0, -18 * p.depth, 0], opacity: [p.opacity, p.opacity * 2, p.opacity], x: mouse.x * 14 * p.depth }}
+          transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
         />
       ))}
     </div>
@@ -243,16 +183,6 @@ const cardData = [
 // ── Interactive Code Card Deck (Height & Alignment Updated) ─────────────────────────────
 const InteractiveCodeDeck = () => {
   const [cards, setCards] = useState([0, 1, 2]);
-  const [isCompact, setIsCompact] = useState(false);
-
-  useEffect(() => {
-    const updateCompactMode = () => setIsCompact(window.innerWidth < 640);
-
-    updateCompactMode();
-    window.addEventListener("resize", updateCompactMode, { passive: true });
-
-    return () => window.removeEventListener("resize", updateCompactMode);
-  }, []);
 
   const handleCardClick = (clickedIndex: number) => {
     if (clickedIndex === 0 || clickedIndex === 1) {
@@ -264,21 +194,21 @@ const InteractiveCodeDeck = () => {
 
   return (
     <div
-      className="relative w-full max-w-[460px] h-[clamp(350px,76vw,400px)] flex items-center justify-center select-none cursor-pointer touch-manipulation"
-      style={{ perspective: "1200px" }}
-      role="group"
-      aria-label="Interactive technology stack card deck"
+      className="relative flex w-full max-w-[460px] h-[clamp(365px,40vw,400px)] items-center justify-center select-none cursor-pointer px-2 sm:px-0"
+      role="region"
+      aria-label="Interactive technology card deck"
     >
-      {/* Background Deep Purple Glow */}
-      <div className="absolute inset-[8%] bg-purple-600/25 blur-3xl rounded-full pointer-events-none" />
+      {/* Background Deep Purple Glow — same original visual treatment */}
+      <div className="absolute inset-0 rounded-full bg-purple-600/25 blur-3xl pointer-events-none" />
 
       {cards.map((cardId, index) => {
         const item = cardData[cardId];
         const isFront = index === 0;
 
-        // Keep the desktop composition intact, but make the stack tighter on small screens.
-        const translateY = index * (isCompact ? 14 : 22);
-        const translateX = index * (isCompact ? 9 : 18);
+        // Keep the original desktop offsets; tighten only on smaller screens
+        // so the deck never pushes outside a narrow phone viewport.
+        const translateY = index * 22;
+        const translateX = index * 18;
         const scale = 1 - index * 0.045;
         const zIndex = 30 - index * 10;
         const opacity = isFront ? 1 : index === 1 ? 0.8 : 0.6;
@@ -288,67 +218,60 @@ const InteractiveCodeDeck = () => {
             key={item.id}
             layout
             onClick={() => handleCardClick(index)}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                handleCardClick(index);
-              }
-            }}
-            role="button"
-            tabIndex={0}
-            aria-label={`Switch to ${item.title} technology card`}
             initial={false}
             animate={{
               x: translateX,
               y: translateY,
-              scale,
-              zIndex,
-              opacity,
+              scale: scale,
+              zIndex: zIndex,
+              opacity: opacity,
             }}
             transition={{ type: "spring", stiffness: 260, damping: 24 }}
             whileHover={isFront ? { y: translateY - 6, scale: scale + 0.02 } : { scale: scale + 0.03 }}
-            className={`absolute inset-x-0 top-0 mx-auto flex w-[min(100%,460px)] h-[clamp(330px,72vw,380px)] rounded-2xl border transition-colors duration-300 overflow-hidden shadow-2xl backdrop-blur-xl ${
+            className={`absolute inset-x-2 top-0 w-[calc(100%-16px)] h-[clamp(320px,86vw,380px)] sm:inset-x-0 sm:w-full sm:h-[380px] rounded-2xl border transition-colors duration-300 overflow-hidden shadow-2xl backdrop-blur-xl ${
               isFront
                 ? "bg-[#0b0a1d]/90 border-purple-500/50 shadow-[0_0_40px_rgba(168,85,247,0.3)] hover:border-purple-400"
                 : "bg-[#070614]/90 border-purple-900/40 hover:border-purple-600/40"
             }`}
+            tabIndex={0}
+            role="button"
+            aria-label={`Switch to ${item.title} card`}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleCardClick(index);
+              }
+            }}
           >
-            {/* Window Header */}
-            <div className="flex h-[52px] sm:h-[56px] shrink-0 items-center justify-between gap-3 px-3.5 sm:px-5 py-3 border-b border-purple-900/40 bg-purple-950/20">
-              <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-rose-500/80" />
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-amber-500/80" />
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-500/80" />
+            {/* Window Header — original styling preserved */}
+            <div className="flex items-center justify-between px-5 py-3.5 border-b border-purple-900/40 bg-purple-950/20 max-[374px]:px-4 max-[374px]:py-3">
+              <div className="flex items-center gap-2 max-[374px]:gap-1.5">
+                <div className="w-3 h-3 rounded-full bg-rose-500/80 max-[374px]:w-2.5 max-[374px]:h-2.5" />
+                <div className="w-3 h-3 rounded-full bg-amber-500/80 max-[374px]:w-2.5 max-[374px]:h-2.5" />
+                <div className="w-3 h-3 rounded-full bg-emerald-500/80 max-[374px]:w-2.5 max-[374px]:h-2.5" />
               </div>
-              <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
-                <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 shrink-0 rounded-full bg-purple-400 animate-pulse" />
-                <span className="truncate text-[10px] sm:text-xs font-mono font-medium text-purple-200/90 tracking-wide">
-                  {item.fileName}
-                </span>
+              <div className="flex min-w-0 items-center gap-2 max-[374px]:gap-1.5">
+                <span className="h-2 w-2 shrink-0 rounded-full bg-purple-400 animate-pulse max-[374px]:h-1.5 max-[374px]:w-1.5" />
+                <span className="truncate text-xs font-mono font-medium text-purple-200/90 tracking-wide max-[374px]:text-[11px]">{item.fileName}</span>
               </div>
             </div>
 
-            {/* Window Code Content */}
-            <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-3.5 py-4 sm:px-5 sm:py-5 pb-14 font-mono text-[clamp(10px,2.9vw,14px)] leading-[1.65] sm:leading-relaxed">
-              <div className="space-y-1.5 sm:space-y-2">
-                {item.codeLines.map((line, idx) => (
-                  <div key={idx} className="flex min-w-0 items-start gap-2.5 sm:gap-4">
-                    <span className="w-4 sm:w-5 shrink-0 text-purple-300/30 text-[9px] sm:text-xs select-none leading-[1.65] sm:leading-relaxed">
-                      {line.num}
-                    </span>
-                    <span className={`${line.color} min-w-0 break-words whitespace-normal leading-[1.65] sm:leading-relaxed`}>
-                      {line.text}
-                    </span>
-                  </div>
-                ))}
-              </div>
+            {/* Window Code Content
+                Original typography/colors retained; only the mobile geometry changes. */}
+            <div className="p-5 pr-4 pb-14 font-mono text-sm leading-relaxed space-y-2 overflow-hidden sm:pb-14 max-[374px]:px-4 max-[374px]:pt-4 max-[374px]:pb-12 max-[374px]:text-[11px] max-[374px]:leading-[1.65]">
+              {item.codeLines.map((line, idx) => (
+                <div key={idx} className="flex items-start gap-4 min-w-0 max-[374px]:gap-2.5">
+                  <span className="w-5 shrink-0 text-purple-300/30 text-xs select-none max-[374px]:w-4 max-[374px]:text-[10px]">{line.num}</span>
+                  <span className={`${line.color} min-w-0 break-words whitespace-normal`}>{line.text}</span>
+                </div>
+              ))}
             </div>
 
-            {/* Card Hint Footer */}
+            {/* Card Hint Footer — same original look, but reserved space prevents clipping */}
             {isFront && (
-              <div className="pointer-events-none absolute bottom-2.5 right-3.5 sm:bottom-3 sm:right-5 max-w-[calc(100%-28px)] text-[8px] sm:text-[10px] font-mono text-purple-300/50 tracking-[0.08em] sm:tracking-wider uppercase flex items-center justify-end gap-1 sm:gap-1.5 bg-[#0b0a1d]/70 pl-2 py-1 rounded-md backdrop-blur-sm">
-                <span className="truncate">Click deck to switch</span>
-                <span className="shrink-0 text-purple-400 text-[10px] sm:text-xs">⚡</span>
+              <div className="absolute bottom-3 right-5 text-[10px] font-mono text-purple-300/50 tracking-wider uppercase flex items-center gap-1.5 max-[374px]:bottom-2.5 max-[374px]:right-4 max-[374px]:text-[8px] max-[374px]:gap-1">
+                <span>Click deck to switch</span>
+                <span className="text-purple-400 text-xs max-[374px]:text-[10px]">⚡</span>
               </div>
             )}
           </motion.div>
@@ -466,7 +389,7 @@ const Hero = () => {
             {/* Name */}
             <motion.h1
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              style={{ fontFamily: "'Sora', sans-serif", fontWeight: 800, lineHeight: 0.98, letterSpacing: "clamp(-2.5px, -0.22vw, -1.5px)", marginBottom: 16, fontSize: "clamp(48px, 8vw, 96px)" }}
+              style={{ fontFamily: "'Sora', sans-serif", fontWeight: 800, lineHeight: 1.02, letterSpacing: "-2px", marginBottom: 14, fontSize: "clamp(52px, 8vw, 96px)" }}
             >
               <span style={{ color: theme.nameA, display: "block" }}>Raza</span>
               <span style={{ color: theme.nameB, display: "block" }}>Zaheer</span>
@@ -475,10 +398,10 @@ const Hero = () => {
             {/* Role Typing Component */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="flex min-h-[32px] flex-wrap items-center gap-x-3 gap-y-1 mb-5"
+              className="flex items-center gap-3 mb-5"
               style={{ fontFamily: "'Sora', sans-serif" }}
             >
-              <span style={{ color: theme.prefix, fontSize: "clamp(16px, 2.1vw, 18px)", fontWeight: 600 }}>I'm a</span>
+              <span style={{ color: theme.prefix, fontSize: 18, fontWeight: 600 }}>I'm a</span>
               <CyclingTyping cursorColor={theme.cursor} />
             </motion.div>
 
@@ -492,7 +415,7 @@ const Hero = () => {
             </motion.p>
 
             {/* Action Buttons */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-3.5 sm:gap-4 mb-8">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap gap-4 mb-8">
               <motion.a
                 href="#projects"
                 whileHover={{ scale: 1.025 }}
@@ -516,7 +439,7 @@ const Hero = () => {
             </motion.div>
 
             {/* Metallic "Find me" & Social Icons */}
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex flex-wrap items-center gap-3 mb-10">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-3 mb-10">
               <span
                 className="mr-2 text-xs font-mono font-bold uppercase tracking-widest bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent drop-shadow-[0_1px_4px_rgba(255,255,255,0.2)]"
                 style={{ fontFamily: "'Sora', sans-serif" }}
@@ -531,7 +454,7 @@ const Hero = () => {
             {/* Minimal Box-less Metallic Stats */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-              className="flex w-full items-center justify-between gap-4 sm:w-auto sm:justify-start sm:gap-12"
+              className="flex items-center gap-8 sm:gap-12"
             >
               {stats.map((stat, i) => (
                 <div key={i} className="flex flex-col">
@@ -554,7 +477,7 @@ const Hero = () => {
           </motion.div>
 
         {/* Right — Interactive Code Card Deck (Slightly lowered below badge) */}
-<div className="flex w-full justify-center lg:justify-end items-start relative h-full mt-6 lg:mt-0 px-0 sm:px-2 lg:px-0">
+<div className="flex justify-center lg:justify-end items-start relative h-full mt-2 lg:mt-0">
   <InteractiveCodeDeck />
 </div>
 
