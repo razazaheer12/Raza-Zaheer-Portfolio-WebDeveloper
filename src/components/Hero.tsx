@@ -180,7 +180,7 @@ const cardData = [
   },
 ];
 
-// ── Interactive Code Card Deck (Height & Alignment Updated) ─────────────────────────────
+// ── Interactive Code Card Deck (Responsive — Original Design Preserved) ─────────────────
 const InteractiveCodeDeck = () => {
   const [cards, setCards] = useState([0, 1, 2]);
 
@@ -194,19 +194,20 @@ const InteractiveCodeDeck = () => {
 
   return (
     <div
-      className="relative flex w-full max-w-[460px] h-[clamp(365px,40vw,400px)] items-center justify-center select-none cursor-pointer px-2 sm:px-0"
+      className="relative flex h-[400px] w-full max-w-[460px] items-center justify-center select-none cursor-pointer px-2 sm:px-0"
       role="region"
       aria-label="Interactive technology card deck"
     >
-      {/* Background Deep Purple Glow — same original visual treatment */}
+      {/* Original Deep Purple Glow — unchanged */}
       <div className="absolute inset-0 rounded-full bg-purple-600/25 blur-3xl pointer-events-none" />
 
       {cards.map((cardId, index) => {
         const item = cardData[cardId];
         const isFront = index === 0;
 
-        // Keep the original desktop offsets; tighten only on smaller screens
-        // so the deck never pushes outside a narrow phone viewport.
+        // Original desktop geometry stays exactly the same.
+        // The stack geometry stays identical to the original desktop design.
+        // Mobile safety is handled inside the card itself, so the visual deck remains unchanged.
         const translateY = index * 22;
         const translateX = index * 18;
         const scale = 1 - index * 0.045;
@@ -222,13 +223,17 @@ const InteractiveCodeDeck = () => {
             animate={{
               x: translateX,
               y: translateY,
-              scale: scale,
-              zIndex: zIndex,
-              opacity: opacity,
+              scale,
+              zIndex,
+              opacity,
             }}
             transition={{ type: "spring", stiffness: 260, damping: 24 }}
-            whileHover={isFront ? { y: translateY - 6, scale: scale + 0.02 } : { scale: scale + 0.03 }}
-            className={`absolute inset-x-2 top-0 w-[calc(100%-16px)] h-[clamp(320px,86vw,380px)] sm:inset-x-0 sm:w-full sm:h-[380px] rounded-2xl border transition-colors duration-300 overflow-hidden shadow-2xl backdrop-blur-xl ${
+            whileHover={
+              isFront
+                ? { y: translateY - 6, scale: scale + 0.02 }
+                : { scale: scale + 0.03 }
+            }
+            className={`absolute inset-x-2 top-0 h-[380px] w-[calc(100%-16px)] rounded-2xl border overflow-hidden shadow-2xl backdrop-blur-xl transition-colors duration-300 sm:inset-x-0 sm:w-full sm:h-[380px] ${
               isFront
                 ? "bg-[#0b0a1d]/90 border-purple-500/50 shadow-[0_0_40px_rgba(168,85,247,0.3)] hover:border-purple-400"
                 : "bg-[#070614]/90 border-purple-900/40 hover:border-purple-600/40"
@@ -243,35 +248,52 @@ const InteractiveCodeDeck = () => {
               }
             }}
           >
-            {/* Window Header — original styling preserved */}
-            <div className="flex items-center justify-between px-5 py-3.5 border-b border-purple-900/40 bg-purple-950/20 max-[374px]:px-4 max-[374px]:py-3">
+            {/* Window Header — ORIGINAL styling */}
+            <div className="flex items-center justify-between border-b border-purple-900/40 bg-purple-950/20 px-5 py-3.5 max-[374px]:px-4 max-[374px]:py-3">
               <div className="flex items-center gap-2 max-[374px]:gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-rose-500/80 max-[374px]:w-2.5 max-[374px]:h-2.5" />
-                <div className="w-3 h-3 rounded-full bg-amber-500/80 max-[374px]:w-2.5 max-[374px]:h-2.5" />
-                <div className="w-3 h-3 rounded-full bg-emerald-500/80 max-[374px]:w-2.5 max-[374px]:h-2.5" />
+                <div className="h-3 w-3 rounded-full bg-rose-500/80 max-[374px]:h-2.5 max-[374px]:w-2.5" />
+                <div className="h-3 w-3 rounded-full bg-amber-500/80 max-[374px]:h-2.5 max-[374px]:w-2.5" />
+                <div className="h-3 w-3 rounded-full bg-emerald-500/80 max-[374px]:h-2.5 max-[374px]:w-2.5" />
               </div>
+
               <div className="flex min-w-0 items-center gap-2 max-[374px]:gap-1.5">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-purple-400 animate-pulse max-[374px]:h-1.5 max-[374px]:w-1.5" />
-                <span className="truncate text-xs font-mono font-medium text-purple-200/90 tracking-wide max-[374px]:text-[11px]">{item.fileName}</span>
+                <span className="truncate text-xs font-mono font-medium tracking-wide text-purple-200/90 max-[374px]:text-[11px]">
+                  {item.fileName}
+                </span>
               </div>
             </div>
 
-            {/* Window Code Content
-                Original typography/colors retained; only the mobile geometry changes. */}
-            <div className="p-5 pr-4 pb-14 font-mono text-sm leading-relaxed space-y-2 overflow-hidden sm:pb-14 max-[374px]:px-4 max-[374px]:pt-4 max-[374px]:pb-12 max-[374px]:text-[11px] max-[374px]:leading-[1.65]">
+            {/*
+              IMPORTANT MOBILE FIX:
+              Keep each code statement on one line and scale the mono font down
+              smoothly on narrow screens. The old version allowed wrapping, which
+              made 8 source lines become 12–14 visual lines and pushed the final
+              lines underneath the stacked cards/footer on older phones.
+            */}
+            <div
+              className="overflow-hidden p-5 pr-4 pb-14 font-mono leading-relaxed sm:pb-14 max-[639px]:p-[clamp(14px,4vw,20px)] max-[639px]:pr-[clamp(12px,3.5vw,18px)] max-[639px]:pb-14 max-[639px]:text-[clamp(8.5px,2.7vw,14px)] max-[639px]:leading-[1.55] max-[639px]:space-y-[clamp(4px,1.5vw,8px)]"
+            >
               {item.codeLines.map((line, idx) => (
-                <div key={idx} className="flex items-start gap-4 min-w-0 max-[374px]:gap-2.5">
-                  <span className="w-5 shrink-0 text-purple-300/30 text-xs select-none max-[374px]:w-4 max-[374px]:text-[10px]">{line.num}</span>
-                  <span className={`${line.color} min-w-0 break-words whitespace-normal`}>{line.text}</span>
+                <div
+                  key={idx}
+                  className="flex min-w-0 items-center gap-4 max-[639px]:gap-[clamp(7px,2vw,16px)]"
+                >
+                  <span className="w-5 shrink-0 select-none text-xs text-purple-300/30 max-[639px]:w-[clamp(14px,4vw,20px)] max-[639px]:text-[clamp(8px,2.4vw,12px)]">
+                    {line.num}
+                  </span>
+                  <span className={`${line.color} min-w-0 whitespace-nowrap`}>
+                    {line.text}
+                  </span>
                 </div>
               ))}
             </div>
 
-            {/* Card Hint Footer — same original look, but reserved space prevents clipping */}
+            {/* Original footer — same position/style, content no longer reaches it */}
             {isFront && (
-              <div className="absolute bottom-3 right-5 text-[10px] font-mono text-purple-300/50 tracking-wider uppercase flex items-center gap-1.5 max-[374px]:bottom-2.5 max-[374px]:right-4 max-[374px]:text-[8px] max-[374px]:gap-1">
+              <div className="absolute bottom-3 right-5 flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-purple-300/50 max-[374px]:bottom-2.5 max-[374px]:right-4 max-[374px]:text-[8px] max-[374px]:gap-1">
                 <span>Click deck to switch</span>
-                <span className="text-purple-400 text-xs max-[374px]:text-[10px]">⚡</span>
+                <span className="text-xs text-purple-400 max-[374px]:text-[10px]">⚡</span>
               </div>
             )}
           </motion.div>
