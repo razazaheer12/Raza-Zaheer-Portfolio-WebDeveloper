@@ -233,6 +233,15 @@ const projects: Project[] = [
     githubUrl: "https://github.com/razazaheer12/Recipe-Finder",
   },
   {
+    title: "GitHub User Finder",
+    description:
+      "A modern, dark-themed GitHub profile and repository search tool powered by GitHub REST API, featuring live statistics, recent repos, and dynamic DOM rendering.",
+    image: "/projects/github-finder.webp",
+    tech: ["HTML5", "CSS3", "JavaScript ES6", "GitHub REST API", "Font Awesome"],
+    liveUrl: "https://github-finder2002.netlify.app/",
+    githubUrl: "https://github.com/razazaheer12/Github-Finder",
+  },
+  {
     title: "Cocktail Explorer",
     description:
       "Premium Express + EJS web app using TheCocktailDB API to search and display cocktail recipes with ingredients and instructions.",
@@ -240,6 +249,24 @@ const projects: Project[] = [
     tech: ["Node.js", "Express.js", "EJS", "AXIOS", "TheCocktailDB API"],
     liveUrl: "https://cocktail-explorer-psi.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Cocktail-Explorer",
+  },
+  {
+    title: "Jokester - Interactive Joke Discovery Engine",
+    description:
+      "Full-stack web application allowing users to discover and custom-filter jokes by category, type, and content flags using server-side EJS rendering and JokeAPI integration.",
+    image: "/projects/jokester.webp",
+    tech: ["Node.js", "Express.js", "EJS", "Axios", "JokeAPI v2", "JavaScript ES6"],
+    liveUrl: "https://jokester-omega.vercel.app/",
+    githubUrl: "https://github.com/razazaheer12/Jokester",
+  },
+  {
+    title: "TaskPulse - Local-First Task Manager",
+    description:
+      "A calm, offline-first PWA for focused productivity. Features inline double-click editing, priority levels, modal confirmation guards, and dark/light mode with zero cloud lock-in.",
+    image: "/projects/taskpulse.webp",
+    tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Base UI", "PWA"],
+    liveUrl: "https://task-pulse-webapp.netlify.app/",
+    githubUrl: "https://github.com/razazaheer12/Task-Pulse",
   },
   {
     title: "Neural Canvas - AI Art Studio",
