@@ -214,14 +214,21 @@ const projects: Project[] = [
     liveUrl: "https://sun-moon-tracker-a27p.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Sun_Moon-Tracker",
   },
-  {
-    title: "MyPDF - Free PDF Toolkit",
+{
+    title: "PDF-Shift-Engine (MyPDF Online Toolkit)",
     description:
-      "Fast and secure PDF-to-Word converter with drag-and-drop uploads, real-time progress tracking, and download history management.",
+      "A fast and modern PDF toolkit allowing high-fidelity PDF to Word (.docx) and Word to PDF conversions with stream processing, light/dark mode, and conversion history.",
     image: "/projects/mypdf.webp",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-    liveUrl: "https://mypdf-converter.vercel.app/",
-    githubUrl: "https://github.com/razazaheer12/MyPDF_converter",
+    tech: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Radix UI",
+      "CloudConvert API v2",
+    ],
+    liveUrl: "https://pdf-shift-engine.vercel.app",
+    githubUrl: "https://github.com/razazaheer12/PDF-Shift-Engine.git",
   },
   {
     title: "Recipe Finder",
