@@ -179,15 +179,47 @@ const projects: Project[] = [
       ],
     },
   },
-  {
-    title: "Quizlett - MCQ Platform",
+ {
+    title: "PDF-Shift-Engine (MyPDF Online Toolkit)",
     description:
-      "Modern interactive quiz app with Math, Programming, and General Knowledge sections. Features instant feedback, progress tracking, achievements, and dark/light theme.",
-    image: "/projects/quizlett.webp",
-    tech: ["Next.JS", "TypeScript", "Tailwind CSS", "Shadcn-ui"],
-    liveUrl: "https://advanced-mcq-quiz.vercel.app/",
-    githubUrl:
-      "https://github.com/razazaheer12/Quizlett--advanced-mcq-quiz",
+      "A fast and modern PDF toolkit allowing high-fidelity PDF to Word (.docx) and Word to PDF conversions with stream processing, light/dark mode, and conversion history.",
+    image: "/projects/mypdf.webp",
+    tech: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Radix UI",
+      "CloudConvert API v2",
+    ],
+    liveUrl: "https://pdf-shift-engine.vercel.app",
+    githubUrl: "https://github.com/razazaheer12/PDF-Shift-Engine.git",
+  },
+  {
+    title: "MIUI BMI Calculator & Health Tracker",
+    description:
+      "A sleek Xiaomi MIUI/HyperOS-inspired BMI calculator with glassmorphism UI, animated transitions, interactive trend charts, unit conversion, and full offline PWA support. Privacy-first with zero backend.",
+    image: "/projects/bmi-calculator.webp",
+    tech: [
+      "React 19",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS v4",
+      "Motion",
+      "Recharts",
+      "PWA",
+    ],
+    liveUrl: "https://bmi-ui-calculator.vercel.app/",
+    githubUrl: "https://github.com/razazaheer12/BMI-Calculator",
+  },
+  {
+    title: "TaskPulse - Local-First Task Manager",
+    description:
+      "A calm, offline-first PWA for focused productivity. Features inline double-click editing, priority levels, modal confirmation guards, and dark/light mode with zero cloud lock-in.",
+    image: "/projects/taskpulse.webp",
+    tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Base UI", "PWA"],
+    liveUrl: "https://task-pulse-webapp.netlify.app/",
+    githubUrl: "https://github.com/razazaheer12/Task-Pulse",
   },
   {
     title: "WeatherFlow NextGen",
@@ -214,21 +246,33 @@ const projects: Project[] = [
     liveUrl: "https://sun-moon-tracker-a27p.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Sun_Moon-Tracker",
   },
-{
-    title: "PDF-Shift-Engine (MyPDF Online Toolkit)",
+  {
+    title: "Quizlett - MCQ Platform",
     description:
-      "A fast and modern PDF toolkit allowing high-fidelity PDF to Word (.docx) and Word to PDF conversions with stream processing, light/dark mode, and conversion history.",
-    image: "/projects/mypdf.webp",
-    tech: [
-      "Next.js 15",
-      "React 19",
-      "TypeScript",
-      "Tailwind CSS",
-      "Radix UI",
-      "CloudConvert API v2",
-    ],
-    liveUrl: "https://pdf-shift-engine.vercel.app",
-    githubUrl: "https://github.com/razazaheer12/PDF-Shift-Engine.git",
+      "Modern interactive quiz app with Math, Programming, and General Knowledge sections. Features instant feedback, progress tracking, achievements, and dark/light theme.",
+    image: "/projects/quizlett.webp",
+    tech: ["Next.JS", "TypeScript", "Tailwind CSS", "Shadcn-ui"],
+    liveUrl: "https://advanced-mcq-quiz.vercel.app/",
+    githubUrl:
+      "https://github.com/razazaheer12/Quizlett--advanced-mcq-quiz",
+  },
+  {
+    title: "Jokester - Interactive Joke Discovery Engine",
+    description:
+      "Full-stack web application allowing users to discover and custom-filter jokes by category, type, and content flags using server-side EJS rendering and JokeAPI integration.",
+    image: "/projects/jokester.webp",
+    tech: ["Node.js", "Express.js", "EJS", "Axios", "JokeAPI v2", "JavaScript ES6"],
+    liveUrl: "https://jokester-omega.vercel.app/",
+    githubUrl: "https://github.com/razazaheer12/Jokester",
+  },
+  {
+    title: "Cocktail Explorer",
+    description:
+      "Premium Express + EJS web app using TheCocktailDB API to search and display cocktail recipes with ingredients and instructions.",
+    image: "/projects/cocktail.webp",
+    tech: ["Node.js", "Express.js", "EJS", "AXIOS", "TheCocktailDB API"],
+    liveUrl: "https://cocktail-explorer-psi.vercel.app/",
+    githubUrl: "https://github.com/razazaheer12/Cocktail-Explorer",
   },
   {
     title: "Recipe Finder",
@@ -247,33 +291,6 @@ const projects: Project[] = [
     tech: ["HTML5", "CSS3", "JavaScript ES6", "GitHub REST API", "Font Awesome"],
     liveUrl: "https://github-finder2002.netlify.app/",
     githubUrl: "https://github.com/razazaheer12/Github-Finder",
-  },
-  {
-    title: "Cocktail Explorer",
-    description:
-      "Premium Express + EJS web app using TheCocktailDB API to search and display cocktail recipes with ingredients and instructions.",
-    image: "/projects/cocktail.webp",
-    tech: ["Node.js", "Express.js", "EJS", "AXIOS", "TheCocktailDB API"],
-    liveUrl: "https://cocktail-explorer-psi.vercel.app/",
-    githubUrl: "https://github.com/razazaheer12/Cocktail-Explorer",
-  },
-  {
-    title: "Jokester - Interactive Joke Discovery Engine",
-    description:
-      "Full-stack web application allowing users to discover and custom-filter jokes by category, type, and content flags using server-side EJS rendering and JokeAPI integration.",
-    image: "/projects/jokester.webp",
-    tech: ["Node.js", "Express.js", "EJS", "Axios", "JokeAPI v2", "JavaScript ES6"],
-    liveUrl: "https://jokester-omega.vercel.app/",
-    githubUrl: "https://github.com/razazaheer12/Jokester",
-  },
-  {
-    title: "TaskPulse - Local-First Task Manager",
-    description:
-      "A calm, offline-first PWA for focused productivity. Features inline double-click editing, priority levels, modal confirmation guards, and dark/light mode with zero cloud lock-in.",
-    image: "/projects/taskpulse.webp",
-    tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Base UI", "PWA"],
-    liveUrl: "https://task-pulse-webapp.netlify.app/",
-    githubUrl: "https://github.com/razazaheer12/Task-Pulse",
   },
   {
     title: "Neural Canvas - AI Art Studio",
