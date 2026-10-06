@@ -180,9 +180,26 @@ const projects: Project[] = [
     },
   },
  {
+    title: "WeatherFlow",
+    description:
+      "A premium, app-like weather experience with hourly and 5-day forecasts, favorite cities, temperature trend charts, unit switching, and installable offline-first PWA with a hand-built service worker.",
+    image: "/projects/weatherflow.webp",
+    tech: [
+      "Next.js 14",
+      "React 18",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Recharts",
+      "OpenWeatherMap API",
+      "PWA",
+    ],
+    liveUrl: "https://weather-flow-web-app.vercel.app/",
+    githubUrl: "https://github.com/razazaheer12/weather-flow-app",
+  },
+  {
     title: "PDF-Shift-Engine (MyPDF Online Toolkit)",
     description:
-      "A fast and modern PDF toolkit allowing high-fidelity PDF to Word (.docx) and Word to PDF conversions with stream processing, light/dark mode, and conversion history.",
+      "A fast and modern PDF toolkit for PDF to Word (.docx) and Word to PDF conversions, powered by server-side stream processing through CloudConvert, with persistent conversion history and a clean light UI.",
     image: "/projects/mypdf.webp",
     tech: [
       "Next.js 15",
@@ -222,27 +239,18 @@ const projects: Project[] = [
     githubUrl: "https://github.com/razazaheer12/Task-Pulse",
   },
   {
-    title: "WeatherFlow NextGen",
-    description:
-      "Cutting-edge weather application with real-time insights, interactive forecasts, and seamless offline capabilities built with modern web technologies.",
-    image: "/projects/weatherflow.webp",
-    tech: [
-      "Next.js",
-      "TypeScript",
-      "OpenWeather API",
-      "Chart.js",
-      "Tailwind CSS",
-    ],
-    liveUrl: "https://advance-weather-app-next-gen.vercel.app/",
-    githubUrl:
-      "https://github.com/razazaheer12/Advance_Weather_App-Next_Gen",
-  },
-  {
     title: "Sun & Moon Tracker",
     description:
-      "High-precision interactive app visualizing real-time positions of the sun and moon with timezone-aware world time windows.",
+      "A multi-timezone world clock where every city gets an animated sky card with day/night gradients, a moving sun or moon, and drifting clouds based on its local time. Search 280+ cities, reorder and remove cards.",
     image: "/projects/sun-moon.webp",
-    tech: ["React.js", "TypeScript", "Tailwind CSS", "Vite", "Date-fns"],
+    tech: [
+      "React 18",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "cmdk",
+    ],
     liveUrl: "https://sun-moon-tracker-a27p.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Sun_Moon-Tracker",
   },
