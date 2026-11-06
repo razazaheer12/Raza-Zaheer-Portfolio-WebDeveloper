@@ -232,31 +232,6 @@ const projects: Project[] = [
     liveUrl: "https://bmi-ui-calculator.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/BMI-Calculator",
   },
-  {
-    title: "TaskPulse - Local-First Task Manager",
-    description:
-      "A calm, offline-first PWA for focused productivity. Features inline double-click editing, priority levels, modal confirmation guards, and dark/light mode with zero cloud lock-in.",
-    image: "/projects/taskpulse.webp",
-    tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Base UI", "PWA"],
-    liveUrl: "https://task-pulse-webapp.netlify.app/",
-    githubUrl: "https://github.com/razazaheer12/Task-Pulse",
-  },
-  {
-    title: "Sun & Moon Tracker",
-    description:
-      "A multi-timezone world clock where every city gets an animated sky card with day/night gradients, a moving sun or moon, and drifting clouds based on its local time. Search 280+ cities, reorder and remove cards.",
-    image: "/projects/sun-moon.webp",
-    tech: [
-      "React 18",
-      "TypeScript",
-      "Vite",
-      "Tailwind CSS",
-      "shadcn/ui",
-      "cmdk",
-    ],
-    liveUrl: "https://sun-moon-tracker-a27p.vercel.app/",
-    githubUrl: "https://github.com/razazaheer12/Sun_Moon-Tracker",
-  },
 {
     title: "Quizlett - MCQ Platform",
     description:
@@ -272,6 +247,31 @@ const projects: Project[] = [
     ],
     liveUrl: "https://quizlett-mcqs.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Quizlett",
+  },
+    {
+    title: "TaskPulse - Local-First Task Manager",
+    description:
+      "A calm, offline-first PWA for focused productivity. Features inline double-click editing, priority levels, modal confirmation guards, and dark/light mode with zero cloud lock-in.",
+    image: "/projects/taskpulse.webp",
+    tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Base UI", "PWA"],
+    liveUrl: "https://task-pulse-webapp.netlify.app/",
+    githubUrl: "https://github.com/razazaheer12/Task-Pulse",
+  },
+    {
+    title: "Sun & Moon Tracker",
+    description:
+      "A multi-timezone world clock where every city gets an animated sky card with day/night gradients, a moving sun or moon, and drifting clouds based on its local time. Search 280+ cities, reorder and remove cards.",
+    image: "/projects/sun-moon.webp",
+    tech: [
+      "React 18",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "cmdk",
+    ],
+    liveUrl: "https://sun-moon-tracker-a27p.vercel.app/",
+    githubUrl: "https://github.com/razazaheer12/Sun_Moon-Tracker",
   },
   {
     title: "Jokester - Interactive Joke Discovery Engine",
