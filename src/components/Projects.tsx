@@ -257,15 +257,21 @@ const projects: Project[] = [
     liveUrl: "https://sun-moon-tracker-a27p.vercel.app/",
     githubUrl: "https://github.com/razazaheer12/Sun_Moon-Tracker",
   },
-  {
+{
     title: "Quizlett - MCQ Platform",
     description:
-      "Modern interactive quiz app with Math, Programming, and General Knowledge sections. Features instant feedback, progress tracking, achievements, and dark/light theme.",
+      "A polished, local-first quiz platform with Math, Programming, and General Knowledge sections. Features sequential and batch quiz modes, keyboard shortcuts, animated score insights, unlockable achievements, and a dark-first theme with zero-flash loading.",
     image: "/projects/quizlett.webp",
-    tech: ["Next.JS", "TypeScript", "Tailwind CSS", "Shadcn-ui"],
-    liveUrl: "https://advanced-mcq-quiz.vercel.app/",
-    githubUrl:
-      "https://github.com/razazaheer12/Quizlett--advanced-mcq-quiz",
+    tech: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Radix UI",
+    ],
+    liveUrl: "https://quizlett-mcqs.vercel.app/",
+    githubUrl: "https://github.com/razazaheer12/Quizlett",
   },
   {
     title: "Jokester - Interactive Joke Discovery Engine",
